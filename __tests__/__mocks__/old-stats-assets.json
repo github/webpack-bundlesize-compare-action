@@ -1,0 +1,646 @@
+{
+  "assets": [
+    {
+      "type": "asset",
+      "name": "app.bundle.js",
+      "size": 1089499,
+      "emitted": false,
+      "comparedForEmit": true,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "license": "app.bundle.js.LICENSE.txt",
+          "sourceMap": "app.bundle.js.map",
+          "gzipped": "app.bundle.js.gz"
+        },
+        "size": 1089499
+      },
+      "chunkNames": ["app"],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 0,
+      "related": [
+        {
+          "type": "sourceMap",
+          "name": "app.bundle.js.map",
+          "size": 4328298,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "development": true,
+            "related": {
+              "gzipped": "app.bundle.js.map.gz"
+            },
+            "size": 4328298
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": ["app"],
+          "auxiliaryChunkIdHints": [],
+          "filteredRelated": 0,
+          "related": [
+            {
+              "type": "gzipped",
+              "name": "app.bundle.js.map.gz",
+              "size": 1053681,
+              "emitted": false,
+              "comparedForEmit": true,
+              "cached": false,
+              "info": {
+                "compressed": true,
+                "size": 1053681
+              },
+              "chunkNames": [],
+              "chunkIdHints": [],
+              "auxiliaryChunkNames": [],
+              "auxiliaryChunkIdHints": [],
+              "related": {},
+              "chunks": [],
+              "auxiliaryChunks": [],
+              "isOverSizeLimit": true
+            }
+          ],
+          "chunks": [],
+          "auxiliaryChunks": [143],
+          "isOverSizeLimit": false
+        },
+        {
+          "type": "gzipped",
+          "name": "app.bundle.js.gz",
+          "size": 304515,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "compressed": true,
+            "size": 304515
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "related": {},
+          "chunks": [],
+          "auxiliaryChunks": [],
+          "isOverSizeLimit": false
+        },
+        {
+          "type": "license",
+          "name": "app.bundle.js.LICENSE.txt",
+          "size": 2113,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "extractedComments": true,
+            "related": {
+              "gzipped": "app.bundle.js.LICENSE.txt.gz"
+            },
+            "size": 2113
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "filteredRelated": 0,
+          "related": [
+            {
+              "type": "gzipped",
+              "name": "app.bundle.js.LICENSE.txt.gz",
+              "size": 457,
+              "emitted": false,
+              "comparedForEmit": true,
+              "cached": false,
+              "info": {
+                "compressed": true,
+                "size": 457
+              },
+              "chunkNames": [],
+              "chunkIdHints": [],
+              "auxiliaryChunkNames": [],
+              "auxiliaryChunkIdHints": [],
+              "related": {},
+              "chunks": [],
+              "auxiliaryChunks": [],
+              "isOverSizeLimit": false
+            }
+          ],
+          "chunks": [],
+          "auxiliaryChunks": [],
+          "isOverSizeLimit": false
+        }
+      ],
+      "chunks": [143],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": true
+    },
+    {
+      "type": "asset",
+      "name": "296.chunk.js",
+      "size": 127558,
+      "emitted": false,
+      "comparedForEmit": true,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "sourceMap": "296.chunk.js.map",
+          "gzipped": "296.chunk.js.gz"
+        },
+        "size": 127558
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 0,
+      "related": [
+        {
+          "type": "sourceMap",
+          "name": "296.chunk.js.map",
+          "size": 570499,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "development": true,
+            "related": {
+              "gzipped": "296.chunk.js.map.gz"
+            },
+            "size": 570499
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "filteredRelated": 0,
+          "related": [
+            {
+              "type": "gzipped",
+              "name": "296.chunk.js.map.gz",
+              "size": 140092,
+              "emitted": false,
+              "comparedForEmit": true,
+              "cached": false,
+              "info": {
+                "compressed": true,
+                "size": 140092
+              },
+              "chunkNames": [],
+              "chunkIdHints": [],
+              "auxiliaryChunkNames": [],
+              "auxiliaryChunkIdHints": [],
+              "related": {},
+              "chunks": [],
+              "auxiliaryChunks": [],
+              "isOverSizeLimit": false
+            }
+          ],
+          "chunks": [],
+          "auxiliaryChunks": [296],
+          "isOverSizeLimit": false
+        },
+        {
+          "type": "gzipped",
+          "name": "296.chunk.js.gz",
+          "size": 35889,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "compressed": true,
+            "size": 35889
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "related": {},
+          "chunks": [],
+          "auxiliaryChunks": [],
+          "isOverSizeLimit": false
+        }
+      ],
+      "chunks": [296],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
+    },
+    {
+      "type": "asset",
+      "name": "288.chunk.js",
+      "size": 58610,
+      "emitted": false,
+      "comparedForEmit": true,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "sourceMap": "288.chunk.js.map",
+          "gzipped": "288.chunk.js.gz"
+        },
+        "size": 58610
+      },
+      "chunkNames": [],
+      "chunkIdHints": ["vendors"],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 0,
+      "related": [
+        {
+          "type": "sourceMap",
+          "name": "288.chunk.js.map",
+          "size": 147474,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "development": true,
+            "related": {
+              "gzipped": "288.chunk.js.map.gz"
+            },
+            "size": 147474
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": ["vendors"],
+          "filteredRelated": 0,
+          "related": [
+            {
+              "type": "gzipped",
+              "name": "288.chunk.js.map.gz",
+              "size": 41152,
+              "emitted": false,
+              "comparedForEmit": true,
+              "cached": false,
+              "info": {
+                "compressed": true,
+                "size": 41152
+              },
+              "chunkNames": [],
+              "chunkIdHints": [],
+              "auxiliaryChunkNames": [],
+              "auxiliaryChunkIdHints": [],
+              "related": {},
+              "chunks": [],
+              "auxiliaryChunks": [],
+              "isOverSizeLimit": false
+            }
+          ],
+          "chunks": [],
+          "auxiliaryChunks": [288],
+          "isOverSizeLimit": false
+        },
+        {
+          "type": "gzipped",
+          "name": "288.chunk.js.gz",
+          "size": 16720,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "compressed": true,
+            "size": 16720
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "related": {},
+          "chunks": [],
+          "auxiliaryChunks": [],
+          "isOverSizeLimit": false
+        }
+      ],
+      "chunks": [288],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
+    },
+    {
+      "type": "asset",
+      "name": "920.chunk.js",
+      "size": 56302,
+      "emitted": false,
+      "comparedForEmit": true,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "sourceMap": "920.chunk.js.map",
+          "gzipped": "920.chunk.js.gz"
+        },
+        "size": 56302
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 0,
+      "related": [
+        {
+          "type": "sourceMap",
+          "name": "920.chunk.js.map",
+          "size": 244016,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "development": true,
+            "related": {
+              "gzipped": "920.chunk.js.map.gz"
+            },
+            "size": 244016
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "filteredRelated": 0,
+          "related": [
+            {
+              "type": "gzipped",
+              "name": "920.chunk.js.map.gz",
+              "size": 65406,
+              "emitted": false,
+              "comparedForEmit": true,
+              "cached": false,
+              "info": {
+                "compressed": true,
+                "size": 65406
+              },
+              "chunkNames": [],
+              "chunkIdHints": [],
+              "auxiliaryChunkNames": [],
+              "auxiliaryChunkIdHints": [],
+              "related": {},
+              "chunks": [],
+              "auxiliaryChunks": [],
+              "isOverSizeLimit": false
+            }
+          ],
+          "chunks": [],
+          "auxiliaryChunks": [920],
+          "isOverSizeLimit": false
+        },
+        {
+          "type": "gzipped",
+          "name": "920.chunk.js.gz",
+          "size": 17495,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "compressed": true,
+            "size": 17495
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "related": {},
+          "chunks": [],
+          "auxiliaryChunks": [],
+          "isOverSizeLimit": false
+        }
+      ],
+      "chunks": [920],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
+    },
+    {
+      "type": "asset",
+      "name": "912.chunk.js",
+      "size": 45438,
+      "emitted": false,
+      "comparedForEmit": true,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "sourceMap": "912.chunk.js.map",
+          "gzipped": "912.chunk.js.gz"
+        },
+        "size": 45438
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 0,
+      "related": [
+        {
+          "type": "sourceMap",
+          "name": "912.chunk.js.map",
+          "size": 189537,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "development": true,
+            "related": {
+              "gzipped": "912.chunk.js.map.gz"
+            },
+            "size": 189537
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "filteredRelated": 0,
+          "related": [
+            {
+              "type": "gzipped",
+              "name": "912.chunk.js.map.gz",
+              "size": 52156,
+              "emitted": false,
+              "comparedForEmit": true,
+              "cached": false,
+              "info": {
+                "compressed": true,
+                "size": 52156
+              },
+              "chunkNames": [],
+              "chunkIdHints": [],
+              "auxiliaryChunkNames": [],
+              "auxiliaryChunkIdHints": [],
+              "related": {},
+              "chunks": [],
+              "auxiliaryChunks": [],
+              "isOverSizeLimit": false
+            }
+          ],
+          "chunks": [],
+          "auxiliaryChunks": [912],
+          "isOverSizeLimit": false
+        },
+        {
+          "type": "gzipped",
+          "name": "912.chunk.js.gz",
+          "size": 14657,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "compressed": true,
+            "size": 14657
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "related": {},
+          "chunks": [],
+          "auxiliaryChunks": [],
+          "isOverSizeLimit": false
+        }
+      ],
+      "chunks": [912],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
+    },
+    {
+      "type": "asset",
+      "name": "699.chunk.js",
+      "size": 27026,
+      "emitted": false,
+      "comparedForEmit": true,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "sourceMap": "699.chunk.js.map",
+          "gzipped": "699.chunk.js.gz"
+        },
+        "size": 27026
+      },
+      "chunkNames": [],
+      "chunkIdHints": ["vendors"],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 0,
+      "related": [
+        {
+          "type": "sourceMap",
+          "name": "699.chunk.js.map",
+          "size": 129658,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "development": true,
+            "related": {
+              "gzipped": "699.chunk.js.map.gz"
+            },
+            "size": 129658
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": ["vendors"],
+          "filteredRelated": 0,
+          "related": [
+            {
+              "type": "gzipped",
+              "name": "699.chunk.js.map.gz",
+              "size": 25382,
+              "emitted": false,
+              "comparedForEmit": true,
+              "cached": false,
+              "info": {
+                "compressed": true,
+                "size": 25382
+              },
+              "chunkNames": [],
+              "chunkIdHints": [],
+              "auxiliaryChunkNames": [],
+              "auxiliaryChunkIdHints": [],
+              "related": {},
+              "chunks": [],
+              "auxiliaryChunks": [],
+              "isOverSizeLimit": false
+            }
+          ],
+          "chunks": [],
+          "auxiliaryChunks": [699],
+          "isOverSizeLimit": false
+        },
+        {
+          "type": "gzipped",
+          "name": "699.chunk.js.gz",
+          "size": 6287,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "compressed": true,
+            "size": 6287
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "related": {},
+          "chunks": [],
+          "auxiliaryChunks": [],
+          "isOverSizeLimit": false
+        }
+      ],
+      "chunks": [699],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
+    },
+    {
+      "type": "asset",
+      "name": "manifest.json",
+      "size": 551,
+      "emitted": false,
+      "comparedForEmit": true,
+      "cached": false,
+      "info": {
+        "related": {
+          "gzipped": "manifest.json.gz"
+        },
+        "size": 551
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 0,
+      "related": [
+        {
+          "type": "gzipped",
+          "name": "manifest.json.gz",
+          "size": 151,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "compressed": true,
+            "size": 151
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "related": {},
+          "chunks": [],
+          "auxiliaryChunks": [],
+          "isOverSizeLimit": false
+        }
+      ],
+      "chunks": [],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
+    }
+  ]
+}
