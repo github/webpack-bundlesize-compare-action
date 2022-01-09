@@ -7,6 +7,9 @@ inputs:
   base-stats-json:
     description: 'Default branch to use for reference'
     required: true
+  token:
+    description: Github token
+    required: true
 runs:
   using: 'node16'
   main: 'dist/index.js'
