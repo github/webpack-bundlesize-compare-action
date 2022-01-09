@@ -19,13 +19,13 @@ As this PR is updated, I'll keep you updated on how the bundle size is impacted.
 ${printTotalAssetTable(statsDiff)}
 
 <details>
-  <summary>View detailed bundle breakdown</summary>
+<summary>View detailed bundle breakdown</summary>
 
-  <div>
+<div>
 
-    ${printAssetTablesByGroup(statsDiff)}
+${printAssetTablesByGroup(statsDiff)}
 
-  </div>
+</div>
 </details>
 
 ${getIdentifierComment(title)}
