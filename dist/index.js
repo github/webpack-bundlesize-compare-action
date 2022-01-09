@@ -212,15 +212,11 @@ const path_1 = __nccwpck_require__(1017);
 function parseStatsFileToJson(statsFilePath) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            console.log({ cwd: process.cwd() });
             const path = (0, path_1.resolve)(process.cwd(), statsFilePath);
-            console.log({ path });
             const file = yield (0, promises_1.readFile)(path, 'utf8');
-            console.log(file);
             return JSON.parse(file);
         }
-        catch (e) {
-            console.log(e);
+        catch (_a) {
             return { assets: [] };
         }
     });
