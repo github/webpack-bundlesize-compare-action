@@ -115,28 +115,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
+const github_1 = __nccwpck_require__(5438);
 const to_comment_body_1 = __nccwpck_require__(3471);
 const get_stats_diff_1 = __importDefault(__nccwpck_require__(7334));
-const github_1 = __importDefault(__nccwpck_require__(5438));
 const parse_stats_file_to_json_1 = __nccwpck_require__(4578);
-const { GITHUB_TOKEN } = process.env;
-const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->';
 function run() {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            if (!GITHUB_TOKEN) {
-                throw new Error('GITHUB_TOKEN is not defined');
-            }
-            if (github_1.default.context.eventName !== 'pull_request' &&
-                github_1.default.context.eventName !== 'pull_request_target') {
+            if (github_1.context.eventName !== 'pull_request' &&
+                github_1.context.eventName !== 'pull_request_target') {
                 throw new Error('This action only supports pull_request and pull_request_target events');
             }
-            const { context: { issue: { number: issue_number }, repo: { owner, repo: repo_name } } } = github_1.default;
-            const currentStatsJsonpath = core.getInput('current-stats-json-path');
+            const { issue: { number: issue_number }, repo: { owner, repo: repo_name } } = github_1.context;
+            const token = core.getInput('github-token');
+            const currentStatsJsonPath = core.getInput('current-stats-json-path');
             const baseStatsJsonPath = core.getInput('base-stats-json-path');
-            const { rest } = github_1.default.getOctokit(GITHUB_TOKEN);
+            const title = (_a = core.getInput('title')) !== null && _a !== void 0 ? _a : '';
+            const { rest } = (0, github_1.getOctokit)(token);
             const [currentStatsJson, baseStatsJson, { data: comments }] = yield Promise.all([
-                (0, parse_stats_file_to_json_1.parseStatsFileToJson)(currentStatsJsonpath),
+                (0, parse_stats_file_to_json_1.parseStatsFileToJson)(currentStatsJsonPath),
                 (0, parse_stats_file_to_json_1.parseStatsFileToJson)(baseStatsJsonPath),
                 rest.issues.listComments({
                     repo: repo_name,
@@ -144,14 +142,15 @@ function run() {
                     issue_number
                 })
             ]);
+            const identifierComment = (0, to_comment_body_1.getIdentifierComment)(title);
             const [currentComment, ...restComments] = comments.filter(comment => {
                 var _a;
                 return ((_a = comment.user) === null || _a === void 0 ? void 0 : _a.login) === 'github-actions[bot]' &&
                     comment.body &&
-                    comment.body.includes(IDENTIFIER_COMMENT);
+                    comment.body.includes(identifierComment);
             });
             const statsDiff = (0, get_stats_diff_1.default)(baseStatsJson, currentStatsJson);
-            const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff);
+            const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff, title);
             const promises = [];
             if (restComments.length > 1) {
                 promises.push(...restComments.map((comment) => __awaiter(this, void 0, void 0, function* () {
@@ -209,10 +208,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.parseStatsFileToJson = void 0;
 const promises_1 = __nccwpck_require__(3292);
+const path_1 = __nccwpck_require__(1017);
 function parseStatsFileToJson(statsFilePath) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const file = yield (0, promises_1.readFile)(statsFilePath, 'utf8');
+            const path = (0, path_1.resolve)(process.cwd(), statsFilePath);
+            const file = yield (0, promises_1.readFile)(path, 'utf8');
             return JSON.parse(file);
         }
         catch (_a) {
@@ -315,12 +316,15 @@ exports.printTotalAssetTable = printTotalAssetTable;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getCommentBody = void 0;
+exports.getCommentBody = exports.getIdentifierComment = void 0;
 const print_markdown_1 = __nccwpck_require__(803);
-const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->';
-function getCommentBody(statsDiff) {
+function getIdentifierComment(key) {
+    return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`;
+}
+exports.getIdentifierComment = getIdentifierComment;
+function getCommentBody(statsDiff, title) {
     return `
-# Bundle Stats
+# Bundle Stats${title ? `-${title}` : ''}
 
 Hey there, this message comes from a github action that helps you and reviewers to understand how these changes affect the size of this project's bundle.
 
@@ -336,7 +340,7 @@ ${(0, print_markdown_1.printTotalAssetTable)(statsDiff)}
   </div>
 </details>
 
-${IDENTIFIER_COMMENT}
+${getIdentifierComment(title)}
 `;
 }
 exports.getCommentBody = getCommentBody;

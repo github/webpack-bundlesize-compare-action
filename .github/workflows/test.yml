@@ -1,10 +1,6 @@
 name: 'build-test'
 on: # rebuild any PRs and main branch changes
   pull_request:
-  push:
-    branches:
-      - main
-      - 'releases/*'
 
 jobs:
   build: # make sure build/ci work properly
@@ -20,3 +16,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./
+        with:
+          current-stats-json-path: ./__tests__/__mocks__/new-stats-assets.json
+          base-stats-json-path: ./__tests__/__mocks__/old-stats-assets.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./
+        with:
+          current-stats-json-path: ./__tests__/__mocks__/old-stats-assets.json
+          base-stats-json-path: ./__tests__/__mocks__/new-stats-assets.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: Flipped around
+      - uses: ./
+        with:
+          current-stats-json-path: ./__tests__/__mocks__/non-existant.json
+          base-stats-json-path: ./__tests__/__mocks__/non-existant.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: Non existant

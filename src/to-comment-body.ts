@@ -1,11 +1,16 @@
 import {printAssetTablesByGroup, printTotalAssetTable} from './print-markdown'
 import {WebpackStatsDiff} from './get-stats-diff'
 
-const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->'
+export function getIdentifierComment(key: string): string {
+  return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`
+}
 
-export function getCommentBody(statsDiff: WebpackStatsDiff): string {
+export function getCommentBody(
+  statsDiff: WebpackStatsDiff,
+  title: string
+): string {
   return `
-# Bundle Stats
+# Bundle Stats${title ? `-${title}` : ''}
 
 Hey there, this message comes from a github action that helps you and reviewers to understand how these changes affect the size of this project's bundle.
 
@@ -21,6 +26,6 @@ ${printTotalAssetTable(statsDiff)}
   </div>
 </details>
 
-${IDENTIFIER_COMMENT}
+${getIdentifierComment(title)}
 `
 }

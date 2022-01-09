@@ -1,40 +1,32 @@
 import * as core from '@actions/core'
-import {getCommentBody} from './to-comment-body'
+import {context, getOctokit} from '@actions/github'
+import {getCommentBody, getIdentifierComment} from './to-comment-body'
 import getStatsDiff from './get-stats-diff'
-import github from '@actions/github'
 import {parseStatsFileToJson} from './parse-stats-file-to-json'
-
-const {GITHUB_TOKEN} = process.env
-const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->'
 
 async function run(): Promise<void> {
   try {
-    if (!GITHUB_TOKEN) {
-      throw new Error('GITHUB_TOKEN is not defined')
-    }
-
     if (
-      github.context.eventName !== 'pull_request' &&
-      github.context.eventName !== 'pull_request_target'
+      context.eventName !== 'pull_request' &&
+      context.eventName !== 'pull_request_target'
     ) {
       throw new Error(
         'This action only supports pull_request and pull_request_target events'
       )
     }
     const {
-      context: {
-        issue: {number: issue_number},
-        repo: {owner, repo: repo_name}
-      }
-    } = github
-
-    const currentStatsJsonpath = core.getInput('current-stats-json-path')
+      issue: {number: issue_number},
+      repo: {owner, repo: repo_name}
+    } = context
+    const token = core.getInput('github-token')
+    const currentStatsJsonPath = core.getInput('current-stats-json-path')
     const baseStatsJsonPath = core.getInput('base-stats-json-path')
-    const {rest} = github.getOctokit(GITHUB_TOKEN)
+    const title = core.getInput('title') ?? ''
+    const {rest} = getOctokit(token)
 
     const [currentStatsJson, baseStatsJson, {data: comments}] =
       await Promise.all([
-        parseStatsFileToJson(currentStatsJsonpath),
+        parseStatsFileToJson(currentStatsJsonPath),
         parseStatsFileToJson(baseStatsJsonPath),
         rest.issues.listComments({
           repo: repo_name,
@@ -43,16 +35,18 @@ async function run(): Promise<void> {
         })
       ])
 
+    const identifierComment = getIdentifierComment(title)
+
     const [currentComment, ...restComments] = comments.filter(
       comment =>
         comment.user?.login === 'github-actions[bot]' &&
         comment.body &&
-        comment.body.includes(IDENTIFIER_COMMENT)
+        comment.body.includes(identifierComment)
     )
 
     const statsDiff = getStatsDiff(baseStatsJson, currentStatsJson)
 
-    const commentBody = getCommentBody(statsDiff)
+    const commentBody = getCommentBody(statsDiff, title)
 
     const promises: Promise<unknown>[] = []
 
