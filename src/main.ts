@@ -23,13 +23,13 @@ async function run(): Promise<void> {
       }
     } = github
     const token = core.getInput('github-token')
-    const currentStatsJsonpath = core.getInput('current-stats-json-path')
+    const currentStatsJsonPath = core.getInput('current-stats-json-path')
     const baseStatsJsonPath = core.getInput('base-stats-json-path')
     const {rest} = github.getOctokit(token)
 
     const [currentStatsJson, baseStatsJson, {data: comments}] =
       await Promise.all([
-        parseStatsFileToJson(currentStatsJsonpath),
+        parseStatsFileToJson(currentStatsJsonPath),
         parseStatsFileToJson(baseStatsJsonPath),
         rest.issues.listComments({
           repo: repo_name,

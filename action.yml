@@ -7,7 +7,7 @@ inputs:
   base-stats-json:
     description: 'Default branch to use for reference'
     required: true
-  token:
+  github-token:
     description: Github token
     required: true
 runs:
