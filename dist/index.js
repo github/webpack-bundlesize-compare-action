@@ -212,8 +212,10 @@ const path_1 = __nccwpck_require__(1017);
 function parseStatsFileToJson(statsFilePath) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            console.log(process.cwd());
-            const file = yield (0, promises_1.readFile)((0, path_1.resolve)(process.cwd(), statsFilePath), 'utf8');
+            console.log({ cwd: process.cwd() });
+            const path = (0, path_1.resolve)(process.cwd(), statsFilePath);
+            console.log({ path });
+            const file = yield (0, promises_1.readFile)(path, 'utf8');
             console.log(file);
             return JSON.parse(file);
         }
@@ -321,7 +323,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getCommentBody = exports.getIdentifierComment = void 0;
 const print_markdown_1 = __nccwpck_require__(803);
 function getIdentifierComment(key) {
-    return `<!--- bundlestats-action-comment key:${key} --->`;
+    return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`;
 }
 exports.getIdentifierComment = getIdentifierComment;
 function getCommentBody(statsDiff, title) {

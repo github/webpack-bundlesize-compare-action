@@ -2,7 +2,7 @@ import {printAssetTablesByGroup, printTotalAssetTable} from './print-markdown'
 import {WebpackStatsDiff} from './get-stats-diff'
 
 export function getIdentifierComment(key: string): string {
-  return `<!--- bundlestats-action-comment key:${key} --->`
+  return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`
 }
 
 export function getCommentBody(
