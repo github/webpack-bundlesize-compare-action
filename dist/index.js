@@ -212,6 +212,7 @@ const path_1 = __nccwpck_require__(1017);
 function parseStatsFileToJson(statsFilePath) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            console.log(process.cwd());
             const file = yield (0, promises_1.readFile)((0, path_1.resolve)(process.cwd(), statsFilePath), 'utf8');
             console.log(file);
             return JSON.parse(file);

@@ -6,6 +6,7 @@ export async function parseStatsFileToJson(
   statsFilePath: string
 ): Promise<Pick<StatsCompilation, 'assets'>> {
   try {
+    console.log(process.cwd())
     const file = await readFile(resolve(process.cwd(), statsFilePath), 'utf8')
     console.log(file)
     return JSON.parse(file) as StatsCompilation
