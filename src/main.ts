@@ -1,10 +1,8 @@
 import * as core from '@actions/core'
 import {context, getOctokit} from '@actions/github'
-import {getCommentBody} from './to-comment-body'
+import {getCommentBody, getIdentifierComment} from './to-comment-body'
 import getStatsDiff from './get-stats-diff'
 import {parseStatsFileToJson} from './parse-stats-file-to-json'
-
-const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->'
 
 async function run(): Promise<void> {
   try {
@@ -23,6 +21,7 @@ async function run(): Promise<void> {
     const token = core.getInput('github-token')
     const currentStatsJsonPath = core.getInput('current-stats-json-path')
     const baseStatsJsonPath = core.getInput('base-stats-json-path')
+    const title = core.getInput('title') ?? ''
     const {rest} = getOctokit(token)
 
     const [currentStatsJson, baseStatsJson, {data: comments}] =
@@ -36,16 +35,18 @@ async function run(): Promise<void> {
         })
       ])
 
+    const identifierComment = getIdentifierComment(title)
+
     const [currentComment, ...restComments] = comments.filter(
       comment =>
         comment.user?.login === 'github-actions[bot]' &&
         comment.body &&
-        comment.body.includes(IDENTIFIER_COMMENT)
+        comment.body.includes(identifierComment)
     )
 
     const statsDiff = getStatsDiff(baseStatsJson, currentStatsJson)
 
-    const commentBody = getCommentBody(statsDiff)
+    const commentBody = getCommentBody(statsDiff, title)
 
     const promises: Promise<unknown>[] = []
 

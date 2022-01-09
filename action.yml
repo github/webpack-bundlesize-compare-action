@@ -10,6 +10,9 @@ inputs:
   github-token:
     description: Github token
     required: true
+  title:
+    description: A title that can key multiple instances of this action
+
 runs:
   using: 'node16'
   main: 'dist/index.js'

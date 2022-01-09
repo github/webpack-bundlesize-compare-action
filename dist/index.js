@@ -119,8 +119,8 @@ const github_1 = __nccwpck_require__(5438);
 const to_comment_body_1 = __nccwpck_require__(3471);
 const get_stats_diff_1 = __importDefault(__nccwpck_require__(7334));
 const parse_stats_file_to_json_1 = __nccwpck_require__(4578);
-const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->';
 function run() {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (github_1.context.eventName !== 'pull_request' &&
@@ -131,6 +131,7 @@ function run() {
             const token = core.getInput('github-token');
             const currentStatsJsonPath = core.getInput('current-stats-json-path');
             const baseStatsJsonPath = core.getInput('base-stats-json-path');
+            const title = (_a = core.getInput('title')) !== null && _a !== void 0 ? _a : '';
             const { rest } = (0, github_1.getOctokit)(token);
             const [currentStatsJson, baseStatsJson, { data: comments }] = yield Promise.all([
                 (0, parse_stats_file_to_json_1.parseStatsFileToJson)(currentStatsJsonPath),
@@ -141,14 +142,15 @@ function run() {
                     issue_number
                 })
             ]);
+            const identifierComment = (0, to_comment_body_1.getIdentifierComment)(title);
             const [currentComment, ...restComments] = comments.filter(comment => {
                 var _a;
                 return ((_a = comment.user) === null || _a === void 0 ? void 0 : _a.login) === 'github-actions[bot]' &&
                     comment.body &&
-                    comment.body.includes(IDENTIFIER_COMMENT);
+                    comment.body.includes(identifierComment);
             });
             const statsDiff = (0, get_stats_diff_1.default)(baseStatsJson, currentStatsJson);
-            const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff);
+            const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff, title);
             const promises = [];
             if (restComments.length > 1) {
                 promises.push(...restComments.map((comment) => __awaiter(this, void 0, void 0, function* () {
@@ -313,12 +315,15 @@ exports.printTotalAssetTable = printTotalAssetTable;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getCommentBody = void 0;
+exports.getCommentBody = exports.getIdentifierComment = void 0;
 const print_markdown_1 = __nccwpck_require__(803);
-const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->';
-function getCommentBody(statsDiff) {
+function getIdentifierComment(key) {
+    return `<!--- bundlestats-action-comment key:${key} --->`;
+}
+exports.getIdentifierComment = getIdentifierComment;
+function getCommentBody(statsDiff, title) {
     return `
-# Bundle Stats
+# Bundle Stats${title ? `-${title}` : ''}
 
 Hey there, this message comes from a github action that helps you and reviewers to understand how these changes affect the size of this project's bundle.
 
@@ -334,7 +339,7 @@ ${(0, print_markdown_1.printTotalAssetTable)(statsDiff)}
   </div>
 </details>
 
-${IDENTIFIER_COMMENT}
+${getIdentifierComment(title)}
 `;
 }
 exports.getCommentBody = getCommentBody;

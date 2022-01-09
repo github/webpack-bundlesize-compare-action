@@ -20,3 +20,15 @@ jobs:
           current-stats-json: ../../__tests__/__mocks__/new-stats-assets.json
           base-stats-json: ../../__tests__/__mocks__/old-stats-assets.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ./
+        with:
+          current-stats-json: ../../__tests__/__mocks__/old-stats-assets.json
+          base-stats-json: ../../__tests__/__mocks__/old-stats-assets.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: Flipped around
+      - uses: ./
+        with:
+          current-stats-json: ../../__tests__/__mocks__/non-existant.json
+          base-stats-json: ../../__tests__/__mocks__/non-existant.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: Non existant
