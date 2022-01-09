@@ -29,12 +29,12 @@
     "@actions/github": "^5.0.0"
   },
   "devDependencies": {
-    "@types/node": "16.x.x",
+    "@types/node": "^16.11.9",
     "@typescript-eslint/parser": "^5.9.0",
     "@vercel/ncc": "^0.33.1",
     "eslint": "^8.6.0",
     "eslint-plugin-github": "^4.3.5",
-    "eslint-plugin-jest": "^25.3.2",
+    "eslint-plugin-jest": "^25.3.4",
     "jest": "^27.4.7",
     "js-yaml": "^4.1.0",
     "prettier": "2.5.1",
