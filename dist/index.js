@@ -336,7 +336,9 @@ ${(0, print_markdown_1.printTotalAssetTable)(statsDiff)}
   <summary>View detailed bundle breakdown</summary>
 
   <div>
+
     ${(0, print_markdown_1.printAssetTablesByGroup)(statsDiff)}
+
   </div>
 </details>
 

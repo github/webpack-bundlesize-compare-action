@@ -22,7 +22,9 @@ ${printTotalAssetTable(statsDiff)}
   <summary>View detailed bundle breakdown</summary>
 
   <div>
+
     ${printAssetTablesByGroup(statsDiff)}
+
   </div>
 </details>
 
