@@ -1,10 +1,10 @@
 name: 'Bundle comparison'
 description: 'Compare the bundle size between the base branch and the current branch'
 inputs:
-  current-stats-json:
+  current-stats-json-path:
     description: 'A branch to build and measure the bundle size'
     required: true
-  base-stats-json:
+  base-stats-json-path:
     description: 'Default branch to use for reference'
     required: true
   github-token:
