@@ -7,6 +7,9 @@ import {parseStatsFileToJson} from './parse-stats-file-to-json'
 const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->'
 
 async function run(): Promise<void> {
+  console.log({
+    context: github.context
+  })
   try {
     if (
       github.context.eventName !== 'pull_request' &&
