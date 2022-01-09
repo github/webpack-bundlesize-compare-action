@@ -1,34 +1,29 @@
 import * as core from '@actions/core'
+import {context, getOctokit} from '@actions/github'
 import {getCommentBody} from './to-comment-body'
 import getStatsDiff from './get-stats-diff'
-import github from '@actions/github'
 import {parseStatsFileToJson} from './parse-stats-file-to-json'
 
 const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->'
 
 async function run(): Promise<void> {
-  console.log({
-    github
-  })
   try {
     if (
-      github.context.eventName !== 'pull_request' &&
-      github.context.eventName !== 'pull_request_target'
+      context.eventName !== 'pull_request' &&
+      context.eventName !== 'pull_request_target'
     ) {
       throw new Error(
         'This action only supports pull_request and pull_request_target events'
       )
     }
     const {
-      context: {
-        issue: {number: issue_number},
-        repo: {owner, repo: repo_name}
-      }
-    } = github
+      issue: {number: issue_number},
+      repo: {owner, repo: repo_name}
+    } = context
     const token = core.getInput('github-token')
     const currentStatsJsonPath = core.getInput('current-stats-json-path')
     const baseStatsJsonPath = core.getInput('base-stats-json-path')
-    const {rest} = github.getOctokit(token)
+    const {rest} = getOctokit(token)
 
     const [currentStatsJson, baseStatsJson, {data: comments}] =
       await Promise.all([

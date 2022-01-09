@@ -115,26 +115,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
+const github_1 = __nccwpck_require__(5438);
 const to_comment_body_1 = __nccwpck_require__(3471);
 const get_stats_diff_1 = __importDefault(__nccwpck_require__(7334));
-const github_1 = __importDefault(__nccwpck_require__(5438));
 const parse_stats_file_to_json_1 = __nccwpck_require__(4578);
 const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log({
-            github: github_1.default
-        });
         try {
-            if (github_1.default.context.eventName !== 'pull_request' &&
-                github_1.default.context.eventName !== 'pull_request_target') {
+            if (github_1.context.eventName !== 'pull_request' &&
+                github_1.context.eventName !== 'pull_request_target') {
                 throw new Error('This action only supports pull_request and pull_request_target events');
             }
-            const { context: { issue: { number: issue_number }, repo: { owner, repo: repo_name } } } = github_1.default;
+            const { issue: { number: issue_number }, repo: { owner, repo: repo_name } } = github_1.context;
             const token = core.getInput('github-token');
             const currentStatsJsonPath = core.getInput('current-stats-json-path');
             const baseStatsJsonPath = core.getInput('base-stats-json-path');
-            const { rest } = github_1.default.getOctokit(token);
+            const { rest } = (0, github_1.getOctokit)(token);
             const [currentStatsJson, baseStatsJson, { data: comments }] = yield Promise.all([
                 (0, parse_stats_file_to_json_1.parseStatsFileToJson)(currentStatsJsonPath),
                 (0, parse_stats_file_to_json_1.parseStatsFileToJson)(baseStatsJsonPath),
