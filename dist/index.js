@@ -122,6 +122,9 @@ const parse_stats_file_to_json_1 = __nccwpck_require__(4578);
 const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log({
+            context: github_1.default.context
+        });
         try {
             if (github_1.default.context.eventName !== 'pull_request' &&
                 github_1.default.context.eventName !== 'pull_request_target') {
