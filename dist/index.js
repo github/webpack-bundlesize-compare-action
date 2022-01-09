@@ -206,10 +206,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.parseStatsFileToJson = void 0;
 const promises_1 = __nccwpck_require__(3292);
+const path_1 = __nccwpck_require__(1017);
 function parseStatsFileToJson(statsFilePath) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const file = yield (0, promises_1.readFile)(statsFilePath, 'utf8');
+            const file = yield (0, promises_1.readFile)((0, path_1.resolve)(process.cwd(), statsFilePath), 'utf8');
             return JSON.parse(file);
         }
         catch (_a) {
