@@ -213,9 +213,11 @@ function parseStatsFileToJson(statsFilePath) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const file = yield (0, promises_1.readFile)((0, path_1.resolve)(process.cwd(), statsFilePath), 'utf8');
+            console.log(file);
             return JSON.parse(file);
         }
-        catch (_a) {
+        catch (e) {
+            console.log(e);
             return { assets: [] };
         }
     });

@@ -7,8 +7,10 @@ export async function parseStatsFileToJson(
 ): Promise<Pick<StatsCompilation, 'assets'>> {
   try {
     const file = await readFile(resolve(process.cwd(), statsFilePath), 'utf8')
+    console.log(file)
     return JSON.parse(file) as StatsCompilation
-  } catch {
+  } catch (e) {
+    console.log(e)
     return {assets: []} as Pick<StatsCompilation, 'assets'>
   }
 }
