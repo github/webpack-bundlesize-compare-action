@@ -2,16 +2,17 @@ name: 'Bundle comparison'
 description: 'Compare the bundle size between the base branch and the current branch'
 inputs:
   current-stats-json-path:
-    description: 'A branch to build and measure the bundle size'
+    description: 'The path to the current stats.json file'
     required: true
   base-stats-json-path:
-    description: 'Default branch to use for reference'
+    description: 'The path to the base stats.json file'
     required: true
   github-token:
-    description: Github token
+    description: 'The Github token'
     required: true
   title:
-    description: A title that can key multiple instances of this action
+    description: 'An optional addition to the title, which also helps key comments, useful if running more than 1 copy of this action'
+    required: false
 
 runs:
   using: 'node16'
