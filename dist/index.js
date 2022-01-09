@@ -123,7 +123,7 @@ const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         console.log({
-            context: github_1.default.context
+            github: github_1.default
         });
         try {
             if (github_1.default.context.eventName !== 'pull_request' &&

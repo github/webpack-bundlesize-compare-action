@@ -8,7 +8,7 @@ const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->'
 
 async function run(): Promise<void> {
   console.log({
-    context: github.context
+    github
   })
   try {
     if (
