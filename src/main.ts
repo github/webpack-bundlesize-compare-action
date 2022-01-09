@@ -4,15 +4,10 @@ import getStatsDiff from './get-stats-diff'
 import github from '@actions/github'
 import {parseStatsFileToJson} from './parse-stats-file-to-json'
 
-const {GITHUB_TOKEN} = process.env
 const IDENTIFIER_COMMENT = '<!--- bundlestats-action-comment --->'
 
 async function run(): Promise<void> {
   try {
-    if (!GITHUB_TOKEN) {
-      throw new Error('GITHUB_TOKEN is not defined')
-    }
-
     if (
       github.context.eventName !== 'pull_request' &&
       github.context.eventName !== 'pull_request_target'
@@ -27,10 +22,10 @@ async function run(): Promise<void> {
         repo: {owner, repo: repo_name}
       }
     } = github
-
+    const token = core.getInput('github-token')
     const currentStatsJsonpath = core.getInput('current-stats-json-path')
     const baseStatsJsonPath = core.getInput('base-stats-json-path')
-    const {rest} = github.getOctokit(GITHUB_TOKEN)
+    const {rest} = github.getOctokit(token)
 
     const [currentStatsJson, baseStatsJson, {data: comments}] =
       await Promise.all([

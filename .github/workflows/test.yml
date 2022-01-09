@@ -19,3 +19,4 @@ jobs:
         with:
           current-stats-json: ../../__tests__/__mocks__/new-stats-assets.json
           base-stats-json: ../../__tests__/__mocks__/old-stats-assets.json
+          token: ${{ secrets.GITHUB_TOKEN }}
