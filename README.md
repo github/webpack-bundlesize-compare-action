@@ -4,6 +4,23 @@ An action that compares 2 webpack compilation stats files, and comments on the P
 
 ## How to use it
 
+In your application, ensure you output the stats.json, from `BundleAnalyzerPlugin'
+
+```js
+// webpack.config.js
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
+
+module.exports = {
+  plugins: [
+  ...plugins,
+     new BundleAnalyzerPlugin({
+      // generate the stats.json file
+      generateStatsFile: true,
+    })
+  ]
+}
+```
+
 ```yaml
 # .github/workflows/bundlesize-compare.yml
 
@@ -91,6 +108,7 @@ jobs:
           repository: github/webpack-bundlesize-compare-action
           token: ${{ secrets.A_TOKEN_THAT_CAN_READ_REPO_FOR_THE_ACTION_REPO }}
           path: .github/actions/webpack-bundlesize-compare-action
+          ref: v1
 
       - name: Bundlesize compare
         uses: ./.github/actions/webpack-bundlesize-compare-action
