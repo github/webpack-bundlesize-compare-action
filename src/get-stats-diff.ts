@@ -6,6 +6,7 @@ export type StatDiff = {
   diff: number
   diffPercentage: number
 }
+
 function indexNameToSize(
   statAssets: StatsCompilation['assets'] = []
 ): Record<string, number> {
@@ -77,13 +78,9 @@ function webpackStatsDiff(
     } else {
       const diff = {name, ...createDiff(oldAssetSize, newAssets[name])}
 
-      /**
-       * Providing a small threshold for the diff to be considered "bigger"/"smaller"
-       * to account for minor variance in webpack output for the same asset.
-       */
-      if (diff.diffPercentage > 5) {
+      if (diff.diffPercentage > 0) {
         bigger.push(diff)
-      } else if (diff.diffPercentage < -5) {
+      } else if (diff.diffPercentage < 0) {
         smaller.push(diff)
       } else {
         unchanged.push(diff)
