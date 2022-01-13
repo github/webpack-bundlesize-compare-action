@@ -71,7 +71,7 @@ test('Shows stats when files are removed', () => {
     total: {
       diff: -54942,
       diffPercentage: -3.91051,
-      name: 'Total',
+      name: '7 -> 2',
       newSize: 1350042,
       oldSize: 1404984
     },
@@ -80,9 +80,9 @@ test('Shows stats when files are removed', () => {
 
   expect(printTotalAssetTable(statsDiff)).toEqual(`**Total**
 
-Asset | File Size | % Changed
------ | --------- | ---------
-Total | 1.3399 MB -> 1.2875 MB (-53.6543 KB) | -3.91%`)
+Files count | File Size | % Changed
+----------- | --------- | ---------
+7 -> 2 | 1.34 MB -> 1.29 MB (-53.65 KB) | -3.91%`)
   expect(printAssetTablesByGroup(statsDiff)).toEqual(`**Added**
 
 No assets were added
@@ -91,17 +91,17 @@ No assets were added
 
 Asset | File Size | % Changed
 ----- | --------- | ---------
-296.chunk.js | 124.5684 KB -> 0 Bytes (-124.5684 KB) | -100%
-288.chunk.js | 57.2363 KB -> 0 Bytes (-57.2363 KB) | -100%
-920.chunk.js | 54.9824 KB -> 0 Bytes (-54.9824 KB) | -100%
-912.chunk.js | 44.373 KB -> 0 Bytes (-44.373 KB) | -100%
-699.chunk.js | 26.3926 KB -> 0 Bytes (-26.3926 KB) | -100%
+296.chunk.js | 124.57 KB -> 0 Bytes (-124.57 KB) | -100%
+288.chunk.js | 57.24 KB -> 0 Bytes (-57.24 KB) | -100%
+920.chunk.js | 54.98 KB -> 0 Bytes (-54.98 KB) | -100%
+912.chunk.js | 44.37 KB -> 0 Bytes (-44.37 KB) | -100%
+699.chunk.js | 26.39 KB -> 0 Bytes (-26.39 KB) | -100%
 
 **Bigger**
 
 Asset | File Size | % Changed
 ----- | --------- | ---------
-app.bundle.js | 1.039 MB -> 1.2874 MB (+254.3477 KB) | +23.91%
+app.bundle.js | 1.04 MB -> 1.29 MB (+254.35 KB) | +23.91%
 
 **Smaller**
 
@@ -179,7 +179,7 @@ test('Shows stats when files are added', () => {
     total: {
       diff: 54942,
       diffPercentage: 4.06965,
-      name: 'Total',
+      name: '2 -> 7',
       newSize: 1404984,
       oldSize: 1350042
     },
@@ -188,18 +188,18 @@ test('Shows stats when files are added', () => {
 
   expect(printTotalAssetTable(statsDiff)).toEqual(`**Total**
 
-Asset | File Size | % Changed
------ | --------- | ---------
-Total | 1.2875 MB -> 1.3399 MB (+53.6543 KB) | +4.07%`)
+Files count | File Size | % Changed
+----------- | --------- | ---------
+2 -> 7 | 1.29 MB -> 1.34 MB (+53.65 KB) | +4.07%`)
   expect(printAssetTablesByGroup(statsDiff)).toEqual(`**Added**
 
 Asset | File Size | % Changed
 ----- | --------- | ---------
-296.chunk.js | 0 Bytes -> 124.5684 KB (+124.5684 KB) | -
-288.chunk.js | 0 Bytes -> 57.2363 KB (+57.2363 KB) | -
-920.chunk.js | 0 Bytes -> 54.9824 KB (+54.9824 KB) | -
-912.chunk.js | 0 Bytes -> 44.373 KB (+44.373 KB) | -
-699.chunk.js | 0 Bytes -> 26.3926 KB (+26.3926 KB) | -
+296.chunk.js | 0 Bytes -> 124.57 KB (+124.57 KB) | -
+288.chunk.js | 0 Bytes -> 57.24 KB (+57.24 KB) | -
+920.chunk.js | 0 Bytes -> 54.98 KB (+54.98 KB) | -
+912.chunk.js | 0 Bytes -> 44.37 KB (+44.37 KB) | -
+699.chunk.js | 0 Bytes -> 26.39 KB (+26.39 KB) | -
 
 **Removed**
 
@@ -215,7 +215,7 @@ manifest.json | 91 Bytes -> 551 Bytes (+460 Bytes) | +505.49%
 
 Asset | File Size | % Changed
 ----- | --------- | ---------
-app.bundle.js | 1.2874 MB -> 1.039 MB (-254.3477 KB) | -19.29%
+app.bundle.js | 1.29 MB -> 1.04 MB (-254.35 KB) | -19.29%
 
 **Unchanged**
 
@@ -235,7 +235,7 @@ test('Shows stats when files are unchanged', () => {
     total: {
       diff: 0,
       diffPercentage: 0,
-      name: 'Total',
+      name: '7',
       newSize: 1404984,
       oldSize: 1404984
     },
@@ -294,9 +294,9 @@ test('Shows stats when files are unchanged', () => {
 
   expect(printTotalAssetTable(statsDiff)).toEqual(`**Total**
 
-Asset | File Size | % Changed
------ | --------- | ---------
-Total | 1.3399 MB | 0%`)
+Files count | File Size | % Changed
+----------- | --------- | ---------
+7 | 1.34 MB | 0%`)
   expect(printAssetTablesByGroup(statsDiff)).toEqual(`**Added**
 
 No assets were added
@@ -317,11 +317,11 @@ No assets were smaller
 
 Asset | File Size | % Changed
 ----- | --------- | ---------
-app.bundle.js | 1.039 MB | 0%
-296.chunk.js | 124.5684 KB | 0%
-288.chunk.js | 57.2363 KB | 0%
-920.chunk.js | 54.9824 KB | 0%
-912.chunk.js | 44.373 KB | 0%
-699.chunk.js | 26.3926 KB | 0%
+app.bundle.js | 1.04 MB | 0%
+296.chunk.js | 124.57 KB | 0%
+288.chunk.js | 57.24 KB | 0%
+920.chunk.js | 54.98 KB | 0%
+912.chunk.js | 44.37 KB | 0%
+699.chunk.js | 26.39 KB | 0%
 manifest.json | 551 Bytes | 0%`)
 })

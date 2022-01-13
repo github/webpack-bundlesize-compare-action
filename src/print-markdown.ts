@@ -31,6 +31,7 @@ ${columns
   .join(' | ')}`
 }
 
+const TOTAL_HEADERS = makeHeader(['Files count', 'File Size', '% Changed'])
 const TABLE_HEADERS = makeHeader(['Asset', 'File Size', '% Changed'])
 
 function signFor(num: number): '' | '+' | '-' {
@@ -85,13 +86,13 @@ ${assets
 export function printTotalAssetTable(
   statsDiff: Pick<WebpackStatsDiff, 'total'>
 ): string {
-  return `**${capitalize(statsDiff.total.name)}**
+  return `**Total**
 
-${TABLE_HEADERS}
+${TOTAL_HEADERS}
 ${printAssetTableRow(statsDiff.total)}`
 }
 
-function fileSizeIEC(bytes: number, significantDigits = 4): string {
+function fileSizeIEC(bytes: number, significantDigits = 2): string {
   if (bytes === 0) return '0 Bytes'
 
   const absBytes = Math.abs(bytes)

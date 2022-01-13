@@ -53,7 +53,9 @@ export type WebpackStatsDiff = {
   bigger: AssetDiff[]
   smaller: AssetDiff[]
   unchanged: AssetDiff[]
-  total: StatDiff & {name: 'Total'}
+  total: StatDiff & {
+    name: string
+  }
 }
 
 function webpackStatsDiff(
@@ -65,6 +67,7 @@ function webpackStatsDiff(
   const bigger = []
   const smaller = []
   const unchanged = []
+
   let newSizeTotal = 0
   let oldSizeTotal = 0
 
@@ -95,13 +98,21 @@ function webpackStatsDiff(
     }
   }
 
+  const oldFilesCount = Object.keys(oldAssets).length
+  const newFilesCount = Object.keys(newAssets).length
   return {
     added: added.sort(diffDesc),
     removed: removed.sort(diffDesc),
     bigger: bigger.sort(diffDesc),
     smaller: smaller.sort(diffDesc),
     unchanged,
-    total: {name: 'Total', ...createDiff(oldSizeTotal, newSizeTotal)}
+    total: {
+      name:
+        oldFilesCount === newFilesCount
+          ? `${newFilesCount}`
+          : `${oldFilesCount} -> ${newFilesCount}`,
+      ...createDiff(oldSizeTotal, newSizeTotal)
+    }
   }
 }
 
