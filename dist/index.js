@@ -255,7 +255,11 @@ ${columns
         .join(''))
         .join(' | ')}`;
 }
-const TOTAL_HEADERS = makeHeader(['Files count', 'File Size', '% Changed']);
+const TOTAL_HEADERS = makeHeader([
+    'Files count',
+    'Total bundle size',
+    '% Changed'
+]);
 const TABLE_HEADERS = makeHeader(['Asset', 'File Size', '% Changed']);
 function signFor(num) {
     if (num === 0)

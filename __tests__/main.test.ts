@@ -80,8 +80,8 @@ test('Shows stats when files are removed', () => {
 
   expect(printTotalAssetTable(statsDiff)).toEqual(`**Total**
 
-Files count | File Size | % Changed
------------ | --------- | ---------
+Files count | Total bundle size | % Changed
+----------- | ----------------- | ---------
 7 -> 2 | 1.34 MB -> 1.29 MB (-53.65 KB) | -3.91%`)
   expect(printAssetTablesByGroup(statsDiff)).toEqual(`**Added**
 
@@ -188,8 +188,8 @@ test('Shows stats when files are added', () => {
 
   expect(printTotalAssetTable(statsDiff)).toEqual(`**Total**
 
-Files count | File Size | % Changed
------------ | --------- | ---------
+Files count | Total bundle size | % Changed
+----------- | ----------------- | ---------
 2 -> 7 | 1.29 MB -> 1.34 MB (+53.65 KB) | +4.07%`)
   expect(printAssetTablesByGroup(statsDiff)).toEqual(`**Added**
 
@@ -294,8 +294,8 @@ test('Shows stats when files are unchanged', () => {
 
   expect(printTotalAssetTable(statsDiff)).toEqual(`**Total**
 
-Files count | File Size | % Changed
------------ | --------- | ---------
+Files count | Total bundle size | % Changed
+----------- | ----------------- | ---------
 7 | 1.34 MB | 0%`)
   expect(printAssetTablesByGroup(statsDiff)).toEqual(`**Added**
 
