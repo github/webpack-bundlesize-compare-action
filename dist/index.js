@@ -59,13 +59,17 @@ function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
             added.push(Object.assign({ name }, createDiff(0, newAssetSize)));
         }
     }
+    const oldFilesCount = Object.keys(oldAssets).length;
+    const newFilesCount = Object.keys(newAssets).length;
     return {
         added: added.sort(diffDesc),
         removed: removed.sort(diffDesc),
         bigger: bigger.sort(diffDesc),
         smaller: smaller.sort(diffDesc),
         unchanged,
-        total: Object.assign({ name: 'Total' }, createDiff(oldSizeTotal, newSizeTotal))
+        total: Object.assign({ name: oldFilesCount === newFilesCount
+                ? `${newFilesCount}`
+                : `${oldFilesCount} -> ${newFilesCount}` }, createDiff(oldSizeTotal, newSizeTotal))
     };
 }
 exports["default"] = getStatsDiff;
@@ -251,6 +255,7 @@ ${columns
         .join(''))
         .join(' | ')}`;
 }
+const TOTAL_HEADERS = makeHeader(['Files count', 'File Size', '% Changed']);
 const TABLE_HEADERS = makeHeader(['Asset', 'File Size', '% Changed']);
 function signFor(num) {
     if (num === 0)
@@ -296,13 +301,13 @@ ${assets
 }
 exports.printAssetTablesByGroup = printAssetTablesByGroup;
 function printTotalAssetTable(statsDiff) {
-    return `**${capitalize(statsDiff.total.name)}**
+    return `**Total**
 
-${TABLE_HEADERS}
+${TOTAL_HEADERS}
 ${printAssetTableRow(statsDiff.total)}`;
 }
 exports.printTotalAssetTable = printTotalAssetTable;
-function fileSizeIEC(bytes, significantDigits = 4) {
+function fileSizeIEC(bytes, significantDigits = 2) {
     if (bytes === 0)
         return '0 Bytes';
     const absBytes = Math.abs(bytes);
