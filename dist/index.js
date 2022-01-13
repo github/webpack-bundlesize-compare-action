@@ -59,13 +59,17 @@ function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
             added.push(Object.assign({ name }, createDiff(0, newAssetSize)));
         }
     }
+    const oldFilesCount = Object.keys(oldAssets).length;
+    const newFilesCount = Object.keys(newAssets).length;
     return {
         added: added.sort(diffDesc),
         removed: removed.sort(diffDesc),
         bigger: bigger.sort(diffDesc),
         smaller: smaller.sort(diffDesc),
         unchanged,
-        total: Object.assign({ name: 'Total' }, createDiff(oldSizeTotal, newSizeTotal))
+        total: Object.assign({ name: oldFilesCount === newFilesCount
+                ? `${newFilesCount}`
+                : `${oldFilesCount} -> ${newFilesCount}` }, createDiff(oldSizeTotal, newSizeTotal))
     };
 }
 exports["default"] = getStatsDiff;
@@ -230,7 +234,15 @@ exports.parseStatsFileToJson = parseStatsFileToJson;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.printTotalAssetTable = exports.printAssetTablesByGroup = void 0;
 function conditionalPercentage(number) {
-    return [Infinity, -Infinity].includes(number) ? '-' : `${number.toFixed(2)}%`;
+    if ([Infinity, -Infinity].includes(number)) {
+        return '-';
+    }
+    const absValue = Math.abs(number);
+    if ([0, 100].includes(absValue)) {
+        return `${number}%`;
+    }
+    const value = [0, 100].includes(absValue) ? absValue : absValue.toFixed(2);
+    return `${signFor(number)}${value}%`;
 }
 function capitalize(text) {
     return `${text[0].toUpperCase()}${text.slice(1)}`;
@@ -243,28 +255,25 @@ ${columns
         .join(''))
         .join(' | ')}`;
 }
-const TABLE_HEADERS = makeHeader([
-    'Asset',
-    'Old size',
-    'New size',
-    'Diff',
-    'Diff %'
+const TOTAL_HEADERS = makeHeader([
+    'Files count',
+    'Total bundle size',
+    '% Changed'
 ]);
-function getSizeText(size) {
-    if (size === 0) {
-        return '0';
-    }
-    const abbreviations = ['bytes', 'KB', 'MB', 'GB'];
-    const index = Math.floor(Math.log(Math.abs(size)) / Math.log(1024));
-    return `${+(size / Math.pow(1024, index)).toPrecision(3)} ${abbreviations[index]}`;
+const TABLE_HEADERS = makeHeader(['Asset', 'File Size', '% Changed']);
+function signFor(num) {
+    if (num === 0)
+        return '';
+    return num > 0 ? '+' : '-';
+}
+function toFileSizeDiff(asset) {
+    return `${fileSizeIEC(asset.oldSize)} -> ${fileSizeIEC(asset.newSize)} (${signFor(asset.diff)}${fileSizeIEC(asset.diff)})`;
 }
 function printAssetTableRow(asset) {
     return [
         asset.name,
-        getSizeText(asset.oldSize),
-        getSizeText(asset.newSize),
-        getSizeText(asset.diff),
-        `${conditionalPercentage(asset.diffPercentage)}`
+        asset.diff === 0 ? fileSizeIEC(asset.newSize) : toFileSizeDiff(asset),
+        conditionalPercentage(asset.diffPercentage)
     ].join(' | ');
 }
 function printAssetTablesByGroup(statsDiff) {
@@ -296,12 +305,22 @@ ${assets
 }
 exports.printAssetTablesByGroup = printAssetTablesByGroup;
 function printTotalAssetTable(statsDiff) {
-    return `**${capitalize(statsDiff.total.name)}**
+    return `**Total**
 
-${TABLE_HEADERS}
+${TOTAL_HEADERS}
 ${printAssetTableRow(statsDiff.total)}`;
 }
 exports.printTotalAssetTable = printTotalAssetTable;
+function fileSizeIEC(bytes, significantDigits = 2) {
+    if (bytes === 0)
+        return '0 Bytes';
+    const absBytes = Math.abs(bytes);
+    const k = 1024;
+    const dm = significantDigits < 0 ? 0 : significantDigits;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(absBytes) / Math.log(k));
+    return `${parseFloat((absBytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+}
 
 
 /***/ }),

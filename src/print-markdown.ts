@@ -1,7 +1,19 @@
 import {AssetDiff, WebpackStatsDiff} from './get-stats-diff'
 
 function conditionalPercentage(number: number): string {
-  return [Infinity, -Infinity].includes(number) ? '-' : `${number.toFixed(2)}%`
+  if ([Infinity, -Infinity].includes(number)) {
+    return '-'
+  }
+
+  const absValue = Math.abs(number)
+
+  if ([0, 100].includes(absValue)) {
+    return `${number}%`
+  }
+
+  const value = [0, 100].includes(absValue) ? absValue : absValue.toFixed(2)
+
+  return `${signFor(number)}${value}%`
 }
 
 function capitalize(text: string): string {
@@ -19,34 +31,28 @@ ${columns
   .join(' | ')}`
 }
 
-const TABLE_HEADERS = makeHeader([
-  'Asset',
-  'Old size',
-  'New size',
-  'Diff',
-  'Diff %'
+const TOTAL_HEADERS = makeHeader([
+  'Files count',
+  'Total bundle size',
+  '% Changed'
 ])
+const TABLE_HEADERS = makeHeader(['Asset', 'File Size', '% Changed'])
 
-function getSizeText(size: number): string {
-  if (size === 0) {
-    return '0'
-  }
-
-  const abbreviations = ['bytes', 'KB', 'MB', 'GB']
-  const index = Math.floor(Math.log(Math.abs(size)) / Math.log(1024))
-
-  return `${+(size / Math.pow(1024, index)).toPrecision(3)} ${
-    abbreviations[index]
-  }`
+function signFor(num: number): '' | '+' | '-' {
+  if (num === 0) return ''
+  return num > 0 ? '+' : '-'
+}
+function toFileSizeDiff(asset: AssetDiff): string {
+  return `${fileSizeIEC(asset.oldSize)} -> ${fileSizeIEC(
+    asset.newSize
+  )} (${signFor(asset.diff)}${fileSizeIEC(asset.diff)})`
 }
 
 function printAssetTableRow(asset: AssetDiff): string {
   return [
     asset.name,
-    getSizeText(asset.oldSize),
-    getSizeText(asset.newSize),
-    getSizeText(asset.diff),
-    `${conditionalPercentage(asset.diffPercentage)}`
+    asset.diff === 0 ? fileSizeIEC(asset.newSize) : toFileSizeDiff(asset),
+    conditionalPercentage(asset.diffPercentage)
   ].join(' | ')
 }
 
@@ -84,8 +90,21 @@ ${assets
 export function printTotalAssetTable(
   statsDiff: Pick<WebpackStatsDiff, 'total'>
 ): string {
-  return `**${capitalize(statsDiff.total.name)}**
+  return `**Total**
 
-${TABLE_HEADERS}
+${TOTAL_HEADERS}
 ${printAssetTableRow(statsDiff.total)}`
+}
+
+function fileSizeIEC(bytes: number, significantDigits = 2): string {
+  if (bytes === 0) return '0 Bytes'
+
+  const absBytes = Math.abs(bytes)
+  const k = 1024
+  const dm = significantDigits < 0 ? 0 : significantDigits
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+
+  const i = Math.floor(Math.log(absBytes) / Math.log(k))
+
+  return `${parseFloat((absBytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
