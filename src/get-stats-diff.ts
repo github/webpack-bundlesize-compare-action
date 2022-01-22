@@ -13,7 +13,7 @@ export type StatDiff = {
   diffPercentage: number
 }
 
-export type Sizes = {
+type Sizes = {
   size: number
   gzipSize: number | null
 }

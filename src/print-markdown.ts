@@ -1,4 +1,4 @@
-import {AssetDiff, WebpackStatsDiff, Sizes} from './get-stats-diff'
+import {AssetDiff, WebpackStatsDiff} from './get-stats-diff'
 
 function conditionalPercentage(number: number): string {
   if ([Infinity, -Infinity].includes(number)) {
@@ -43,27 +43,36 @@ function signFor(num: number): '' | '+' | '-' {
   return num > 0 ? '+' : '-'
 }
 
-function printFileSize(sizes: Sizes): string {
-  let sizeDiff = `${fileSizeIEC(sizes.size)}`
-  if (sizes.gzipSize !== null && sizes.gzipSize > 0) {
-    sizeDiff += ` (gz: ${fileSizeIEC(sizes.gzipSize)})`
-  }
-  return sizeDiff
+function toFileSizeDiff(
+  oldSize: number,
+  newSize: number,
+  diff?: number
+): string {
+  const str = `${fileSizeIEC(oldSize)} -> ${fileSizeIEC(newSize)}`
+
+  return diff ? `${str} (${signFor(diff)}${fileSizeIEC(diff)})` : str
 }
 
-function toFileSizeDiff(asset: AssetDiff): string {
+function toFileSizeDiffCell(asset: AssetDiff): string {
   if (asset.diff === 0) {
-    return printFileSize(asset.new)
+    return asset.new.gzipSize
+      ? `${fileSizeIEC(asset.new.size)}<br />${fileSizeIEC(asset.new.gzipSize)}`
+      : fileSizeIEC(asset.new.size)
   }
-  return `${printFileSize(asset.old)} -> ${printFileSize(asset.new)} (${signFor(
-    asset.diff
-  )}${fileSizeIEC(asset.diff)})`
+  let fileSizeDiff = toFileSizeDiff(asset.old.size, asset.new.size, asset.diff)
+
+  if (asset.old.gzipSize || asset.new.gzipSize) {
+    fileSizeDiff = `bundled: ${fileSizeDiff}<br />gzip: ${
+      asset.old.gzipSize ? fileSizeIEC(asset.old.gzipSize) : 'N/A'
+    } -> ${asset.new.gzipSize ? fileSizeIEC(asset.new.gzipSize) : 'N/A'}`
+  }
+  return fileSizeDiff
 }
 
 function printAssetTableRow(asset: AssetDiff): string {
   return [
     asset.name,
-    toFileSizeDiff(asset),
+    toFileSizeDiffCell(asset),
     conditionalPercentage(asset.diffPercentage)
   ].join(' | ')
 }
