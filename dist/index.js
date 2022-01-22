@@ -8,17 +8,40 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 function indexNameToSize(statAssets = []) {
-    return Object.fromEntries(statAssets.map(({ name, size }) => [name, size]));
+    const statsEntries = statAssets.map(asset => {
+        let gzipSize = null;
+        if (asset.related && Array.isArray(asset.related)) {
+            const gzipAsset = asset.related.find(related => related.type === 'gzipped');
+            if (gzipAsset) {
+                gzipSize = gzipAsset.size;
+            }
+        }
+        return [
+            asset.name,
+            {
+                size: asset.size,
+                gzipSize
+            }
+        ];
+    });
+    return Object.fromEntries(statsEntries);
 }
 function diffDesc(diff1, diff2) {
     return Math.abs(diff2.diff) - Math.abs(diff1.diff);
 }
 function createDiff(oldSize, newSize) {
+    var _a, _b;
     return {
-        newSize,
-        oldSize,
-        diff: newSize - oldSize,
-        diffPercentage: +((1 - newSize / oldSize) * -100).toFixed(5) || 0
+        new: {
+            size: newSize.size,
+            gzipSize: (_a = newSize.gzipSize) !== null && _a !== void 0 ? _a : NaN
+        },
+        old: {
+            size: oldSize.size,
+            gzipSize: (_b = oldSize.gzipSize) !== null && _b !== void 0 ? _b : NaN
+        },
+        diff: newSize.size - oldSize.size,
+        diffPercentage: +((1 - newSize.size / oldSize.size) * -100).toFixed(5) || 0
     };
 }
 function getAssetsDiff(oldAssets, newAssets) {
@@ -28,6 +51,7 @@ function getStatsDiff(oldAssetStats, newAssetStats) {
     return getAssetsDiff(indexNameToSize(oldAssetStats.assets), indexNameToSize(newAssetStats.assets));
 }
 function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
+    var _a, _b;
     const added = [];
     const removed = [];
     const bigger = [];
@@ -35,13 +59,16 @@ function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
     const unchanged = [];
     let newSizeTotal = 0;
     let oldSizeTotal = 0;
-    for (const [name, oldAssetSize] of Object.entries(oldAssets)) {
-        oldSizeTotal += oldAssetSize;
+    let newGzipSizeTotal = 0;
+    let oldGzipSizeTotal = 0;
+    for (const [name, oldAssetSizes] of Object.entries(oldAssets)) {
+        oldSizeTotal += oldAssetSizes.size;
+        oldGzipSizeTotal += (_a = oldAssetSizes.gzipSize) !== null && _a !== void 0 ? _a : NaN;
         if (!newAssets[name]) {
-            removed.push(Object.assign(Object.assign({}, createDiff(oldAssetSize, 0)), { name }));
+            removed.push(Object.assign(Object.assign({}, createDiff(oldAssetSizes, { size: 0, gzipSize: 0 })), { name }));
         }
         else {
-            const diff = Object.assign({ name }, createDiff(oldAssetSize, newAssets[name]));
+            const diff = Object.assign({ name }, createDiff(oldAssetSizes, newAssets[name]));
             if (diff.diffPercentage > 0) {
                 bigger.push(diff);
             }
@@ -53,10 +80,11 @@ function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
             }
         }
     }
-    for (const [name, newAssetSize] of Object.entries(newAssets)) {
-        newSizeTotal += newAssetSize;
+    for (const [name, newAssetSizes] of Object.entries(newAssets)) {
+        newSizeTotal += newAssetSizes.size;
+        newGzipSizeTotal += (_b = newAssetSizes.gzipSize) !== null && _b !== void 0 ? _b : NaN;
         if (!oldAssets[name]) {
-            added.push(Object.assign({ name }, createDiff(0, newAssetSize)));
+            added.push(Object.assign({ name }, createDiff({ size: 0, gzipSize: 0 }, newAssetSizes)));
         }
     }
     const oldFilesCount = Object.keys(oldAssets).length;
@@ -69,7 +97,7 @@ function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
         unchanged,
         total: Object.assign({ name: oldFilesCount === newFilesCount
                 ? `${newFilesCount}`
-                : `${oldFilesCount} -> ${newFilesCount}` }, createDiff(oldSizeTotal, newSizeTotal))
+                : `${oldFilesCount} -> ${newFilesCount}` }, createDiff({ size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal }))
     };
 }
 exports["default"] = getStatsDiff;
@@ -266,13 +294,23 @@ function signFor(num) {
         return '';
     return num > 0 ? '+' : '-';
 }
+function printFileSize(sizes) {
+    let sizeDiff = `${fileSizeIEC(sizes.size)}`;
+    if (sizes.gzipSize !== null && sizes.gzipSize > 0) {
+        sizeDiff += ` (gz: ${fileSizeIEC(sizes.gzipSize)})`;
+    }
+    return sizeDiff;
+}
 function toFileSizeDiff(asset) {
-    return `${fileSizeIEC(asset.oldSize)} -> ${fileSizeIEC(asset.newSize)} (${signFor(asset.diff)}${fileSizeIEC(asset.diff)})`;
+    if (asset.diff === 0) {
+        return printFileSize(asset.new);
+    }
+    return `${printFileSize(asset.old)} -> ${printFileSize(asset.new)} (${signFor(asset.diff)}${fileSizeIEC(asset.diff)})`;
 }
 function printAssetTableRow(asset) {
     return [
         asset.name,
-        asset.diff === 0 ? fileSizeIEC(asset.newSize) : toFileSizeDiff(asset),
+        toFileSizeDiff(asset),
         conditionalPercentage(asset.diffPercentage)
     ].join(' | ');
 }
