@@ -1,4 +1,4 @@
-import type {StatsCompilation} from 'webpack'
+import type {StatsAsset, StatsCompilation} from 'webpack'
 
 export type StatDiff = {
   newSize: number
@@ -7,10 +7,35 @@ export type StatDiff = {
   diffPercentage: number
 }
 
+type Sizes = {
+  size: number
+  related?: boolean
+}
+
+function getGzippedAsset(asset: StatsAsset): StatsAsset | undefined {
+  if (asset.related && Array.isArray(asset.related)) {
+    const gzippedAsset = asset.related.find(relatedAsset => {
+      return relatedAsset.type === 'gzipped'
+    })
+    return gzippedAsset
+  }
+}
+
 function indexNameToSize(
   statAssets: StatsCompilation['assets'] = []
-): Record<string, number> {
-  return Object.fromEntries(statAssets.map(({name, size}) => [name, size]))
+): Record<string, Sizes> {
+  const assets: Record<string, Sizes> = {}
+  for (const asset of statAssets) {
+    assets[asset.name] = {size: asset.size}
+    const gzippedAsset = getGzippedAsset(asset)
+    if (gzippedAsset) {
+      assets[gzippedAsset.name] = {
+        size: gzippedAsset.size,
+        related: true
+      }
+    }
+  }
+  return assets
 }
 
 function diffDesc(diff1: StatDiff, diff2: StatDiff): number {
@@ -27,8 +52,8 @@ function createDiff(oldSize: number, newSize: number): StatDiff {
 }
 
 function getAssetsDiff(
-  oldAssets: Record<string, number>,
-  newAssets: Record<string, number>
+  oldAssets: Record<string, Sizes>,
+  newAssets: Record<string, Sizes>
 ): WebpackStatsDiff {
   return webpackStatsDiff(oldAssets, newAssets)
 }
@@ -59,8 +84,8 @@ export type WebpackStatsDiff = {
 }
 
 function webpackStatsDiff(
-  oldAssets: Record<string, number> = {},
-  newAssets: Record<string, number> = {}
+  oldAssets: Record<string, Sizes> = {},
+  newAssets: Record<string, Sizes> = {}
 ): WebpackStatsDiff {
   const added = []
   const removed = []
@@ -71,15 +96,20 @@ function webpackStatsDiff(
   let newSizeTotal = 0
   let oldSizeTotal = 0
 
-  for (const [name, oldAssetSize] of Object.entries(oldAssets)) {
-    oldSizeTotal += oldAssetSize
+  for (const [name, {size: oldAssetSize, related}] of Object.entries(
+    oldAssets
+  )) {
+    if (!related) {
+      oldSizeTotal += oldAssetSize
+    }
+
     if (!newAssets[name]) {
       removed.push({
         ...createDiff(oldAssetSize, 0),
         name
       })
     } else {
-      const diff = {name, ...createDiff(oldAssetSize, newAssets[name])}
+      const diff = {name, ...createDiff(oldAssetSize, newAssets[name].size)}
 
       if (diff.diffPercentage > 0) {
         bigger.push(diff)
@@ -91,15 +121,23 @@ function webpackStatsDiff(
     }
   }
 
-  for (const [name, newAssetSize] of Object.entries(newAssets)) {
-    newSizeTotal += newAssetSize
+  for (const [name, {size: newAssetSize, related}] of Object.entries(
+    newAssets
+  )) {
+    if (!related) {
+      newSizeTotal += newAssetSize
+    }
     if (!oldAssets[name]) {
       added.push({name, ...createDiff(0, newAssetSize)})
     }
   }
 
-  const oldFilesCount = Object.keys(oldAssets).length
-  const newFilesCount = Object.keys(newAssets).length
+  const oldFilesCount = Object.values(oldAssets).filter(
+    item => !item.related
+  ).length
+  const newFilesCount = Object.values(newAssets).filter(
+    item => !item.related
+  ).length
   return {
     added: added.sort(diffDesc),
     removed: removed.sort(diffDesc),
