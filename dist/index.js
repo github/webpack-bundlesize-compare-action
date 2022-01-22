@@ -294,23 +294,26 @@ function signFor(num) {
         return '';
     return num > 0 ? '+' : '-';
 }
-function printFileSize(sizes) {
-    let sizeDiff = `${fileSizeIEC(sizes.size)}`;
-    if (sizes.gzipSize !== null && sizes.gzipSize > 0) {
-        sizeDiff += ` (gz: ${fileSizeIEC(sizes.gzipSize)})`;
-    }
-    return sizeDiff;
+function toFileSizeDiff(oldSize, newSize, diff) {
+    const str = `${fileSizeIEC(oldSize)} -> ${fileSizeIEC(newSize)}`;
+    return diff ? `${str} (${signFor(diff)}${fileSizeIEC(diff)})` : str;
 }
-function toFileSizeDiff(asset) {
+function toFileSizeDiffCell(asset) {
     if (asset.diff === 0) {
-        return printFileSize(asset.new);
+        return asset.new.gzipSize
+            ? `${fileSizeIEC(asset.new.size)}<br />${fileSizeIEC(asset.new.gzipSize)}`
+            : fileSizeIEC(asset.new.size);
     }
-    return `${printFileSize(asset.old)} -> ${printFileSize(asset.new)} (${signFor(asset.diff)}${fileSizeIEC(asset.diff)})`;
+    let fileSizeDiff = toFileSizeDiff(asset.old.size, asset.new.size, asset.diff);
+    if (asset.old.gzipSize || asset.new.gzipSize) {
+        fileSizeDiff = `bundled: ${fileSizeDiff}<br />gzip: ${asset.old.gzipSize ? fileSizeIEC(asset.old.gzipSize) : 'N/A'} -> ${asset.new.gzipSize ? fileSizeIEC(asset.new.gzipSize) : 'N/A'}`;
+    }
+    return fileSizeDiff;
 }
 function printAssetTableRow(asset) {
     return [
         asset.name,
-        toFileSizeDiff(asset),
+        toFileSizeDiffCell(asset),
         conditionalPercentage(asset.diffPercentage)
     ].join(' | ');
 }
