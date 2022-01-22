@@ -1,6 +1,48 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 4836:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.fileSizeIEC = void 0;
+const BYTES_PER_KILOBYTE = 1024;
+const denominations = [
+    'Bytes',
+    'KB',
+    'MB',
+    'GB',
+    'TB',
+    'PB',
+    'EB',
+    'ZB',
+    'YB',
+    'BB' // 1 brontobyte
+];
+/**
+ * Prints a human readable file size.
+ * with IEC units
+ * @param bytes The file size in bytes.
+ * @param precision The number of decimal places to show.
+ */
+function fileSizeIEC(bytes, precision = 2) {
+    if (bytes == null || Number.isNaN(bytes)) {
+        return 'N/A';
+    }
+    if (bytes === 0)
+        return `0 ${denominations[0]}`;
+    const absBytes = Math.abs(bytes);
+    const denominationIndex = Math.floor(Math.log(absBytes) / Math.log(BYTES_PER_KILOBYTE));
+    const value = parseFloat((absBytes / Math.pow(BYTES_PER_KILOBYTE, denominationIndex)).toFixed(Math.max(0, precision)));
+    return `${value} ${denominations[denominationIndex]}`;
+}
+exports.fileSizeIEC = fileSizeIEC;
+
+
+/***/ }),
+
 /***/ 7334:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -255,12 +297,13 @@ exports.parseStatsFileToJson = parseStatsFileToJson;
 /***/ }),
 
 /***/ 803:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.printTotalAssetTable = exports.printAssetTablesByGroup = void 0;
+const file_sizes_1 = __nccwpck_require__(4836);
 function conditionalPercentage(number) {
     if ([Infinity, -Infinity].includes(number)) {
         return '-';
@@ -296,20 +339,27 @@ function signFor(num) {
     return num > 0 ? '+' : '-';
 }
 function toFileSizeDiff(oldSize, newSize, diff) {
-    const str = `${fileSizeIEC(oldSize)} -> ${fileSizeIEC(newSize)}`;
-    return diff ? `${str} (${signFor(diff)}${fileSizeIEC(diff)})` : str;
+    const diffLine = [`${(0, file_sizes_1.fileSizeIEC)(oldSize)} -> ${(0, file_sizes_1.fileSizeIEC)(newSize)}`];
+    if (typeof diff !== 'undefined') {
+        diffLine.push(`(${signFor(diff)}${(0, file_sizes_1.fileSizeIEC)(diff)})`);
+    }
+    return diffLine.join(' ');
 }
 function toFileSizeDiffCell(asset) {
+    const lines = [];
     if (asset.diff === 0) {
-        return asset.new.gzipSize
-            ? `${fileSizeIEC(asset.new.size)}<br />${fileSizeIEC(asset.new.gzipSize)}`
-            : fileSizeIEC(asset.new.size);
+        lines.push((0, file_sizes_1.fileSizeIEC)(asset.new.size));
+        if (asset.new.gzipSize) {
+            lines.push((0, file_sizes_1.fileSizeIEC)(asset.new.gzipSize));
+        }
     }
-    let fileSizeDiff = toFileSizeDiff(asset.old.size, asset.new.size, asset.diff);
-    if (asset.old.gzipSize || asset.new.gzipSize) {
-        fileSizeDiff = `${fileSizeDiff}<br />${asset.old.gzipSize ? fileSizeIEC(asset.old.gzipSize) : 'N/A'} -> ${asset.new.gzipSize ? fileSizeIEC(asset.new.gzipSize) : 'N/A'}`;
+    else {
+        lines.push(toFileSizeDiff(asset.old.size, asset.new.size, asset.diff));
+        if (asset.old.gzipSize || asset.new.gzipSize) {
+            lines.push(toFileSizeDiff(asset.old.gzipSize, asset.new.gzipSize));
+        }
     }
-    return fileSizeDiff;
+    return lines.join('<br />');
 }
 function printAssetTableRow(asset) {
     return [
@@ -354,16 +404,6 @@ ${TOTAL_HEADERS}
 ${printAssetTableRow(statsDiff.total)}`;
 }
 exports.printTotalAssetTable = printTotalAssetTable;
-function fileSizeIEC(bytes, significantDigits = 2) {
-    if (bytes === 0)
-        return '0 Bytes';
-    const absBytes = Math.abs(bytes);
-    const k = 1024;
-    const dm = significantDigits < 0 ? 0 : significantDigits;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    const i = Math.floor(Math.log(absBytes) / Math.log(k));
-    return `${parseFloat((absBytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
-}
 
 
 /***/ }),
