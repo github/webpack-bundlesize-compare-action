@@ -1,4 +1,4 @@
-import {AssetDiff, WebpackStatsDiff} from './get-stats-diff'
+import {AssetDiff, WebpackStatsDiff, Sizes} from './get-stats-diff'
 
 function conditionalPercentage(number: number): string {
   if ([Infinity, -Infinity].includes(number)) {
@@ -42,16 +42,28 @@ function signFor(num: number): '' | '+' | '-' {
   if (num === 0) return ''
   return num > 0 ? '+' : '-'
 }
+
+function printFileSize(sizes: Sizes): string {
+  let sizeDiff = `${fileSizeIEC(sizes.size)}`
+  if (sizes.gzipSize !== null && sizes.gzipSize > 0) {
+    sizeDiff += ` (gz: ${fileSizeIEC(sizes.gzipSize)})`
+  }
+  return sizeDiff
+}
+
 function toFileSizeDiff(asset: AssetDiff): string {
-  return `${fileSizeIEC(asset.oldSize)} -> ${fileSizeIEC(
-    asset.newSize
-  )} (${signFor(asset.diff)}${fileSizeIEC(asset.diff)})`
+  if (asset.diff === 0) {
+    return printFileSize(asset.new)
+  }
+  return `${printFileSize(asset.old)} -> ${printFileSize(asset.new)} (${signFor(
+    asset.diff
+  )}${fileSizeIEC(asset.diff)})`
 }
 
 function printAssetTableRow(asset: AssetDiff): string {
   return [
     asset.name,
-    asset.diff === 0 ? fileSizeIEC(asset.newSize) : toFileSizeDiff(asset),
+    toFileSizeDiff(asset),
     conditionalPercentage(asset.diffPercentage)
   ].join(' | ')
 }
