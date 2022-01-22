@@ -1,6 +1,14 @@
 name: 'build-test'
 on: # rebuild any PRs and main branch changes
   pull_request:
+    branches-ignore:    
+      - 'dependabot/**'
+  pull_request_target:
+    branches:
+      - 'dependabot/**'
+
+permissions:
+  contents: read
 
 jobs:
   build: # make sure build/ci work properly
