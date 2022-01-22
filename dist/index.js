@@ -1,6 +1,48 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ 4836:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.fileSizeIEC = void 0;
+const BYTES_PER_KILOBYTE = 1024;
+const denominations = [
+    'Bytes',
+    'KB',
+    'MB',
+    'GB',
+    'TB',
+    'PB',
+    'EB',
+    'ZB',
+    'YB',
+    'BB' // 1 brontobyte
+];
+/**
+ * Prints a human readable file size.
+ * with IEC units
+ * @param bytes The file size in bytes.
+ * @param precision The number of decimal places to show.
+ */
+function fileSizeIEC(bytes, precision = 2) {
+    if (bytes == null || Number.isNaN(bytes)) {
+        return 'N/A';
+    }
+    if (bytes === 0)
+        return `0 ${denominations[0]}`;
+    const absBytes = Math.abs(bytes);
+    const denominationIndex = Math.floor(Math.log(absBytes) / Math.log(BYTES_PER_KILOBYTE));
+    const value = parseFloat((absBytes / Math.pow(BYTES_PER_KILOBYTE, denominationIndex)).toFixed(Math.max(0, precision)));
+    return `${value} ${denominations[denominationIndex]}`;
+}
+exports.fileSizeIEC = fileSizeIEC;
+
+
+/***/ }),
+
 /***/ 7334:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -8,17 +50,40 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 function indexNameToSize(statAssets = []) {
-    return Object.fromEntries(statAssets.map(({ name, size }) => [name, size]));
+    const statsEntries = statAssets.map(asset => {
+        let gzipSize = null;
+        if (asset.related && Array.isArray(asset.related)) {
+            const gzipAsset = asset.related.find(related => related.type === 'gzipped');
+            if (gzipAsset) {
+                gzipSize = gzipAsset.size;
+            }
+        }
+        return [
+            asset.name,
+            {
+                size: asset.size,
+                gzipSize
+            }
+        ];
+    });
+    return Object.fromEntries(statsEntries);
 }
 function diffDesc(diff1, diff2) {
     return Math.abs(diff2.diff) - Math.abs(diff1.diff);
 }
 function createDiff(oldSize, newSize) {
+    var _a, _b;
     return {
-        newSize,
-        oldSize,
-        diff: newSize - oldSize,
-        diffPercentage: +((1 - newSize / oldSize) * -100).toFixed(5) || 0
+        new: {
+            size: newSize.size,
+            gzipSize: (_a = newSize.gzipSize) !== null && _a !== void 0 ? _a : NaN
+        },
+        old: {
+            size: oldSize.size,
+            gzipSize: (_b = oldSize.gzipSize) !== null && _b !== void 0 ? _b : NaN
+        },
+        diff: newSize.size - oldSize.size,
+        diffPercentage: +((1 - newSize.size / oldSize.size) * -100).toFixed(5) || 0
     };
 }
 function getAssetsDiff(oldAssets, newAssets) {
@@ -28,6 +93,7 @@ function getStatsDiff(oldAssetStats, newAssetStats) {
     return getAssetsDiff(indexNameToSize(oldAssetStats.assets), indexNameToSize(newAssetStats.assets));
 }
 function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
+    var _a, _b;
     const added = [];
     const removed = [];
     const bigger = [];
@@ -35,13 +101,16 @@ function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
     const unchanged = [];
     let newSizeTotal = 0;
     let oldSizeTotal = 0;
-    for (const [name, oldAssetSize] of Object.entries(oldAssets)) {
-        oldSizeTotal += oldAssetSize;
+    let newGzipSizeTotal = 0;
+    let oldGzipSizeTotal = 0;
+    for (const [name, oldAssetSizes] of Object.entries(oldAssets)) {
+        oldSizeTotal += oldAssetSizes.size;
+        oldGzipSizeTotal += (_a = oldAssetSizes.gzipSize) !== null && _a !== void 0 ? _a : NaN;
         if (!newAssets[name]) {
-            removed.push(Object.assign(Object.assign({}, createDiff(oldAssetSize, 0)), { name }));
+            removed.push(Object.assign(Object.assign({}, createDiff(oldAssetSizes, { size: 0, gzipSize: 0 })), { name }));
         }
         else {
-            const diff = Object.assign({ name }, createDiff(oldAssetSize, newAssets[name]));
+            const diff = Object.assign({ name }, createDiff(oldAssetSizes, newAssets[name]));
             if (diff.diffPercentage > 0) {
                 bigger.push(diff);
             }
@@ -53,10 +122,11 @@ function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
             }
         }
     }
-    for (const [name, newAssetSize] of Object.entries(newAssets)) {
-        newSizeTotal += newAssetSize;
+    for (const [name, newAssetSizes] of Object.entries(newAssets)) {
+        newSizeTotal += newAssetSizes.size;
+        newGzipSizeTotal += (_b = newAssetSizes.gzipSize) !== null && _b !== void 0 ? _b : NaN;
         if (!oldAssets[name]) {
-            added.push(Object.assign({ name }, createDiff(0, newAssetSize)));
+            added.push(Object.assign({ name }, createDiff({ size: 0, gzipSize: 0 }, newAssetSizes)));
         }
     }
     const oldFilesCount = Object.keys(oldAssets).length;
@@ -69,7 +139,7 @@ function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
         unchanged,
         total: Object.assign({ name: oldFilesCount === newFilesCount
                 ? `${newFilesCount}`
-                : `${oldFilesCount} -> ${newFilesCount}` }, createDiff(oldSizeTotal, newSizeTotal))
+                : `${oldFilesCount} -> ${newFilesCount}` }, createDiff({ size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal }))
     };
 }
 exports["default"] = getStatsDiff;
@@ -227,12 +297,13 @@ exports.parseStatsFileToJson = parseStatsFileToJson;
 /***/ }),
 
 /***/ 803:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.printTotalAssetTable = exports.printAssetTablesByGroup = void 0;
+const file_sizes_1 = __nccwpck_require__(4836);
 function conditionalPercentage(number) {
     if ([Infinity, -Infinity].includes(number)) {
         return '-';
@@ -257,22 +328,44 @@ ${columns
 }
 const TOTAL_HEADERS = makeHeader([
     'Files count',
+    'Type',
     'Total bundle size',
     '% Changed'
 ]);
-const TABLE_HEADERS = makeHeader(['Asset', 'File Size', '% Changed']);
+const TABLE_HEADERS = makeHeader(['Asset', 'Type', 'File Size', '% Changed']);
 function signFor(num) {
     if (num === 0)
         return '';
     return num > 0 ? '+' : '-';
 }
-function toFileSizeDiff(asset) {
-    return `${fileSizeIEC(asset.oldSize)} -> ${fileSizeIEC(asset.newSize)} (${signFor(asset.diff)}${fileSizeIEC(asset.diff)})`;
+function toFileSizeDiff(oldSize, newSize, diff) {
+    const diffLine = [`${(0, file_sizes_1.fileSizeIEC)(oldSize)} -> ${(0, file_sizes_1.fileSizeIEC)(newSize)}`];
+    if (typeof diff !== 'undefined') {
+        diffLine.push(`(${signFor(diff)}${(0, file_sizes_1.fileSizeIEC)(diff)})`);
+    }
+    return diffLine.join(' ');
+}
+function toFileSizeDiffCell(asset) {
+    const lines = [];
+    if (asset.diff === 0) {
+        lines.push((0, file_sizes_1.fileSizeIEC)(asset.new.size));
+        if (asset.new.gzipSize) {
+            lines.push((0, file_sizes_1.fileSizeIEC)(asset.new.gzipSize));
+        }
+    }
+    else {
+        lines.push(toFileSizeDiff(asset.old.size, asset.new.size, asset.diff));
+        if (asset.old.gzipSize || asset.new.gzipSize) {
+            lines.push(toFileSizeDiff(asset.old.gzipSize, asset.new.gzipSize));
+        }
+    }
+    return lines.join('<br />');
 }
 function printAssetTableRow(asset) {
     return [
         asset.name,
-        asset.diff === 0 ? fileSizeIEC(asset.newSize) : toFileSizeDiff(asset),
+        asset.old.gzipSize || asset.new.gzipSize ? 'bundled<br />gzip' : 'bundled',
+        toFileSizeDiffCell(asset),
         conditionalPercentage(asset.diffPercentage)
     ].join(' | ');
 }
@@ -311,16 +404,6 @@ ${TOTAL_HEADERS}
 ${printAssetTableRow(statsDiff.total)}`;
 }
 exports.printTotalAssetTable = printTotalAssetTable;
-function fileSizeIEC(bytes, significantDigits = 2) {
-    if (bytes === 0)
-        return '0 Bytes';
-    const absBytes = Math.abs(bytes);
-    const k = 1024;
-    const dm = significantDigits < 0 ? 0 : significantDigits;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    const i = Math.floor(Math.log(absBytes) / Math.log(k));
-    return `${parseFloat((absBytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
-}
 
 
 /***/ }),
