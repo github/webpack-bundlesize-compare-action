@@ -7,8 +7,27 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+function getGzippedAsset(asset) {
+    if (asset.related && Array.isArray(asset.related)) {
+        const gzippedAsset = asset.related.find(relatedAsset => {
+            return relatedAsset.type === 'gzipped';
+        });
+        return gzippedAsset;
+    }
+}
 function indexNameToSize(statAssets = []) {
-    return Object.fromEntries(statAssets.map(({ name, size }) => [name, size]));
+    const assets = {};
+    for (const asset of statAssets) {
+        assets[asset.name] = { size: asset.size };
+        const gzippedAsset = getGzippedAsset(asset);
+        if (gzippedAsset) {
+            assets[gzippedAsset.name] = {
+                size: gzippedAsset.size,
+                related: true
+            };
+        }
+    }
+    return assets;
 }
 function diffDesc(diff1, diff2) {
     return Math.abs(diff2.diff) - Math.abs(diff1.diff);
@@ -35,13 +54,15 @@ function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
     const unchanged = [];
     let newSizeTotal = 0;
     let oldSizeTotal = 0;
-    for (const [name, oldAssetSize] of Object.entries(oldAssets)) {
-        oldSizeTotal += oldAssetSize;
+    for (const [name, { size: oldAssetSize, related }] of Object.entries(oldAssets)) {
+        if (!related) {
+            oldSizeTotal += oldAssetSize;
+        }
         if (!newAssets[name]) {
             removed.push(Object.assign(Object.assign({}, createDiff(oldAssetSize, 0)), { name }));
         }
         else {
-            const diff = Object.assign({ name }, createDiff(oldAssetSize, newAssets[name]));
+            const diff = Object.assign({ name }, createDiff(oldAssetSize, newAssets[name].size));
             if (diff.diffPercentage > 0) {
                 bigger.push(diff);
             }
@@ -53,14 +74,16 @@ function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
             }
         }
     }
-    for (const [name, newAssetSize] of Object.entries(newAssets)) {
-        newSizeTotal += newAssetSize;
+    for (const [name, { size: newAssetSize, related }] of Object.entries(newAssets)) {
+        if (!related) {
+            newSizeTotal += newAssetSize;
+        }
         if (!oldAssets[name]) {
             added.push(Object.assign({ name }, createDiff(0, newAssetSize)));
         }
     }
-    const oldFilesCount = Object.keys(oldAssets).length;
-    const newFilesCount = Object.keys(newAssets).length;
+    const oldFilesCount = Object.values(oldAssets).filter(item => !item.related).length;
+    const newFilesCount = Object.values(newAssets).filter(item => !item.related).length;
     return {
         added: added.sort(diffDesc),
         removed: removed.sort(diffDesc),
