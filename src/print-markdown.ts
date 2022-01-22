@@ -33,6 +33,7 @@ ${columns
 
 const TOTAL_HEADERS = makeHeader([
   'Files count',
+  'Type',
   'Total bundle size',
   '% Changed'
 ])

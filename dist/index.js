@@ -285,10 +285,11 @@ ${columns
 }
 const TOTAL_HEADERS = makeHeader([
     'Files count',
+    'Type',
     'Total bundle size',
     '% Changed'
 ]);
-const TABLE_HEADERS = makeHeader(['Asset', 'File Size', '% Changed']);
+const TABLE_HEADERS = makeHeader(['Asset', 'Type', 'File Size', '% Changed']);
 function signFor(num) {
     if (num === 0)
         return '';
@@ -306,13 +307,14 @@ function toFileSizeDiffCell(asset) {
     }
     let fileSizeDiff = toFileSizeDiff(asset.old.size, asset.new.size, asset.diff);
     if (asset.old.gzipSize || asset.new.gzipSize) {
-        fileSizeDiff = `bundled: ${fileSizeDiff}<br />gzip: ${asset.old.gzipSize ? fileSizeIEC(asset.old.gzipSize) : 'N/A'} -> ${asset.new.gzipSize ? fileSizeIEC(asset.new.gzipSize) : 'N/A'}`;
+        fileSizeDiff = `${fileSizeDiff}<br />${asset.old.gzipSize ? fileSizeIEC(asset.old.gzipSize) : 'N/A'} -> ${asset.new.gzipSize ? fileSizeIEC(asset.new.gzipSize) : 'N/A'}`;
     }
     return fileSizeDiff;
 }
 function printAssetTableRow(asset) {
     return [
         asset.name,
+        asset.old.gzipSize || asset.new.gzipSize ? 'bundled<br />gzip' : 'bundled',
         toFileSizeDiffCell(asset),
         conditionalPercentage(asset.diffPercentage)
     ].join(' | ');
