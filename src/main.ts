@@ -1,8 +1,8 @@
 import * as core from '@actions/core'
 import {context, getOctokit} from '@actions/github'
-import {getCommentBody, getIdentifierComment} from './to-comment-body'
-import getStatsDiff from './get-stats-diff'
+import {getStatsDiff} from './get-stats-diff'
 import {parseStatsFileToJson} from './parse-stats-file-to-json'
+import {getCommentBody, getIdentifierComment} from './to-comment-body'
 
 async function run(): Promise<void> {
   try {

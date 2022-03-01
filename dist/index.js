@@ -7,7 +7,7 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.fileSizeIEC = void 0;
+exports.formatFileSizeIEC = void 0;
 const BYTES_PER_KILOBYTE = 1024;
 const denominations = [
     'Bytes',
@@ -27,7 +27,7 @@ const denominations = [
  * @param bytes The file size in bytes.
  * @param precision The number of decimal places to show.
  */
-function fileSizeIEC(bytes, precision = 2) {
+function formatFileSizeIEC(bytes, precision = 2) {
     if (bytes == null || Number.isNaN(bytes)) {
         return 'N/A';
     }
@@ -35,45 +35,26 @@ function fileSizeIEC(bytes, precision = 2) {
         return `0 ${denominations[0]}`;
     const absBytes = Math.abs(bytes);
     const denominationIndex = Math.floor(Math.log(absBytes) / Math.log(BYTES_PER_KILOBYTE));
-    const value = parseFloat((absBytes / Math.pow(BYTES_PER_KILOBYTE, denominationIndex)).toFixed(Math.max(0, precision)));
-    return `${value} ${denominations[denominationIndex]}`;
+    const value = absBytes / Math.pow(BYTES_PER_KILOBYTE, denominationIndex);
+    const valueWithStrippedZeroDecimals = parseFloat(value.toFixed(precision));
+    return `${valueWithStrippedZeroDecimals} ${denominations[denominationIndex]}`;
 }
-exports.fileSizeIEC = fileSizeIEC;
+exports.formatFileSizeIEC = formatFileSizeIEC;
 
 
 /***/ }),
 
-/***/ 7334:
+/***/ 6967:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-function indexNameToSize(statAssets = []) {
-    const statsEntries = statAssets.map(asset => {
-        let gzipSize = null;
-        if (asset.related && Array.isArray(asset.related)) {
-            const gzipAsset = asset.related.find(related => related.type === 'gzipped');
-            if (gzipAsset) {
-                gzipSize = gzipAsset.size;
-            }
-        }
-        return [
-            asset.name,
-            {
-                size: asset.size,
-                gzipSize
-            }
-        ];
-    });
-    return Object.fromEntries(statsEntries);
-}
-function diffDesc(diff1, diff2) {
-    return Math.abs(diff2.diff) - Math.abs(diff1.diff);
-}
-function createDiff(oldSize, newSize) {
+exports.getAssetDiff = void 0;
+function getAssetDiff(name, oldSize, newSize) {
     var _a, _b;
     return {
+        name,
         new: {
             size: newSize.size,
             gzipSize: (_a = newSize.gzipSize) !== null && _a !== void 0 ? _a : NaN
@@ -86,63 +67,24 @@ function createDiff(oldSize, newSize) {
         diffPercentage: +((1 - newSize.size / oldSize.size) * -100).toFixed(5) || 0
     };
 }
-function getAssetsDiff(oldAssets, newAssets) {
-    return webpackStatsDiff(oldAssets, newAssets);
-}
+exports.getAssetDiff = getAssetDiff;
+
+
+/***/ }),
+
+/***/ 7334:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getStatsDiff = void 0;
+const name_to_size_map_1 = __nccwpck_require__(9804);
+const webpack_stats_diff_1 = __nccwpck_require__(1099);
 function getStatsDiff(oldAssetStats, newAssetStats) {
-    return getAssetsDiff(indexNameToSize(oldAssetStats.assets), indexNameToSize(newAssetStats.assets));
+    return (0, webpack_stats_diff_1.webpackStatsDiff)((0, name_to_size_map_1.nameToSizeMap)(oldAssetStats.assets), (0, name_to_size_map_1.nameToSizeMap)(newAssetStats.assets));
 }
-function webpackStatsDiff(oldAssets = {}, newAssets = {}) {
-    var _a, _b;
-    const added = [];
-    const removed = [];
-    const bigger = [];
-    const smaller = [];
-    const unchanged = [];
-    let newSizeTotal = 0;
-    let oldSizeTotal = 0;
-    let newGzipSizeTotal = 0;
-    let oldGzipSizeTotal = 0;
-    for (const [name, oldAssetSizes] of Object.entries(oldAssets)) {
-        oldSizeTotal += oldAssetSizes.size;
-        oldGzipSizeTotal += (_a = oldAssetSizes.gzipSize) !== null && _a !== void 0 ? _a : NaN;
-        if (!newAssets[name]) {
-            removed.push(Object.assign(Object.assign({}, createDiff(oldAssetSizes, { size: 0, gzipSize: 0 })), { name }));
-        }
-        else {
-            const diff = Object.assign({ name }, createDiff(oldAssetSizes, newAssets[name]));
-            if (diff.diffPercentage > 0) {
-                bigger.push(diff);
-            }
-            else if (diff.diffPercentage < 0) {
-                smaller.push(diff);
-            }
-            else {
-                unchanged.push(diff);
-            }
-        }
-    }
-    for (const [name, newAssetSizes] of Object.entries(newAssets)) {
-        newSizeTotal += newAssetSizes.size;
-        newGzipSizeTotal += (_b = newAssetSizes.gzipSize) !== null && _b !== void 0 ? _b : NaN;
-        if (!oldAssets[name]) {
-            added.push(Object.assign({ name }, createDiff({ size: 0, gzipSize: 0 }, newAssetSizes)));
-        }
-    }
-    const oldFilesCount = Object.keys(oldAssets).length;
-    const newFilesCount = Object.keys(newAssets).length;
-    return {
-        added: added.sort(diffDesc),
-        removed: removed.sort(diffDesc),
-        bigger: bigger.sort(diffDesc),
-        smaller: smaller.sort(diffDesc),
-        unchanged,
-        total: Object.assign({ name: oldFilesCount === newFilesCount
-                ? `${newFilesCount}`
-                : `${oldFilesCount} -> ${newFilesCount}` }, createDiff({ size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal }))
-    };
-}
-exports["default"] = getStatsDiff;
+exports.getStatsDiff = getStatsDiff;
 
 
 /***/ }),
@@ -184,15 +126,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5438);
-const to_comment_body_1 = __nccwpck_require__(3471);
-const get_stats_diff_1 = __importDefault(__nccwpck_require__(7334));
+const get_stats_diff_1 = __nccwpck_require__(7334);
 const parse_stats_file_to_json_1 = __nccwpck_require__(4578);
+const to_comment_body_1 = __nccwpck_require__(3471);
 function run() {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
@@ -223,7 +162,7 @@ function run() {
                     comment.body &&
                     comment.body.includes(identifierComment);
             });
-            const statsDiff = (0, get_stats_diff_1.default)(baseStatsJson, currentStatsJson);
+            const statsDiff = (0, get_stats_diff_1.getStatsDiff)(baseStatsJson, currentStatsJson);
             const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff, title);
             const promises = [];
             if (restComments.length > 1) {
@@ -261,6 +200,36 @@ function run() {
     });
 }
 run();
+
+
+/***/ }),
+
+/***/ 9804:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.nameToSizeMap = void 0;
+function nameToSizeMap(statAssets = []) {
+    return new Map(statAssets.map(asset => {
+        let gzipSize = null;
+        if (asset.related && Array.isArray(asset.related)) {
+            const gzipAsset = asset.related.find(related => related.type === 'gzipped');
+            if (gzipAsset) {
+                gzipSize = gzipAsset.size;
+            }
+        }
+        return [
+            asset.name,
+            {
+                size: asset.size,
+                gzipSize
+            }
+        ];
+    }));
+}
+exports.nameToSizeMap = nameToSizeMap;
 
 
 /***/ }),
@@ -343,18 +312,20 @@ function signFor(num) {
     return num > 0 ? '+' : '-';
 }
 function toFileSizeDiff(oldSize, newSize, diff) {
-    const diffLine = [`${(0, file_sizes_1.fileSizeIEC)(oldSize)} -> ${(0, file_sizes_1.fileSizeIEC)(newSize)}`];
+    const diffLine = [
+        `${(0, file_sizes_1.formatFileSizeIEC)(oldSize)} -> ${(0, file_sizes_1.formatFileSizeIEC)(newSize)}`
+    ];
     if (typeof diff !== 'undefined') {
-        diffLine.push(`(${signFor(diff)}${(0, file_sizes_1.fileSizeIEC)(diff)})`);
+        diffLine.push(`(${signFor(diff)}${(0, file_sizes_1.formatFileSizeIEC)(diff)})`);
     }
     return diffLine.join(' ');
 }
 function toFileSizeDiffCell(asset) {
     const lines = [];
     if (asset.diff === 0) {
-        lines.push((0, file_sizes_1.fileSizeIEC)(asset.new.size));
+        lines.push((0, file_sizes_1.formatFileSizeIEC)(asset.new.size));
         if (asset.new.gzipSize) {
-            lines.push((0, file_sizes_1.fileSizeIEC)(asset.new.gzipSize));
+            lines.push((0, file_sizes_1.formatFileSizeIEC)(asset.new.gzipSize));
         }
     }
     else {
@@ -412,6 +383,21 @@ exports.printTotalAssetTable = printTotalAssetTable;
 
 /***/ }),
 
+/***/ 4318:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.sortDiffDescending = void 0;
+function sortDiffDescending(items) {
+    return items.sort((diff1, diff2) => Math.abs(diff2.diff) - Math.abs(diff1.diff));
+}
+exports.sortDiffDescending = sortDiffDescending;
+
+
+/***/ }),
+
 /***/ 3471:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -448,6 +434,72 @@ ${getIdentifierComment(title)}
 `;
 }
 exports.getCommentBody = getCommentBody;
+
+
+/***/ }),
+
+/***/ 1099:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.webpackStatsDiff = void 0;
+const get_asset_diff_1 = __nccwpck_require__(6967);
+const sort_diff_descending_1 = __nccwpck_require__(4318);
+function webpackStatsDiff(oldAssets, newAssets) {
+    var _a, _b;
+    const added = [];
+    const removed = [];
+    const bigger = [];
+    const smaller = [];
+    const unchanged = [];
+    let newSizeTotal = 0;
+    let oldSizeTotal = 0;
+    let newGzipSizeTotal = 0;
+    let oldGzipSizeTotal = 0;
+    for (const [name, oldAssetSizes] of oldAssets) {
+        oldSizeTotal += oldAssetSizes.size;
+        oldGzipSizeTotal += (_a = oldAssetSizes.gzipSize) !== null && _a !== void 0 ? _a : NaN;
+        const newAsset = newAssets.get(name);
+        if (!newAsset) {
+            removed.push((0, get_asset_diff_1.getAssetDiff)(name, oldAssetSizes, { size: 0, gzipSize: 0 }));
+        }
+        else {
+            const diff = (0, get_asset_diff_1.getAssetDiff)(name, oldAssetSizes, newAsset);
+            if (diff.diffPercentage > 0) {
+                bigger.push(diff);
+            }
+            else if (diff.diffPercentage < 0) {
+                smaller.push(diff);
+            }
+            else {
+                unchanged.push(diff);
+            }
+        }
+    }
+    for (const [name, newAssetSizes] of newAssets) {
+        newSizeTotal += newAssetSizes.size;
+        newGzipSizeTotal += (_b = newAssetSizes.gzipSize) !== null && _b !== void 0 ? _b : NaN;
+        const oldAsset = oldAssets.get(name);
+        if (!oldAsset) {
+            added.push((0, get_asset_diff_1.getAssetDiff)(name, { size: 0, gzipSize: 0 }, newAssetSizes));
+        }
+    }
+    const oldFilesCount = oldAssets.size;
+    const newFilesCount = newAssets.size;
+    return {
+        added: (0, sort_diff_descending_1.sortDiffDescending)(added),
+        removed: (0, sort_diff_descending_1.sortDiffDescending)(removed),
+        bigger: (0, sort_diff_descending_1.sortDiffDescending)(bigger),
+        smaller: (0, sort_diff_descending_1.sortDiffDescending)(smaller),
+        unchanged,
+        total: (0, get_asset_diff_1.getAssetDiff)(oldFilesCount === newFilesCount
+            ? `${newFilesCount}`
+            : `${oldFilesCount} -> ${newFilesCount}`, { size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal })
+    };
+}
+exports.webpackStatsDiff = webpackStatsDiff;
 
 
 /***/ }),

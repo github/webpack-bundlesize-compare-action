@@ -1,6 +1,6 @@
-import type {StatsCompilation} from 'webpack'
 import {readFile} from 'fs/promises'
 import {resolve} from 'path'
+import type {StatsCompilation} from 'webpack'
 
 export async function parseStatsFileToJson(
   statsFilePath: string
