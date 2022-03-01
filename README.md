@@ -10,16 +10,25 @@ In your application, ensure you output the stats.json, from `BundleAnalyzerPlugi
 // webpack.config.js
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 
+// optionally you can also output compressed/gzipped stats
+const CompressionPlugin = require('compression-webpack-plugin')
+
 module.exports = {
   plugins: [
-  ...plugins,
-     new BundleAnalyzerPlugin({
+    ...plugins,
+    // not required
+    new CompressionPlugin(),
+
+    // required
+    new BundleAnalyzerPlugin({
       // generate the stats.json file
-      generateStatsFile: true,
+      generateStatsFile: true
     })
   ]
 }
 ```
+
+Then, in your action configuration, build both the head and the branch (in any way you see fit) and pass paths to the stats.json files as inputs ot this action
 
 ```yaml
 # .github/workflows/bundlesize-compare.yml
@@ -30,7 +39,6 @@ on:
   pull_request_target:
 
 jobs:
-
   # Build current and upload stats.json
   build-head:
     name: 'Build head'
@@ -50,7 +58,7 @@ jobs:
         with:
           name: head-stats
           path: ./dist/stats.json
-          
+
   # Build base for comparison and upload stats.json
   build-base:
     name: 'Build base'
@@ -120,13 +128,13 @@ jobs:
 
 ## Options
 
-name | description | required | type 
---- | --- | --- | ---
-current-stats-json-path | The path to the current stats.json file | true | string
-base-stats-json-path | The path to the base stats.json file | true | string
-github-token | The Github token | true | string
-title | An optional addition to the title, which also helps key comments, useful if running more than 1 copy of this action | false | string
+| name                    | description                                                                                                         | required | type   |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------- | -------- | ------ |
+| current-stats-json-path | The path to the current stats.json file                                                                             | true     | string |
+| base-stats-json-path    | The path to the base stats.json file                                                                                | true     | string |
+| github-token            | The Github token                                                                                                    | true     | string |
+| title                   | An optional addition to the title, which also helps key comments, useful if running more than 1 copy of this action | false    | string |
 
 ## Example PR Comment
 
-<img width="630" alt="Screen Shot 2022-01-09 at 2 23 21 PM" src="https://user-images.githubusercontent.com/8616962/148697506-9a73d769-e1ca-4fc0-b189-c5f30c24fd6b.png">
+https://github.com/github/webpack-bundlesize-compare-action/pull/50#issuecomment-1054919780

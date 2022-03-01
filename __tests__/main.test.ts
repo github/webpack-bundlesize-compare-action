@@ -1,10 +1,9 @@
-import getStatsDiff from '../src/get-stats-diff'
+import {expect, test} from '@jest/globals'
+import {getStatsDiff} from '../src/get-stats-diff'
 import {
   printAssetTablesByGroup,
   printTotalAssetTable
 } from '../src/print-markdown'
-
-import {test, expect} from '@jest/globals'
 
 test('Shows stats when files are removed', () => {
   const statsDiff = getStatsDiff(

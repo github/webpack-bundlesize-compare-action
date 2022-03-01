@@ -18,7 +18,7 @@ const denominations = [
  * @param bytes The file size in bytes.
  * @param precision The number of decimal places to show.
  */
-export function fileSizeIEC(bytes: number | null, precision = 2): string {
+export function formatFileSizeIEC(bytes: number | null, precision = 2): string {
   if (bytes == null || Number.isNaN(bytes)) {
     return 'N/A'
   }
@@ -30,11 +30,8 @@ export function fileSizeIEC(bytes: number | null, precision = 2): string {
     Math.log(absBytes) / Math.log(BYTES_PER_KILOBYTE)
   )
 
-  const value = parseFloat(
-    (absBytes / Math.pow(BYTES_PER_KILOBYTE, denominationIndex)).toFixed(
-      Math.max(0, precision)
-    )
-  )
+  const value = absBytes / Math.pow(BYTES_PER_KILOBYTE, denominationIndex)
 
-  return `${value} ${denominations[denominationIndex]}`
+  const valueWithStrippedZeroDecimals = parseFloat(value.toFixed(precision))
+  return `${valueWithStrippedZeroDecimals} ${denominations[denominationIndex]}`
 }

@@ -1,5 +1,5 @@
-import {AssetDiff, WebpackStatsDiff} from './get-stats-diff'
-import {fileSizeIEC} from './file-sizes'
+import {formatFileSizeIEC} from './file-sizes'
+import type {AssetDiff, WebpackStatsDiff} from './types'
 
 function conditionalPercentage(number: number): string {
   if ([Infinity, -Infinity].includes(number)) {
@@ -50,9 +50,11 @@ function toFileSizeDiff(
   newSize: number | null,
   diff?: number | undefined
 ): string {
-  const diffLine = [`${fileSizeIEC(oldSize)} -> ${fileSizeIEC(newSize)}`]
+  const diffLine = [
+    `${formatFileSizeIEC(oldSize)} -> ${formatFileSizeIEC(newSize)}`
+  ]
   if (typeof diff !== 'undefined') {
-    diffLine.push(`(${signFor(diff)}${fileSizeIEC(diff)})`)
+    diffLine.push(`(${signFor(diff)}${formatFileSizeIEC(diff)})`)
   }
   return diffLine.join(' ')
 }
@@ -60,9 +62,9 @@ function toFileSizeDiff(
 function toFileSizeDiffCell(asset: AssetDiff): string {
   const lines = []
   if (asset.diff === 0) {
-    lines.push(fileSizeIEC(asset.new.size))
+    lines.push(formatFileSizeIEC(asset.new.size))
     if (asset.new.gzipSize) {
-      lines.push(fileSizeIEC(asset.new.gzipSize))
+      lines.push(formatFileSizeIEC(asset.new.gzipSize))
     }
   } else {
     lines.push(toFileSizeDiff(asset.old.size, asset.new.size, asset.diff))
