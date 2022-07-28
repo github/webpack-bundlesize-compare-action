@@ -1,0 +1,5121 @@
+{
+  "assets": [
+    {
+      "type": "asset",
+      "name": "app.bundle.js",
+      "size": 2072487,
+      "emitted": false,
+      "comparedForEmit": true,
+      "cached": false,
+      "info": {
+        "javascriptModule": false,
+        "minimized": true,
+        "related": {
+          "license": "app.bundle.js.LICENSE.txt",
+          "sourceMap": "app.bundle.js.map"
+        },
+        "size": 2072487
+      },
+      "chunkNames": ["app"],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 0,
+      "related": [
+        {
+          "type": "sourceMap",
+          "name": "app.bundle.js.map",
+          "size": 8345157,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "development": true,
+            "size": 8345157
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": ["app"],
+          "auxiliaryChunkIdHints": [],
+          "related": {},
+          "chunks": [],
+          "auxiliaryChunks": [143],
+          "isOverSizeLimit": false
+        },
+        {
+          "type": "license",
+          "name": "app.bundle.js.LICENSE.txt",
+          "size": 2582,
+          "emitted": false,
+          "comparedForEmit": true,
+          "cached": false,
+          "info": {
+            "extractedComments": true,
+            "size": 2582
+          },
+          "chunkNames": [],
+          "chunkIdHints": [],
+          "auxiliaryChunkNames": [],
+          "auxiliaryChunkIdHints": [],
+          "related": {},
+          "chunks": [],
+          "auxiliaryChunks": [],
+          "isOverSizeLimit": false
+        }
+      ],
+      "chunks": [143],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": true
+    },
+    {
+      "type": "asset",
+      "name": "manifest.json",
+      "size": 91,
+      "emitted": false,
+      "comparedForEmit": true,
+      "cached": false,
+      "info": {
+        "size": 91
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "related": {},
+      "chunks": [],
+      "auxiliaryChunks": [],
+      "isOverSizeLimit": false
+    }
+  ],
+  "chunks": [
+    {
+      "size": 4903461,
+      "files": ["app.bundle.js"],
+      "id": 143,
+      "modules": [
+        {
+          "size": 17608,
+          "name": "./node_modules/@primer/primitives/dist/js/colors/dark.js"
+        },
+        {
+          "size": 17627,
+          "name": "./node_modules/@primer/primitives/dist/js/colors/dark_colorblind.js"
+        },
+        {
+          "size": 17617,
+          "name": "./node_modules/@primer/primitives/dist/js/colors/dark_dimmed.js"
+        },
+        {
+          "size": 17256,
+          "name": "./node_modules/@primer/primitives/dist/js/colors/dark_high_contrast.js"
+        },
+        {
+          "size": 17615,
+          "name": "./node_modules/@primer/primitives/dist/js/colors/dark_tritanopia.js"
+        },
+        {
+          "size": 1227,
+          "name": "./node_modules/@primer/primitives/dist/js/colors/index.js"
+        },
+        {
+          "size": 17645,
+          "name": "./node_modules/@primer/primitives/dist/js/colors/light.js"
+        },
+        {
+          "size": 17707,
+          "name": "./node_modules/@primer/primitives/dist/js/colors/light_colorblind.js"
+        },
+        {
+          "size": 17132,
+          "name": "./node_modules/@primer/primitives/dist/js/colors/light_high_contrast.js"
+        },
+        {
+          "size": 17716,
+          "name": "./node_modules/@primer/primitives/dist/js/colors/light_tritanopia.js"
+        },
+        {
+          "size": 501,
+          "name": "./node_modules/@primer/primitives/dist/js/index.js"
+        },
+        {
+          "size": 319,
+          "name": "./node_modules/@primer/primitives/dist/js/spacing/index.js"
+        },
+        {
+          "size": 228,
+          "name": "./node_modules/@primer/primitives/dist/js/spacing/normal.js"
+        },
+        {
+          "size": 319,
+          "name": "./node_modules/@primer/primitives/dist/js/typography/index.js"
+        },
+        {
+          "size": 357,
+          "name": "./node_modules/@primer/primitives/dist/js/typography/normal.js"
+        },
+        {
+          "size": 1328,
+          "name": "./node_modules/classnames/index.js"
+        },
+        {
+          "size": 4035,
+          "name": "./node_modules/deepmerge/dist/cjs.js"
+        },
+        {
+          "size": 63115,
+          "name": "./node_modules/dompurify/dist/purify.js"
+        },
+        {
+          "size": 2829,
+          "name": "./node_modules/focus-options-polyfill/index.js"
+        },
+        {
+          "size": 11506,
+          "name": "./node_modules/focus-visible/dist/focus-visible.js"
+        },
+        {
+          "size": 2743,
+          "name": "./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"
+        },
+        {
+          "size": 33665,
+          "name": "./node_modules/mark.js/dist/mark.js"
+        },
+        {
+          "size": 2108,
+          "name": "./node_modules/object-assign/index.js"
+        },
+        {
+          "size": 120688,
+          "name": "./node_modules/react-dom/cjs/react-dom.production.min.js"
+        },
+        {
+          "size": 1363,
+          "name": "./node_modules/react-dom/index.js"
+        },
+        {
+          "size": 2554,
+          "name": "./node_modules/react-is/cjs/react-is.production.min.js"
+        },
+        {
+          "size": 196,
+          "name": "./node_modules/react-is/index.js"
+        },
+        {
+          "size": 57969,
+          "name": "./node_modules/react-table/dist/react-table.production.min.js"
+        },
+        {
+          "size": 187,
+          "name": "./node_modules/react-table/index.js"
+        },
+        {
+          "size": 962,
+          "name": "./node_modules/react/cjs/react-jsx-runtime.production.min.js"
+        },
+        {
+          "size": 6450,
+          "name": "./node_modules/react/cjs/react.production.min.js"
+        },
+        {
+          "size": 190,
+          "name": "./node_modules/react/index.js"
+        },
+        {
+          "size": 214,
+          "name": "./node_modules/react/jsx-runtime.js"
+        },
+        {
+          "size": 4830,
+          "name": "./node_modules/scheduler/cjs/scheduler.production.min.js"
+        },
+        {
+          "size": 198,
+          "name": "./node_modules/scheduler/index.js"
+        },
+        {
+          "size": 979,
+          "name": "./node_modules/shallowequal/index.js"
+        },
+        {
+          "size": 4423320,
+          "name": "./src/client/index.tsx + 1212 modules",
+          "modules": [
+            {
+              "size": 762,
+              "name": "./src/client/this-file-grew-larger.tsx"
+            },
+            {
+              "size": 2318,
+              "name": "./src/client/helpers/this-file-grew-smaller.ts"
+            },
+            {
+              "size": 1496,
+              "name": "./src/client/this-file-was-added.ts"
+            },
+            {
+              "size": 2790,
+              "name": "./src/client/routes.tsx"
+            },
+            {
+              "size": 1067,
+              "name": "./src/client/render-memex.tsx"
+            },
+            {
+              "size": 878,
+              "name": "./src/client/api/charts/client.ts"
+            },
+            {
+              "size": 2402,
+              "name": "./src/client/platform/page-context.ts"
+            },
+            {
+              "size": 2846,
+              "name": "./src/client/api/columns/client.ts"
+            },
+            {
+              "size": 3275,
+              "name": "./src/client/api/markdown/client.ts"
+            },
+            {
+              "size": 5852,
+              "name": "./src/client/api/memex/client.ts"
+            },
+            {
+              "size": 5108,
+              "name": "./src/client/api/memex-items/client.ts"
+            },
+            {
+              "size": 945,
+              "name": "./src/client/api/project-migration/client.ts"
+            },
+            {
+              "size": 1133,
+              "name": "./src/client/api/repository/client.ts"
+            },
+            {
+              "size": 2133,
+              "name": "./src/client/api/side-panel/client.ts"
+            },
+            {
+              "size": 503,
+              "name": "./src/client/api/stats/client.ts"
+            },
+            {
+              "size": 1124,
+              "name": "./src/client/api/view/client.ts"
+            },
+            {
+              "size": 1358,
+              "name": "./src/client/api/workflows/client.ts"
+            },
+            {
+              "size": 1936,
+              "name": "./src/client/services/alive-service.ts"
+            },
+            {
+              "size": 1309,
+              "name": "./src/client/services/api-metadata-service.ts"
+            },
+            {
+              "size": 3139,
+              "name": "./src/client/services/client-enabled-features-service.ts"
+            },
+            {
+              "size": 1218,
+              "name": "./src/client/services/create-memex-subscription-service.ts"
+            },
+            {
+              "size": 1447,
+              "name": "./src/client/services/github-enabled-features-service.ts"
+            },
+            {
+              "size": 11949,
+              "name": "./src/client/app.tsx"
+            },
+            {
+              "size": 1379,
+              "name": "./src/client/helpers/initial-state.ts"
+            },
+            {
+              "size": 103,
+              "name": "./src/client/platform/global-context.ts"
+            },
+            {
+              "size": 8683,
+              "name": "./node_modules/@primer/react/lib-esm/ThemeProvider.js"
+            },
+            {
+              "size": 192154,
+              "name": "./node_modules/mobx/dist/mobx.esm.js"
+            },
+            {
+              "size": 1920,
+              "name": "./node_modules/@primer/react/lib-esm/BaseStyles.js"
+            },
+            {
+              "size": 33461,
+              "name": "./node_modules/react-router/index.js"
+            },
+            {
+              "size": 11604,
+              "name": "./node_modules/react-router-dom/index.js"
+            },
+            {
+              "size": 445,
+              "name": "./src/client/components/error-boundaries/error-boundary.tsx"
+            },
+            {
+              "size": 756,
+              "name": "./src/client/components/error-boundaries/project-error-fallback.tsx"
+            },
+            {
+              "size": 1740,
+              "name": "./src/client/helpers/color-modes.ts"
+            },
+            {
+              "size": 6155,
+              "name": "./src/client/platform/api-client.ts"
+            },
+            {
+              "size": 4226,
+              "name": "./src/client/helpers/util.ts"
+            },
+            {
+              "size": 1051,
+              "name": "./src/client/platform/utils.ts"
+            },
+            {
+              "size": 1007,
+              "name": "./src/client/helpers/debounce-async.ts"
+            },
+            {
+              "size": 1162,
+              "name": "./src/client/api/common-contracts.ts"
+            },
+            {
+              "size": 136,
+              "name": "./src/client/api/memex-items/contracts.ts"
+            },
+            {
+              "size": 907,
+              "name": "./src/client/platform/url.ts"
+            },
+            {
+              "size": 560,
+              "name": "./src/client/api/side-panel/contracts.ts"
+            },
+            {
+              "size": 292,
+              "name": "./src/client/helpers/json-island.ts"
+            },
+            {
+              "size": 5872,
+              "name": "./src/client/api/memex/contracts.ts"
+            },
+            {
+              "size": 1422,
+              "name": "./src/client/api/enabled-features/contracts.ts"
+            },
+            {
+              "size": 5653,
+              "name": "./src/client/commands/command-provider.tsx"
+            },
+            {
+              "size": 334,
+              "name": "./src/client/state-providers/memex/use-project-number.ts"
+            },
+            {
+              "size": 3056,
+              "name": "./src/client/state-providers/memex/memex-state-provider.tsx"
+            },
+            {
+              "size": 339,
+              "name": "./src/client/hooks/use-views.ts"
+            },
+            {
+              "size": 311,
+              "name": "./src/client/hooks/use-enabled-features.ts"
+            },
+            {
+              "size": 27023,
+              "name": "./node_modules/styled-components/dist/styled-components.browser.esm.js"
+            },
+            {
+              "size": 759,
+              "name": "./node_modules/@primer/react/lib-esm/constants.js"
+            },
+            {
+              "size": 240,
+              "name": "./node_modules/@primer/react/lib-esm/theme.js"
+            },
+            {
+              "size": 142,
+              "name": "./node_modules/@primer/react/lib-esm/sx.js"
+            },
+            {
+              "size": 273,
+              "name": "./node_modules/@primer/react/lib-esm/Text.js"
+            },
+            {
+              "size": 1055,
+              "name": "./src/client/commands/hook.ts"
+            },
+            {
+              "size": 384,
+              "name": "./node_modules/@primer/react/lib-esm/Box.js"
+            },
+            {
+              "size": 276,
+              "name": "./node_modules/@primer/react/lib-esm/Button/index.js"
+            },
+            {
+              "size": 977,
+              "name": "./node_modules/@primer/react/lib-esm/CounterLabel.js"
+            },
+            {
+              "size": 4686,
+              "name": "./src/client/components/archive/archive-page.tsx"
+            },
+            {
+              "size": 3406,
+              "name": "./src/client/state-providers/memex-items/memex-items-state-provider.tsx"
+            },
+            {
+              "size": 2966,
+              "name": "./src/client/state-providers/columns/columns-state-provider.tsx"
+            },
+            {
+              "size": 2378,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useFocusTrap.js"
+            },
+            {
+              "size": 1871,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useFocusZone.js"
+            },
+            {
+              "size": 548,
+              "name": "./src/client/hooks/use-project-view-route-match.ts"
+            },
+            {
+              "size": 22675,
+              "name": "./node_modules/history/index.js"
+            },
+            {
+              "size": 4092,
+              "name": "./node_modules/@primer/react/lib-esm/TextInput.js"
+            },
+            {
+              "size": 1488,
+              "name": "./node_modules/@primer/react/lib-esm/Spinner.js"
+            },
+            {
+              "size": 4144,
+              "name": "./node_modules/@primer/react/lib-esm/Tooltip.js"
+            },
+            {
+              "size": 525,
+              "name": "./node_modules/@primer/react/lib-esm/StyledOcticon.js"
+            },
+            {
+              "size": 108,
+              "name": "./node_modules/@primer/react/lib-esm/Portal/index.js"
+            },
+            {
+              "size": 3352,
+              "name": "./node_modules/@primer/react/lib-esm/Portal/Portal.js"
+            },
+            {
+              "size": 904,
+              "name": "./src/client/components/toasts/toast-container.tsx"
+            },
+            {
+              "size": 3286,
+              "name": "./src/client/state-providers/suggestions/suggestions-state-provider.tsx"
+            },
+            {
+              "size": 5781,
+              "name": "./node_modules/@primer/react/lib-esm/Dialog/ConfirmationDialog.js"
+            },
+            {
+              "size": 3228,
+              "name": "./node_modules/@react-aria/ssr/dist/module.js"
+            },
+            {
+              "size": 2473,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useOnEscapePress.js"
+            },
+            {
+              "size": 2171,
+              "name": "./node_modules/@primer/react/lib-esm/Checkbox.js"
+            },
+            {
+              "size": 2651,
+              "name": "./node_modules/@primer/react/lib-esm/CheckboxGroup.js"
+            },
+            {
+              "size": 7443,
+              "name": "./node_modules/@primer/react/lib-esm/FormControl/FormControl.js"
+            },
+            {
+              "size": 2882,
+              "name": "./node_modules/@primer/react/lib-esm/Autocomplete/Autocomplete.js"
+            },
+            {
+              "size": 603,
+              "name": "./node_modules/@primer/react/lib-esm/Truncate.js"
+            },
+            {
+              "size": 7376,
+              "name": "./node_modules/@primer/react/lib-esm/Overlay.js"
+            },
+            {
+              "size": 937,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useOverlay.js"
+            },
+            {
+              "size": 829,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useOpenAndCloseFocus.js"
+            },
+            {
+              "size": 2323,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useOnOutsideClick.js"
+            },
+            {
+              "size": 2187,
+              "name": "./node_modules/@primer/react/lib-esm/Radio.js"
+            },
+            {
+              "size": 1786,
+              "name": "./node_modules/@primer/react/lib-esm/RadioGroup.js"
+            },
+            {
+              "size": 2827,
+              "name": "./node_modules/@primer/react/lib-esm/Select.js"
+            },
+            {
+              "size": 12029,
+              "name": "./node_modules/@primer/react/lib-esm/TextInputWithTokens.js"
+            },
+            {
+              "size": 3065,
+              "name": "./node_modules/@primer/react/lib-esm/Token/Token.js"
+            },
+            {
+              "size": 1991,
+              "name": "./node_modules/@primer/react/lib-esm/Textarea.js"
+            },
+            {
+              "size": 879,
+              "name": "./node_modules/@primer/react/lib-esm/Link.js"
+            },
+            {
+              "size": 4151,
+              "name": "./node_modules/@primer/react/lib-esm/ActionMenu.js"
+            },
+            {
+              "size": 3865,
+              "name": "./node_modules/@primer/react/lib-esm/AnchoredOverlay/AnchoredOverlay.js"
+            },
+            {
+              "size": 898,
+              "name": "./node_modules/@primer/react/lib-esm/ActionList/index.js"
+            },
+            {
+              "size": 8616,
+              "name": "./node_modules/@primer/react/lib-esm/PageLayout/PageLayout.js"
+            },
+            {
+              "size": 396,
+              "name": "./src/client/components/automation/automation-page.tsx"
+            },
+            {
+              "size": 8727,
+              "name": "./src/client/state-providers/workflows/workflows-state-provider.tsx"
+            },
+            {
+              "size": 603,
+              "name": "./src/client/helpers/viewer-privileges.ts"
+            },
+            {
+              "size": 4771,
+              "name": "./node_modules/@primer/react/lib-esm/SelectPanel/SelectPanel.js"
+            },
+            {
+              "size": 321,
+              "name": "./node_modules/@primer/react/lib-esm/Heading.js"
+            },
+            {
+              "size": 7068,
+              "name": "./node_modules/@primer/react/lib-esm/NavList/NavList.js"
+            },
+            {
+              "size": 541,
+              "name": "./src/client/components/common/named-portal-root.tsx"
+            },
+            {
+              "size": 2131,
+              "name": "./src/client/components/find-in-project/find-in-project.tsx"
+            },
+            {
+              "size": 651,
+              "name": "./src/client/components/hidden-route.tsx"
+            },
+            {
+              "size": 7904,
+              "name": "./src/client/components/insights/insights-chart-view.tsx"
+            },
+            {
+              "size": 1770,
+              "name": "./src/client/components/insights/use-insights-features.ts"
+            },
+            {
+              "size": 673,
+              "name": "./node_modules/@primer/react/lib-esm/Avatar.js"
+            },
+            {
+              "size": 2713,
+              "name": "./node_modules/@primer/react/lib-esm/AvatarStack.js"
+            },
+            {
+              "size": 2291,
+              "name": "./src/client/state-providers/repositories/repositories-state-provider.tsx"
+            },
+            {
+              "size": 1664,
+              "name": "./node_modules/@primer/react/lib-esm/Label.js"
+            },
+            {
+              "size": 762,
+              "name": "./src/client/components/error-boundaries/blankslate-error-message.tsx"
+            },
+            {
+              "size": 3416,
+              "name": "./node_modules/@primer/react/lib-esm/Popover.js"
+            },
+            {
+              "size": 3089,
+              "name": "./node_modules/@primer/react/lib-esm/SubNav.js"
+            },
+            {
+              "size": 923,
+              "name": "./src/client/components/insights/insights-page.tsx"
+            },
+            {
+              "size": 2411,
+              "name": "./src/client/components/live-update.tsx"
+            },
+            {
+              "size": 2172,
+              "name": "./src/client/state-providers/application-version/index.tsx"
+            },
+            {
+              "size": 1120,
+              "name": "./src/client/state-providers/project-migration/project-migration-state-provider.tsx"
+            },
+            {
+              "size": 956,
+              "name": "./src/client/components/private-route.tsx"
+            },
+            {
+              "size": 4376,
+              "name": "./src/client/components/project-migration-overlay-view.tsx"
+            },
+            {
+              "size": 1170,
+              "name": "./node_modules/@primer/react/lib-esm/ProgressBar.js"
+            },
+            {
+              "size": 1389,
+              "name": "./src/client/components/settings/access-settings/access-settings-view.tsx"
+            },
+            {
+              "size": 9377,
+              "name": "./src/client/components/settings/column-settings-view.tsx"
+            },
+            {
+              "size": 1333,
+              "name": "./node_modules/@primer/react/lib-esm/PointerBox.js"
+            },
+            {
+              "size": 2995,
+              "name": "./node_modules/@primer/react/lib-esm/Caret.js"
+            },
+            {
+              "size": 15058,
+              "name": "./src/client/components/settings/general-settings-view.tsx"
+            },
+            {
+              "size": 1426,
+              "name": "./node_modules/@primer/react/lib-esm/Flash.js"
+            },
+            {
+              "size": 747,
+              "name": "./node_modules/@primer/react/lib-esm/ButtonGroup.js"
+            },
+            {
+              "size": 577,
+              "name": "./src/client/components/settings/settings-page.tsx"
+            },
+            {
+              "size": 8092,
+              "name": "./src/client/components/template-dialog/template-dialog.tsx"
+            },
+            {
+              "size": 693,
+              "name": "./src/client/state-providers/template-dialog/template-dialog-state-provider.tsx"
+            },
+            {
+              "size": 13111,
+              "name": "./src/client/components/top-bar/index.tsx"
+            },
+            {
+              "size": 1144,
+              "name": "./src/client/components/track-path-changes.tsx"
+            },
+            {
+              "size": 1375,
+              "name": "./src/client/components/views.tsx"
+            },
+            {
+              "size": 2235,
+              "name": "./node_modules/@primer/react/lib-esm/Breadcrumbs.js"
+            },
+            {
+              "size": 2844,
+              "name": "./node_modules/@primer/react/lib-esm/StateLabel.js"
+            },
+            {
+              "size": 2992,
+              "name": "./node_modules/@primer/react/lib-esm/UnderlineNav.js"
+            },
+            {
+              "size": 4737,
+              "name": "./src/client/project-view.tsx"
+            },
+            {
+              "size": 541,
+              "name": "./src/client/state-providers/modals/add-field-modal-state-provider.tsx"
+            },
+            {
+              "size": 3096,
+              "name": "./node_modules/@primer/react/lib-esm/TabNav.js"
+            },
+            {
+              "size": 18339,
+              "name": "./src/client/state-providers/charts/chart-state-provider.tsx"
+            },
+            {
+              "size": 14809,
+              "name": "./src/client/strings.ts"
+            },
+            {
+              "size": 5013,
+              "name": "./src/client/helpers/parsing.ts"
+            },
+            {
+              "size": 621,
+              "name": "./src/client/api/columns/contracts/api.ts"
+            },
+            {
+              "size": 800,
+              "name": "./src/client/components/board/hooks/use-event-handler.ts"
+            },
+            {
+              "size": 1786,
+              "name": "./src/client/helpers/keyboard-shortcuts.ts"
+            },
+            {
+              "size": 1231,
+              "name": "./src/client/hooks/common/use-stats-client.ts"
+            },
+            {
+              "size": 212,
+              "name": "./src/client/hooks/use-page-context.ts"
+            },
+            {
+              "size": 200,
+              "name": "./src/client/hooks/common/use-tracking-ref.ts"
+            },
+            {
+              "size": 298,
+              "name": "./src/client/hooks/use-client-enabled-features.ts"
+            },
+            {
+              "size": 18939,
+              "name": "./src/client/commands/command-menu.tsx"
+            },
+            {
+              "size": 899,
+              "name": "./node_modules/@emotion/unitless/dist/unitless.browser.esm.js"
+            },
+            {
+              "size": 15944,
+              "name": "./node_modules/@emotion/stylis/dist/stylis.browser.esm.js"
+            },
+            {
+              "size": 4422,
+              "name": "./node_modules/styled-components/node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.browser.esm.js"
+            },
+            {
+              "size": 262,
+              "name": "./node_modules/@styled-system/theme-get/dist/index.esm.js"
+            },
+            {
+              "size": 4973,
+              "name": "./node_modules/styled-system/dist/index.esm.js"
+            },
+            {
+              "size": 5832,
+              "name": "./node_modules/@styled-system/css/dist/index.esm.js"
+            },
+            {
+              "size": 145593,
+              "name": "./node_modules/@primer/react/lib-esm/theme-preval.js"
+            },
+            {
+              "size": 2100,
+              "name": "./src/client/commands/context.tsx"
+            },
+            {
+              "size": 5905,
+              "name": "./src/client/api/stats/contracts/index.ts"
+            },
+            {
+              "size": 3782,
+              "name": "./src/client/commands/command-tree.ts"
+            },
+            {
+              "size": 355856,
+              "name": "./node_modules/@primer/octicons-react/dist/index.esm.js"
+            },
+            {
+              "size": 707,
+              "name": "./node_modules/@primer/react/lib-esm/Button/Button.js"
+            },
+            {
+              "size": 590,
+              "name": "./node_modules/@primer/react/lib-esm/_getGlobalFocusStyles.js"
+            },
+            {
+              "size": 691,
+              "name": "./node_modules/@primer/react/lib-esm/Button/ButtonCounter.js"
+            },
+            {
+              "size": 2082,
+              "name": "./src/client/commands/dotcom/memex-provider.ts"
+            },
+            {
+              "size": 241,
+              "name": "./src/client/state-providers/memex-items/use-memex-items.ts"
+            },
+            {
+              "size": 1580,
+              "name": "./node_modules/mobx-react-lite/es/index.js"
+            },
+            {
+              "size": 9671,
+              "name": "./src/client/models/memex-item-model.ts"
+            },
+            {
+              "size": 1057,
+              "name": "./src/client/state-providers/memex-items/memex-items-data.ts"
+            },
+            {
+              "size": 586,
+              "name": "./src/client/components/base-settings-page.tsx"
+            },
+            {
+              "size": 3801,
+              "name": "./src/client/components/board/hooks/use-is-visible.tsx"
+            },
+            {
+              "size": 17329,
+              "name": "./src/client/components/filter-bar/filter-suggestions.tsx"
+            },
+            {
+              "size": 129,
+              "name": "./src/client/state-providers/columns/use-all-columns.ts"
+            },
+            {
+              "size": 171,
+              "name": "./src/client/hooks/common/use-lazy-ref.ts"
+            },
+            {
+              "size": 540,
+              "name": "./src/client/hooks/use-on-create-project.tsx"
+            },
+            {
+              "size": 1326,
+              "name": "./src/client/models/column-model.ts"
+            },
+            {
+              "size": 430,
+              "name": "./src/client/state-providers/columns/use-find-column-by-database-id.ts"
+            },
+            {
+              "size": 789,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useProvidedRefOrCreate.js"
+            },
+            {
+              "size": 4371,
+              "name": "./node_modules/@primer/behaviors/dist/esm/focus-trap.js"
+            },
+            {
+              "size": 2559,
+              "name": "./node_modules/@primer/behaviors/dist/esm/utils/iterate-focusable-elements.js"
+            },
+            {
+              "size": 18659,
+              "name": "./node_modules/@primer/behaviors/dist/esm/focus-zone.js"
+            },
+            {
+              "size": 8122,
+              "name": "./src/client/components/filter-bar/search-context.tsx"
+            },
+            {
+              "size": 1225,
+              "name": "./src/client/helpers/view-type.ts"
+            },
+            {
+              "size": 418,
+              "name": "./node_modules/@babel/runtime/helpers/esm/extends.js"
+            },
+            {
+              "size": 309,
+              "name": "./src/client/hooks/use-view-type.ts"
+            },
+            {
+              "size": 11561,
+              "name": "./src/client/components/filter-bar/tokenized-filter-input.tsx"
+            },
+            {
+              "size": 3958,
+              "name": "./node_modules/@primer/react/lib-esm/_TextInputWrapper.js"
+            },
+            {
+              "size": 1336,
+              "name": "./node_modules/@primer/react/lib-esm/_TextInputInnerVisualSlot.js"
+            },
+            {
+              "size": 396,
+              "name": "./node_modules/@primer/react/lib-esm/_UnstyledTextInput.js"
+            },
+            {
+              "size": 2519,
+              "name": "./node_modules/@primer/react/lib-esm/_TextInputInnerAction.js"
+            },
+            {
+              "size": 1243,
+              "name": "./node_modules/@primer/react/lib-esm/Button/IconButton.js"
+            },
+            {
+              "size": 286,
+              "name": "./node_modules/@primer/react/lib-esm/utils/useIsomorphicLayoutEffect.js"
+            },
+            {
+              "size": 7006,
+              "name": "./src/client/components/archive/archive-header.tsx"
+            },
+            {
+              "size": 8551,
+              "name": "./src/client/components/archive/archive-page-provider.tsx"
+            },
+            {
+              "size": 1071,
+              "name": "./src/client/hooks/use-api-request.ts"
+            },
+            {
+              "size": 340,
+              "name": "./src/client/components/toasts/use-toasts.ts"
+            },
+            {
+              "size": 5459,
+              "name": "./src/client/components/toasts/toast.tsx"
+            },
+            {
+              "size": 2351,
+              "name": "./src/client/components/toasts/use-toasts-internal.tsx"
+            },
+            {
+              "size": 770,
+              "name": "./src/client/hooks/common/timeouts/use-timeout.ts"
+            },
+            {
+              "size": 590,
+              "name": "./src/client/hooks/use-deferred-value.ts"
+            },
+            {
+              "size": 1627,
+              "name": "./node_modules/lodash-es/omit.js"
+            },
+            {
+              "size": 10147,
+              "name": "./node_modules/@primer/react/lib-esm/Dialog/Dialog.js"
+            },
+            {
+              "size": 1186,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useCombinedRefs.js"
+            },
+            {
+              "size": 9732,
+              "name": "./src/client/hooks/use-load-required-fields.tsx"
+            },
+            {
+              "size": 107,
+              "name": "./node_modules/@primer/react/lib-esm/Autocomplete/AutocompleteContext.js"
+            },
+            {
+              "size": 5272,
+              "name": "./node_modules/@primer/react/lib-esm/Autocomplete/AutocompleteInput.js"
+            },
+            {
+              "size": 8144,
+              "name": "./node_modules/@primer/react/lib-esm/Autocomplete/AutocompleteMenu.js"
+            },
+            {
+              "size": 589,
+              "name": "./node_modules/@primer/react/lib-esm/_VisuallyHidden.js"
+            },
+            {
+              "size": 2237,
+              "name": "./node_modules/@primer/react/lib-esm/Autocomplete/AutocompleteOverlay.js"
+            },
+            {
+              "size": 1738,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useAnchoredPosition.js"
+            },
+            {
+              "size": 708,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useRenderForcingRef.js"
+            },
+            {
+              "size": 4622,
+              "name": "./node_modules/@primer/react/lib-esm/_CheckboxOrRadioGroup/CheckboxOrRadioGroup.js"
+            },
+            {
+              "size": 942,
+              "name": "./node_modules/@primer/react/lib-esm/_CheckboxOrRadioGroup/_CheckboxOrRadioGroupLabel.js"
+            },
+            {
+              "size": 546,
+              "name": "./node_modules/@primer/react/lib-esm/_CheckboxOrRadioGroup/_CheckboxOrRadioGroupValidation.js"
+            },
+            {
+              "size": 504,
+              "name": "./node_modules/@primer/react/lib-esm/_CheckboxOrRadioGroup/_CheckboxOrRadioGroupCaption.js"
+            },
+            {
+              "size": 152,
+              "name": "./node_modules/@primer/react/lib-esm/_CheckboxOrRadioGroup/_CheckboxOrRadioGroupContext.js"
+            },
+            {
+              "size": 1126,
+              "name": "./node_modules/@primer/react/lib-esm/_ValidationAnimationContainer.js"
+            },
+            {
+              "size": 714,
+              "name": "./node_modules/@styled-system/props/dist/index.esm.js"
+            },
+            {
+              "size": 3340,
+              "name": "./node_modules/@primer/react/lib-esm/Token/TokenBase.js"
+            },
+            {
+              "size": 672,
+              "name": "./node_modules/@primer/react/lib-esm/Token/_TokenTextContainer.js"
+            },
+            {
+              "size": 2869,
+              "name": "./node_modules/@primer/react/lib-esm/Token/_RemoveTokenButton.js"
+            },
+            {
+              "size": 517,
+              "name": "./node_modules/@primer/react/lib-esm/FormControl/_FormControlValidation.js"
+            },
+            {
+              "size": 149,
+              "name": "./node_modules/@primer/react/lib-esm/FormControl/slots.js"
+            },
+            {
+              "size": 467,
+              "name": "./node_modules/@primer/react/lib-esm/FormControl/_FormControlCaption.js"
+            },
+            {
+              "size": 580,
+              "name": "./node_modules/@primer/react/lib-esm/FormControl/_FormControlLabel.js"
+            },
+            {
+              "size": 709,
+              "name": "./node_modules/@primer/react/lib-esm/FormControl/_FormControlLeadingVisual.js"
+            },
+            {
+              "size": 1230,
+              "name": "./src/client/components/archive/archived-items.tsx"
+            },
+            {
+              "size": 551,
+              "name": "./src/client/components/common/blankslate.tsx"
+            },
+            {
+              "size": 7362,
+              "name": "./src/client/hooks/use-side-panel.tsx"
+            },
+            {
+              "size": 1327,
+              "name": "./src/client/components/find-in-project/marked-text.tsx"
+            },
+            {
+              "size": 1228,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useProvidedStateOrCreate.js"
+            },
+            {
+              "size": 1506,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useMenuInitialFocus.js"
+            },
+            {
+              "size": 3165,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useMnemonics.js"
+            },
+            {
+              "size": 190,
+              "name": "./node_modules/@primer/react/lib-esm/ActionList/ActionListContainerContext.js"
+            },
+            {
+              "size": 677,
+              "name": "./node_modules/@primer/react/lib-esm/ActionList/Divider.js"
+            },
+            {
+              "size": 1712,
+              "name": "./node_modules/@primer/react/lib-esm/ActionList/List.js"
+            },
+            {
+              "size": 2544,
+              "name": "./node_modules/@primer/react/lib-esm/ActionList/Group.js"
+            },
+            {
+              "size": 9131,
+              "name": "./node_modules/@primer/react/lib-esm/ActionList/Item.js"
+            },
+            {
+              "size": 2046,
+              "name": "./node_modules/@primer/react/lib-esm/ActionList/Visuals.js"
+            },
+            {
+              "size": 1297,
+              "name": "./node_modules/@primer/react/lib-esm/ActionList/LinkItem.js"
+            },
+            {
+              "size": 1109,
+              "name": "./node_modules/@primer/react/lib-esm/ActionList/Description.js"
+            },
+            {
+              "size": 92,
+              "name": "./src/client/helpers/box-shadow-border.ts"
+            },
+            {
+              "size": 1217,
+              "name": "./src/client/components/automation/automation-view.tsx"
+            },
+            {
+              "size": 1072,
+              "name": "./src/client/helpers/workflow-validation.ts"
+            },
+            {
+              "size": 92,
+              "name": "./src/client/helpers/workflow-utilities.ts"
+            },
+            {
+              "size": 935,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/DropdownMenu/DropdownButton.js"
+            },
+            {
+              "size": 4528,
+              "name": "./node_modules/@primer/react/lib-esm/FilteredActionList/FilteredActionList.js"
+            },
+            {
+              "size": 4165,
+              "name": "./src/client/state-providers/charts/chart-helpers.ts"
+            },
+            {
+              "size": 327,
+              "name": "./src/client/state-providers/charts/use-chart-actions.tsx"
+            },
+            {
+              "size": 317,
+              "name": "./src/client/state-providers/charts/use-charts.tsx"
+            },
+            {
+              "size": 2340,
+              "name": "./src/client/components/insights/chart-web-components/insights-query-element.tsx"
+            },
+            {
+              "size": 1663,
+              "name": "./src/client/components/insights/current-insights-chart.tsx"
+            },
+            {
+              "size": 5154,
+              "name": "./src/client/state-providers/charts/use-set-next-chart-params.ts"
+            },
+            {
+              "size": 337,
+              "name": "./src/client/state-providers/memex/use-project-state.ts"
+            },
+            {
+              "size": 2501,
+              "name": "./src/client/components/column-detail-helpers.tsx"
+            },
+            {
+              "size": 255,
+              "name": "./src/client/hooks/use-is-mounted-ref.ts"
+            },
+            {
+              "size": 1257,
+              "name": "./src/client/components/common/emoji-picker.tsx"
+            },
+            {
+              "size": 566,
+              "name": "./src/client/state-providers/columns/use-find-column.ts"
+            },
+            {
+              "size": 82,
+              "name": "./node_modules/@github/bar-chart-element/dist/version.js"
+            },
+            {
+              "size": 85,
+              "name": "./node_modules/@github/column-chart-element/dist/version.js"
+            },
+            {
+              "size": 83,
+              "name": "./node_modules/@github/line-chart-element/dist/version.js"
+            },
+            {
+              "size": 91,
+              "name": "./node_modules/@github/stacked-area-chart-element/dist/version.js"
+            },
+            {
+              "size": 346,
+              "name": "./src/client/components/insights/error-messages/chart-error-fallback.tsx"
+            },
+            {
+              "size": 801,
+              "name": "./src/client/components/insights/error-messages/invalid-config-error.tsx"
+            },
+            {
+              "size": 1291,
+              "name": "./src/client/components/insights/use-insights-configuration-pane.tsx"
+            },
+            {
+              "size": 368,
+              "name": "./src/client/components/insights/error-messages/missing-chart-error.tsx"
+            },
+            {
+              "size": 5154,
+              "name": "./src/client/components/insights/historical-insights-chart.tsx"
+            },
+            {
+              "size": 3637,
+              "name": "./src/client/components/insights/insights-chart-name.tsx"
+            },
+            {
+              "size": 3445,
+              "name": "./src/client/components/insights/insights-configuration-pane/insights-configuration-pane.tsx"
+            },
+            {
+              "size": 1924,
+              "name": "./src/client/components/insights/insights-filters.tsx"
+            },
+            {
+              "size": 4082,
+              "name": "./src/client/components/insights/insights-upsell-dialog.tsx"
+            },
+            {
+              "size": 846,
+              "name": "./src/client/helpers/media-urls.ts"
+            },
+            {
+              "size": 2346,
+              "name": "./src/client/components/insights/period-navigation/insight-custom-date-picker.tsx"
+            },
+            {
+              "size": 2257,
+              "name": "./src/client/components/insights/period-navigation/period-navigation.tsx"
+            },
+            {
+              "size": 5043,
+              "name": "./src/client/components/insights/use-insights-filters.ts"
+            },
+            {
+              "size": 2596,
+              "name": "./src/client/components/insights/use-insights-time.ts"
+            },
+            {
+              "size": 124,
+              "name": "./src/client/api/charts/contracts/api.ts"
+            },
+            {
+              "size": 1662,
+              "name": "./node_modules/@github/bar-chart-element/dist/bar-chart.js"
+            },
+            {
+              "size": 1639,
+              "name": "./node_modules/@github/column-chart-element/dist/column-chart.js"
+            },
+            {
+              "size": 2121,
+              "name": "./node_modules/@github/line-chart-element/dist/line-chart.js"
+            },
+            {
+              "size": 5057,
+              "name": "./node_modules/@github/series-table-element/dist/series-table.js"
+            },
+            {
+              "size": 1778,
+              "name": "./node_modules/@github/stacked-area-chart-element/dist/stacked-area-chart.js"
+            },
+            {
+              "size": 949,
+              "name": "./src/client/components/insights/insights-layout.tsx"
+            },
+            {
+              "size": 245,
+              "name": "./src/client/hooks/use-alive.ts"
+            },
+            {
+              "size": 1324,
+              "name": "./src/client/hooks/use-alive-channel.ts"
+            },
+            {
+              "size": 451,
+              "name": "./src/client/hooks/use-page-visibility.ts"
+            },
+            {
+              "size": 2844,
+              "name": "./src/client/state-providers/data-refresh/use-handle-data-refresh.ts"
+            },
+            {
+              "size": 3648,
+              "name": "./src/client/state-providers/project-migration/use-process-project-migration-state.ts"
+            },
+            {
+              "size": 403,
+              "name": "./src/client/state-providers/project-migration/migration-progress.ts"
+            },
+            {
+              "size": 370,
+              "name": "./src/client/state-providers/project-migration/use-project-migration.ts"
+            },
+            {
+              "size": 347,
+              "name": "./src/client/state-providers/memex/use-project-details.ts"
+            },
+            {
+              "size": 3642,
+              "name": "./src/client/components/project-migration-overlay-description.tsx"
+            },
+            {
+              "size": 14484,
+              "name": "./src/client/components/settings/access-settings/add-collaborators.tsx"
+            },
+            {
+              "size": 2291,
+              "name": "./src/client/hooks/use-autosave.ts"
+            },
+            {
+              "size": 7113,
+              "name": "./src/client/state-providers/access-settings/access-settings-state-provider.tsx"
+            },
+            {
+              "size": 5324,
+              "name": "./src/client/components/settings/access-settings/collaborators-filter.tsx"
+            },
+            {
+              "size": 8898,
+              "name": "./src/client/components/settings/access-settings/collaborators-table.tsx"
+            },
+            {
+              "size": 9452,
+              "name": "./src/client/components/settings/access-settings/privacy-settings.tsx"
+            },
+            {
+              "size": 257,
+              "name": "./src/client/helpers/is-column-editable.ts"
+            },
+            {
+              "size": 1204,
+              "name": "./src/client/state-providers/columns/use-set-column-name.ts"
+            },
+            {
+              "size": 2512,
+              "name": "./src/client/components/common/state-style-decorators.tsx"
+            },
+            {
+              "size": 133,
+              "name": "./src/client/components/drag-and-drop/drag-and-drop.ts"
+            },
+            {
+              "size": 23771,
+              "name": "./src/client/components/react_table/header/table-header-cell.tsx"
+            },
+            {
+              "size": 6818,
+              "name": "./src/client/components/single-select-options.tsx"
+            },
+            {
+              "size": 800,
+              "name": "./src/client/state-providers/memex/use-delete-memex.ts"
+            },
+            {
+              "size": 670,
+              "name": "./src/client/state-providers/memex/use-toggle-memex-close.ts"
+            },
+            {
+              "size": 667,
+              "name": "./src/client/state-providers/memex/use-toggle-memex-public.ts"
+            },
+            {
+              "size": 1391,
+              "name": "./src/client/state-providers/memex/use-update-memex-title.ts"
+            },
+            {
+              "size": 8408,
+              "name": "./src/client/components/description-editor.tsx"
+            },
+            {
+              "size": 1125,
+              "name": "./node_modules/@primer/react/lib-esm/Button/LinkButton.js"
+            },
+            {
+              "size": 7102,
+              "name": "./src/client/components/short-description-editor.tsx"
+            },
+            {
+              "size": 3291,
+              "name": "./src/client/components/settings/delete-project-dialog.tsx"
+            },
+            {
+              "size": 1049,
+              "name": "./src/client/components/settings/project-settings-card.tsx"
+            },
+            {
+              "size": 889,
+              "name": "./src/client/components/settings/iteration-configuration-view.tsx"
+            },
+            {
+              "size": 1833,
+              "name": "./src/client/components/settings/settings-view.tsx"
+            },
+            {
+              "size": 3001,
+              "name": "./src/client/hooks/use-template-side-selection.tsx"
+            },
+            {
+              "size": 202,
+              "name": "./src/client/components/template-dialog/types.ts"
+            },
+            {
+              "size": 665,
+              "name": "./src/client/state-providers/template-dialog/use-template-dialog.ts"
+            },
+            {
+              "size": 888,
+              "name": "./src/client/components/template-dialog/main-content-data.tsx"
+            },
+            {
+              "size": 1802,
+              "name": "./src/client/components/client-feature-flags-list.tsx"
+            },
+            {
+              "size": 1700,
+              "name": "./src/client/components/find-in-project/find-in-project-input.tsx"
+            },
+            {
+              "size": 1367,
+              "name": "./src/client/components/presence-avatars.tsx"
+            },
+            {
+              "size": 5317,
+              "name": "./src/client/components/top-bar/memex-title.tsx"
+            },
+            {
+              "size": 1036,
+              "name": "./src/client/components/top-bar/route-title.tsx"
+            },
+            {
+              "size": 1730,
+              "name": "./src/client/components/horizontal-grouped-by.tsx"
+            },
+            {
+              "size": 12034,
+              "name": "./src/client/components/side-panel/index.tsx"
+            },
+            {
+              "size": 1865,
+              "name": "./src/client/components/sorted-by.tsx"
+            },
+            {
+              "size": 1478,
+              "name": "./src/client/components/vertical-grouped-by.tsx"
+            },
+            {
+              "size": 14103,
+              "name": "./src/client/components/view.tsx"
+            },
+            {
+              "size": 561,
+              "name": "./src/client/hooks/use-after-create-project.tsx"
+            },
+            {
+              "size": 2271,
+              "name": "./src/client/components/view-type.tsx"
+            },
+            {
+              "size": 3246,
+              "name": "./src/client/components/visible-fields.tsx"
+            },
+            {
+              "size": 20694,
+              "name": "./src/client/components/board/board.tsx"
+            },
+            {
+              "size": 11081,
+              "name": "./src/client/components/list/index.tsx"
+            },
+            {
+              "size": 17444,
+              "name": "./src/client/components/react_table/react-table.tsx"
+            },
+            {
+              "size": 2759,
+              "name": "./src/client/components/react_table/state-providers/table-columns/table-columns-provider.tsx"
+            },
+            {
+              "size": 7359,
+              "name": "./src/client/components/view-navigation.tsx"
+            },
+            {
+              "size": 2004,
+              "name": "./src/client/hooks/use-bind-memex-to-document.ts"
+            },
+            {
+              "size": 288,
+              "name": "./src/client/hooks/use-charts-client.ts"
+            },
+            {
+              "size": 505,
+              "name": "./src/client/helpers/meta-qualifiers.ts"
+            },
+            {
+              "size": 70,
+              "name": "./src/client/components/filter-bar/helpers/search-constants.ts"
+            },
+            {
+              "size": 777,
+              "name": "./node_modules/date-fns/esm/startOfToday/index.js"
+            },
+            {
+              "size": 31827,
+              "name": "./node_modules/date-fns/esm/parse/index.js"
+            },
+            {
+              "size": 2500,
+              "name": "./node_modules/date-fns/esm/isValid/index.js"
+            },
+            {
+              "size": 698,
+              "name": "./src/client/components/common/borderless-text-input.tsx"
+            },
+            {
+              "size": 178,
+              "name": "./node_modules/@emotion/memoize/dist/memoize.browser.esm.js"
+            },
+            {
+              "size": 5353,
+              "name": "./node_modules/@styled-system/core/dist/index.esm.js"
+            },
+            {
+              "size": 901,
+              "name": "./node_modules/@styled-system/layout/dist/index.esm.js"
+            },
+            {
+              "size": 311,
+              "name": "./node_modules/@styled-system/color/dist/index.esm.js"
+            },
+            {
+              "size": 643,
+              "name": "./node_modules/@styled-system/typography/dist/index.esm.js"
+            },
+            {
+              "size": 389,
+              "name": "./node_modules/@styled-system/flexbox/dist/index.esm.js"
+            },
+            {
+              "size": 696,
+              "name": "./node_modules/@styled-system/grid/dist/index.esm.js"
+            },
+            {
+              "size": 2665,
+              "name": "./node_modules/@styled-system/border/dist/index.esm.js"
+            },
+            {
+              "size": 423,
+              "name": "./node_modules/@styled-system/background/dist/index.esm.js"
+            },
+            {
+              "size": 637,
+              "name": "./node_modules/@styled-system/position/dist/index.esm.js"
+            },
+            {
+              "size": 3101,
+              "name": "./node_modules/@styled-system/space/dist/index.esm.js"
+            },
+            {
+              "size": 239,
+              "name": "./node_modules/@styled-system/shadow/dist/index.esm.js"
+            },
+            {
+              "size": 1053,
+              "name": "./node_modules/@styled-system/variant/dist/index.esm.js"
+            },
+            {
+              "size": 839,
+              "name": "./src/client/components/common/highlighted-text.tsx"
+            },
+            {
+              "size": 142,
+              "name": "./src/client/components/common/utils.ts"
+            },
+            {
+              "size": 3651,
+              "name": "./src/client/helpers/suggester.ts"
+            },
+            {
+              "size": 233,
+              "name": "./src/client/api/stats/contracts/common.ts"
+            },
+            {
+              "size": 200,
+              "name": "./src/client/api/stats/contracts/draft.ts"
+            },
+            {
+              "size": 984,
+              "name": "./node_modules/lodash-es/isEqual.js"
+            },
+            {
+              "size": 612,
+              "name": "./node_modules/lodash-es/isObjectLike.js"
+            },
+            {
+              "size": 486,
+              "name": "./node_modules/lodash-es/isArray.js"
+            },
+            {
+              "size": 731,
+              "name": "./node_modules/lodash-es/isObject.js"
+            },
+            {
+              "size": 991,
+              "name": "./node_modules/lodash-es/isFunction.js"
+            },
+            {
+              "size": 1112,
+              "name": "./node_modules/lodash-es/isBuffer.js"
+            },
+            {
+              "size": 278,
+              "name": "./node_modules/lodash-es/stubFalse.js"
+            },
+            {
+              "size": 797,
+              "name": "./node_modules/lodash-es/eq.js"
+            },
+            {
+              "size": 693,
+              "name": "./node_modules/lodash-es/isTypedArray.js"
+            },
+            {
+              "size": 800,
+              "name": "./node_modules/lodash-es/isLength.js"
+            },
+            {
+              "size": 882,
+              "name": "./node_modules/lodash-es/keys.js"
+            },
+            {
+              "size": 828,
+              "name": "./node_modules/lodash-es/isArrayLike.js"
+            },
+            {
+              "size": 1024,
+              "name": "./node_modules/lodash-es/isArguments.js"
+            },
+            {
+              "size": 388,
+              "name": "./node_modules/lodash-es/stubArray.js"
+            },
+            {
+              "size": 1761,
+              "name": "./node_modules/@primer/react/lib-esm/Button/ButtonBase.js"
+            },
+            {
+              "size": 8308,
+              "name": "./node_modules/@primer/react/lib-esm/Button/styles.js"
+            },
+            {
+              "size": 300,
+              "name": "./node_modules/@primer/react/lib-esm/Button/types.js"
+            },
+            {
+              "size": 2863,
+              "name": "./node_modules/@github/command-palette-api/dist/command-palette-api.js"
+            },
+            {
+              "size": 1877,
+              "name": "./src/client/commands/dotcom/memex-command-item.ts"
+            },
+            {
+              "size": 332,
+              "name": "./src/client/state-providers/memex-items/use-memex-items-context.ts"
+            },
+            {
+              "size": 327,
+              "name": "./node_modules/mobx-react-lite/es/utils/assertEnvironment.js"
+            },
+            {
+              "size": 100,
+              "name": "./node_modules/mobx-react-lite/es/utils/reactBatchedUpdates.js"
+            },
+            {
+              "size": 5257,
+              "name": "./node_modules/mobx-react-lite/es/useObserver.js"
+            },
+            {
+              "size": 944,
+              "name": "./node_modules/mobx-react-lite/es/utils/reactionCleanupTracking.js"
+            },
+            {
+              "size": 264,
+              "name": "./node_modules/mobx-react-lite/es/staticRendering.js"
+            },
+            {
+              "size": 667,
+              "name": "./node_modules/mobx-react-lite/es/utils/observerBatching.js"
+            },
+            {
+              "size": 4547,
+              "name": "./node_modules/mobx-react-lite/es/observer.js"
+            },
+            {
+              "size": 1262,
+              "name": "./node_modules/mobx-react-lite/es/ObserverComponent.js"
+            },
+            {
+              "size": 288,
+              "name": "./node_modules/mobx-react-lite/es/useLocalObservable.js"
+            },
+            {
+              "size": 606,
+              "name": "./node_modules/mobx-react-lite/es/useLocalStore.js"
+            },
+            {
+              "size": 1231,
+              "name": "./node_modules/mobx-react-lite/es/useAsObservableSource.js"
+            },
+            {
+              "size": 268,
+              "name": "./src/client/helpers/field-comparable.ts"
+            },
+            {
+              "size": 1133,
+              "name": "./src/client/hooks/use-filter-keywords.tsx"
+            },
+            {
+              "size": 1766,
+              "name": "./src/client/hooks/use-filter-suggestions.ts"
+            },
+            {
+              "size": 34469,
+              "name": "./src/client/components/filter-bar/helpers/search-filter.ts"
+            },
+            {
+              "size": 7570,
+              "name": "./src/client/helpers/iterations.ts"
+            },
+            {
+              "size": 9078,
+              "name": "./node_modules/date-fns/esm/parseISO/index.js"
+            },
+            {
+              "size": 5293,
+              "name": "./src/client/components/filter-bar/helpers/tokenize-filter.ts"
+            },
+            {
+              "size": 682,
+              "name": "./src/client/hooks/use-find-filterable-field-by-name.ts"
+            },
+            {
+              "size": 313,
+              "name": "./src/client/state-providers/columns/use-columns-context.ts"
+            },
+            {
+              "size": 7604,
+              "name": "./src/client/hooks/use-search-filter-suggestions.ts"
+            },
+            {
+              "size": 343,
+              "name": "./src/client/state-providers/columns/use-columns-stable-context.ts"
+            },
+            {
+              "size": 6192,
+              "name": "./src/client/components/suggestions-list.tsx"
+            },
+            {
+              "size": 487,
+              "name": "./src/client/components/dom/sanitized-html-span.tsx"
+            },
+            {
+              "size": 1230,
+              "name": "./node_modules/@primer/behaviors/dist/esm/polyfills/event-listener-signal.js"
+            },
+            {
+              "size": 165,
+              "name": "./node_modules/@primer/behaviors/dist/esm/utils/user-agent.js"
+            },
+            {
+              "size": 89,
+              "name": "./node_modules/@primer/behaviors/dist/esm/utils/unique-id.js"
+            },
+            {
+              "size": 206,
+              "name": "./src/client/api/view/contracts.ts"
+            },
+            {
+              "size": 6099,
+              "name": "./src/client/hooks/use-item-matches-filter-query.ts"
+            },
+            {
+              "size": 826,
+              "name": "./src/client/hooks/use-view-state-reducer/view-state-action-types.tsx"
+            },
+            {
+              "size": 6098,
+              "name": "./node_modules/lodash-es/debounce.js"
+            },
+            {
+              "size": 1517,
+              "name": "./node_modules/lodash-es/toNumber.js"
+            },
+            {
+              "size": 680,
+              "name": "./node_modules/lodash-es/isSymbol.js"
+            },
+            {
+              "size": 518,
+              "name": "./node_modules/lodash-es/now.js"
+            },
+            {
+              "size": 463,
+              "name": "./src/client/hooks/use-click-outside.tsx"
+            },
+            {
+              "size": 797,
+              "name": "./src/client/hooks/use-is-focus-within-elements.tsx"
+            },
+            {
+              "size": 3546,
+              "name": "./src/client/components/common/autosize-text-input.tsx"
+            },
+            {
+              "size": 1879,
+              "name": "./src/client/components/filter-bar/filter-icon-button.tsx"
+            },
+            {
+              "size": 15556,
+              "name": "./src/client/components/filter-bar/tokenized-query.tsx"
+            },
+            {
+              "size": 156,
+              "name": "./src/client/components/toasts/types.ts"
+            },
+            {
+              "size": 1384,
+              "name": "./src/client/hooks/use-remove-memex-items-with-id.ts"
+            },
+            {
+              "size": 455,
+              "name": "./node_modules/lodash-es/_flatRest.js"
+            },
+            {
+              "size": 368,
+              "name": "./node_modules/lodash-es/identity.js"
+            },
+            {
+              "size": 526,
+              "name": "./node_modules/lodash-es/constant.js"
+            },
+            {
+              "size": 487,
+              "name": "./node_modules/lodash-es/flatten.js"
+            },
+            {
+              "size": 554,
+              "name": "./node_modules/lodash-es/_arrayMap.js"
+            },
+            {
+              "size": 567,
+              "name": "./node_modules/lodash-es/_castPath.js"
+            },
+            {
+              "size": 2222,
+              "name": "./node_modules/lodash-es/memoize.js"
+            },
+            {
+              "size": 578,
+              "name": "./node_modules/lodash-es/toString.js"
+            },
+            {
+              "size": 1042,
+              "name": "./node_modules/lodash-es/_copyObject.js"
+            },
+            {
+              "size": 486,
+              "name": "./node_modules/lodash-es/_getAllKeysIn.js"
+            },
+            {
+              "size": 776,
+              "name": "./node_modules/lodash-es/keysIn.js"
+            },
+            {
+              "size": 5607,
+              "name": "./node_modules/lodash-es/_baseClone.js"
+            },
+            {
+              "size": 611,
+              "name": "./node_modules/lodash-es/isSet.js"
+            },
+            {
+              "size": 611,
+              "name": "./node_modules/lodash-es/isMap.js"
+            },
+            {
+              "size": 473,
+              "name": "./node_modules/lodash-es/_customOmitClone.js"
+            },
+            {
+              "size": 1648,
+              "name": "./node_modules/lodash-es/isPlainObject.js"
+            },
+            {
+              "size": 578,
+              "name": "./node_modules/lodash-es/_baseUnset.js"
+            },
+            {
+              "size": 399,
+              "name": "./node_modules/lodash-es/last.js"
+            },
+            {
+              "size": 1067,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/Button/Button.js"
+            },
+            {
+              "size": 1179,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/Button/ButtonPrimary.js"
+            },
+            {
+              "size": 1241,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/Button/ButtonDanger.js"
+            },
+            {
+              "size": 4635,
+              "name": "./src/client/components/archive/use-fetch-archived-items.tsx"
+            },
+            {
+              "size": 382,
+              "name": "./src/client/state-providers/columns/use-has-column-data.ts"
+            },
+            {
+              "size": 2269,
+              "name": "./src/client/state-providers/memex-items/use-update-column-values.ts"
+            },
+            {
+              "size": 1204,
+              "name": "./node_modules/@primer/behaviors/dist/esm/scroll-into-view.js"
+            },
+            {
+              "size": 545,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/ActionList/index.js"
+            },
+            {
+              "size": 10629,
+              "name": "./node_modules/@primer/behaviors/dist/esm/anchored-position.js"
+            },
+            {
+              "size": 326,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useResizeObserver.js"
+            },
+            {
+              "size": 132,
+              "name": "./node_modules/@primer/react/lib-esm/_CheckboxOrRadioGroup/slots.js"
+            },
+            {
+              "size": 2661,
+              "name": "./node_modules/@primer/react/lib-esm/utils/create-slots.js"
+            },
+            {
+              "size": 1303,
+              "name": "./node_modules/@primer/react/lib-esm/_InputValidation.js"
+            },
+            {
+              "size": 346,
+              "name": "./node_modules/@primer/react/lib-esm/_InputCaption.js"
+            },
+            {
+              "size": 902,
+              "name": "./node_modules/@primer/react/lib-esm/_InputLabel.js"
+            },
+            {
+              "size": 1830,
+              "name": "./src/client/components/archive/archive-empty-states.tsx"
+            },
+            {
+              "size": 6358,
+              "name": "./src/client/components/archive/archive-item.tsx"
+            },
+            {
+              "size": 10868,
+              "name": "./src/client/components/board/navigation.ts"
+            },
+            {
+              "size": 254,
+              "name": "./src/client/navigation/types.ts"
+            },
+            {
+              "size": 17349,
+              "name": "./src/client/components/react_table/navigation.ts"
+            },
+            {
+              "size": 2587,
+              "name": "./src/client/helpers/table-group-utilities.ts"
+            },
+            {
+              "size": 413,
+              "name": "./node_modules/lodash-es/head.js"
+            },
+            {
+              "size": 546,
+              "name": "./src/client/state-providers/memex-items/use-get-memex-item.ts"
+            },
+            {
+              "size": 2488,
+              "name": "./src/client/state-providers/memex-items/use-set-memex-item-data.ts"
+            },
+            {
+              "size": 2740,
+              "name": "./node_modules/@primer/react/lib-esm/ActionList/Selection.js"
+            },
+            {
+              "size": 378,
+              "name": "./src/client/api/workflows/contracts.ts"
+            },
+            {
+              "size": 304,
+              "name": "./src/client/state-providers/workflows/use-workflows.ts"
+            },
+            {
+              "size": 3044,
+              "name": "./src/client/components/automation/automation-graph-view.tsx"
+            },
+            {
+              "size": 767,
+              "name": "./node_modules/@primer/react/lib-esm/hooks/useScrollFlash.js"
+            },
+            {
+              "size": 2809,
+              "name": "./src/client/components/automation/automation-side-nav.tsx"
+            },
+            {
+              "size": 8242,
+              "name": "./node_modules/@github/insights-query-element/dist/insights-query.js"
+            },
+            {
+              "size": 3859,
+              "name": "./src/client/components/factories/make-component-from-web-component.tsx"
+            },
+            {
+              "size": 87,
+              "name": "./node_modules/@github/insights-query-element/dist/version.js"
+            },
+            {
+              "size": 7977,
+              "name": "./src/client/state-providers/charts/use-chart-series.tsx"
+            },
+            {
+              "size": 7809,
+              "name": "./src/client/components/insights/insights-configuration-pane/y-axis-selector.tsx"
+            },
+            {
+              "size": 31283,
+              "name": "./src/client/components/react_table/column-behaviors.tsx"
+            },
+            {
+              "size": 2165,
+              "name": "./src/client/components/react_table/performance-measurements.ts"
+            },
+            {
+              "size": 874,
+              "name": "./src/client/components/react_table/cells/base-cell.tsx"
+            },
+            {
+              "size": 936,
+              "name": "./src/client/components/common/dropdown-caret.tsx"
+            },
+            {
+              "size": 3839,
+              "name": "./src/client/components/list/progress.tsx"
+            },
+            {
+              "size": 1153,
+              "name": "./src/client/hooks/use-ignore-enter-while-composing.ts"
+            },
+            {
+              "size": 3722,
+              "name": "./src/client/components/common/inline-autocomplete/inline-autocomplete.tsx"
+            },
+            {
+              "size": 560,
+              "name": "./node_modules/lodash-es/uniqueId.js"
+            },
+            {
+              "size": 1436,
+              "name": "./src/client/components/common/inline-autocomplete/suggestions-hooks/use-emoji-suggestions.tsx"
+            },
+            {
+              "size": 55883,
+              "name": "./src/client/helpers/emojis.ts"
+            },
+            {
+              "size": 869,
+              "name": "./node_modules/lodash-es/escapeRegExp.js"
+            },
+            {
+              "size": 969,
+              "name": "./src/client/state-providers/columns/use-update-columns.ts"
+            },
+            {
+              "size": 243,
+              "name": "./src/client/components/react_table/sort/index.ts"
+            },
+            {
+              "size": 721,
+              "name": "./node_modules/lodash-es/isString.js"
+            },
+            {
+              "size": 247,
+              "name": "./src/client/components/insights/chart-web-components/bar-chart.tsx"
+            },
+            {
+              "size": 253,
+              "name": "./src/client/components/insights/chart-web-components/column-chart.tsx"
+            },
+            {
+              "size": 249,
+              "name": "./src/client/components/insights/chart-web-components/line-chart.tsx"
+            },
+            {
+              "size": 264,
+              "name": "./src/client/components/insights/chart-web-components/stacked-area-chart.tsx"
+            },
+            {
+              "size": 719,
+              "name": "./src/client/components/insights/error-messages/base-chart-error.tsx"
+            },
+            {
+              "size": 1159,
+              "name": "./src/client/components/insights/use-insights-chart-name.ts"
+            },
+            {
+              "size": 783,
+              "name": "./src/client/hooks/use-memex-root-height.ts"
+            },
+            {
+              "size": 991,
+              "name": "./src/client/hooks/use-element-sizes.ts"
+            },
+            {
+              "size": 2707,
+              "name": "./node_modules/lodash-es/throttle.js"
+            },
+            {
+              "size": 4030,
+              "name": "./src/client/components/insights/insights-configuration-pane/action-buttons.tsx"
+            },
+            {
+              "size": 2585,
+              "name": "./src/client/components/insights/insights-configuration-pane/layout-selector.tsx"
+            },
+            {
+              "size": 10999,
+              "name": "./src/client/components/insights/insights-configuration-pane/x-axis-selector.tsx"
+            },
+            {
+              "size": 169,
+              "name": "./src/client/hooks/use-detect-dark-mode.ts"
+            },
+            {
+              "size": 290,
+              "name": "./src/client/components/common/date-picker/index.ts"
+            },
+            {
+              "size": 3185,
+              "name": "./node_modules/date-fns/esm/eachDayOfInterval/index.js"
+            },
+            {
+              "size": 1513,
+              "name": "./node_modules/date-fns/esm/isSameDay/index.js"
+            },
+            {
+              "size": 1409,
+              "name": "./node_modules/lodash-es/chunk.js"
+            },
+            {
+              "size": 758,
+              "name": "./node_modules/lodash-es/toInteger.js"
+            },
+            {
+              "size": 866,
+              "name": "./node_modules/lodash-es/toFinite.js"
+            },
+            {
+              "size": 4508,
+              "name": "./node_modules/date-fns/esm/formatISO/index.js"
+            },
+            {
+              "size": 628,
+              "name": "./src/client/components/react-router/link-without-active-classname.tsx"
+            },
+            {
+              "size": 130698,
+              "name": "./node_modules/@github/base-chart-element/dist/base-chart.js"
+            },
+            {
+              "size": 3810,
+              "name": "./node_modules/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.esm.js"
+            },
+            {
+              "size": 8286,
+              "name": "./src/client/components/insights/side-nav/index.tsx"
+            },
+            {
+              "size": 1043,
+              "name": "./src/client/components/potentially-dirty.tsx"
+            },
+            {
+              "size": 380,
+              "name": "./src/client/state-providers/columns/use-find-loaded-field-ids.ts"
+            },
+            {
+              "size": 327,
+              "name": "./src/client/state-providers/memex/use-set-project.ts"
+            },
+            {
+              "size": 2973,
+              "name": "./src/client/state-providers/memex-items/use-update-memex-items.ts"
+            },
+            {
+              "size": 342,
+              "name": "./src/client/state-providers/access-settings/use-access-settings.ts"
+            },
+            {
+              "size": 1099,
+              "name": "./src/client/components/settings/access-settings/collaborator-pill.tsx"
+            },
+            {
+              "size": 3779,
+              "name": "./src/client/components/settings/access-settings/collaborator-role-drop-down.tsx"
+            },
+            {
+              "size": 5628,
+              "name": "./src/client/components/settings/access-settings/collaborators-list-item.tsx"
+            },
+            {
+              "size": 11452,
+              "name": "./src/client/components/settings/access-settings/collaborators-table-header.tsx"
+            },
+            {
+              "size": 4795,
+              "name": "./src/client/components/drag-and-drop/context.tsx"
+            },
+            {
+              "size": 392,
+              "name": "./src/client/hooks/use-body-class.ts"
+            },
+            {
+              "size": 8257,
+              "name": "./src/client/components/drag-and-drop/hook.ts"
+            },
+            {
+              "size": 4734,
+              "name": "./src/client/hooks/use-drag-and-drop.tsx"
+            },
+            {
+              "size": 4021,
+              "name": "./src/client/hooks/use-auto-scroll.ts"
+            },
+            {
+              "size": 355,
+              "name": "./src/client/hooks/use-horizontal-grouped-by.ts"
+            },
+            {
+              "size": 1436,
+              "name": "./src/client/hooks/use-update-column-name.ts"
+            },
+            {
+              "size": 317,
+              "name": "./src/client/hooks/use-visible-fields.tsx"
+            },
+            {
+              "size": 519,
+              "name": "./src/client/state-providers/column-values/use-count-items-with-column-value.ts"
+            },
+            {
+              "size": 216,
+              "name": "./src/client/state-providers/columns/use-reserved-column-names.ts"
+            },
+            {
+              "size": 1149,
+              "name": "./src/client/validations/validate-column-title.ts"
+            },
+            {
+              "size": 3595,
+              "name": "./src/client/components/common/table/grid-table.tsx"
+            },
+            {
+              "size": 3987,
+              "name": "./src/client/components/react_table/table-provider.tsx"
+            },
+            {
+              "size": 789,
+              "name": "./src/client/components/react_table/header/styled-grid-cell.tsx"
+            },
+            {
+              "size": 978,
+              "name": "./src/client/hooks/use-update-column-options.ts"
+            },
+            {
+              "size": 899,
+              "name": "./src/client/components/column-settings-saved-message.tsx"
+            },
+            {
+              "size": 7522,
+              "name": "./src/client/components/react_table/single-select-form.tsx"
+            },
+            {
+              "size": 3330,
+              "name": "./src/client/components/react_table/use-column-settings.ts"
+            },
+            {
+              "size": 1793,
+              "name": "./src/client/state-providers/memex/use-create-memex.ts"
+            },
+            {
+              "size": 400,
+              "name": "./src/client/helpers/create-project-or-perform-operation.ts"
+            },
+            {
+              "size": 645,
+              "name": "./src/client/hooks/use-markdown-editor-preview.ts"
+            },
+            {
+              "size": 1055,
+              "name": "./src/client/state-providers/memex/use-update-memex-description.ts"
+            },
+            {
+              "size": 206,
+              "name": "./src/client/components/common/markdown-editor/index.ts"
+            },
+            {
+              "size": 1516,
+              "name": "./node_modules/lodash-es/partition.js"
+            },
+            {
+              "size": 882,
+              "name": "./node_modules/lodash-es/get.js"
+            },
+            {
+              "size": 751,
+              "name": "./node_modules/lodash-es/hasIn.js"
+            },
+            {
+              "size": 791,
+              "name": "./node_modules/lodash-es/property.js"
+            },
+            {
+              "size": 248,
+              "name": "./node_modules/lodash-es/noop.js"
+            },
+            {
+              "size": 1111,
+              "name": "./src/client/state-providers/memex/use-update-memex-short-description.ts"
+            },
+            {
+              "size": 158,
+              "name": "./src/client/helpers/element-auto-height.ts"
+            },
+            {
+              "size": 2829,
+              "name": "./src/client/components/alert-dialog.tsx"
+            },
+            {
+              "size": 2370,
+              "name": "./src/client/state-providers/columns/use-update-iteration-configuration.ts"
+            },
+            {
+              "size": 10257,
+              "name": "./src/client/components/settings/iteration-field-options.tsx"
+            },
+            {
+              "size": 5968,
+              "name": "./src/client/helpers/iteration-builder.ts"
+            },
+            {
+              "size": 4819,
+              "name": "./src/client/components/settings/settings-side-nav.tsx"
+            },
+            {
+              "size": 2311,
+              "name": "./src/client/hooks/use-view-apis.tsx"
+            },
+            {
+              "size": 710,
+              "name": "./src/client/hooks/use-alive-presence-items.ts"
+            },
+            {
+              "size": 3718,
+              "name": "./src/client/components/memex-avatar-stack.tsx"
+            },
+            {
+              "size": 829,
+              "name": "./src/client/state-providers/memex/use-edit-project-title.ts"
+            },
+            {
+              "size": 380,
+              "name": "./src/client/hooks/use-site-header-height.ts"
+            },
+            {
+              "size": 12855,
+              "name": "./src/client/state-providers/issues/issue-state-provider.tsx"
+            },
+            {
+              "size": 2230,
+              "name": "./src/client/api/memex-items/hierarchy.ts"
+            },
+            {
+              "size": 302,
+              "name": "./src/client/state-providers/issues/use-issue-context.ts"
+            },
+            {
+              "size": 2846,
+              "name": "./src/client/components/side-panel/body.tsx"
+            },
+            {
+              "size": 5906,
+              "name": "./src/client/components/side-panel/bulk-add/bulk-add-items-provider.tsx"
+            },
+            {
+              "size": 7654,
+              "name": "./src/client/components/side-panel/bulk-add/bulk-add-view.tsx"
+            },
+            {
+              "size": 4788,
+              "name": "./src/client/components/side-panel/comments.tsx"
+            },
+            {
+              "size": 11131,
+              "name": "./src/client/components/side-panel/header.tsx"
+            },
+            {
+              "size": 5786,
+              "name": "./src/client/components/side-panel/hierarchy.tsx"
+            },
+            {
+              "size": 6212,
+              "name": "./src/client/components/hierarchy/hierarchy.tsx"
+            },
+            {
+              "size": 345,
+              "name": "./src/client/hooks/use-vertical-grouped-by.ts"
+            },
+            {
+              "size": 4516,
+              "name": "./src/client/components/board/hooks/use-card-selection.tsx"
+            },
+            {
+              "size": 7658,
+              "name": "./src/client/components/board/selection.tsx"
+            },
+            {
+              "size": 652,
+              "name": "./src/client/helpers/portal-elements.ts"
+            },
+            {
+              "size": 13065,
+              "name": "./src/client/components/omnibar/omnibar.tsx"
+            },
+            {
+              "size": 959,
+              "name": "./node_modules/lodash-es/isError.js"
+            },
+            {
+              "size": 2999,
+              "name": "./src/client/hooks/use-grouped-items.ts"
+            },
+            {
+              "size": 1840,
+              "name": "./src/client/models/vertical-group.ts"
+            },
+            {
+              "size": 1019,
+              "name": "./src/client/components/omnibar/omnibar-placeholder.tsx"
+            },
+            {
+              "size": 4104,
+              "name": "./src/client/components/side-panel/sidebar/index.tsx"
+            },
+            {
+              "size": 2126,
+              "name": "./src/client/components/board/column/column-frame.tsx"
+            },
+            {
+              "size": 300,
+              "name": "./src/client/hooks/use-sorted-by.ts"
+            },
+            {
+              "size": 4044,
+              "name": "./src/client/hooks/use-view-state-reducer/handle-url-update.tsx"
+            },
+            {
+              "size": 10958,
+              "name": "./src/client/hooks/use-view-state-reducer/use-view-state-reducer.tsx"
+            },
+            {
+              "size": 677,
+              "name": "./node_modules/lodash-es/cloneDeep.js"
+            },
+            {
+              "size": 1299,
+              "name": "./src/client/hooks/use-view-state-reducer/get-view-dirty-states.tsx"
+            },
+            {
+              "size": 1144,
+              "name": "./src/client/state-providers/columns/use-destroy-column.ts"
+            },
+            {
+              "size": 1464,
+              "name": "./src/client/hooks/use-measure-scrollbars.ts"
+            },
+            {
+              "size": 2854,
+              "name": "./src/client/navigation/keyboard.ts"
+            },
+            {
+              "size": 827,
+              "name": "./src/client/components/find-in-project/board-find-in-project.tsx"
+            },
+            {
+              "size": 1802,
+              "name": "./src/client/components/omnibar/omnibar-container.tsx"
+            },
+            {
+              "size": 886,
+              "name": "./src/client/components/omnibar/omnibar-drawer.tsx"
+            },
+            {
+              "size": 1271,
+              "name": "./src/client/components/board/add-new-column.tsx"
+            },
+            {
+              "size": 4286,
+              "name": "./src/client/components/board/board-filter-input.tsx"
+            },
+            {
+              "size": 528,
+              "name": "./src/client/components/board/hooks/use-omnibar-visibility.ts"
+            },
+            {
+              "size": 13603,
+              "name": "./src/client/components/board/column/column.tsx"
+            },
+            {
+              "size": 1073,
+              "name": "./src/client/hooks/use-view-loading-state.tsx"
+            },
+            {
+              "size": 23296,
+              "name": "./src/client/components/react_table/hooks/use-copy-paste.tsx"
+            },
+            {
+              "size": 1704,
+              "name": "./src/client/components/board/hooks/use-board-card-actions.tsx"
+            },
+            {
+              "size": 303,
+              "name": "./src/client/helpers/scroll-utilities.ts"
+            },
+            {
+              "size": 1192,
+              "name": "./src/client/components/board/column/draft-column.tsx"
+            },
+            {
+              "size": 726,
+              "name": "./src/client/components/board/hooks/use-add-board-column.ts"
+            },
+            {
+              "size": 1499,
+              "name": "./src/client/components/board/hooks/use-archive-board-column.ts"
+            },
+            {
+              "size": 1882,
+              "name": "./src/client/components/board/hooks/use-delete-board-column.ts"
+            },
+            {
+              "size": 1106,
+              "name": "./src/client/components/board/hooks/use-move-board-column.ts"
+            },
+            {
+              "size": 887,
+              "name": "./src/client/components/board/hooks/use-rename-board-column.ts"
+            },
+            {
+              "size": 2563,
+              "name": "./src/client/hooks/use-initial-table-focus-for-view.tsx"
+            },
+            {
+              "size": 1267,
+              "name": "./src/client/components/find-in-project/table-find-in-project.tsx"
+            },
+            {
+              "size": 1439,
+              "name": "./src/client/components/react_table/column-drop-zone-sash.tsx"
+            },
+            {
+              "size": 1237,
+              "name": "./src/client/components/react_table/row-drop-zone-sash.tsx"
+            },
+            {
+              "size": 356,
+              "name": "./src/client/components/react_table/state-providers/table-columns/use-table-columns.ts"
+            },
+            {
+              "size": 2015,
+              "name": "./src/client/components/react_table/state-providers/table-columns/grouping.ts"
+            },
+            {
+              "size": 4052,
+              "name": "./src/client/components/react_table/table-filter-input.tsx"
+            },
+            {
+              "size": 5062,
+              "name": "./src/client/components/react_table/table-group.tsx"
+            },
+            {
+              "size": 1230,
+              "name": "./src/client/components/react_table/use-collapsed-groups.ts"
+            },
+            {
+              "size": 1173,
+              "name": "./src/client/components/react_table/table-row-chunk.tsx"
+            },
+            {
+              "size": 4088,
+              "name": "./src/client/components/react_table/table-row.tsx"
+            },
+            {
+              "size": 864,
+              "name": "./src/client/components/react_table/use-deselect-all-rows.ts"
+            },
+            {
+              "size": 379,
+              "name": "./node_modules/lodash-es/isNull.js"
+            },
+            {
+              "size": 4598,
+              "name": "./src/client/components/react_table/table-header.tsx"
+            },
+            {
+              "size": 2065,
+              "name": "./src/client/components/react_table/table-omnibar.tsx"
+            },
+            {
+              "size": 433,
+              "name": "./src/client/components/react_table/use-add-column-header.ts"
+            },
+            {
+              "size": 5200,
+              "name": "./src/client/components/react_table/use-column-reordering.ts"
+            },
+            {
+              "size": 2186,
+              "name": "./src/client/components/react_table/use-custom-global-filter.ts"
+            },
+            {
+              "size": 5086,
+              "name": "./src/client/components/react_table/use-custom-group-by.ts"
+            },
+            {
+              "size": 893,
+              "name": "./src/client/components/react_table/use-persist-column-resize.ts"
+            },
+            {
+              "size": 646,
+              "name": "./src/client/components/react_table/use-ranking.ts"
+            },
+            {
+              "size": 14318,
+              "name": "./src/client/components/react_table/use-row-drag-drop.tsx"
+            },
+            {
+              "size": 898,
+              "name": "./src/client/components/react_table/use-row-menu-shortcut.ts"
+            },
+            {
+              "size": 1114,
+              "name": "./src/client/components/react_table/use-row-selection-blur.ts"
+            },
+            {
+              "size": 1459,
+              "name": "./src/client/components/react_table/use-sorted-by-group-ordering.ts"
+            },
+            {
+              "size": 2503,
+              "name": "./src/client/components/react_table/use-table-focus.ts"
+            },
+            {
+              "size": 933,
+              "name": "./src/client/components/react_table/use-test-identifiers.tsx"
+            },
+            {
+              "size": 662,
+              "name": "./src/client/components/react_table/use-action-logger.tsx"
+            },
+            {
+              "size": 7952,
+              "name": "./src/client/components/view-tab.tsx"
+            },
+            {
+              "size": 956,
+              "name": "./node_modules/date-fns/esm/startOfDay/index.js"
+            },
+            {
+              "size": 221,
+              "name": "./node_modules/date-fns/esm/_lib/requiredArgs/index.js"
+            },
+            {
+              "size": 1907,
+              "name": "./node_modules/date-fns/esm/toDate/index.js"
+            },
+            {
+              "size": 820,
+              "name": "./node_modules/date-fns/esm/locale/en-US/index.js"
+            },
+            {
+              "size": 296,
+              "name": "./node_modules/date-fns/esm/_lib/toInteger/index.js"
+            },
+            {
+              "size": 1838,
+              "name": "./node_modules/date-fns/esm/_lib/format/longFormatters/index.js"
+            },
+            {
+              "size": 1169,
+              "name": "./node_modules/date-fns/esm/_lib/protectedTokens/index.js"
+            },
+            {
+              "size": 43511,
+              "name": "./node_modules/date-fns/esm/parse/_lib/parsers/index.js"
+            },
+            {
+              "size": 1309,
+              "name": "./node_modules/date-fns/esm/subMilliseconds/index.js"
+            },
+            {
+              "size": 1300,
+              "name": "./node_modules/date-fns/esm/addMilliseconds/index.js"
+            },
+            {
+              "size": 879,
+              "name": "./node_modules/date-fns/esm/_lib/getTimezoneOffsetInMilliseconds/index.js"
+            },
+            {
+              "size": 395,
+              "name": "./node_modules/date-fns/esm/_lib/assign/index.js"
+            },
+            {
+              "size": 1153,
+              "name": "./node_modules/date-fns/esm/isDate/index.js"
+            },
+            {
+              "size": 4529,
+              "name": "./node_modules/fzy.js/index.js"
+            },
+            {
+              "size": 266,
+              "name": "./src/client/helpers/fzy.ts"
+            },
+            {
+              "size": 1017,
+              "name": "./node_modules/lodash-es/_baseIsEqual.js"
+            },
+            {
+              "size": 1836,
+              "name": "./node_modules/lodash-es/_getTag.js"
+            },
+            {
+              "size": 1415,
+              "name": "./node_modules/lodash-es/_baseIsNative.js"
+            },
+            {
+              "size": 298,
+              "name": "./node_modules/lodash-es/_root.js"
+            },
+            {
+              "size": 790,
+              "name": "./node_modules/lodash-es/_baseGetTag.js"
+            },
+            {
+              "size": 116,
+              "name": "./node_modules/lodash-es/_Symbol.js"
+            },
+            {
+              "size": 732,
+              "name": "./node_modules/lodash-es/_Stack.js"
+            },
+            {
+              "size": 867,
+              "name": "./node_modules/lodash-es/_MapCache.js"
+            },
+            {
+              "size": 993,
+              "name": "./node_modules/lodash-es/_nodeUtil.js"
+            },
+            {
+              "size": 330,
+              "name": "./node_modules/lodash-es/_baseUnary.js"
+            },
+            {
+              "size": 2220,
+              "name": "./node_modules/lodash-es/_baseIsTypedArray.js"
+            },
+            {
+              "size": 592,
+              "name": "./node_modules/lodash-es/_arraySome.js"
+            },
+            {
+              "size": 361,
+              "name": "./node_modules/lodash-es/_mapToArray.js"
+            },
+            {
+              "size": 343,
+              "name": "./node_modules/lodash-es/_setToArray.js"
+            },
+            {
+              "size": 453,
+              "name": "./node_modules/lodash-es/_getAllKeys.js"
+            },
+            {
+              "size": 737,
+              "name": "./node_modules/lodash-es/_baseGetAllKeys.js"
+            },
+            {
+              "size": 435,
+              "name": "./node_modules/lodash-es/_arrayPush.js"
+            },
+            {
+              "size": 1776,
+              "name": "./node_modules/lodash-es/_arrayLikeKeys.js"
+            },
+            {
+              "size": 486,
+              "name": "./node_modules/lodash-es/_baseIsArguments.js"
+            },
+            {
+              "size": 502,
+              "name": "./node_modules/lodash-es/_baseTimes.js"
+            },
+            {
+              "size": 757,
+              "name": "./node_modules/lodash-es/_isIndex.js"
+            },
+            {
+              "size": 774,
+              "name": "./node_modules/lodash-es/_baseKeys.js"
+            },
+            {
+              "size": 478,
+              "name": "./node_modules/lodash-es/_isPrototype.js"
+            },
+            {
+              "size": 630,
+              "name": "./node_modules/lodash-es/_arrayFilter.js"
+            },
+            {
+              "size": 1140,
+              "name": "./node_modules/@allex/crc32/lib/crc32.esm.js"
+            },
+            {
+              "size": 229,
+              "name": "./node_modules/mobx-react-lite/es/utils/FinalizationRegistryWrapper.js"
+            },
+            {
+              "size": 4843,
+              "name": "./node_modules/mobx-react-lite/es/utils/createTimerBasedReactionCleanupTracking.js"
+            },
+            {
+              "size": 1877,
+              "name": "./node_modules/mobx-react-lite/es/utils/createReactionCleanupTrackingUsingFinalizationRegister.js"
+            },
+            {
+              "size": 157,
+              "name": "./node_modules/mobx-react-lite/es/utils/printDebugValue.js"
+            },
+            {
+              "size": 1375,
+              "name": "./node_modules/date-fns/esm/addDays/index.js"
+            },
+            {
+              "size": 1653,
+              "name": "./node_modules/date-fns/esm/constants/index.js"
+            },
+            {
+              "size": 1082,
+              "name": "./node_modules/date-fns/esm/isAfter/index.js"
+            },
+            {
+              "size": 1182,
+              "name": "./node_modules/date-fns/esm/subDays/index.js"
+            },
+            {
+              "size": 1091,
+              "name": "./node_modules/date-fns/esm/isBefore/index.js"
+            },
+            {
+              "size": 1071,
+              "name": "./node_modules/date-fns/esm/isSameYear/index.js"
+            },
+            {
+              "size": 27126,
+              "name": "./node_modules/date-fns/esm/format/index.js"
+            },
+            {
+              "size": 243,
+              "name": "./node_modules/date-fns/esm/_lib/addLeadingZeros/index.js"
+            },
+            {
+              "size": 1692,
+              "name": "./node_modules/date-fns/esm/compareDesc/index.js"
+            },
+            {
+              "size": 1610,
+              "name": "./node_modules/date-fns/esm/compareAsc/index.js"
+            },
+            {
+              "size": 3542,
+              "name": "./node_modules/date-fns/esm/differenceInDays/index.js"
+            },
+            {
+              "size": 2077,
+              "name": "./node_modules/date-fns/esm/differenceInCalendarDays/index.js"
+            },
+            {
+              "size": 935,
+              "name": "./src/client/hooks/common/use-combined-refs.ts"
+            },
+            {
+              "size": 621,
+              "name": "./src/client/hooks/use-active-descendant.ts"
+            },
+            {
+              "size": 822,
+              "name": "./src/client/components/common/portal.tsx"
+            },
+            {
+              "size": 2126,
+              "name": "./src/client/components/suggestions-list-item.tsx"
+            },
+            {
+              "size": 1412,
+              "name": "./src/client/helpers/sanitize.ts"
+            },
+            {
+              "size": 2875,
+              "name": "./src/client/hooks/get-position-on-screen.ts"
+            },
+            {
+              "size": 442,
+              "name": "./node_modules/lodash-es/_baseTrim.js"
+            },
+            {
+              "size": 513,
+              "name": "./node_modules/lodash-es/_trimmedEndIndex.js"
+            },
+            {
+              "size": 2498,
+              "name": "./src/client/components/common/picker-list.tsx"
+            },
+            {
+              "size": 3763,
+              "name": "./src/client/components/controlled-tooltip.tsx"
+            },
+            {
+              "size": 1082,
+              "name": "./src/client/state-providers/memex-items/use-remove-memex-items.ts"
+            },
+            {
+              "size": 390,
+              "name": "./node_modules/lodash-es/_setToString.js"
+            },
+            {
+              "size": 1094,
+              "name": "./node_modules/lodash-es/_overRest.js"
+            },
+            {
+              "size": 712,
+              "name": "./node_modules/lodash-es/_apply.js"
+            },
+            {
+              "size": 1199,
+              "name": "./node_modules/lodash-es/_baseFlatten.js"
+            },
+            {
+              "size": 878,
+              "name": "./node_modules/lodash-es/_isKey.js"
+            },
+            {
+              "size": 838,
+              "name": "./node_modules/lodash-es/_stringToPath.js"
+            },
+            {
+              "size": 1152,
+              "name": "./node_modules/lodash-es/_baseToString.js"
+            },
+            {
+              "size": 623,
+              "name": "./node_modules/lodash-es/_baseAssignValue.js"
+            },
+            {
+              "size": 897,
+              "name": "./node_modules/lodash-es/_assignValue.js"
+            },
+            {
+              "size": 868,
+              "name": "./node_modules/lodash-es/_baseKeysIn.js"
+            },
+            {
+              "size": 752,
+              "name": "./node_modules/lodash-es/_getSymbolsIn.js"
+            },
+            {
+              "size": 161,
+              "name": "./node_modules/lodash-es/_getPrototype.js"
+            },
+            {
+              "size": 690,
+              "name": "./node_modules/lodash-es/_initCloneArray.js"
+            },
+            {
+              "size": 452,
+              "name": "./node_modules/lodash-es/_copyArray.js"
+            },
+            {
+              "size": 1054,
+              "name": "./node_modules/lodash-es/_cloneBuffer.js"
+            },
+            {
+              "size": 484,
+              "name": "./node_modules/lodash-es/_initCloneObject.js"
+            },
+            {
+              "size": 684,
+              "name": "./node_modules/lodash-es/_baseCreate.js"
+            },
+            {
+              "size": 468,
+              "name": "./node_modules/lodash-es/_copySymbolsIn.js"
+            },
+            {
+              "size": 480,
+              "name": "./node_modules/lodash-es/_baseAssignIn.js"
+            },
+            {
+              "size": 444,
+              "name": "./node_modules/lodash-es/_copySymbols.js"
+            },
+            {
+              "size": 468,
+              "name": "./node_modules/lodash-es/_baseAssign.js"
+            },
+            {
+              "size": 2259,
+              "name": "./node_modules/lodash-es/_initCloneByTag.js"
+            },
+            {
+              "size": 476,
+              "name": "./node_modules/lodash-es/_baseIsSet.js"
+            },
+            {
+              "size": 476,
+              "name": "./node_modules/lodash-es/_baseIsMap.js"
+            },
+            {
+              "size": 535,
+              "name": "./node_modules/lodash-es/_arrayEach.js"
+            },
+            {
+              "size": 434,
+              "name": "./node_modules/lodash-es/_parent.js"
+            },
+            {
+              "size": 614,
+              "name": "./node_modules/lodash-es/_baseGet.js"
+            },
+            {
+              "size": 521,
+              "name": "./node_modules/lodash-es/_toKey.js"
+            },
+            {
+              "size": 754,
+              "name": "./node_modules/lodash-es/_baseSlice.js"
+            },
+            {
+              "size": 362,
+              "name": "./src/client/state-providers/memex-items/use-memex-items-stable-context.ts"
+            },
+            {
+              "size": 648,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/Button/ButtonBase.js"
+            },
+            {
+              "size": 561,
+              "name": "./src/client/helpers/archive-util.ts"
+            },
+            {
+              "size": 1530,
+              "name": "./src/client/components/archive/use-lazy-load-fields.ts"
+            },
+            {
+              "size": 927,
+              "name": "./src/client/state-providers/column-values/use-set-column-value.ts"
+            },
+            {
+              "size": 4904,
+              "name": "./src/client/state-providers/memex-items/memex-item-helpers.ts"
+            },
+            {
+              "size": 549,
+              "name": "./src/client/state-providers/columns/use-update-loaded-columns.ts"
+            },
+            {
+              "size": 557,
+              "name": "./src/client/state-providers/memex-items/use-find-memex-item.ts"
+            },
+            {
+              "size": 6823,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/ActionList/List.js"
+            },
+            {
+              "size": 598,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/ActionList/Group.js"
+            },
+            {
+              "size": 11232,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/ActionList/Item.js"
+            },
+            {
+              "size": 891,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/ActionList/Divider.js"
+            },
+            {
+              "size": 275,
+              "name": "./node_modules/@primer/react/lib-esm/utils/use-force-update.js"
+            },
+            {
+              "size": 534,
+              "name": "./src/client/models/column-value.ts"
+            },
+            {
+              "size": 1142,
+              "name": "./src/client/components/common/memex-item-icon.tsx"
+            },
+            {
+              "size": 3108,
+              "name": "./src/client/components/interactive-item-title.tsx"
+            },
+            {
+              "size": 2863,
+              "name": "./src/client/navigation/context.tsx"
+            },
+            {
+              "size": 1330,
+              "name": "./src/client/components/time.tsx"
+            },
+            {
+              "size": 2752,
+              "name": "./node_modules/date-fns/esm/isWithinInterval/index.js"
+            },
+            {
+              "size": 1231,
+              "name": "./node_modules/date-fns/esm/subMinutes/index.js"
+            },
+            {
+              "size": 1275,
+              "name": "./node_modules/date-fns/esm/addMinutes/index.js"
+            },
+            {
+              "size": 3039,
+              "name": "./node_modules/date-fns/esm/formatDistanceToNowStrict/index.js"
+            },
+            {
+              "size": 9161,
+              "name": "./node_modules/date-fns/esm/formatDistanceStrict/index.js"
+            },
+            {
+              "size": 5046,
+              "name": "./node_modules/date-fns/esm/formatDistanceToNow/index.js"
+            },
+            {
+              "size": 9445,
+              "name": "./node_modules/date-fns/esm/formatDistance/index.js"
+            },
+            {
+              "size": 1475,
+              "name": "./node_modules/date-fns/esm/differenceInSeconds/index.js"
+            },
+            {
+              "size": 1132,
+              "name": "./node_modules/date-fns/esm/differenceInMilliseconds/index.js"
+            },
+            {
+              "size": 2378,
+              "name": "./node_modules/date-fns/esm/differenceInMonths/index.js"
+            },
+            {
+              "size": 1273,
+              "name": "./node_modules/date-fns/esm/differenceInCalendarMonths/index.js"
+            },
+            {
+              "size": 1024,
+              "name": "./node_modules/date-fns/esm/isLastDayOfMonth/index.js"
+            },
+            {
+              "size": 951,
+              "name": "./node_modules/date-fns/esm/endOfDay/index.js"
+            },
+            {
+              "size": 1052,
+              "name": "./node_modules/date-fns/esm/endOfMonth/index.js"
+            },
+            {
+              "size": 603,
+              "name": "./src/client/hooks/use-workflow-action.ts"
+            },
+            {
+              "size": 242,
+              "name": "./src/client/hooks/use-workflow-permissions.ts"
+            },
+            {
+              "size": 2275,
+              "name": "./src/client/components/common/toggle-switch.tsx"
+            },
+            {
+              "size": 8488,
+              "name": "./src/client/components/automation/automation-graph.tsx"
+            },
+            {
+              "size": 623,
+              "name": "./src/client/components/react-router/action-list-nav-link-item.tsx"
+            },
+            {
+              "size": 234,
+              "name": "./src/client/components/insights/insights-configuration-pane/shared.tsx"
+            },
+            {
+              "size": 1270,
+              "name": "./src/client/components/insights/insights-configuration-pane/validation.tsx"
+            },
+            {
+              "size": 369,
+              "name": "./src/client/hooks/common/use-is-column-loaded.ts"
+            },
+            {
+              "size": 2317,
+              "name": "./src/client/components/react_table/cells/user-group.tsx"
+            },
+            {
+              "size": 201,
+              "name": "./src/client/components/react_table/editors/index.ts"
+            },
+            {
+              "size": 3630,
+              "name": "./src/client/hooks/use-update-item.ts"
+            },
+            {
+              "size": 3933,
+              "name": "./src/client/state-providers/column-values/column-value-payload.ts"
+            },
+            {
+              "size": 908,
+              "name": "./src/client/state-providers/repositories/use-repositories.ts"
+            },
+            {
+              "size": 362,
+              "name": "./src/client/components/react_table/renderers/index.ts"
+            },
+            {
+              "size": 2690,
+              "name": "./src/client/components/issue-label.tsx"
+            },
+            {
+              "size": 2399,
+              "name": "./src/client/hooks/common/use-synthetic-change.ts"
+            },
+            {
+              "size": 2476,
+              "name": "./src/client/components/common/inline-autocomplete/autocomplete-suggestions.tsx"
+            },
+            {
+              "size": 3391,
+              "name": "./src/client/components/common/inline-autocomplete/utils.ts"
+            },
+            {
+              "size": 1828,
+              "name": "./src/client/components/react_table/cell-validation.tsx"
+            },
+            {
+              "size": 1431,
+              "name": "./src/client/components/react_table/editors/date-editor.tsx"
+            },
+            {
+              "size": 1798,
+              "name": "./src/client/components/react_table/editors/iteration-editor.tsx"
+            },
+            {
+              "size": 1222,
+              "name": "./src/client/components/settings/iteration/iteration-label.tsx"
+            },
+            {
+              "size": 2164,
+              "name": "./src/client/components/react_table/renderers/iteration-renderer.tsx"
+            },
+            {
+              "size": 657,
+              "name": "./src/client/components/react_table/editors/repository-editor.tsx"
+            },
+            {
+              "size": 4596,
+              "name": "./src/client/components/react_table/editors/single-select-editor.tsx"
+            },
+            {
+              "size": 4953,
+              "name": "./src/client/state-providers/columns/use-update-options.ts"
+            },
+            {
+              "size": 1244,
+              "name": "./src/client/components/react_table/renderers/linked-pull-requests-renderer.tsx"
+            },
+            {
+              "size": 1200,
+              "name": "./src/client/components/react_table/renderers/reviewers-renderer.tsx"
+            },
+            {
+              "size": 1306,
+              "name": "./src/client/components/react_table/sort/iteration-comparator.ts"
+            },
+            {
+              "size": 421,
+              "name": "./src/client/components/react_table/sort/order-by-fn.ts"
+            },
+            {
+              "size": 1088,
+              "name": "./src/client/components/react_table/sort/simple-list-comparator.ts"
+            },
+            {
+              "size": 527,
+              "name": "./src/client/components/react_table/sort/simple-number-comparator.ts"
+            },
+            {
+              "size": 509,
+              "name": "./src/client/components/react_table/sort/simple-text-comparator.ts"
+            },
+            {
+              "size": 1192,
+              "name": "./src/client/components/react_table/sort/single-select-comparator.ts"
+            },
+            {
+              "size": 889,
+              "name": "./src/client/components/react_table/table-grouping.ts"
+            },
+            {
+              "size": 812,
+              "name": "./src/client/components/react_table/table-sorting.ts"
+            },
+            {
+              "size": 2857,
+              "name": "./src/client/helpers/insights-column-values.ts"
+            },
+            {
+              "size": 598,
+              "name": "./src/client/hooks/common/timeouts/use-throttle.ts"
+            },
+            {
+              "size": 880,
+              "name": "./src/client/components/insights/chart-layouts.tsx"
+            },
+            {
+              "size": 430,
+              "name": "./src/client/state-providers/columns/use-find-column-by-name.ts"
+            },
+            {
+              "size": 971,
+              "name": "./src/client/components/common/date-picker/date-picker.tsx"
+            },
+            {
+              "size": 3776,
+              "name": "./src/client/components/common/date-picker/date-picker-anchor.tsx"
+            },
+            {
+              "size": 884,
+              "name": "./node_modules/date-fns/esm/isWeekend/index.js"
+            },
+            {
+              "size": 641,
+              "name": "./node_modules/date-fns/esm/nextMonday/index.js"
+            },
+            {
+              "size": 1011,
+              "name": "./node_modules/date-fns/esm/nextDay/index.js"
+            },
+            {
+              "size": 878,
+              "name": "./node_modules/date-fns/esm/getDay/index.js"
+            },
+            {
+              "size": 683,
+              "name": "./node_modules/date-fns/esm/previousFriday/index.js"
+            },
+            {
+              "size": 1052,
+              "name": "./node_modules/date-fns/esm/previousDay/index.js"
+            },
+            {
+              "size": 16153,
+              "name": "./src/client/components/common/date-picker/date-picker-provider.tsx"
+            },
+            {
+              "size": 1104,
+              "name": "./node_modules/date-fns/esm/setDate/index.js"
+            },
+            {
+              "size": 2925,
+              "name": "./node_modules/date-fns/esm/addMonths/index.js"
+            },
+            {
+              "size": 1168,
+              "name": "./node_modules/date-fns/esm/addYears/index.js"
+            },
+            {
+              "size": 1076,
+              "name": "./node_modules/date-fns/esm/isEqual/index.js"
+            },
+            {
+              "size": 2677,
+              "name": "./node_modules/date-fns/esm/differenceInBusinessDays/index.js"
+            },
+            {
+              "size": 1162,
+              "name": "./node_modules/date-fns/esm/subBusinessDays/index.js"
+            },
+            {
+              "size": 2342,
+              "name": "./node_modules/date-fns/esm/addBusinessDays/index.js"
+            },
+            {
+              "size": 800,
+              "name": "./node_modules/date-fns/esm/isSaturday/index.js"
+            },
+            {
+              "size": 786,
+              "name": "./node_modules/date-fns/esm/isSunday/index.js"
+            },
+            {
+              "size": 608,
+              "name": "./src/client/components/common/keyboard-key.tsx"
+            },
+            {
+              "size": 1192,
+              "name": "./node_modules/date-fns/esm/subWeeks/index.js"
+            },
+            {
+              "size": 1179,
+              "name": "./node_modules/date-fns/esm/addWeeks/index.js"
+            },
+            {
+              "size": 776,
+              "name": "./node_modules/date-fns/esm/isMonday/index.js"
+            },
+            {
+              "size": 683,
+              "name": "./node_modules/date-fns/esm/previousMonday/index.js"
+            },
+            {
+              "size": 683,
+              "name": "./node_modules/date-fns/esm/previousSunday/index.js"
+            },
+            {
+              "size": 786,
+              "name": "./node_modules/date-fns/esm/isFriday/index.js"
+            },
+            {
+              "size": 641,
+              "name": "./node_modules/date-fns/esm/nextFriday/index.js"
+            },
+            {
+              "size": 655,
+              "name": "./node_modules/date-fns/esm/nextSaturday/index.js"
+            },
+            {
+              "size": 1192,
+              "name": "./node_modules/date-fns/esm/subYears/index.js"
+            },
+            {
+              "size": 1203,
+              "name": "./node_modules/date-fns/esm/subMonths/index.js"
+            },
+            {
+              "size": 12474,
+              "name": "./src/client/components/common/date-picker/date-picker-panel.tsx"
+            },
+            {
+              "size": 4513,
+              "name": "./src/client/components/common/date-picker/month.tsx"
+            },
+            {
+              "size": 10140,
+              "name": "./src/client/components/common/date-picker/day.tsx"
+            },
+            {
+              "size": 994,
+              "name": "./node_modules/date-fns/esm/isToday/index.js"
+            },
+            {
+              "size": 2281,
+              "name": "./node_modules/date-fns/esm/startOfWeek/index.js"
+            },
+            {
+              "size": 2283,
+              "name": "./node_modules/date-fns/esm/endOfWeek/index.js"
+            },
+            {
+              "size": 1089,
+              "name": "./node_modules/date-fns/esm/getDaysInMonth/index.js"
+            },
+            {
+              "size": 1073,
+              "name": "./node_modules/date-fns/esm/lastDayOfMonth/index.js"
+            },
+            {
+              "size": 875,
+              "name": "./node_modules/lodash-es/_isIterateeCall.js"
+            },
+            {
+              "size": 336181,
+              "name": "./node_modules/chart.js/dist/chart.esm.js"
+            },
+            {
+              "size": 1225,
+              "name": "./node_modules/date-fns/esm/addSeconds/index.js"
+            },
+            {
+              "size": 1253,
+              "name": "./node_modules/date-fns/esm/addHours/index.js"
+            },
+            {
+              "size": 1226,
+              "name": "./node_modules/date-fns/esm/addQuarters/index.js"
+            },
+            {
+              "size": 1763,
+              "name": "./node_modules/date-fns/esm/differenceInMinutes/index.js"
+            },
+            {
+              "size": 1502,
+              "name": "./node_modules/date-fns/esm/differenceInHours/index.js"
+            },
+            {
+              "size": 2174,
+              "name": "./node_modules/date-fns/esm/differenceInWeeks/index.js"
+            },
+            {
+              "size": 1400,
+              "name": "./node_modules/date-fns/esm/differenceInQuarters/index.js"
+            },
+            {
+              "size": 1812,
+              "name": "./node_modules/date-fns/esm/differenceInYears/index.js"
+            },
+            {
+              "size": 1164,
+              "name": "./node_modules/date-fns/esm/differenceInCalendarYears/index.js"
+            },
+            {
+              "size": 992,
+              "name": "./node_modules/date-fns/esm/startOfSecond/index.js"
+            },
+            {
+              "size": 986,
+              "name": "./node_modules/date-fns/esm/startOfMinute/index.js"
+            },
+            {
+              "size": 964,
+              "name": "./node_modules/date-fns/esm/startOfHour/index.js"
+            },
+            {
+              "size": 991,
+              "name": "./node_modules/date-fns/esm/startOfMonth/index.js"
+            },
+            {
+              "size": 1110,
+              "name": "./node_modules/date-fns/esm/startOfQuarter/index.js"
+            },
+            {
+              "size": 1047,
+              "name": "./node_modules/date-fns/esm/startOfYear/index.js"
+            },
+            {
+              "size": 980,
+              "name": "./node_modules/date-fns/esm/endOfSecond/index.js"
+            },
+            {
+              "size": 979,
+              "name": "./node_modules/date-fns/esm/endOfMinute/index.js"
+            },
+            {
+              "size": 958,
+              "name": "./node_modules/date-fns/esm/endOfHour/index.js"
+            },
+            {
+              "size": 1109,
+              "name": "./node_modules/date-fns/esm/endOfQuarter/index.js"
+            },
+            {
+              "size": 1027,
+              "name": "./node_modules/date-fns/esm/endOfYear/index.js"
+            },
+            {
+              "size": 1395,
+              "name": "./src/client/components/insights/side-nav/chart-link.tsx"
+            },
+            {
+              "size": 10912,
+              "name": "./src/client/components/insights/side-nav/insights-chart-options.tsx"
+            },
+            {
+              "size": 247,
+              "name": "./src/client/helpers/partition.ts"
+            },
+            {
+              "size": 2459,
+              "name": "./src/client/components/drag-and-drop/transformation.ts"
+            },
+            {
+              "size": 2273,
+              "name": "./src/client/components/drag-and-drop/state.ts"
+            },
+            {
+              "size": 333,
+              "name": "./src/client/hooks/use-incrementer.ts"
+            },
+            {
+              "size": 262,
+              "name": "./src/client/hooks/use-markdown-client.ts"
+            },
+            {
+              "size": 7910,
+              "name": "./src/client/components/common/markdown-editor/markdown-editor.tsx"
+            },
+            {
+              "size": 427,
+              "name": "./src/client/components/common/markdown-editor/sanitized-markdown-viewer.tsx"
+            },
+            {
+              "size": 787,
+              "name": "./node_modules/lodash-es/_createAggregator.js"
+            },
+            {
+              "size": 453,
+              "name": "./node_modules/lodash-es/_baseEach.js"
+            },
+            {
+              "size": 454,
+              "name": "./node_modules/lodash-es/_baseForOwn.js"
+            },
+            {
+              "size": 591,
+              "name": "./node_modules/lodash-es/_baseFor.js"
+            },
+            {
+              "size": 893,
+              "name": "./node_modules/lodash-es/_baseIteratee.js"
+            },
+            {
+              "size": 1127,
+              "name": "./node_modules/lodash-es/_baseMatchesProperty.js"
+            },
+            {
+              "size": 1083,
+              "name": "./node_modules/lodash-es/_hasPath.js"
+            },
+            {
+              "size": 372,
+              "name": "./node_modules/lodash-es/_baseHasIn.js"
+            },
+            {
+              "size": 708,
+              "name": "./node_modules/lodash-es/_baseMatches.js"
+            },
+            {
+              "size": 571,
+              "name": "./node_modules/lodash-es/_getMatchData.js"
+            },
+            {
+              "size": 1763,
+              "name": "./node_modules/lodash-es/_baseIsMatch.js"
+            },
+            {
+              "size": 358,
+              "name": "./node_modules/lodash-es/_baseProperty.js"
+            },
+            {
+              "size": 389,
+              "name": "./node_modules/lodash-es/_basePropertyDeep.js"
+            },
+            {
+              "size": 2861,
+              "name": "./node_modules/date-fns/esm/add/index.js"
+            },
+            {
+              "size": 1176,
+              "name": "./src/client/components/settings/iteration/add-break-button.tsx"
+            },
+            {
+              "size": 977,
+              "name": "./src/client/components/settings/iteration/iteration-break-row.tsx"
+            },
+            {
+              "size": 1092,
+              "name": "./src/client/components/settings/iteration/iteration-row.tsx"
+            },
+            {
+              "size": 3025,
+              "name": "./src/client/components/settings/iteration/iterations-header.tsx"
+            },
+            {
+              "size": 871,
+              "name": "./src/client/components/settings/no-iterations-placeholder.tsx"
+            },
+            {
+              "size": 17153,
+              "name": "./src/client/components/react_table/add-column-modal.tsx"
+            },
+            {
+              "size": 256,
+              "name": "./src/client/hooks/use-memex-client.ts"
+            },
+            {
+              "size": 287,
+              "name": "./src/client/hooks/use-view-client.ts"
+            },
+            {
+              "size": 489,
+              "name": "./src/client/helpers/reactions-helper.ts"
+            },
+            {
+              "size": 10152,
+              "name": "./src/client/components/side-panel/comment.tsx"
+            },
+            {
+              "size": 517,
+              "name": "./src/client/hooks/use-side-panel-dirty-state.tsx"
+            },
+            {
+              "size": 3751,
+              "name": "./src/client/components/side-panel/live-update.tsx"
+            },
+            {
+              "size": 3554,
+              "name": "./src/client/hooks/use-repository-items.ts"
+            },
+            {
+              "size": 5761,
+              "name": "./src/client/components/side-panel/item-suggestions-list.tsx"
+            },
+            {
+              "size": 6038,
+              "name": "./src/client/components/side-panel/repo-suggestions.tsx"
+            },
+            {
+              "size": 10494,
+              "name": "./src/client/components/side-panel/add-comment.tsx"
+            },
+            {
+              "size": 1714,
+              "name": "./src/client/components/side-panel/breadcrumbs-wrapper.tsx"
+            },
+            {
+              "size": 2466,
+              "name": "./src/client/components/side-panel/label.tsx"
+            },
+            {
+              "size": 12307,
+              "name": "./src/client/components/board/card/header.tsx"
+            },
+            {
+              "size": 57,
+              "name": "./src/client/selection/types.ts"
+            },
+            {
+              "size": 972,
+              "name": "./src/client/components/filter-bar/click-to-filter.tsx"
+            },
+            {
+              "size": 3093,
+              "name": "./src/client/components/item-state-unified.tsx"
+            },
+            {
+              "size": 9358,
+              "name": "./src/client/hooks/use-add-memex-item.ts"
+            },
+            {
+              "size": 3086,
+              "name": "./src/client/state-providers/memex-items/use-create-memex-item.ts"
+            },
+            {
+              "size": 8947,
+              "name": "./src/client/components/discovery-suggestions.tsx"
+            },
+            {
+              "size": 7479,
+              "name": "./src/client/components/react_table/repo-searcher.tsx"
+            },
+            {
+              "size": 2640,
+              "name": "./src/client/components/suggestions-for-repository.tsx"
+            },
+            {
+              "size": 4474,
+              "name": "./src/client/components/side-panel/sidebar/fields/index.tsx"
+            },
+            {
+              "size": 1718,
+              "name": "./src/client/components/side-panel/sidebar/fields/core.tsx"
+            },
+            {
+              "size": 5760,
+              "name": "./src/client/components/side-panel/sidebar/sidebar-actions.tsx"
+            },
+            {
+              "size": 2041,
+              "name": "./src/client/hooks/use-archive-memex-items-with-confirmation.ts"
+            },
+            {
+              "size": 1276,
+              "name": "./src/client/platform/session-storage.ts"
+            },
+            {
+              "size": 1036,
+              "name": "./src/client/hooks/common/with-reducer-effects.ts"
+            },
+            {
+              "size": 2559,
+              "name": "./src/client/hooks/use-view-deserializer.ts"
+            },
+            {
+              "size": 15446,
+              "name": "./src/client/hooks/use-view-state-reducer/reducer.tsx"
+            },
+            {
+              "size": 221,
+              "name": "./src/client/hooks/common/with-derived-state-reducer.tsx"
+            },
+            {
+              "size": 4663,
+              "name": "./src/client/components/filter-bar/base-project-view-filter-input.tsx"
+            },
+            {
+              "size": 15462,
+              "name": "./src/client/components/board/card.tsx"
+            },
+            {
+              "size": 376,
+              "name": "./src/client/components/board/sash.tsx"
+            },
+            {
+              "size": 4638,
+              "name": "./src/client/components/board/column/editable-column-name.tsx"
+            },
+            {
+              "size": 807,
+              "name": "./src/client/helpers/vertical-group.ts"
+            },
+            {
+              "size": 822,
+              "name": "./src/client/state-providers/columns/use-destroy-vertical-group.ts"
+            },
+            {
+              "size": 895,
+              "name": "./src/client/state-providers/columns/use-update-vertical-group-name.ts"
+            },
+            {
+              "size": 1158,
+              "name": "./src/client/components/react_table/group/assignees-group-header-label.tsx"
+            },
+            {
+              "size": 1310,
+              "name": "./src/client/components/react_table/group/default-group-header-label.tsx"
+            },
+            {
+              "size": 1884,
+              "name": "./src/client/components/react_table/group/iteration-group-header-label.tsx"
+            },
+            {
+              "size": 891,
+              "name": "./src/client/components/react_table/group/repository-group-header-label.tsx"
+            },
+            {
+              "size": 4035,
+              "name": "./src/client/components/react_table/group/table-group-contents.tsx"
+            },
+            {
+              "size": 6174,
+              "name": "./src/client/hooks/use-grouped-column-update.ts"
+            },
+            {
+              "size": 3109,
+              "name": "./src/client/components/react_table/group/table-group-header.tsx"
+            },
+            {
+              "size": 942,
+              "name": "./src/client/components/react_table/plugins.ts"
+            },
+            {
+              "size": 7236,
+              "name": "./src/client/components/react_table/table-cell.tsx"
+            },
+            {
+              "size": 6123,
+              "name": "./src/client/components/react_table/use-row-selection.ts"
+            },
+            {
+              "size": 1611,
+              "name": "./src/client/components/react_table/header/dummy-table-header-cell.tsx"
+            },
+            {
+              "size": 2123,
+              "name": "./src/client/components/react_table/hooks/use-table-field-commands.ts"
+            },
+            {
+              "size": 1421,
+              "name": "./src/client/components/react_table/hooks/use-table-group-commands.ts"
+            },
+            {
+              "size": 2387,
+              "name": "./src/client/components/react_table/hooks/use-table-sort-commands.ts"
+            },
+            {
+              "size": 3176,
+              "name": "./src/client/components/react_table/add-column-header.tsx"
+            },
+            {
+              "size": 1238,
+              "name": "./src/client/state-providers/columns/use-update-column-width.ts"
+            },
+            {
+              "size": 1332,
+              "name": "./src/client/hooks/use-alert.tsx"
+            },
+            {
+              "size": 11984,
+              "name": "./src/client/components/react_table/row-dragger.tsx"
+            },
+            {
+              "size": 1257,
+              "name": "./src/client/hooks/use-element-is-overflowing-effect.tsx"
+            },
+            {
+              "size": 8658,
+              "name": "./src/client/components/view-options-menu/index.tsx"
+            },
+            {
+              "size": 1810,
+              "name": "./node_modules/date-fns/esm/locale/en-US/_lib/formatDistance/index.js"
+            },
+            {
+              "size": 771,
+              "name": "./node_modules/date-fns/esm/locale/en-US/_lib/formatLong/index.js"
+            },
+            {
+              "size": 336,
+              "name": "./node_modules/date-fns/esm/locale/en-US/_lib/formatRelative/index.js"
+            },
+            {
+              "size": 3817,
+              "name": "./node_modules/date-fns/esm/locale/en-US/_lib/localize/index.js"
+            },
+            {
+              "size": 3063,
+              "name": "./node_modules/date-fns/esm/locale/en-US/_lib/match/index.js"
+            },
+            {
+              "size": 1825,
+              "name": "./node_modules/date-fns/esm/_lib/getUTCWeekYear/index.js"
+            },
+            {
+              "size": 1152,
+              "name": "./node_modules/date-fns/esm/_lib/startOfUTCWeek/index.js"
+            },
+            {
+              "size": 573,
+              "name": "./node_modules/date-fns/esm/_lib/startOfUTCISOWeek/index.js"
+            },
+            {
+              "size": 618,
+              "name": "./node_modules/date-fns/esm/_lib/setUTCWeek/index.js"
+            },
+            {
+              "size": 624,
+              "name": "./node_modules/date-fns/esm/_lib/setUTCISOWeek/index.js"
+            },
+            {
+              "size": 1233,
+              "name": "./node_modules/date-fns/esm/_lib/setUTCDay/index.js"
+            },
+            {
+              "size": 749,
+              "name": "./node_modules/date-fns/esm/_lib/setUTCISODay/index.js"
+            },
+            {
+              "size": 3008,
+              "name": "./node_modules/lodash-es/_baseIsEqualDeep.js"
+            },
+            {
+              "size": 554,
+              "name": "./node_modules/lodash-es/_toSource.js"
+            },
+            {
+              "size": 208,
+              "name": "./node_modules/lodash-es/_DataView.js"
+            },
+            {
+              "size": 562,
+              "name": "./node_modules/lodash-es/_isMasked.js"
+            },
+            {
+              "size": 155,
+              "name": "./node_modules/lodash-es/_coreJsData.js"
+            },
+            {
+              "size": 171,
+              "name": "./node_modules/lodash-es/_freeGlobal.js"
+            },
+            {
+              "size": 1137,
+              "name": "./node_modules/lodash-es/_getRawTag.js"
+            },
+            {
+              "size": 563,
+              "name": "./node_modules/lodash-es/_objectToString.js"
+            },
+            {
+              "size": 193,
+              "name": "./node_modules/lodash-es/_Map.js"
+            },
+            {
+              "size": 205,
+              "name": "./node_modules/lodash-es/_Promise.js"
+            },
+            {
+              "size": 193,
+              "name": "./node_modules/lodash-es/_Set.js"
+            },
+            {
+              "size": 205,
+              "name": "./node_modules/lodash-es/_WeakMap.js"
+            },
+            {
+              "size": 867,
+              "name": "./node_modules/lodash-es/_ListCache.js"
+            },
+            {
+              "size": 252,
+              "name": "./node_modules/lodash-es/_stackClear.js"
+            },
+            {
+              "size": 403,
+              "name": "./node_modules/lodash-es/_stackDelete.js"
+            },
+            {
+              "size": 269,
+              "name": "./node_modules/lodash-es/_stackGet.js"
+            },
+            {
+              "size": 321,
+              "name": "./node_modules/lodash-es/_stackHas.js"
+            },
+            {
+              "size": 851,
+              "name": "./node_modules/lodash-es/_stackSet.js"
+            },
+            {
+              "size": 391,
+              "name": "./node_modules/lodash-es/_mapCacheClear.js"
+            },
+            {
+              "size": 448,
+              "name": "./node_modules/lodash-es/_mapCacheDelete.js"
+            },
+            {
+              "size": 328,
+              "name": "./node_modules/lodash-es/_mapCacheGet.js"
+            },
+            {
+              "size": 380,
+              "name": "./node_modules/lodash-es/_mapCacheHas.js"
+            },
+            {
+              "size": 487,
+              "name": "./node_modules/lodash-es/_mapCacheSet.js"
+            },
+            {
+              "size": 630,
+              "name": "./node_modules/lodash-es/_SetCache.js"
+            },
+            {
+              "size": 335,
+              "name": "./node_modules/lodash-es/_cacheHas.js"
+            },
+            {
+              "size": 202,
+              "name": "./node_modules/lodash-es/_nativeKeys.js"
+            },
+            {
+              "size": 380,
+              "name": "./node_modules/lodash-es/_overArg.js"
+            },
+            {
+              "size": 884,
+              "name": "./node_modules/lodash-es/_getSymbols.js"
+            },
+            {
+              "size": 759,
+              "name": "./node_modules/mobx-react-lite/es/utils/reactionCleanupTrackingCommon.js"
+            },
+            {
+              "size": 24126,
+              "name": "./node_modules/date-fns/esm/_lib/format/formatters/index.js"
+            },
+            {
+              "size": 3113,
+              "name": "./node_modules/date-fns/esm/_lib/format/lightFormatters/index.js"
+            },
+            {
+              "size": 363,
+              "name": "./src/client/state-providers/suggestions/use-remove-suggestions.ts"
+            },
+            {
+              "size": 939,
+              "name": "./node_modules/lodash-es/_shortOut.js"
+            },
+            {
+              "size": 639,
+              "name": "./node_modules/lodash-es/_baseSetToString.js"
+            },
+            {
+              "size": 231,
+              "name": "./node_modules/lodash-es/_defineProperty.js"
+            },
+            {
+              "size": 606,
+              "name": "./node_modules/lodash-es/_isFlattenable.js"
+            },
+            {
+              "size": 631,
+              "name": "./node_modules/lodash-es/_memoizeCapped.js"
+            },
+            {
+              "size": 488,
+              "name": "./node_modules/lodash-es/_nativeKeysIn.js"
+            },
+            {
+              "size": 447,
+              "name": "./node_modules/lodash-es/_cloneArrayBuffer.js"
+            },
+            {
+              "size": 505,
+              "name": "./node_modules/lodash-es/_cloneDataView.js"
+            },
+            {
+              "size": 525,
+              "name": "./node_modules/lodash-es/_cloneTypedArray.js"
+            },
+            {
+              "size": 437,
+              "name": "./node_modules/lodash-es/_cloneRegExp.js"
+            },
+            {
+              "size": 522,
+              "name": "./node_modules/lodash-es/_cloneSymbol.js"
+            },
+            {
+              "size": 510,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/Button/ButtonStyles.js"
+            },
+            {
+              "size": 4143,
+              "name": "./src/client/state-providers/column-values/column-value.ts"
+            },
+            {
+              "size": 1500,
+              "name": "./node_modules/@primer/react/lib-esm/deprecated/ActionList/Header.js"
+            },
+            {
+              "size": 2968,
+              "name": "./src/client/components/item-state.tsx"
+            },
+            {
+              "size": 1151,
+              "name": "./src/client/components/react_table/cells/text-cell.tsx"
+            },
+            {
+              "size": 127,
+              "name": "./node_modules/date-fns/esm/_lib/cloneObject/index.js"
+            },
+            {
+              "size": 373,
+              "name": "./node_modules/date-fns/esm/_lib/roundingMethods/index.js"
+            },
+            {
+              "size": 693,
+              "name": "./src/client/components/automation/automation-pill.tsx"
+            },
+            {
+              "size": 5055,
+              "name": "./src/client/components/automation/automation-set-content-type-selector.tsx"
+            },
+            {
+              "size": 2882,
+              "name": "./src/client/components/automation/automation-set-field-selector.tsx"
+            },
+            {
+              "size": 3091,
+              "name": "./src/client/components/automation/use-automation-color.tsx"
+            },
+            {
+              "size": 541,
+              "name": "./src/client/components/react-router/nav-link-with-active-class-name.tsx"
+            },
+            {
+              "size": 1747,
+              "name": "./src/client/components/react_table/editors/assignees-editor.tsx"
+            },
+            {
+              "size": 3920,
+              "name": "./src/client/state-providers/column-values/use-update-item-column-value.ts"
+            },
+            {
+              "size": 217,
+              "name": "./src/client/state-providers/memex-items/use-memex-items-ref.ts"
+            },
+            {
+              "size": 1109,
+              "name": "./src/client/state-providers/memex-items/use-set-new-row-position.ts"
+            },
+            {
+              "size": 1606,
+              "name": "./src/client/components/react_table/renderers/assignees-renderer.tsx"
+            },
+            {
+              "size": 1622,
+              "name": "./src/client/components/common/placeholders.tsx"
+            },
+            {
+              "size": 913,
+              "name": "./src/client/components/react_table/cells/dropdown-cell.tsx"
+            },
+            {
+              "size": 920,
+              "name": "./src/client/components/react_table/renderers/cell-renderer.tsx"
+            },
+            {
+              "size": 4835,
+              "name": "./src/client/components/react_table/editors/select-panel-editor.tsx"
+            },
+            {
+              "size": 6505,
+              "name": "./src/client/components/repo-picker.tsx"
+            },
+            {
+              "size": 765,
+              "name": "./src/client/components/repository-icon.tsx"
+            },
+            {
+              "size": 1497,
+              "name": "./src/client/components/react_table/editors/labels-editor.tsx"
+            },
+            {
+              "size": 1282,
+              "name": "./src/client/components/react_table/renderers/date-renderer.tsx"
+            },
+            {
+              "size": 1375,
+              "name": "./src/client/components/react_table/renderers/labels-renderer.tsx"
+            },
+            {
+              "size": 15606,
+              "name": "./node_modules/color2k/dist/index.exports.import.es.mjs"
+            },
+            {
+              "size": 1473,
+              "name": "./src/client/components/react_table/renderers/milestone-renderer.tsx"
+            },
+            {
+              "size": 1332,
+              "name": "./src/client/components/react_table/renderers/number-renderer.tsx"
+            },
+            {
+              "size": 1715,
+              "name": "./src/client/components/react_table/renderers/repository-renderer.tsx"
+            },
+            {
+              "size": 2439,
+              "name": "./src/client/components/react_table/renderers/single-select-renderer.tsx"
+            },
+            {
+              "size": 1296,
+              "name": "./src/client/components/react_table/renderers/text-renderer.tsx"
+            },
+            {
+              "size": 1066,
+              "name": "./src/client/components/react_table/renderers/title-renderer.tsx"
+            },
+            {
+              "size": 2226,
+              "name": "./src/client/components/react_table/renderers/tracks-renderer.tsx"
+            },
+            {
+              "size": 1836,
+              "name": "./src/client/components/react_table/editors/milestone-editor.tsx"
+            },
+            {
+              "size": 1659,
+              "name": "./src/client/components/react_table/editors/number-editor.tsx"
+            },
+            {
+              "size": 1599,
+              "name": "./src/client/helpers/cell-validation.ts"
+            },
+            {
+              "size": 5261,
+              "name": "./src/client/components/react_table/editors/text-cell-editor.tsx"
+            },
+            {
+              "size": 3013,
+              "name": "./src/client/hooks/common/use-combobox.ts"
+            },
+            {
+              "size": 5699,
+              "name": "./node_modules/@koddsson/textarea-caret/index.js"
+            },
+            {
+              "size": 1455,
+              "name": "./src/client/components/react_table/editors/text-editor.tsx"
+            },
+            {
+              "size": 7613,
+              "name": "./src/client/components/react_table/editors/title-editor.tsx"
+            },
+            {
+              "size": 4686,
+              "name": "./src/client/hooks/editors/use-iteration-editor.tsx"
+            },
+            {
+              "size": 388,
+              "name": "./src/client/helpers/single-select-suggester.ts"
+            },
+            {
+              "size": 1802,
+              "name": "./src/client/hooks/editors/use-single-select-editor.tsx"
+            },
+            {
+              "size": 913,
+              "name": "./src/client/components/react_table/cells/linked-pull-requests-group.tsx"
+            },
+            {
+              "size": 1231,
+              "name": "./src/client/components/linked-pr-label.tsx"
+            },
+            {
+              "size": 1068,
+              "name": "./src/client/components/insights/icons/bar-chart-icon.tsx"
+            },
+            {
+              "size": 1173,
+              "name": "./src/client/components/insights/icons/column-chart-icon.tsx"
+            },
+            {
+              "size": 1917,
+              "name": "./src/client/components/insights/icons/stacked-area-chart-icon.tsx"
+            },
+            {
+              "size": 3438,
+              "name": "./src/client/components/common/date-picker/date-parser.ts"
+            },
+            {
+              "size": 936,
+              "name": "./src/client/components/common/date-picker/strings.ts"
+            },
+            {
+              "size": 1625,
+              "name": "./src/client/components/common/date-picker/utils.ts"
+            },
+            {
+              "size": 452,
+              "name": "./src/client/components/common/date-picker/types.ts"
+            },
+            {
+              "size": 319,
+              "name": "./src/client/hooks/use-resize-observer.ts"
+            },
+            {
+              "size": 14437,
+              "name": "./src/client/components/common/date-picker/date-picker-text-input.tsx"
+            },
+            {
+              "size": 2712,
+              "name": "./src/client/components/common/validation-error-popover.tsx"
+            },
+            {
+              "size": 254,
+              "name": "./src/client/components/common/date-picker/hidden-description.tsx"
+            },
+            {
+              "size": 2457,
+              "name": "./src/client/components/common/date-picker/hooks.ts"
+            },
+            {
+              "size": 1331,
+              "name": "./src/client/components/common/date-picker/date-picker-confirm-close-dialog.tsx"
+            },
+            {
+              "size": 818,
+              "name": "./src/client/components/common/date-picker/date-picker-overlay.tsx"
+            },
+            {
+              "size": 72331,
+              "name": "./node_modules/chart.js/dist/chunks/helpers.segment.js"
+            },
+            {
+              "size": 1214,
+              "name": "./src/client/hooks/use-markdown-suggestions.ts"
+            },
+            {
+              "size": 3588,
+              "name": "./src/client/components/common/markdown-editor/editor-footer.tsx"
+            },
+            {
+              "size": 1594,
+              "name": "./src/client/components/common/markdown-editor/strings.ts"
+            },
+            {
+              "size": 3541,
+              "name": "./src/client/components/common/markdown-editor/editor-input.tsx"
+            },
+            {
+              "size": 6680,
+              "name": "./src/client/components/common/markdown-editor/editor-toolbar.tsx"
+            },
+            {
+              "size": 1775,
+              "name": "./src/client/components/common/icon-button-with-tooltip.tsx"
+            },
+            {
+              "size": 1756,
+              "name": "./src/client/components/common/markdown-editor/markdown-viewer.tsx"
+            },
+            {
+              "size": 5239,
+              "name": "./src/client/components/common/markdown-editor/use-list-editing.ts"
+            },
+            {
+              "size": 4690,
+              "name": "./src/client/components/common/markdown-editor/use-file-handling.ts"
+            },
+            {
+              "size": 682,
+              "name": "./node_modules/lodash-es/_arrayAggregator.js"
+            },
+            {
+              "size": 744,
+              "name": "./node_modules/lodash-es/_baseAggregator.js"
+            },
+            {
+              "size": 884,
+              "name": "./node_modules/lodash-es/_createBaseEach.js"
+            },
+            {
+              "size": 646,
+              "name": "./node_modules/lodash-es/_createBaseFor.js"
+            },
+            {
+              "size": 412,
+              "name": "./node_modules/lodash-es/_isStrictComparable.js"
+            },
+            {
+              "size": 572,
+              "name": "./node_modules/lodash-es/_matchesStrictComparable.js"
+            },
+            {
+              "size": 934,
+              "name": "./src/client/components/common/markdown-editor/use-indenting.ts"
+            },
+            {
+              "size": 1575,
+              "name": "./src/client/components/common/markdown-editor/view-switch.tsx"
+            },
+            {
+              "size": 7476,
+              "name": "./src/client/components/settings/iteration/iteration-row-skeleton.tsx"
+            },
+            {
+              "size": 3887,
+              "name": "./src/client/components/settings/iteration/new-iteration-modal-button.tsx"
+            },
+            {
+              "size": 1502,
+              "name": "./src/client/components/settings/iteration/new-iteration-options.tsx"
+            },
+            {
+              "size": 1838,
+              "name": "./src/client/components/react_table/hooks/use-add-field.ts"
+            },
+            {
+              "size": 322,
+              "name": "./src/client/helpers/new-column.ts"
+            },
+            {
+              "size": 6334,
+              "name": "./src/client/components/side-panel/reactions.tsx"
+            },
+            {
+              "size": 3339,
+              "name": "./src/client/components/side-panel/suggested-item.tsx"
+            },
+            {
+              "size": 2384,
+              "name": "./src/client/components/side-panel/breadcrumbs.tsx"
+            },
+            {
+              "size": 389,
+              "name": "./src/client/components/common/keyboard-shortcuts.tsx"
+            },
+            {
+              "size": 3582,
+              "name": "./src/client/components/suggested-item-list.tsx"
+            },
+            {
+              "size": 3432,
+              "name": "./src/client/hooks/use-build-item-payload-from-filter.ts"
+            },
+            {
+              "size": 1608,
+              "name": "./src/client/hooks/use-last-item.ts"
+            },
+            {
+              "size": 4320,
+              "name": "./src/client/hooks/common/use-autocomplete.ts"
+            },
+            {
+              "size": 318,
+              "name": "./src/client/hooks/common/use-controlled-ref.ts"
+            },
+            {
+              "size": 2708,
+              "name": "./src/client/hooks/common/use-text-expander.ts"
+            },
+            {
+              "size": 2423,
+              "name": "./src/client/components/react_table/repo-list.tsx"
+            },
+            {
+              "size": 733,
+              "name": "./src/client/components/react_table/selected-repository-pill.tsx"
+            },
+            {
+              "size": 3843,
+              "name": "./src/client/components/suggested-item-picker.tsx"
+            },
+            {
+              "size": 13365,
+              "name": "./src/client/components/card-label.tsx"
+            },
+            {
+              "size": 2093,
+              "name": "./src/client/components/side-panel/sidebar/fields/assignees-field.tsx"
+            },
+            {
+              "size": 2239,
+              "name": "./src/client/components/side-panel/sidebar/fields/date-field.tsx"
+            },
+            {
+              "size": 2594,
+              "name": "./src/client/components/side-panel/sidebar/fields/iteration-field.tsx"
+            },
+            {
+              "size": 2088,
+              "name": "./src/client/components/side-panel/sidebar/fields/labels-field.tsx"
+            },
+            {
+              "size": 1976,
+              "name": "./src/client/components/side-panel/sidebar/fields/milestone-field.tsx"
+            },
+            {
+              "size": 1958,
+              "name": "./src/client/components/side-panel/sidebar/fields/number-field.tsx"
+            },
+            {
+              "size": 1994,
+              "name": "./src/client/components/side-panel/sidebar/fields/single-select-field.tsx"
+            },
+            {
+              "size": 1791,
+              "name": "./src/client/components/side-panel/sidebar/fields/text-field.tsx"
+            },
+            {
+              "size": 1663,
+              "name": "./src/client/state-providers/memex-items/use-archive-memex-items.ts"
+            },
+            {
+              "size": 3441,
+              "name": "./src/client/components/board/card/title.tsx"
+            },
+            {
+              "size": 942,
+              "name": "./src/client/state-providers/columns/use-destroy-column-iteration.ts"
+            },
+            {
+              "size": 903,
+              "name": "./src/client/state-providers/columns/use-update-column-iteration-title.ts"
+            },
+            {
+              "size": 1326,
+              "name": "./src/client/components/react_table/group-row-drop-zone-sash.tsx"
+            },
+            {
+              "size": 603,
+              "name": "./src/client/helpers/column-editable.ts"
+            },
+            {
+              "size": 2768,
+              "name": "./src/client/state-providers/column-values/use-clear-column-value.ts"
+            },
+            {
+              "size": 10749,
+              "name": "./src/client/components/react_table/use-table-focus-cell.ts"
+            },
+            {
+              "size": 2934,
+              "name": "./src/client/components/react_table/table-search-button.tsx"
+            },
+            {
+              "size": 336,
+              "name": "./src/client/state-providers/modals/use-add-field-modal.ts"
+            },
+            {
+              "size": 9747,
+              "name": "./src/client/components/add-column-menu.tsx"
+            },
+            {
+              "size": 820,
+              "name": "./src/client/hooks/use-memex-app-root-height.ts"
+            },
+            {
+              "size": 4752,
+              "name": "./src/client/components/horizontal-group-by-menu.tsx"
+            },
+            {
+              "size": 4287,
+              "name": "./src/client/components/sort-by-menu.tsx"
+            },
+            {
+              "size": 3466,
+              "name": "./src/client/components/vertical-group-by-menu.tsx"
+            },
+            {
+              "size": 9013,
+              "name": "./src/client/components/view-options-menu/configuration-items.tsx"
+            },
+            {
+              "size": 4522,
+              "name": "./src/client/components/view-options-menu/layout-toggle.tsx"
+            },
+            {
+              "size": 1240,
+              "name": "./src/client/components/view-options-menu/menu-anchor.tsx"
+            },
+            {
+              "size": 1666,
+              "name": "./src/client/components/view-options-menu/view-action-items.tsx"
+            },
+            {
+              "size": 2164,
+              "name": "./src/client/components/view-options-menu/view-changes-button.tsx"
+            },
+            {
+              "size": 365,
+              "name": "./node_modules/date-fns/esm/locale/_lib/buildFormatLongFn/index.js"
+            },
+            {
+              "size": 1005,
+              "name": "./node_modules/date-fns/esm/locale/_lib/buildLocalizeFn/index.js"
+            },
+            {
+              "size": 669,
+              "name": "./node_modules/date-fns/esm/locale/_lib/buildMatchPatternFn/index.js"
+            },
+            {
+              "size": 1405,
+              "name": "./node_modules/date-fns/esm/locale/_lib/buildMatchFn/index.js"
+            },
+            {
+              "size": 876,
+              "name": "./node_modules/date-fns/esm/_lib/getUTCWeek/index.js"
+            },
+            {
+              "size": 870,
+              "name": "./node_modules/date-fns/esm/_lib/getUTCISOWeek/index.js"
+            },
+            {
+              "size": 1106,
+              "name": "./node_modules/date-fns/esm/_lib/getUTCISOWeekYear/index.js"
+            },
+            {
+              "size": 481,
+              "name": "./node_modules/lodash-es/_getNative.js"
+            },
+            {
+              "size": 216,
+              "name": "./node_modules/lodash-es/_listCacheClear.js"
+            },
+            {
+              "size": 773,
+              "name": "./node_modules/lodash-es/_listCacheDelete.js"
+            },
+            {
+              "size": 418,
+              "name": "./node_modules/lodash-es/_listCacheGet.js"
+            },
+            {
+              "size": 401,
+              "name": "./node_modules/lodash-es/_listCacheHas.js"
+            },
+            {
+              "size": 551,
+              "name": "./node_modules/lodash-es/_listCacheSet.js"
+            },
+            {
+              "size": 745,
+              "name": "./node_modules/lodash-es/_Hash.js"
+            },
+            {
+              "size": 398,
+              "name": "./node_modules/lodash-es/_getMapData.js"
+            },
+            {
+              "size": 2660,
+              "name": "./node_modules/lodash-es/_equalArrays.js"
+            },
+            {
+              "size": 422,
+              "name": "./node_modules/lodash-es/_setCacheAdd.js"
+            },
+            {
+              "size": 314,
+              "name": "./node_modules/lodash-es/_setCacheHas.js"
+            },
+            {
+              "size": 3744,
+              "name": "./node_modules/lodash-es/_equalByTag.js"
+            },
+            {
+              "size": 128,
+              "name": "./node_modules/lodash-es/_Uint8Array.js"
+            },
+            {
+              "size": 2969,
+              "name": "./node_modules/lodash-es/_equalObjects.js"
+            },
+            {
+              "size": 646,
+              "name": "./node_modules/date-fns/esm/_lib/getUTCDayOfYear/index.js"
+            },
+            {
+              "size": 368,
+              "name": "./src/client/state-providers/suggestions/use-suggestions-stable-context.ts"
+            },
+            {
+              "size": 416,
+              "name": "./src/client/helpers/assignee-suggester.ts"
+            },
+            {
+              "size": 1671,
+              "name": "./src/client/hooks/editors/use-assignees-editor.tsx"
+            },
+            {
+              "size": 1832,
+              "name": "./src/client/state-providers/suggestions/use-fetch-suggested-assignees.ts"
+            },
+            {
+              "size": 6967,
+              "name": "./src/client/hooks/editors/use-select-panel.tsx"
+            },
+            {
+              "size": 3256,
+              "name": "./src/client/components/react_table/use-convert-to-issue-hook.tsx"
+            },
+            {
+              "size": 379,
+              "name": "./src/client/helpers/label-suggester.ts"
+            },
+            {
+              "size": 1755,
+              "name": "./src/client/hooks/editors/use-labels-editor.tsx"
+            },
+            {
+              "size": 1797,
+              "name": "./src/client/state-providers/suggestions/use-fetch-suggested-labels.ts"
+            },
+            {
+              "size": 720,
+              "name": "./src/client/components/react_table/cells/label-group.tsx"
+            },
+            {
+              "size": 759,
+              "name": "./src/client/components/react_table/cells/milestone.tsx"
+            },
+            {
+              "size": 714,
+              "name": "./src/client/components/react_table/cells/link-cell.tsx"
+            },
+            {
+              "size": 716,
+              "name": "./src/client/components/react_table/cells/tracks-cell.tsx"
+            },
+            {
+              "size": 380,
+              "name": "./src/client/helpers/milestone-suggester.ts"
+            },
+            {
+              "size": 1729,
+              "name": "./src/client/hooks/editors/use-milestone-editor.tsx"
+            },
+            {
+              "size": 1788,
+              "name": "./src/client/state-providers/suggestions/use-fetch-suggested-milestones.ts"
+            },
+            {
+              "size": 6310,
+              "name": "./node_modules/@github/combobox-nav/dist/index.js"
+            },
+            {
+              "size": 423,
+              "name": "./src/client/components/react_table/hooks/use-on-cell-editor-focus.ts"
+            },
+            {
+              "size": 953,
+              "name": "./src/client/components/react_table/editors/use-submit-on-cleanup.ts"
+            },
+            {
+              "size": 482,
+              "name": "./src/client/helpers/iteration-suggester.ts"
+            },
+            {
+              "size": 171,
+              "name": "./src/client/hooks/common/use-select-all.ts"
+            },
+            {
+              "size": 14238,
+              "name": "./node_modules/@github/paste-markdown/dist/index.esm.js"
+            },
+            {
+              "size": 155,
+              "name": "./src/client/components/common/inline-autocomplete/index.ts"
+            },
+            {
+              "size": 2198,
+              "name": "./src/client/components/common/inline-autocomplete/suggestions-hooks/use-mention-suggestions.tsx"
+            },
+            {
+              "size": 2850,
+              "name": "./src/client/components/common/inline-autocomplete/suggestions-hooks/use-reference-suggestions.tsx"
+            },
+            {
+              "size": 1010,
+              "name": "./src/client/components/common/markdown-editor/use-textarea-height.ts"
+            },
+            {
+              "size": 721,
+              "name": "./src/client/components/common/markdown-editor/use-link-interception.tsx"
+            },
+            {
+              "size": 277,
+              "name": "./src/client/components/common/markdown-editor/utils.ts"
+            },
+            {
+              "size": 4437,
+              "name": "./src/client/hooks/common/use-unified-file-select.ts"
+            },
+            {
+              "size": 293,
+              "name": "./src/client/components/common/markdown-editor/markdown.ts"
+            },
+            {
+              "size": 1493,
+              "name": "./src/client/components/settings/iteration/iteration-diff-value.tsx"
+            },
+            {
+              "size": 5435,
+              "name": "./src/client/components/settings/iteration/iteration-duration-input.tsx"
+            },
+            {
+              "size": 2511,
+              "name": "./src/client/state-providers/columns/use-add-column.ts"
+            },
+            {
+              "size": 1127,
+              "name": "./src/client/components/suggested-item-option.tsx"
+            },
+            {
+              "size": 952,
+              "name": "./src/client/hooks/common/use-combobox-menu-visibility-behavior.ts"
+            },
+            {
+              "size": 345,
+              "name": "./src/client/hooks/common/use-controlled-prop.ts"
+            },
+            {
+              "size": 180,
+              "name": "./src/client/hooks/common/use-provided-ref-or-create.ts"
+            },
+            {
+              "size": 661,
+              "name": "./src/client/components/side-panel/sidebar/fields/sidebar-field.tsx"
+            },
+            {
+              "size": 1998,
+              "name": "./src/client/components/side-panel/sidebar/fields/sidebar-select-panel.tsx"
+            },
+            {
+              "size": 2773,
+              "name": "./src/client/components/side-panel/sidebar/fields/text-value-with-fallback.tsx"
+            },
+            {
+              "size": 2710,
+              "name": "./src/client/components/side-panel/sidebar/fields/sidebar-text-input.tsx"
+            },
+            {
+              "size": 1145,
+              "name": "./node_modules/date-fns/esm/_lib/startOfUTCWeekYear/index.js"
+            },
+            {
+              "size": 650,
+              "name": "./node_modules/date-fns/esm/_lib/startOfUTCISOWeekYear/index.js"
+            },
+            {
+              "size": 323,
+              "name": "./node_modules/lodash-es/_getValue.js"
+            },
+            {
+              "size": 485,
+              "name": "./node_modules/lodash-es/_assocIndexOf.js"
+            },
+            {
+              "size": 279,
+              "name": "./node_modules/lodash-es/_hashClear.js"
+            },
+            {
+              "size": 443,
+              "name": "./node_modules/lodash-es/_hashDelete.js"
+            },
+            {
+              "size": 770,
+              "name": "./node_modules/lodash-es/_hashGet.js"
+            },
+            {
+              "size": 624,
+              "name": "./node_modules/lodash-es/_hashHas.js"
+            },
+            {
+              "size": 596,
+              "name": "./node_modules/lodash-es/_hashSet.js"
+            },
+            {
+              "size": 428,
+              "name": "./node_modules/lodash-es/_isKeyable.js"
+            },
+            {
+              "size": 1872,
+              "name": "./src/client/components/common/select-menu/select-menu-error.tsx"
+            },
+            {
+              "size": 1386,
+              "name": "./src/client/hooks/common/use-select-menu-filter.ts"
+            },
+            {
+              "size": 977,
+              "name": "./src/client/state-providers/memex-items/use-convert-to-issue.ts"
+            },
+            {
+              "size": 185,
+              "name": "./node_modules/lodash-es/_nativeCreate.js"
+            },
+            {
+              "size": 937,
+              "name": "./src/client/state-providers/suggestions/use-suggestions.ts"
+            },
+            {
+              "size": 338,
+              "name": "./src/client/state-providers/suggestions/use-suggestions-context.ts"
+            }
+          ]
+        },
+        {
+          "size": 267,
+          "name": "webpack/runtime/compat get default export"
+        },
+        {
+          "size": 308,
+          "name": "webpack/runtime/define property getters"
+        },
+        {
+          "size": 221,
+          "name": "webpack/runtime/global"
+        },
+        {
+          "size": 88,
+          "name": "webpack/runtime/hasOwnProperty shorthand"
+        },
+        {
+          "size": 274,
+          "name": "webpack/runtime/make namespace object"
+        }
+      ]
+    }
+  ]
+}
