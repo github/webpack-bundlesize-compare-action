@@ -6,7 +6,10 @@ import {webpackStatsDiff} from './webpack-stats-diff'
 export function getChunkModuleDiff(
   oldStats: Pick<StatsCompilation, 'chunks'>,
   newStats: Pick<StatsCompilation, 'chunks'>
-): WebpackStatsDiff {
+): WebpackStatsDiff | null {
+  if (!oldStats.chunks || !newStats.chunks) {
+    return null
+  }
   return webpackStatsDiff(
     chunkModuleNameToSizeMap(oldStats.chunks),
     chunkModuleNameToSizeMap(newStats.chunks)

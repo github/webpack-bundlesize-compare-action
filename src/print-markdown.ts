@@ -126,8 +126,9 @@ function printChunkModuleRow(chunkModule: AssetDiff): string {
 }
 
 export function printChunkModulesTable(
-  statsDiff: Omit<WebpackStatsDiff, 'total' | 'unchanged'>
+  statsDiff: Omit<WebpackStatsDiff, 'total' | 'unchanged'> | null
 ): string {
+  if (!statsDiff) return ''
   const changedModules = [
     ...statsDiff.added,
     ...statsDiff.removed,
@@ -136,7 +137,10 @@ export function printChunkModulesTable(
   ]
 
   if (changedModules.length === 0) {
-    return `No files were changed`
+    return `
+**Changeset**
+
+No files were changed`
   }
 
   const modulesBySizeDescending = changedModules.sort(

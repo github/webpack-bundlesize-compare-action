@@ -11,6 +11,7 @@ export function getIdentifierComment(key: string): string {
 
 export function getCommentBody(
   statsDiff: WebpackStatsDiff,
+  chunkModuleDiff: WebpackStatsDiff | null,
   title: string
 ): string {
   return `
@@ -21,9 +22,7 @@ Hey there, this message comes from a github action that helps you and reviewers 
 As this PR is updated, I'll keep you updated on how the bundle size is impacted.
 
 ${printTotalAssetTable(statsDiff)}
-
-${printChunkModulesTable(statsDiff)}
-
+${chunkModuleDiff ? `${printChunkModulesTable(chunkModuleDiff)}\n` : ''}
 <details>
 <summary>View detailed bundle breakdown</summary>
 

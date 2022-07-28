@@ -1,6 +1,7 @@
 import {expect, test} from '@jest/globals'
 import {getStatsDiff} from '../src/get-stats-diff'
 import {getChunkModuleDiff} from '../src/get-chunk-module-diff'
+import {getCommentBody} from '../src/to-comment-body'
 import {
   printAssetTablesByGroup,
   printChunkModulesTable,
@@ -138,7 +139,7 @@ test('computes the correct module diff information', () => {
     require('./__mocks__/new-stats-with-chunks.json')
   )
 
-  expect(statsDiff.added).toEqual([
+  expect(statsDiff?.added).toEqual([
     {
       name: './src/client/this-file-was-added.ts',
       diff: 1496,
@@ -147,7 +148,7 @@ test('computes the correct module diff information', () => {
       old: {size: 0, gzipSize: 0}
     }
   ] as AssetDiff[])
-  expect(statsDiff.bigger).toEqual([
+  expect(statsDiff?.bigger).toEqual([
     {
       name: './src/client/this-file-grew-larger.tsx',
       diff: 200,
@@ -156,7 +157,7 @@ test('computes the correct module diff information', () => {
       old: {size: 562, gzipSize: NaN}
     }
   ] as AssetDiff[])
-  expect(statsDiff.smaller).toEqual([
+  expect(statsDiff?.smaller).toEqual([
     {
       name: './src/client/helpers/this-file-grew-smaller.ts',
       diff: -200,
@@ -165,7 +166,7 @@ test('computes the correct module diff information', () => {
       old: {size: 2518, gzipSize: NaN}
     }
   ] as AssetDiff[])
-  expect(statsDiff.removed).toEqual([
+  expect(statsDiff?.removed).toEqual([
     {
       name: './src/client/this-file-will-be-deleted.ts',
       diff: -1496,
@@ -174,9 +175,9 @@ test('computes the correct module diff information', () => {
       old: {size: 1496, gzipSize: NaN}
     }
   ] as AssetDiff[])
-  expect(statsDiff.total.new).toEqual(statsDiff.total.old)
-  expect(statsDiff.total.diff).toEqual(0)
-  expect(statsDiff.total.diffPercentage).toEqual(0)
+  expect(statsDiff?.total.new).toEqual(statsDiff?.total.old)
+  expect(statsDiff?.total.diff).toEqual(0)
+  expect(statsDiff?.total.diffPercentage).toEqual(0)
 })
 
 test('displays module information when files are added/removed/changed', () => {
@@ -202,7 +203,16 @@ test('displays no module information when unchanged', () => {
     require('./__mocks__/old-stats-with-chunks.json')
   )
 
-  expect(printChunkModulesTable(statsDiff)).toEqual(`No files were changed`)
+  expect(printChunkModulesTable(statsDiff)).toEqual(
+    `\n**Changeset**\n\nNo files were changed`
+  )
 })
 
-test.todo('does not display module information when it does not exist')
+test('does not display module information when it does not exist', () => {
+  const statsDiff = getChunkModuleDiff(
+    require('./__mocks__/old-stats-assets.json'),
+    require('./__mocks__/old-stats-assets.json')
+  )
+
+  expect(printChunkModulesTable(statsDiff)).toEqual('')
+})
