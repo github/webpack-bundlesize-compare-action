@@ -10,6 +10,6 @@ export async function parseStatsFileToJson(
     const file = await readFile(path, 'utf8')
     return JSON.parse(file) as StatsCompilation
   } catch {
-    return {assets: []} as Pick<StatsCompilation, 'assets'>
+    return {assets: []} as Pick<StatsCompilation, 'assets' | 'chunks'>
   }
 }

@@ -1,9 +1,12 @@
 import {expect, test} from '@jest/globals'
 import {getStatsDiff} from '../src/get-stats-diff'
+import {getChunkModuleDiff} from '../src/get-chunk-module-diff'
 import {
   printAssetTablesByGroup,
+  printChunkModulesTable,
   printTotalAssetTable
 } from '../src/print-markdown'
+import {AssetDiff} from '../src/types'
 
 test('Shows stats when files are removed', () => {
   const statsDiff = getStatsDiff(
@@ -128,3 +131,78 @@ app.bundle.js | bundled<br />gzip | 1.04 MB<br />297.38 KB | 0%
 699.chunk.js | bundled<br />gzip | 26.39 KB<br />6.14 KB | 0%
 manifest.json | bundled<br />gzip | 551 Bytes<br />151 Bytes | 0%`)
 })
+
+test('computes the correct module diff information', () => {
+  const statsDiff = getChunkModuleDiff(
+    require('./__mocks__/old-stats-with-chunks.json'),
+    require('./__mocks__/new-stats-with-chunks.json')
+  )
+
+  expect(statsDiff.added).toEqual([
+    {
+      name: './src/client/this-file-was-added.ts',
+      diff: 1496,
+      diffPercentage: Infinity,
+      new: {size: 1496, gzipSize: NaN},
+      old: {size: 0, gzipSize: 0}
+    }
+  ] as AssetDiff[])
+  expect(statsDiff.bigger).toEqual([
+    {
+      name: './src/client/this-file-grew-larger.tsx',
+      diff: 200,
+      diffPercentage: 35.58719,
+      new: {size: 762, gzipSize: NaN},
+      old: {size: 562, gzipSize: NaN}
+    }
+  ] as AssetDiff[])
+  expect(statsDiff.smaller).toEqual([
+    {
+      name: './src/client/helpers/this-file-grew-smaller.ts',
+      diff: -200,
+      diffPercentage: -7.94281,
+      new: {size: 2318, gzipSize: NaN},
+      old: {size: 2518, gzipSize: NaN}
+    }
+  ] as AssetDiff[])
+  expect(statsDiff.removed).toEqual([
+    {
+      name: './src/client/this-file-will-be-deleted.ts',
+      diff: -1496,
+      diffPercentage: -100,
+      new: {size: 0, gzipSize: 0},
+      old: {size: 1496, gzipSize: NaN}
+    }
+  ] as AssetDiff[])
+  expect(statsDiff.total.new).toEqual(statsDiff.total.old)
+  expect(statsDiff.total.diff).toEqual(0)
+  expect(statsDiff.total.diffPercentage).toEqual(0)
+})
+
+test('displays module information when files are added/removed/changed', () => {
+  const statsDiff = getChunkModuleDiff(
+    require('./__mocks__/old-stats-with-chunks.json'),
+    require('./__mocks__/new-stats-with-chunks.json')
+  )
+
+  expect(printChunkModulesTable(statsDiff)).toEqual(`
+**Changeset**
+
+File | Size | % Changed
+---- | ---- | ---------
+./src/client/this-file-was-added.ts | 0 Bytes -> 1.46 KB (+1.46 KB) | -
+./src/client/this-file-grew-larger.tsx | 562 Bytes -> 762 Bytes (+200 Bytes) | +35.59%
+./src/client/helpers/this-file-grew-smaller.ts | 2.46 KB -> 2.26 KB (-200 Bytes) | -7.94%
+./src/client/this-file-will-be-deleted.ts | 1.46 KB -> 0 Bytes (-1.46 KB) | -100%`)
+})
+
+test('displays no module information when unchanged', () => {
+  const statsDiff = getChunkModuleDiff(
+    require('./__mocks__/old-stats-with-chunks.json'),
+    require('./__mocks__/old-stats-with-chunks.json')
+  )
+
+  expect(printChunkModulesTable(statsDiff)).toEqual(`No files were changed`)
+})
+
+test.todo('does not display module information when it does not exist')

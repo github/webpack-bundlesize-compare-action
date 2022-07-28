@@ -39,6 +39,7 @@ const TOTAL_HEADERS = makeHeader([
   '% Changed'
 ])
 const TABLE_HEADERS = makeHeader(['Asset', 'Type', 'File Size', '% Changed'])
+const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Size', '% Changed'])
 
 function signFor(num: number): '' | '+' | '-' {
   if (num === 0) return ''
@@ -114,6 +115,41 @@ ${assets
   .join('\n')}`
     })
     .join('\n\n')
+}
+
+function printChunkModuleRow(chunkModule: AssetDiff): string {
+  return [
+    chunkModule.name,
+    toFileSizeDiffCell(chunkModule),
+    conditionalPercentage(chunkModule.diffPercentage)
+  ].join(' | ')
+}
+
+export function printChunkModulesTable(
+  statsDiff: Omit<WebpackStatsDiff, 'total' | 'unchanged'>
+): string {
+  const changedModules = [
+    ...statsDiff.added,
+    ...statsDiff.removed,
+    ...statsDiff.bigger,
+    ...statsDiff.smaller
+  ]
+
+  if (changedModules.length === 0) {
+    return `No files were changed`
+  }
+
+  const modulesBySizeDescending = changedModules.sort(
+    (a, b) => b.diffPercentage - a.diffPercentage
+  )
+
+  return `
+**Changeset**
+
+${CHUNK_TABLE_HEADERS}
+${modulesBySizeDescending
+  .map(chunkModule => printChunkModuleRow(chunkModule))
+  .join('\n')}`
 }
 
 export function printTotalAssetTable(

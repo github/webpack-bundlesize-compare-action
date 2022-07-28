@@ -1,4 +1,8 @@
-import {printAssetTablesByGroup, printTotalAssetTable} from './print-markdown'
+import {
+  printAssetTablesByGroup,
+  printChunkModulesTable,
+  printTotalAssetTable
+} from './print-markdown'
 import type {WebpackStatsDiff} from './types'
 
 export function getIdentifierComment(key: string): string {
@@ -17,6 +21,8 @@ Hey there, this message comes from a github action that helps you and reviewers 
 As this PR is updated, I'll keep you updated on how the bundle size is impacted.
 
 ${printTotalAssetTable(statsDiff)}
+
+${printChunkModulesTable(statsDiff)}
 
 <details>
 <summary>View detailed bundle breakdown</summary>
