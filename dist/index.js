@@ -72,6 +72,26 @@ exports.getAssetDiff = getAssetDiff;
 
 /***/ }),
 
+/***/ 8731:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getChunkModuleDiff = void 0;
+const name_to_size_map_1 = __nccwpck_require__(9804);
+const webpack_stats_diff_1 = __nccwpck_require__(1099);
+function getChunkModuleDiff(oldStats, newStats) {
+    if (!oldStats.chunks || !newStats.chunks) {
+        return null;
+    }
+    return (0, webpack_stats_diff_1.webpackStatsDiff)((0, name_to_size_map_1.chunkModuleNameToSizeMap)(oldStats.chunks), (0, name_to_size_map_1.chunkModuleNameToSizeMap)(newStats.chunks));
+}
+exports.getChunkModuleDiff = getChunkModuleDiff;
+
+
+/***/ }),
+
 /***/ 7334:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -82,7 +102,7 @@ exports.getStatsDiff = void 0;
 const name_to_size_map_1 = __nccwpck_require__(9804);
 const webpack_stats_diff_1 = __nccwpck_require__(1099);
 function getStatsDiff(oldAssetStats, newAssetStats) {
-    return (0, webpack_stats_diff_1.webpackStatsDiff)((0, name_to_size_map_1.nameToSizeMap)(oldAssetStats.assets), (0, name_to_size_map_1.nameToSizeMap)(newAssetStats.assets));
+    return (0, webpack_stats_diff_1.webpackStatsDiff)((0, name_to_size_map_1.assetNameToSizeMap)(oldAssetStats.assets), (0, name_to_size_map_1.assetNameToSizeMap)(newAssetStats.assets));
 }
 exports.getStatsDiff = getStatsDiff;
 
@@ -129,6 +149,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5438);
+const get_chunk_module_diff_1 = __nccwpck_require__(8731);
 const get_stats_diff_1 = __nccwpck_require__(7334);
 const parse_stats_file_to_json_1 = __nccwpck_require__(4578);
 const to_comment_body_1 = __nccwpck_require__(3471);
@@ -163,7 +184,8 @@ function run() {
                     comment.body.includes(identifierComment);
             });
             const statsDiff = (0, get_stats_diff_1.getStatsDiff)(baseStatsJson, currentStatsJson);
-            const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff, title);
+            const chunkModuleDiff = (0, get_chunk_module_diff_1.getChunkModuleDiff)(baseStatsJson, currentStatsJson);
+            const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff, chunkModuleDiff, title);
             const promises = [];
             if (restComments.length > 1) {
                 promises.push(...restComments.map((comment) => __awaiter(this, void 0, void 0, function* () {
@@ -210,8 +232,8 @@ run();
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.nameToSizeMap = void 0;
-function nameToSizeMap(statAssets = []) {
+exports.chunkModuleNameToSizeMap = exports.assetNameToSizeMap = void 0;
+function assetNameToSizeMap(statAssets = []) {
     return new Map(statAssets.map(asset => {
         let gzipSize = null;
         if (asset.related && Array.isArray(asset.related)) {
@@ -229,7 +251,42 @@ function nameToSizeMap(statAssets = []) {
         ];
     }));
 }
-exports.nameToSizeMap = nameToSizeMap;
+exports.assetNameToSizeMap = assetNameToSizeMap;
+function chunkModuleNameToSizeMap(statChunks = []) {
+    return new Map(statChunks.flatMap(chunk => {
+        if (!chunk.modules)
+            return [];
+        return chunk.modules.flatMap(module => {
+            var _a, _b;
+            // If a module doesn't have any submodules beneath it, then just return its own size
+            // Otherwise, break each module into its submodules with their own sizes
+            if (module.modules) {
+                return module.modules.map(submodule => {
+                    var _a, _b;
+                    return [
+                        (_a = submodule.name) !== null && _a !== void 0 ? _a : '',
+                        {
+                            size: (_b = submodule.size) !== null && _b !== void 0 ? _b : 0,
+                            gzipSize: null
+                        }
+                    ];
+                });
+            }
+            else {
+                return [
+                    [
+                        (_a = module.name) !== null && _a !== void 0 ? _a : '',
+                        {
+                            size: (_b = module.size) !== null && _b !== void 0 ? _b : 0,
+                            gzipSize: null
+                        }
+                    ]
+                ];
+            }
+        });
+    }));
+}
+exports.chunkModuleNameToSizeMap = chunkModuleNameToSizeMap;
 
 
 /***/ }),
@@ -260,7 +317,7 @@ function parseStatsFileToJson(statsFilePath) {
             return JSON.parse(file);
         }
         catch (_a) {
-            return { assets: [] };
+            return { assets: [], chunks: undefined };
         }
     });
 }
@@ -275,7 +332,7 @@ exports.parseStatsFileToJson = parseStatsFileToJson;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.printTotalAssetTable = exports.printAssetTablesByGroup = void 0;
+exports.printTotalAssetTable = exports.printChunkModulesTable = exports.printAssetTablesByGroup = void 0;
 const file_sizes_1 = __nccwpck_require__(4836);
 function conditionalPercentage(number) {
     if ([Infinity, -Infinity].includes(number)) {
@@ -306,6 +363,7 @@ const TOTAL_HEADERS = makeHeader([
     '% Changed'
 ]);
 const TABLE_HEADERS = makeHeader(['Asset', 'Type', 'File Size', '% Changed']);
+const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Size', '% Changed']);
 function signFor(num) {
     if (num === 0)
         return '';
@@ -372,6 +430,38 @@ ${assets
         .join('\n\n');
 }
 exports.printAssetTablesByGroup = printAssetTablesByGroup;
+function printChunkModuleRow(chunkModule) {
+    return [
+        chunkModule.name,
+        toFileSizeDiffCell(chunkModule),
+        conditionalPercentage(chunkModule.diffPercentage)
+    ].join(' | ');
+}
+function printChunkModulesTable(statsDiff) {
+    if (!statsDiff)
+        return '';
+    const changedModules = [
+        ...statsDiff.added,
+        ...statsDiff.removed,
+        ...statsDiff.bigger,
+        ...statsDiff.smaller
+    ];
+    if (changedModules.length === 0) {
+        return `
+**Changeset**
+
+No files were changed`;
+    }
+    const modulesBySizeDescending = changedModules.sort((a, b) => b.diffPercentage - a.diffPercentage);
+    return `
+**Changeset**
+
+${CHUNK_TABLE_HEADERS}
+${modulesBySizeDescending
+        .map(chunkModule => printChunkModuleRow(chunkModule))
+        .join('\n')}`;
+}
+exports.printChunkModulesTable = printChunkModulesTable;
 function printTotalAssetTable(statsDiff) {
     return `**Total**
 
@@ -410,16 +500,16 @@ function getIdentifierComment(key) {
     return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`;
 }
 exports.getIdentifierComment = getIdentifierComment;
-function getCommentBody(statsDiff, title) {
+function getCommentBody(statsDiff, chunkModuleDiff, title) {
     return `
 # Bundle Stats${title ? `-${title}` : ''}
 
-Hey there, this message comes from a github action that helps you and reviewers to understand how these changes affect the size of this project's bundle.
+Hey there, this message comes from a [GitHub action](https://github.com/github/webpack-bundlesize-compare-action) that helps you and reviewers to understand how these changes affect the size of this project's bundle.
 
 As this PR is updated, I'll keep you updated on how the bundle size is impacted.
 
 ${(0, print_markdown_1.printTotalAssetTable)(statsDiff)}
-
+${chunkModuleDiff ? `${(0, print_markdown_1.printChunkModulesTable)(chunkModuleDiff)}\n` : ''}
 <details>
 <summary>View detailed bundle breakdown</summary>
 
