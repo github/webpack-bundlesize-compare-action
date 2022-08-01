@@ -1,5 +1,6 @@
 import * as core from '@actions/core'
 import {context, getOctokit} from '@actions/github'
+import {getChunkModuleDiff} from './get-chunk-module-diff'
 import {getStatsDiff} from './get-stats-diff'
 import {parseStatsFileToJson} from './parse-stats-file-to-json'
 import {getCommentBody, getIdentifierComment} from './to-comment-body'
@@ -45,8 +46,9 @@ async function run(): Promise<void> {
     )
 
     const statsDiff = getStatsDiff(baseStatsJson, currentStatsJson)
+    const chunkModuleDiff = getChunkModuleDiff(baseStatsJson, currentStatsJson)
 
-    const commentBody = getCommentBody(statsDiff, title)
+    const commentBody = getCommentBody(statsDiff, chunkModuleDiff, title)
 
     const promises: Promise<unknown>[] = []
 
