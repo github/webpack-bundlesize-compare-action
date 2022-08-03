@@ -116,38 +116,62 @@ ${assets
     .join('\n\n')
 }
 
-const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Δ'])
+const getDiffEmoji = (diff: AssetDiff): string =>
+  diff.diffPercentage === Infinity
+    ? '🆕'
+    : diff.diffPercentage <= -100
+    ? '🔥'
+    : diff.diffPercentage > 0
+    ? '📈'
+    : diff.diffPercentage < 0
+    ? '📉'
+    : ' '
 
-function printChunkModuleRow(chunkModule: AssetDiff): string {
-  const emoji =
-    chunkModule.diffPercentage === Infinity
-      ? '🆕'
-      : chunkModule.diffPercentage <= -100
-      ? '🔥'
-      : chunkModule.diffPercentage > 0
-      ? '📈'
-      : chunkModule.diffPercentage < 0
-      ? '📉'
-      : ' '
-
+const getTrimmedChunkName = (chunkModule: AssetDiff): string => {
   let chunkName = chunkModule.name
   if (chunkName.startsWith('./')) {
     chunkName = chunkName.substring(2)
   } else if (chunkName.startsWith('/')) {
     chunkName = chunkName.substring(1)
   }
+  return chunkName
+}
+
+const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Δ'])
+
+function printChunkModuleRow(chunkModule: AssetDiff): string {
+  const emoji = getDiffEmoji(chunkModule)
+  const chunkName = getTrimmedChunkName(chunkModule)
 
   return [
-    `${emoji} \`${chunkName}\``,
-    `<details><summary>${chunkModule.diff >= 0 ? '+' : '-'}${formatFileSizeIEC(
+    `\`${chunkName}\``,
+    `${emoji} ${chunkModule.diff >= 0 ? '+' : '-'}${formatFileSizeIEC(
       chunkModule.diff
     )}${
       Number.isFinite(chunkModule.diffPercentage)
         ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
         : ''
-    }</summary><br />Old size: ${formatFileSizeIEC(
-      chunkModule.old.size
-    )}<br />New size: ${formatFileSizeIEC(chunkModule.new.size)}</details>`
+    }`
+  ].join(' | ')
+}
+
+const DETAILED_CHUNK_TABLE_HEADERS = makeHeader(['File', 'Old', 'New', 'Δ'])
+
+function printDetailedChunkModuleRow(chunkModule: AssetDiff): string {
+  const emoji = getDiffEmoji(chunkModule)
+  const chunkName = getTrimmedChunkName(chunkModule)
+
+  return [
+    `\`${chunkName}\``,
+    formatFileSizeIEC(chunkModule.old.size),
+    formatFileSizeIEC(chunkModule.new.size),
+    `${emoji} ${chunkModule.diff >= 0 ? '+' : '-'}${formatFileSizeIEC(
+      chunkModule.diff
+    )}${
+      Number.isFinite(chunkModule.diffPercentage)
+        ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
+        : ''
+    }`
   ].join(' | ')
 }
 
@@ -173,13 +197,25 @@ No files were changed`
     (a, b) => b.diffPercentage - a.diffPercentage
   )
 
+  const summaryTable = `${CHUNK_TABLE_HEADERS}
+  ${modulesBySizeDescending
+    .map(chunkModule => printChunkModuleRow(chunkModule))
+    .join('\n')}`
+  const detailedTable = `${DETAILED_CHUNK_TABLE_HEADERS}
+  ${modulesBySizeDescending
+    .map(chunkModule => printDetailedChunkModuleRow(chunkModule))
+    .join('\n')}`
+
   return `
 **Changeset**
 
-${CHUNK_TABLE_HEADERS}
-${modulesBySizeDescending
-  .map(chunkModule => printChunkModuleRow(chunkModule))
-  .join('\n')}`
+${summaryTable}
+
+<details>
+<summary>View detailed changes</summary>
+${detailedTable}
+</details>
+`
 }
 
 export function printTotalAssetTable(
