@@ -145,11 +145,9 @@ function printChunkModuleRow(chunkModule: AssetDiff): string {
       Number.isFinite(chunkModule.diffPercentage)
         ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
         : ''
-    }</summary>
-
-    Old size: ${formatFileSizeIEC(chunkModule.old.size)}
-    New size: ${formatFileSizeIEC(chunkModule.new.size)}
-    </details>`
+    }</summary><br />Old size: ${formatFileSizeIEC(
+      chunkModule.old.size
+    )}<br />New size: ${formatFileSizeIEC(chunkModule.new.size)}</details>`
   ].join(' | ')
 }
 
