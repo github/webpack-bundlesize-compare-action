@@ -429,10 +429,10 @@ ${assets
         .join('\n\n');
 }
 exports.printAssetTablesByGroup = printAssetTablesByGroup;
-const CHUNK_TABLE_HEADERS = makeHeader(['', 'File', 'Old', 'New', 'Δ']);
+const CHUNK_TABLE_HEADERS = makeHeader(['Status', 'File', 'Old', 'New', 'Δ']);
 function printChunkModuleRow(chunkModule) {
     const emoji = chunkModule.diffPercentage === Infinity
-        ? '➕'
+        ? '🆕'
         : chunkModule.diffPercentage <= -100
             ? '🔥'
             : chunkModule.diffPercentage > 0

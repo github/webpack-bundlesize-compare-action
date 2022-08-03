@@ -116,12 +116,12 @@ ${assets
     .join('\n\n')
 }
 
-const CHUNK_TABLE_HEADERS = makeHeader(['', 'File', 'Old', 'New', 'Δ'])
+const CHUNK_TABLE_HEADERS = makeHeader(['Status', 'File', 'Old', 'New', 'Δ'])
 
 function printChunkModuleRow(chunkModule: AssetDiff): string {
   const emoji =
     chunkModule.diffPercentage === Infinity
-      ? '➕'
+      ? '🆕'
       : chunkModule.diffPercentage <= -100
       ? '🔥'
       : chunkModule.diffPercentage > 0
