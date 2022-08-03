@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.formatFileSizeIEC = void 0;
 const BYTES_PER_KILOBYTE = 1024;
 const denominations = [
-    'Bytes',
+    'B',
     'KB',
     'MB',
     'GB',
@@ -363,7 +363,6 @@ const TOTAL_HEADERS = makeHeader([
     '% Changed'
 ]);
 const TABLE_HEADERS = makeHeader(['Asset', 'Type', 'File Size', '% Changed']);
-const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Size', '% Changed']);
 function signFor(num) {
     if (num === 0)
         return '';
@@ -430,10 +429,14 @@ ${assets
         .join('\n\n');
 }
 exports.printAssetTablesByGroup = printAssetTablesByGroup;
+const CHUNK_TABLE_HEADERS = makeHeader(['', 'File', 'Old', 'New', 'Δ', '%Δ']);
 function printChunkModuleRow(chunkModule) {
     return [
+        '',
         chunkModule.name,
-        toFileSizeDiffCell(chunkModule),
+        (0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size),
+        (0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size),
+        (0, file_sizes_1.formatFileSizeIEC)(chunkModule.diff),
         conditionalPercentage(chunkModule.diffPercentage)
     ].join(' | ');
 }
