@@ -39,7 +39,6 @@ const TOTAL_HEADERS = makeHeader([
   '% Changed'
 ])
 const TABLE_HEADERS = makeHeader(['Asset', 'Type', 'File Size', '% Changed'])
-const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Size', '% Changed'])
 
 function signFor(num: number): '' | '+' | '-' {
   if (num === 0) return ''
@@ -117,11 +116,29 @@ ${assets
     .join('\n\n')
 }
 
+const CHUNK_TABLE_HEADERS = makeHeader(['', 'File', 'Old', 'New', 'Δ'])
+
 function printChunkModuleRow(chunkModule: AssetDiff): string {
+  const emoji =
+    chunkModule.diffPercentage === Infinity
+      ? '➕'
+      : chunkModule.diffPercentage <= -100
+      ? '🔥'
+      : chunkModule.diffPercentage > 0
+      ? '📈'
+      : chunkModule.diffPercentage < 0
+      ? '📉'
+      : ' '
   return [
+    emoji,
     chunkModule.name,
-    toFileSizeDiffCell(chunkModule),
-    conditionalPercentage(chunkModule.diffPercentage)
+    formatFileSizeIEC(chunkModule.old.size),
+    formatFileSizeIEC(chunkModule.new.size),
+    `${formatFileSizeIEC(chunkModule.diff)}${
+      Number.isFinite(chunkModule.diffPercentage)
+        ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
+        : ''
+    }`
   ].join(' | ')
 }
 
