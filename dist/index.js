@@ -429,15 +429,25 @@ ${assets
         .join('\n\n');
 }
 exports.printAssetTablesByGroup = printAssetTablesByGroup;
-const CHUNK_TABLE_HEADERS = makeHeader(['', 'File', 'Old', 'New', 'Δ', '%Δ']);
+const CHUNK_TABLE_HEADERS = makeHeader(['', 'File', 'Old', 'New', 'Δ']);
 function printChunkModuleRow(chunkModule) {
+    const emoji = chunkModule.diffPercentage === Infinity
+        ? '➕'
+        : chunkModule.diffPercentage <= -100
+            ? '🔥'
+            : chunkModule.diffPercentage > 0
+                ? '📈'
+                : chunkModule.diffPercentage < 0
+                    ? '📉'
+                    : ' ';
     return [
-        '',
+        emoji,
         chunkModule.name,
         (0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size),
         (0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size),
-        (0, file_sizes_1.formatFileSizeIEC)(chunkModule.diff),
-        conditionalPercentage(chunkModule.diffPercentage)
+        `${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.diff)}${Number.isFinite(chunkModule.diffPercentage)
+            ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
+            : ''}`
     ].join(' | ');
 }
 function printChunkModulesTable(statsDiff) {
