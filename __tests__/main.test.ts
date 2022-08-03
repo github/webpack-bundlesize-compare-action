@@ -178,6 +178,8 @@ test('displays module information when files are added/removed/changed', () => {
     require('./__mocks__/new-stats-with-chunks.json')
   )
 
+  console.log(printChunkModulesTable(statsDiff))
+
   //   expect(printChunkModulesTable(statsDiff)).toEqual(`
   // **Changeset**
 

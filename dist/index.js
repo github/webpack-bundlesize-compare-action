@@ -451,11 +451,7 @@ function printChunkModuleRow(chunkModule) {
         `${emoji} \`${chunkName}\``,
         `<details><summary>${chunkModule.diff >= 0 ? '+' : '-'}${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.diff)}${Number.isFinite(chunkModule.diffPercentage)
             ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
-            : ''}</summary>
-
-    Old size: ${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size)}
-    New size: ${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size)}
-    </details>`
+            : ''}</summary><br />Old size: ${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size)}<br />New size: ${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size)}</details>`
     ].join(' | ');
 }
 function printChunkModulesTable(statsDiff) {
