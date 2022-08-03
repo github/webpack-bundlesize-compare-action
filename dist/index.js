@@ -429,7 +429,7 @@ ${assets
         .join('\n\n');
 }
 exports.printAssetTablesByGroup = printAssetTablesByGroup;
-const CHUNK_TABLE_HEADERS = makeHeader(['Status', 'File', 'Old', 'New', 'Δ']);
+const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Old', 'New', 'Δ']);
 function printChunkModuleRow(chunkModule) {
     const emoji = chunkModule.diffPercentage === Infinity
         ? '🆕'
@@ -441,8 +441,7 @@ function printChunkModuleRow(chunkModule) {
                     ? '📉'
                     : ' ';
     return [
-        emoji,
-        chunkModule.name,
+        `${emoji} ${chunkModule.name}`,
         (0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size),
         (0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size),
         `${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.diff)}${Number.isFinite(chunkModule.diffPercentage)
