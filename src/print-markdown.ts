@@ -116,7 +116,7 @@ ${assets
     .join('\n\n')
 }
 
-const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Old', 'New', 'Δ'])
+const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Δ'])
 
 function printChunkModuleRow(chunkModule: AssetDiff): string {
   const emoji =
@@ -139,13 +139,17 @@ function printChunkModuleRow(chunkModule: AssetDiff): string {
 
   return [
     `${emoji} \`${chunkName}\``,
-    formatFileSizeIEC(chunkModule.old.size),
-    formatFileSizeIEC(chunkModule.new.size),
-    `${formatFileSizeIEC(chunkModule.diff)}${
+    `<details><summary>${chunkModule.diff >= 0 ? '+' : '-'}${formatFileSizeIEC(
+      chunkModule.diff
+    )}${
       Number.isFinite(chunkModule.diffPercentage)
         ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
         : ''
-    }`
+    }</summary>
+
+    Old size: ${formatFileSizeIEC(chunkModule.old.size)}
+    New size: ${formatFileSizeIEC(chunkModule.new.size)}
+    </details>`
   ].join(' | ')
 }
 
