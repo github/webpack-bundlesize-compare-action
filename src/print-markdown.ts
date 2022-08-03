@@ -129,8 +129,16 @@ function printChunkModuleRow(chunkModule: AssetDiff): string {
       : chunkModule.diffPercentage < 0
       ? '📉'
       : ' '
+
+  let chunkName = chunkModule.name
+  if (chunkName.startsWith('./')) {
+    chunkName = chunkName.substring(2)
+  } else if (chunkName.startsWith('/')) {
+    chunkName = chunkName.substring(1)
+  }
+
   return [
-    `${emoji} ${chunkModule.name}`,
+    `${emoji} \`${chunkName}\``,
     formatFileSizeIEC(chunkModule.old.size),
     formatFileSizeIEC(chunkModule.new.size),
     `${formatFileSizeIEC(chunkModule.diff)}${

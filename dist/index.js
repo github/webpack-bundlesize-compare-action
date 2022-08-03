@@ -440,8 +440,15 @@ function printChunkModuleRow(chunkModule) {
                 : chunkModule.diffPercentage < 0
                     ? '📉'
                     : ' ';
+    let chunkName = chunkModule.name;
+    if (chunkName.startsWith('./')) {
+        chunkName = chunkName.substring(2);
+    }
+    else if (chunkName.startsWith('/')) {
+        chunkName = chunkName.substring(1);
+    }
     return [
-        `${emoji} ${chunkModule.name}`,
+        `${emoji} \`${chunkName}\``,
         (0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size),
         (0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size),
         `${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.diff)}${Number.isFinite(chunkModule.diffPercentage)
