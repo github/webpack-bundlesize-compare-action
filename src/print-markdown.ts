@@ -116,16 +116,29 @@ ${assets
     .join('\n\n')
 }
 
-const CHUNK_TABLE_HEADERS = makeHeader(['', 'File', 'Old', 'New', 'Δ', '%Δ'])
+const CHUNK_TABLE_HEADERS = makeHeader(['', 'File', 'Old', 'New', 'Δ'])
 
 function printChunkModuleRow(chunkModule: AssetDiff): string {
+  const emoji =
+    chunkModule.diffPercentage === Infinity
+      ? '➕'
+      : chunkModule.diffPercentage <= -100
+      ? '🔥'
+      : chunkModule.diffPercentage > 0
+      ? '📈'
+      : chunkModule.diffPercentage < 0
+      ? '📉'
+      : ' '
   return [
-    '',
+    emoji,
     chunkModule.name,
     formatFileSizeIEC(chunkModule.old.size),
     formatFileSizeIEC(chunkModule.new.size),
-    formatFileSizeIEC(chunkModule.diff),
-    conditionalPercentage(chunkModule.diffPercentage)
+    `${formatFileSizeIEC(chunkModule.diff)}${
+      Number.isFinite(chunkModule.diffPercentage)
+        ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
+        : ''
+    }`
   ].join(' | ')
 }
 
