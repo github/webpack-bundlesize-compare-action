@@ -139,42 +139,42 @@ test('computes the correct module diff information', () => {
     require('./__mocks__/new-stats-with-chunks.json')
   )
 
-  expect(statsDiff?.added).toEqual([
+  expect(statsDiff?.added).toContainEqual(
     {
       name: './src/client/this-file-was-added.ts',
       diff: 1496,
       diffPercentage: Infinity,
       new: {size: 1496, gzipSize: NaN},
       old: {size: 0, gzipSize: 0}
-    }
-  ] as AssetDiff[])
-  expect(statsDiff?.bigger).toEqual([
+    } as AssetDiff
+  )
+  expect(statsDiff?.bigger).toContainEqual(
     {
       name: './src/client/this-file-grew-larger.tsx',
       diff: 200,
       diffPercentage: 35.58719,
       new: {size: 762, gzipSize: NaN},
       old: {size: 562, gzipSize: NaN}
-    }
-  ] as AssetDiff[])
-  expect(statsDiff?.smaller).toEqual([
+    } as AssetDiff
+  )
+  expect(statsDiff?.smaller).toContainEqual(
     {
       name: './src/client/helpers/this-file-grew-smaller.ts',
       diff: -200,
       diffPercentage: -7.94281,
       new: {size: 2318, gzipSize: NaN},
       old: {size: 2518, gzipSize: NaN}
-    }
-  ] as AssetDiff[])
-  expect(statsDiff?.removed).toEqual([
-    {
+    } as AssetDiff
+  )
+  expect(statsDiff?.removed).toContainEqual(
+{
       name: './src/client/this-file-will-be-deleted.ts',
       diff: -1496,
       diffPercentage: -100,
       new: {size: 0, gzipSize: 0},
       old: {size: 1496, gzipSize: NaN}
-    }
-  ] as AssetDiff[])
+    } as AssetDiff
+  )
   expect(statsDiff?.total.new).toEqual(statsDiff?.total.old)
   expect(statsDiff?.total.diff).toEqual(0)
   expect(statsDiff?.total.diffPercentage).toEqual(0)
@@ -191,10 +191,16 @@ test('displays module information when files are added/removed/changed', () => {
 
 File | Size | % Changed
 ---- | ---- | ---------
+./src/client/this/file/has/a/long/name/so-that-it-will-hopefully-wrap.tsx | 0 Bytes -> 2.72 KB (+2.72 KB) | -
 ./src/client/this-file-was-added.ts | 0 Bytes -> 1.46 KB (+1.46 KB) | -
+./src/client/this-is-another-file-with-a-long-name-to-test-the-table-sizing.tsx | 0 Bytes -> 1.04 KB (+1.04 KB) | -
+./src/client/helpers/this-file-is-much-larger.ts | 1.35 KB -> 13.01 KB (+11.66 KB) | +865.77%
 ./src/client/this-file-grew-larger.tsx | 562 Bytes -> 762 Bytes (+200 Bytes) | +35.59%
 ./src/client/helpers/this-file-grew-smaller.ts | 2.46 KB -> 2.26 KB (-200 Bytes) | -7.94%
-./src/client/this-file-will-be-deleted.ts | 1.46 KB -> 0 Bytes (-1.46 KB) | -100%`)
+./src/client/this-file-is-much-smaller.tsx | 11.67 KB -> 10 Bytes (-11.66 KB) | -99.92%
+./src/client/routes.tsx | 2.72 KB -> 0 Bytes (-2.72 KB) | -100%
+./src/client/this-file-will-be-deleted.ts | 1.46 KB -> 0 Bytes (-1.46 KB) | -100%
+./src/client/render-memex.tsx | 1.04 KB -> 0 Bytes (-1.04 KB) | -100%`)
 })
 
 test('displays no module information when unchanged', () => {

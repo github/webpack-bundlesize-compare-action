@@ -331,11 +331,11 @@
             },
             {
               "size": 11949,
-              "name": "./src/client/app.tsx"
+              "name": "./src/client/this-file-is-much-smaller.tsx"
             },
             {
               "size": 1379,
-              "name": "./src/client/helpers/initial-state.ts"
+              "name": "./src/client/helpers/this-file-is-much-larger.ts"
             },
             {
               "size": 103,
