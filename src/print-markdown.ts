@@ -213,7 +213,9 @@ ${summaryTable}
 
 <details>
 <summary>View detailed changes</summary>
+
 ${detailedTable}
+
 </details>
 `
 }
