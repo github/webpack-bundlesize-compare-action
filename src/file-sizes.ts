@@ -1,6 +1,6 @@
 const BYTES_PER_KILOBYTE = 1024
 const denominations = [
-  'Bytes', // 1 Byte
+  'B', // 1 Byte
   'KB', // 1 Kilobyte
   'MB', // 1 Megabyte
   'GB', // 1 Gigabyte
