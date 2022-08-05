@@ -504,7 +504,9 @@ ${summaryTable}
 
 <details>
 <summary>View individual file sizes</summary>
+
 ${detailedTable}
+
 </details>
 
 </details>

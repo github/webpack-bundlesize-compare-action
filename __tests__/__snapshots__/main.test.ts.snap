@@ -138,6 +138,7 @@ File | Δ
 
 <details>
 <summary>View individual file sizes</summary>
+
 File | Old | New | Δ
 ---- | --- | --- | -
   \`src/client/this/file/has/a/long/name/so-that-it-will-hopefully-wrap.tsx\` | 0 B | 2.72 KB | 🆕 +2.72 KB
@@ -150,6 +151,7 @@ File | Old | New | Δ
 \`src/client/routes.tsx\` | 2.72 KB | 0 B | 🔥 -2.72 KB (-100%)
 \`src/client/this-file-will-be-deleted.ts\` | 1.46 KB | 0 B | 🔥 -1.46 KB (-100%)
 \`src/client/render-memex.tsx\` | 1.04 KB | 0 B | 🔥 -1.04 KB (-100%)
+
 </details>
 
 </details>
