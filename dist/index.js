@@ -497,14 +497,15 @@ No files were changed`;
         .map(chunkModule => printDetailedChunkModuleRow(chunkModule))
         .join('\n')}`;
     return `
-**Changeset**
+<details>
+<summary>**Changeset**</summary>
 
 ${summaryTable}
 
 <details>
-<summary>View detailed changes</summary>
-
+<summary>View individual file sizes</summary>
 ${detailedTable}
+</details>
 
 </details>
 `;
