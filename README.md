@@ -10,7 +10,7 @@ In your application, ensure you output the stats.json, from `BundleAnalyzerPlugi
 // webpack.config.js
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 
-// optionally you can also output compressed/gzipped stats
+// optionally you can also output compressed/gzipped stats. Requires a version >=1.1.0
 const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
@@ -40,6 +40,8 @@ on:
 
 jobs:
   # Build current and upload stats.json
+  # You may replace this with your own build method. All that
+  # is required is that the stats.json be an artifact
   build-head:
     name: 'Build head'
     runs-on: ubuntu-latest
@@ -60,6 +62,8 @@ jobs:
           path: ./dist/stats.json
 
   # Build base for comparison and upload stats.json
+  # You may replace this with your own build method. All that
+  # is required is that the stats.json be an artifact
   build-base:
     name: 'Build base'
     runs-on: ubuntu-latest
@@ -79,51 +83,14 @@ jobs:
           name: base-stats
           path: ./dist/stats.json
 
-  # Checkout the action repo, download artifacts, and run the action
-  # against the stats.json files
+  # run the action against the stats.json files
   compare:
     name: 'Compare base & head bundle sizes'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    needs: [build-base, build-head]
-    steps:
-      - name: Install Node.js 16.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16.x
-          registry-url: https://npm.pkg.github.com/
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: actions/checkout@v2
-
-      - name: Download base artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: base-stats
-
-      - name: Download head artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: head-stats
-
-      # Checkout the action repository - since it's a private repo
-      # we can't just use it directly
-      - uses: actions/checkout@v2
-        with:
-          repository: github/webpack-bundlesize-compare-action
-          token: ${{ secrets.A_TOKEN_THAT_CAN_READ_REPO_FOR_THE_ACTION_REPO }}
-          path: .github/actions/webpack-bundlesize-compare-action
-          ref: v1
-
-      - name: Bundlesize compare
-        uses: ./.github/actions/webpack-bundlesize-compare-action
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          current-stats-json-path: ./head-stats/stats.json
-          base-stats-json-path: ./base-stats/stats.json
+    uses: github/webpack-bundlesize-compare-action # you should probably lock to a sha of a version to avoid potentially breaking changes
+    with: 
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      current-stats-json-path: ./head-stats/stats.json
+      base-stats-json-path: ./base-stats/stats.json
 ```
 
 ## Options
