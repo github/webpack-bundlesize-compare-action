@@ -56,7 +56,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Upload stats.json
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: head-stats
           path: ./dist/stats.json
@@ -78,7 +78,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Upload stats.json
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: base-stats
           path: ./dist/stats.json
@@ -86,11 +86,15 @@ jobs:
   # run the action against the stats.json files
   compare:
     name: 'Compare base & head bundle sizes'
-    uses: github/webpack-bundlesize-compare-action # you should probably lock to a sha of a version to avoid potentially breaking changes
-    with: 
-      github-token: ${{ secrets.GITHUB_TOKEN }}
-      current-stats-json-path: ./head-stats/stats.json
-      base-stats-json-path: ./base-stats/stats.json
+    runs-on: ubuntu-latest
+    needs: [build-base, build-head]
+    steps:
+      - uses: actions/download-artifact@v3
+      - uses: github/webpack-bundlesize-compare-action@v1.5.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          current-stats-json-path: ./head-stats/stats.json
+          base-stats-json-path: ./base-stats/stats.json
 ```
 
 ## Options
