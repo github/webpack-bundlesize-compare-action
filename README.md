@@ -70,7 +70,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           ref: ${{ github.base_ref }}
       - name: Install dependencies
@@ -78,7 +78,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Upload stats.json
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: base-stats
           path: ./dist/stats.json
