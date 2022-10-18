@@ -88,6 +88,8 @@ jobs:
     name: 'Compare base & head bundle sizes'
     runs-on: ubuntu-latest
     needs: [build-base, build-head]
+    permissions:
+      pull-requests: write
     steps:
       - uses: actions/download-artifact@v3
       - uses: github/webpack-bundlesize-compare-action@v1.5.0
@@ -96,6 +98,8 @@ jobs:
           current-stats-json-path: ./head-stats/stats.json
           base-stats-json-path: ./base-stats/stats.json
 ```
+
+This action requires the `write` permission for the [`permissions.pull-requests` scope](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idpermissions).
 
 ## Options
 
