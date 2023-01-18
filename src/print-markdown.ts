@@ -137,7 +137,7 @@ const getTrimmedChunkName = (chunkModule: AssetDiff): string => {
   return chunkName
 }
 
-const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Δ'])
+const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Δ', 'Size'])
 
 function printChunkModuleRow(chunkModule: AssetDiff): string {
   const emoji = getDiffEmoji(chunkModule)
@@ -151,27 +151,10 @@ function printChunkModuleRow(chunkModule: AssetDiff): string {
       Number.isFinite(chunkModule.diffPercentage)
         ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
         : ''
-    }`
-  ].join(' | ')
-}
-
-const DETAILED_CHUNK_TABLE_HEADERS = makeHeader(['File', 'Old', 'New', 'Δ'])
-
-function printDetailedChunkModuleRow(chunkModule: AssetDiff): string {
-  const emoji = getDiffEmoji(chunkModule)
-  const chunkName = getTrimmedChunkName(chunkModule)
-
-  return [
-    `\`${chunkName}\``,
-    formatFileSizeIEC(chunkModule.old.size),
-    formatFileSizeIEC(chunkModule.new.size),
-    `${emoji} ${chunkModule.diff >= 0 ? '+' : '-'}${formatFileSizeIEC(
-      chunkModule.diff
-    )}${
-      Number.isFinite(chunkModule.diffPercentage)
-        ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
-        : ''
-    }`
+    }`,
+    `${formatFileSizeIEC(chunkModule.old.size)} -> ${formatFileSizeIEC(
+      chunkModule.new.size
+    )}`
   ].join(' | ')
 }
 
@@ -201,23 +184,12 @@ No files were changed`
   ${modulesBySizeDescending
     .map(chunkModule => printChunkModuleRow(chunkModule))
     .join('\n')}`
-  const detailedTable = `${DETAILED_CHUNK_TABLE_HEADERS}
-  ${modulesBySizeDescending
-    .map(chunkModule => printDetailedChunkModuleRow(chunkModule))
-    .join('\n')}`
 
   return `
 <details>
 <summary>**Changeset**</summary>
 
 ${summaryTable}
-
-<details>
-<summary>View individual file sizes</summary>
-
-${detailedTable}
-
-</details>
 
 </details>
 `
