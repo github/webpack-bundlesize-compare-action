@@ -314,7 +314,7 @@ function parseStatsFileToJson(statsFilePath) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const path = (0, path_1.resolve)(process.cwd(), statsFilePath);
-            return (0, json_ext_1.parseChunked)((0, fs_1.createReadStream)(path));
+            return (yield (0, json_ext_1.parseChunked)((0, fs_1.createReadStream)(path)));
         }
         catch (_a) {
             return { assets: [], chunks: undefined };
