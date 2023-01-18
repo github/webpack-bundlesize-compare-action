@@ -1,5 +1,6 @@
-import {readFile} from 'fs/promises'
+import {createReadStream} from 'fs'
 import {resolve} from 'path'
+import {parseChunked} from '@discoveryjs/json-ext'
 import type {StatsCompilation} from 'webpack'
 
 export async function parseStatsFileToJson(
@@ -7,8 +8,7 @@ export async function parseStatsFileToJson(
 ): Promise<Pick<StatsCompilation, 'assets' | 'chunks'>> {
   try {
     const path = resolve(process.cwd(), statsFilePath)
-    const file = await readFile(path, 'utf8')
-    return JSON.parse(file) as StatsCompilation
+    return parseChunked(createReadStream(path))  as StatsCompilation
   } catch {
     return {assets: [], chunks: undefined}
   }
