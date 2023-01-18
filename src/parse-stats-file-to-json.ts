@@ -8,7 +8,7 @@ export async function parseStatsFileToJson(
 ): Promise<Pick<StatsCompilation, 'assets' | 'chunks'>> {
   try {
     const path = resolve(process.cwd(), statsFilePath)
-    return parseChunked(createReadStream(path))  as StatsCompilation
+    return parseChunked(createReadStream(path)) as StatsCompilation
   } catch {
     return {assets: [], chunks: undefined}
   }

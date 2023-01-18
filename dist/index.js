@@ -448,7 +448,7 @@ const getTrimmedChunkName = (chunkModule) => {
     }
     return chunkName;
 };
-const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Δ']);
+const CHUNK_TABLE_HEADERS = makeHeader(['File', 'Δ', 'Size']);
 function printChunkModuleRow(chunkModule) {
     const emoji = getDiffEmoji(chunkModule);
     const chunkName = getTrimmedChunkName(chunkModule);
@@ -456,20 +456,8 @@ function printChunkModuleRow(chunkModule) {
         `\`${chunkName}\``,
         `${emoji} ${chunkModule.diff >= 0 ? '+' : '-'}${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.diff)}${Number.isFinite(chunkModule.diffPercentage)
             ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
-            : ''}`
-    ].join(' | ');
-}
-const DETAILED_CHUNK_TABLE_HEADERS = makeHeader(['File', 'Old', 'New', 'Δ']);
-function printDetailedChunkModuleRow(chunkModule) {
-    const emoji = getDiffEmoji(chunkModule);
-    const chunkName = getTrimmedChunkName(chunkModule);
-    return [
-        `\`${chunkName}\``,
-        (0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size),
-        (0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size),
-        `${emoji} ${chunkModule.diff >= 0 ? '+' : '-'}${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.diff)}${Number.isFinite(chunkModule.diffPercentage)
-            ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
-            : ''}`
+            : ''}`,
+        `${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size)} -> ${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size)}`
     ].join(' | ');
 }
 function printChunkModulesTable(statsDiff) {
@@ -492,22 +480,11 @@ No files were changed`;
   ${modulesBySizeDescending
         .map(chunkModule => printChunkModuleRow(chunkModule))
         .join('\n')}`;
-    const detailedTable = `${DETAILED_CHUNK_TABLE_HEADERS}
-  ${modulesBySizeDescending
-        .map(chunkModule => printDetailedChunkModuleRow(chunkModule))
-        .join('\n')}`;
     return `
 <details>
 <summary>**Changeset**</summary>
 
 ${summaryTable}
-
-<details>
-<summary>View individual file sizes</summary>
-
-${detailedTable}
-
-</details>
 
 </details>
 `;
