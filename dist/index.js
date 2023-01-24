@@ -1,7 +1,7 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 4836:
+/***/ 5313:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -44,7 +44,7 @@ exports.formatFileSizeIEC = formatFileSizeIEC;
 
 /***/ }),
 
-/***/ 6967:
+/***/ 8075:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -72,15 +72,15 @@ exports.getAssetDiff = getAssetDiff;
 
 /***/ }),
 
-/***/ 8731:
+/***/ 658:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getChunkModuleDiff = void 0;
-const name_to_size_map_1 = __nccwpck_require__(9804);
-const webpack_stats_diff_1 = __nccwpck_require__(1099);
+const name_to_size_map_1 = __nccwpck_require__(5188);
+const webpack_stats_diff_1 = __nccwpck_require__(2572);
 function getChunkModuleDiff(oldStats, newStats) {
     if (!oldStats.chunks || !newStats.chunks) {
         return null;
@@ -92,15 +92,15 @@ exports.getChunkModuleDiff = getChunkModuleDiff;
 
 /***/ }),
 
-/***/ 7334:
+/***/ 5476:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getStatsDiff = void 0;
-const name_to_size_map_1 = __nccwpck_require__(9804);
-const webpack_stats_diff_1 = __nccwpck_require__(1099);
+const name_to_size_map_1 = __nccwpck_require__(5188);
+const webpack_stats_diff_1 = __nccwpck_require__(2572);
 function getStatsDiff(oldAssetStats, newAssetStats) {
     return (0, webpack_stats_diff_1.webpackStatsDiff)((0, name_to_size_map_1.assetNameToSizeMap)(oldAssetStats.assets), (0, name_to_size_map_1.assetNameToSizeMap)(newAssetStats.assets));
 }
@@ -109,7 +109,7 @@ exports.getStatsDiff = getStatsDiff;
 
 /***/ }),
 
-/***/ 3109:
+/***/ 9536:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -149,10 +149,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5438);
-const get_chunk_module_diff_1 = __nccwpck_require__(8731);
-const get_stats_diff_1 = __nccwpck_require__(7334);
-const parse_stats_file_to_json_1 = __nccwpck_require__(4578);
-const to_comment_body_1 = __nccwpck_require__(3471);
+const get_chunk_module_diff_1 = __nccwpck_require__(658);
+const get_stats_diff_1 = __nccwpck_require__(5476);
+const parse_stats_file_to_json_1 = __nccwpck_require__(2495);
+const to_comment_body_1 = __nccwpck_require__(4713);
 function run() {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
@@ -226,7 +226,7 @@ run();
 
 /***/ }),
 
-/***/ 9804:
+/***/ 5188:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -291,7 +291,7 @@ exports.chunkModuleNameToSizeMap = chunkModuleNameToSizeMap;
 
 /***/ }),
 
-/***/ 4578:
+/***/ 2495:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -353,14 +353,14 @@ exports.parseStatsFileToJson = parseStatsFileToJson;
 
 /***/ }),
 
-/***/ 803:
+/***/ 9761:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.printTotalAssetTable = exports.printChunkModulesTable = exports.printAssetTablesByGroup = void 0;
-const file_sizes_1 = __nccwpck_require__(4836);
+const file_sizes_1 = __nccwpck_require__(5313);
 function conditionalPercentage(number) {
     if ([Infinity, -Infinity].includes(number)) {
         return '-';
@@ -500,16 +500,15 @@ Changeset
 
 No files were changed`;
     }
-    const summaryTable = `${CHUNK_TABLE_HEADERS}
-  ${changedModules
-        .slice(0, 100)
-        .map(chunkModule => printChunkModuleRow(chunkModule))
-        .join('\n')}`;
     return `
 <details>
-<summary>Changeset (largest 100 files)</summary>
+<summary>Changeset${changedModules.length > 100 ? ' (largest 100 files by percent change)' : ''}</summary>
 
-${summaryTable}
+${CHUNK_TABLE_HEADERS}
+${changedModules
+        .slice(0, 100)
+        .map(chunkModule => printChunkModuleRow(chunkModule))
+        .join('\n')}
 
 </details>
 `;
@@ -526,7 +525,7 @@ exports.printTotalAssetTable = printTotalAssetTable;
 
 /***/ }),
 
-/***/ 4318:
+/***/ 2458:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -541,14 +540,14 @@ exports.sortDiffDescending = sortDiffDescending;
 
 /***/ }),
 
-/***/ 3471:
+/***/ 4713:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getCommentBody = exports.getIdentifierComment = void 0;
-const print_markdown_1 = __nccwpck_require__(803);
+const print_markdown_1 = __nccwpck_require__(9761);
 function getIdentifierComment(key) {
     return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`;
 }
@@ -581,15 +580,15 @@ exports.getCommentBody = getCommentBody;
 
 /***/ }),
 
-/***/ 1099:
+/***/ 2572:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.webpackStatsDiff = void 0;
-const get_asset_diff_1 = __nccwpck_require__(6967);
-const sort_diff_descending_1 = __nccwpck_require__(4318);
+const get_asset_diff_1 = __nccwpck_require__(8075);
+const sort_diff_descending_1 = __nccwpck_require__(2458);
 function webpackStatsDiff(oldAssets, newAssets) {
     var _a, _b;
     const added = [];
@@ -11494,7 +11493,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(3109);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(9536);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()

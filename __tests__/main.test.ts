@@ -1,48 +1,55 @@
 import {expect, test} from '@jest/globals'
 import {getStatsDiff} from '../src/get-stats-diff'
 import {getChunkModuleDiff} from '../src/get-chunk-module-diff'
-import {getCommentBody} from '../src/to-comment-body'
 import {
   printAssetTablesByGroup,
   printChunkModulesTable,
   printTotalAssetTable
 } from '../src/print-markdown'
 import {AssetDiff} from '../src/types'
+import {readFile} from 'node:fs/promises'
+import {resolve} from 'node:path'
+import {StatsCompilation} from 'webpack'
 
-test('Shows stats when files are removed', () => {
+async function readJsonFile(path: string): Promise<StatsCompilation> {
+  const data = await readFile(resolve(__dirname, path), 'utf8')
+  return JSON.parse(data)
+}
+
+test('Shows stats when files are removed', async () => {
   const statsDiff = getStatsDiff(
-    require('./__mocks__/old-stats-assets.json'),
-    require('./__mocks__/new-stats-assets.json')
+    await readJsonFile('./__mocks__/old-stats-assets.json'),
+    await readJsonFile('./__mocks__/new-stats-assets.json')
   )
 
   expect(printTotalAssetTable(statsDiff)).toMatchSnapshot()
   expect(printAssetTablesByGroup(statsDiff)).toMatchSnapshot()
 })
 
-test('Shows stats when files are added', () => {
+test('Shows stats when files are added', async () => {
   const statsDiff = getStatsDiff(
-    require('./__mocks__/new-stats-assets.json'),
-    require('./__mocks__/old-stats-assets.json')
+    await readJsonFile('./__mocks__/new-stats-assets.json'),
+    await readJsonFile('./__mocks__/old-stats-assets.json')
   )
 
   expect(printTotalAssetTable(statsDiff)).toMatchSnapshot()
   expect(printAssetTablesByGroup(statsDiff)).toMatchSnapshot()
 })
 
-test('Shows stats when files are unchanged', () => {
+test('Shows stats when files are unchanged', async () => {
   const statsDiff = getStatsDiff(
-    require('./__mocks__/old-stats-assets.json'),
-    require('./__mocks__/old-stats-assets.json')
+    await readJsonFile('./__mocks__/old-stats-assets.json'),
+    await readJsonFile('./__mocks__/old-stats-assets.json')
   )
 
   expect(printTotalAssetTable(statsDiff)).toMatchSnapshot()
   expect(printAssetTablesByGroup(statsDiff)).toMatchSnapshot()
 })
 
-test('computes the correct module diff information', () => {
+test('computes the correct module diff information', async () => {
   const statsDiff = getChunkModuleDiff(
-    require('./__mocks__/old-stats-with-chunks.json'),
-    require('./__mocks__/new-stats-with-chunks.json')
+    await readJsonFile('./__mocks__/old-stats-with-chunks.json'),
+    await readJsonFile('./__mocks__/new-stats-with-chunks.json')
   )
 
   expect(statsDiff?.added).toContainEqual({
@@ -78,28 +85,28 @@ test('computes the correct module diff information', () => {
   expect(statsDiff?.total.diffPercentage).toEqual(0)
 })
 
-test('displays module information when files are added/removed/changed', () => {
+test('displays module information when files are added/removed/changed', async () => {
   const statsDiff = getChunkModuleDiff(
-    require('./__mocks__/old-stats-with-chunks.json'),
-    require('./__mocks__/new-stats-with-chunks.json')
+    await readJsonFile('./__mocks__/old-stats-with-chunks.json'),
+    await readJsonFile('./__mocks__/new-stats-with-chunks.json')
   )
 
   expect(printChunkModulesTable(statsDiff)).toMatchSnapshot()
 })
 
-test('displays no module information when unchanged', () => {
+test('displays no module information when unchanged', async () => {
   const statsDiff = getChunkModuleDiff(
-    require('./__mocks__/old-stats-with-chunks.json'),
-    require('./__mocks__/old-stats-with-chunks.json')
+    await readJsonFile('./__mocks__/old-stats-with-chunks.json'),
+    await readJsonFile('./__mocks__/old-stats-with-chunks.json')
   )
 
   expect(printChunkModulesTable(statsDiff)).toMatchSnapshot()
 })
 
-test('does not display module information when it does not exist', () => {
+test('does not display module information when it does not exist', async () => {
   const statsDiff = getChunkModuleDiff(
-    require('./__mocks__/old-stats-assets.json'),
-    require('./__mocks__/old-stats-assets.json')
+    await readJsonFile('./__mocks__/old-stats-assets.json'),
+    await readJsonFile('./__mocks__/old-stats-assets.json')
   )
 
   expect(printChunkModulesTable(statsDiff)).toMatchSnapshot()
