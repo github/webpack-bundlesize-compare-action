@@ -176,17 +176,17 @@ Changeset
 No files were changed`
   }
 
-  const summaryTable = `${CHUNK_TABLE_HEADERS}
-  ${changedModules
-    .slice(0, 100)
-    .map(chunkModule => printChunkModuleRow(chunkModule))
-    .join('\n')}`
-
   return `
 <details>
-<summary>Changeset (largest 100 files)</summary>
+<summary>Changeset${
+    changedModules.length > 100 ? ' (largest 100 files by percent change)' : ''
+  }</summary>
 
-${summaryTable}
+${CHUNK_TABLE_HEADERS}
+${changedModules
+  .slice(0, 100)
+  .map(chunkModule => printChunkModuleRow(chunkModule))
+  .join('\n')}
 
 </details>
 `
