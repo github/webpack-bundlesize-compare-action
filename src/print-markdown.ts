@@ -34,11 +34,10 @@ ${columns
 
 const TOTAL_HEADERS = makeHeader([
   'Files count',
-  'Type',
   'Total bundle size',
   '% Changed'
 ])
-const TABLE_HEADERS = makeHeader(['Asset', 'Type', 'File Size', '% Changed'])
+const TABLE_HEADERS = makeHeader(['Asset', 'File Size', '% Changed'])
 
 function signFor(num: number): '' | '+' | '-' {
   if (num === 0) return ''
@@ -69,7 +68,9 @@ function toFileSizeDiffCell(asset: AssetDiff): string {
   } else {
     lines.push(toFileSizeDiff(asset.old.size, asset.new.size, asset.diff))
     if (asset.old.gzipSize || asset.new.gzipSize) {
-      lines.push(toFileSizeDiff(asset.old.gzipSize, asset.new.gzipSize))
+      lines.push(
+        `${toFileSizeDiff(asset.old.gzipSize, asset.new.gzipSize)} (gzip)`
+      )
     }
   }
 
@@ -79,7 +80,6 @@ function toFileSizeDiffCell(asset: AssetDiff): string {
 function printAssetTableRow(asset: AssetDiff): string {
   return [
     asset.name,
-    asset.old.gzipSize || asset.new.gzipSize ? 'bundled<br />gzip' : 'bundled',
     toFileSizeDiffCell(asset),
     conditionalPercentage(asset.diffPercentage)
   ].join(' | ')
@@ -167,29 +167,26 @@ export function printChunkModulesTable(
     ...statsDiff.removed,
     ...statsDiff.bigger,
     ...statsDiff.smaller
-  ]
+  ].sort((a, b) => b.diffPercentage - a.diffPercentage)
 
   if (changedModules.length === 0) {
     return `
-**Changeset**
+Changeset
 
 No files were changed`
   }
 
-  const modulesBySizeDescending = changedModules.sort(
-    (a, b) => b.diffPercentage - a.diffPercentage
-  )
-
-  const summaryTable = `${CHUNK_TABLE_HEADERS}
-  ${modulesBySizeDescending
-    .map(chunkModule => printChunkModuleRow(chunkModule))
-    .join('\n')}`
-
   return `
 <details>
-<summary>**Changeset**</summary>
+<summary>Changeset${
+    changedModules.length > 100 ? ' (largest 100 files by percent change)' : ''
+  }</summary>
 
-${summaryTable}
+${CHUNK_TABLE_HEADERS}
+${changedModules
+  .slice(0, 100)
+  .map(chunkModule => printChunkModuleRow(chunkModule))
+  .join('\n')}
 
 </details>
 `
