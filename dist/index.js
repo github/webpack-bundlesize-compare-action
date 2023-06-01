@@ -234,7 +234,10 @@ run();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.chunkModuleNameToSizeMap = exports.assetNameToSizeMap = void 0;
 function assetNameToSizeMap(statAssets = []) {
-    return new Map(statAssets.map(asset => {
+    return new Map(statAssets
+        // when Webpack's stats.excludeAssets is used, assets which are excluded will be grouped into an asset with type 'hidden assets'
+        .filter(it => !!it.name && it.type !== 'hidden assets')
+        .map(asset => {
         let gzipSize = null;
         if (asset.related && Array.isArray(asset.related)) {
             const gzipAsset = asset.related.find(related => related.type === 'gzipped');

@@ -46,6 +46,16 @@ test('Shows stats when files are unchanged', async () => {
   expect(printAssetTablesByGroup(statsDiff)).toMatchSnapshot()
 })
 
+test('Shows stats when files are hidden', async () => {
+  const statsDiff = getStatsDiff(
+    await readJsonFile('./__mocks__/old-hidden-stats-assets.json'),
+    await readJsonFile('./__mocks__/new-hidden-stats-assets.json')
+  )
+
+  expect(printTotalAssetTable(statsDiff)).toMatchSnapshot()
+  expect(printAssetTablesByGroup(statsDiff)).toMatchSnapshot()
+})
+
 test('computes the correct module diff information', async () => {
   const statsDiff = getChunkModuleDiff(
     await readJsonFile('./__mocks__/old-stats-with-chunks.json'),

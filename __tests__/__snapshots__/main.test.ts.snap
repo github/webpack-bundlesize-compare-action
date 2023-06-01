@@ -40,6 +40,36 @@ app.bundle.js | 1.29 MB -> 1.04 MB (-254.35 KB)<br />N/A -> 297.38 KB (gzip) | -
 No assets were unchanged"
 `;
 
+exports[`Shows stats when files are hidden 1`] = `
+"**Total**
+
+Files count | Total bundle size | % Changed
+----------- | ----------------- | ---------
+0 | 0 B | 0%"
+`;
+
+exports[`Shows stats when files are hidden 2`] = `
+"**Added**
+
+No assets were added
+
+**Removed**
+
+No assets were removed
+
+**Bigger**
+
+No assets were bigger
+
+**Smaller**
+
+No assets were smaller
+
+**Unchanged**
+
+No assets were unchanged"
+`;
+
 exports[`Shows stats when files are removed 1`] = `
 "**Total**
 
