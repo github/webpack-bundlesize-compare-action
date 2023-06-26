@@ -56,7 +56,7 @@ export function webpackStatsDiff(
     total: getAssetDiff(
       oldFilesCount === newFilesCount
         ? `${newFilesCount}`
-        : `${oldFilesCount} -> ${newFilesCount}`,
+        : `${oldFilesCount} → ${newFilesCount}`,
       {size: oldSizeTotal, gzipSize: oldGzipSizeTotal},
       {size: newSizeTotal, gzipSize: newGzipSizeTotal}
     )

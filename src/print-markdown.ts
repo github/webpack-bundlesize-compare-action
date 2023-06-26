@@ -50,7 +50,7 @@ function toFileSizeDiff(
   diff?: number | undefined
 ): string {
   const diffLine = [
-    `${formatFileSizeIEC(oldSize)} -> ${formatFileSizeIEC(newSize)}`
+    `${formatFileSizeIEC(oldSize)} → ${formatFileSizeIEC(newSize)}`
   ]
   if (typeof diff !== 'undefined') {
     diffLine.push(`(${signFor(diff)}${formatFileSizeIEC(diff)})`)
@@ -152,7 +152,7 @@ function printChunkModuleRow(chunkModule: AssetDiff): string {
         ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
         : ''
     }`,
-    `${formatFileSizeIEC(chunkModule.old.size)} -> ${formatFileSizeIEC(
+    `${formatFileSizeIEC(chunkModule.old.size)} → ${formatFileSizeIEC(
       chunkModule.new.size
     )}`
   ].join(' | ')
