@@ -5,7 +5,7 @@ exports[`Shows stats when files are added 1`] = `
 
 Files count | Total bundle size | % Changed
 ----------- | ----------------- | ---------
-2 → 7 | 1.29 MB → 1.34 MB (+53.65 KB)<br />N/A → 386.44 KB (gzip) | +4.07%"
+2 → 7 | 1.29 MB → 1.34 MB (+53.65 kB)<br />N/A → 386.44 kB (gzip) | +4.07%"
 `;
 
 exports[`Shows stats when files are added 2`] = `
@@ -13,11 +13,11 @@ exports[`Shows stats when files are added 2`] = `
 
 Asset | File Size | % Changed
 ----- | --------- | ---------
-296.chunk.js | 0 B → 124.57 KB (+124.57 KB)<br />0 B → 35.05 KB (gzip) | -
-288.chunk.js | 0 B → 57.24 KB (+57.24 KB)<br />0 B → 16.33 KB (gzip) | -
-920.chunk.js | 0 B → 54.98 KB (+54.98 KB)<br />0 B → 17.08 KB (gzip) | -
-912.chunk.js | 0 B → 44.37 KB (+44.37 KB)<br />0 B → 14.31 KB (gzip) | -
-699.chunk.js | 0 B → 26.39 KB (+26.39 KB)<br />0 B → 6.14 KB (gzip) | -
+296.chunk.js | 0 B → 124.57 kB (+124.57 kB)<br />0 B → 35.05 kB (gzip) | -
+288.chunk.js | 0 B → 57.24 kB (+57.24 kB)<br />0 B → 16.33 kB (gzip) | -
+920.chunk.js | 0 B → 54.98 kB (+54.98 kB)<br />0 B → 17.08 kB (gzip) | -
+912.chunk.js | 0 B → 44.37 kB (+44.37 kB)<br />0 B → 14.31 kB (gzip) | -
+699.chunk.js | 0 B → 26.39 kB (+26.39 kB)<br />0 B → 6.14 kB (gzip) | -
 
 **Removed**
 
@@ -33,7 +33,7 @@ manifest.json | 91 B → 551 B (+460 B)<br />N/A → 151 B (gzip) | +505.49%
 
 Asset | File Size | % Changed
 ----- | --------- | ---------
-app.bundle.js | 1.29 MB → 1.04 MB (-254.35 KB)<br />N/A → 297.38 KB (gzip) | -19.29%
+app.bundle.js | 1.29 MB → 1.04 MB (-254.35 kB)<br />N/A → 297.38 kB (gzip) | -19.29%
 
 **Unchanged**
 
@@ -75,7 +75,7 @@ exports[`Shows stats when files are removed 1`] = `
 
 Files count | Total bundle size | % Changed
 ----------- | ----------------- | ---------
-7 → 2 | 1.34 MB → 1.29 MB (-53.65 KB)<br />386.44 KB → N/A (gzip) | -3.91%"
+7 → 2 | 1.34 MB → 1.29 MB (-53.65 kB)<br />386.44 kB → N/A (gzip) | -3.91%"
 `;
 
 exports[`Shows stats when files are removed 2`] = `
@@ -87,17 +87,17 @@ No assets were added
 
 Asset | File Size | % Changed
 ----- | --------- | ---------
-296.chunk.js | 124.57 KB → 0 B (-124.57 KB)<br />35.05 KB → 0 B (gzip) | -100%
-288.chunk.js | 57.24 KB → 0 B (-57.24 KB)<br />16.33 KB → 0 B (gzip) | -100%
-920.chunk.js | 54.98 KB → 0 B (-54.98 KB)<br />17.08 KB → 0 B (gzip) | -100%
-912.chunk.js | 44.37 KB → 0 B (-44.37 KB)<br />14.31 KB → 0 B (gzip) | -100%
-699.chunk.js | 26.39 KB → 0 B (-26.39 KB)<br />6.14 KB → 0 B (gzip) | -100%
+296.chunk.js | 124.57 kB → 0 B (-124.57 kB)<br />35.05 kB → 0 B (gzip) | -100%
+288.chunk.js | 57.24 kB → 0 B (-57.24 kB)<br />16.33 kB → 0 B (gzip) | -100%
+920.chunk.js | 54.98 kB → 0 B (-54.98 kB)<br />17.08 kB → 0 B (gzip) | -100%
+912.chunk.js | 44.37 kB → 0 B (-44.37 kB)<br />14.31 kB → 0 B (gzip) | -100%
+699.chunk.js | 26.39 kB → 0 B (-26.39 kB)<br />6.14 kB → 0 B (gzip) | -100%
 
 **Bigger**
 
 Asset | File Size | % Changed
 ----- | --------- | ---------
-app.bundle.js | 1.04 MB → 1.29 MB (+254.35 KB)<br />297.38 KB → N/A (gzip) | +23.91%
+app.bundle.js | 1.04 MB → 1.29 MB (+254.35 kB)<br />297.38 kB → N/A (gzip) | +23.91%
 
 **Smaller**
 
@@ -115,7 +115,7 @@ exports[`Shows stats when files are unchanged 1`] = `
 
 Files count | Total bundle size | % Changed
 ----------- | ----------------- | ---------
-7 | 1.34 MB<br />386.44 KB | 0%"
+7 | 1.34 MB<br />386.44 kB | 0%"
 `;
 
 exports[`Shows stats when files are unchanged 2`] = `
@@ -139,12 +139,12 @@ No assets were smaller
 
 Asset | File Size | % Changed
 ----- | --------- | ---------
-app.bundle.js | 1.04 MB<br />297.38 KB | 0%
-296.chunk.js | 124.57 KB<br />35.05 KB | 0%
-288.chunk.js | 57.24 KB<br />16.33 KB | 0%
-920.chunk.js | 54.98 KB<br />17.08 KB | 0%
-912.chunk.js | 44.37 KB<br />14.31 KB | 0%
-699.chunk.js | 26.39 KB<br />6.14 KB | 0%
+app.bundle.js | 1.04 MB<br />297.38 kB | 0%
+296.chunk.js | 124.57 kB<br />35.05 kB | 0%
+288.chunk.js | 57.24 kB<br />16.33 kB | 0%
+920.chunk.js | 54.98 kB<br />17.08 kB | 0%
+912.chunk.js | 44.37 kB<br />14.31 kB | 0%
+699.chunk.js | 26.39 kB<br />6.14 kB | 0%
 manifest.json | 551 B<br />151 B | 0%"
 `;
 
@@ -155,16 +155,16 @@ exports[`displays module information when files are added/removed/changed 1`] = 
 
 File | Δ | Size
 ---- | - | ----
-\`src/client/this/file/has/a/long/name/so-that-it-will-hopefully-wrap.tsx\` | 🆕 +2.72 KB | 0 B → 2.72 KB
-\`src/client/this-file-was-added.ts\` | 🆕 +1.46 KB | 0 B → 1.46 KB
-\`src/client/this-is-another-file-with-a-long-name-to-test-the-table-sizing.tsx\` | 🆕 +1.04 KB | 0 B → 1.04 KB
-\`src/client/helpers/this-file-is-much-larger.ts\` | 📈 +11.66 KB (+865.77%) | 1.35 KB → 13.01 KB
+\`src/client/this/file/has/a/long/name/so-that-it-will-hopefully-wrap.tsx\` | 🆕 +2.72 kB | 0 B → 2.72 kB
+\`src/client/this-file-was-added.ts\` | 🆕 +1.46 kB | 0 B → 1.46 kB
+\`src/client/this-is-another-file-with-a-long-name-to-test-the-table-sizing.tsx\` | 🆕 +1.04 kB | 0 B → 1.04 kB
+\`src/client/helpers/this-file-is-much-larger.ts\` | 📈 +11.66 kB (+865.77%) | 1.35 kB → 13.01 kB
 \`src/client/this-file-grew-larger.tsx\` | 📈 +200 B (+35.59%) | 562 B → 762 B
-\`src/client/helpers/this-file-grew-smaller.ts\` | 📉 -200 B (-7.94%) | 2.46 KB → 2.26 KB
-\`src/client/this-file-is-much-smaller.tsx\` | 📉 -11.66 KB (-99.92%) | 11.67 KB → 10 B
-\`src/client/routes.tsx\` | 🔥 -2.72 KB (-100%) | 2.72 KB → 0 B
-\`src/client/this-file-will-be-deleted.ts\` | 🔥 -1.46 KB (-100%) | 1.46 KB → 0 B
-\`src/client/render-memex.tsx\` | 🔥 -1.04 KB (-100%) | 1.04 KB → 0 B
+\`src/client/helpers/this-file-grew-smaller.ts\` | 📉 -200 B (-7.94%) | 2.46 kB → 2.26 kB
+\`src/client/this-file-is-much-smaller.tsx\` | 📉 -11.66 kB (-99.92%) | 11.67 kB → 10 B
+\`src/client/routes.tsx\` | 🔥 -2.72 kB (-100%) | 2.72 kB → 0 B
+\`src/client/this-file-will-be-deleted.ts\` | 🔥 -1.46 kB (-100%) | 1.46 kB → 0 B
+\`src/client/render-memex.tsx\` | 🔥 -1.04 kB (-100%) | 1.04 kB → 0 B
 
 </details>
 "
