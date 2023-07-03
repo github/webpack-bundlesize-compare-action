@@ -1,5 +1,5 @@
 {
-  "name": "@github/webpack-bundlesize-compare-action",
+  "name": "webpack-bundlesize-compare-action",
   "version": "0.0.0",
   "private": true,
   "description": "GitHub action to compare the size of two webpack bundles from their stats.json output files",
