@@ -557,7 +557,7 @@ function getIdentifierComment(key) {
 exports.getIdentifierComment = getIdentifierComment;
 function getCommentBody(statsDiff, chunkModuleDiff, title) {
     return `
-# Bundle Stats${title ? ` - ${title}` : ''}
+### Bundle Stats${title ? ` - ${title}` : ''}
 
 Hey there, this message comes from a [GitHub action](https://github.com/github/webpack-bundlesize-compare-action) that helps you and reviewers to understand how these changes affect the size of this project's bundle.
 
