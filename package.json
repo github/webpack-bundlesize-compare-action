@@ -42,6 +42,6 @@
     "terser": "^5.18.2",
     "ts-jest": "^29.1.0",
     "typescript": "^5.1.6",
-    "webpack": "^5.88.0"
+    "webpack": "^5.88.1"
   }
 }
