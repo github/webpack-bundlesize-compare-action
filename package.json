@@ -40,7 +40,7 @@
     "js-yaml": "^4.1.0",
     "prettier": "^2.8.8",
     "terser": "^5.18.2",
-    "ts-jest": "^29.1.0",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.1.6",
     "webpack": "^5.88.1"
   }
