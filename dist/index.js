@@ -11,7 +11,7 @@ exports.formatFileSizeIEC = void 0;
 const BYTES_PER_KILOBYTE = 1024;
 const denominations = [
     'B',
-    'KB',
+    'kB',
     'MB',
     'GB',
     'TB',
@@ -485,7 +485,7 @@ function printChunkModuleRow(chunkModule) {
         `${emoji} ${chunkModule.diff >= 0 ? '+' : '-'}${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.diff)}${Number.isFinite(chunkModule.diffPercentage)
             ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
             : ''}`,
-        `${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size)} -> ${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size)}`
+        `${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size)} → ${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size)}`
     ].join(' | ');
 }
 function printChunkModulesTable(statsDiff) {
@@ -557,7 +557,7 @@ function getIdentifierComment(key) {
 exports.getIdentifierComment = getIdentifierComment;
 function getCommentBody(statsDiff, chunkModuleDiff, title) {
     return `
-### Bundle Stats${title ? ` - ${title}` : ''}
+### Bundle Stats${title ? ` — ${title}` : ''}
 
 Hey there, this message comes from a [GitHub action](https://github.com/github/webpack-bundlesize-compare-action) that helps you and reviewers to understand how these changes affect the size of this project's bundle.
 
@@ -641,7 +641,7 @@ function webpackStatsDiff(oldAssets, newAssets) {
         unchanged,
         total: (0, get_asset_diff_1.getAssetDiff)(oldFilesCount === newFilesCount
             ? `${newFilesCount}`
-            : `${oldFilesCount} -> ${newFilesCount}`, { size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal })
+            : `${oldFilesCount} → ${newFilesCount}`, { size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal })
     };
 }
 exports.webpackStatsDiff = webpackStatsDiff;
@@ -1204,8 +1204,8 @@ class OidcClient {
             const res = yield httpclient
                 .getJson(id_token_url)
                 .catch(error => {
-                throw new Error(`Failed to get ID Token. \n
-        Error Code : ${error.statusCode}\n
+                throw new Error(`Failed to get ID Token. \n 
+        Error Code : ${error.statusCode}\n 
         Error Message: ${error.result.message}`);
             });
             const id_token = (_a = res.result) === null || _a === void 0 ? void 0 : _a.value;
@@ -11458,7 +11458,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -11472,7 +11472,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -11481,24 +11481,24 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/
+/******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __nccwpck_require__(9536);
 /******/ 	module.exports = __webpack_exports__;
-/******/
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map
