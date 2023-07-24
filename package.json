@@ -30,7 +30,7 @@
     "@discoveryjs/json-ext": "^0.5.7"
   },
   "devDependencies": {
-    "@types/node": "16.18.38",
+    "@types/node": "16.18.39",
     "@typescript-eslint/parser": "^5.62.0",
     "@vercel/ncc": "^0.36.1",
     "eslint": "^8.45.0",
