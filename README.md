@@ -110,6 +110,8 @@ This action requires the `write` permission for the [`permissions.pull-requests`
 | github-token            | The Github token                                                                                                    | true     | string |
 | title                   | An optional addition to the title, which also helps key comments, useful if running more than 1 copy of this action | false    | string |
 
+| describe-assets         | Option for asset description output. One of "all" (default), "changed-only", or "none". | false    | string |
+
 ## Example PR Comment
 
 https://github.com/github/webpack-bundlesize-compare-action/pull/50#issuecomment-1054919780

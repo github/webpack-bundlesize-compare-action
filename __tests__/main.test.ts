@@ -121,3 +121,26 @@ test('does not display module information when it does not exist', async () => {
 
   expect(printChunkModulesTable(statsDiff)).toMatchSnapshot()
 })
+
+test('does not describe assets when requested', async () => {
+  const statsDiff = getStatsDiff(
+    await readJsonFile('./__mocks__/old-stats-assets.json'),
+    await readJsonFile('./__mocks__/new-stats-assets.json')
+  )
+
+  expect(printAssetTablesByGroup(statsDiff, 'none')).toBe('')
+})
+
+test('skips unchanged assets when requested', async () => {
+  const statsDiff = getStatsDiff(
+    await readJsonFile('./__mocks__/old-stats-assets.json'),
+    await readJsonFile('./__mocks__/old-stats-assets.json')
+  )
+
+  const changedOnlyAssetStats = printAssetTablesByGroup(
+    statsDiff,
+    'changed-only'
+  )
+  expect(changedOnlyAssetStats).not.toContain('**Unchanged**')
+  expect(changedOnlyAssetStats).toContain('**Added**')
+})

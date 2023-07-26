@@ -153,6 +153,7 @@ const get_chunk_module_diff_1 = __nccwpck_require__(658);
 const get_stats_diff_1 = __nccwpck_require__(5476);
 const parse_stats_file_to_json_1 = __nccwpck_require__(2495);
 const to_comment_body_1 = __nccwpck_require__(4713);
+const types_1 = __nccwpck_require__(5945);
 function run() {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
@@ -165,6 +166,10 @@ function run() {
             const token = core.getInput('github-token');
             const currentStatsJsonPath = core.getInput('current-stats-json-path');
             const baseStatsJsonPath = core.getInput('base-stats-json-path');
+            const describeAssetsOption = core.getInput('describe-assets');
+            if (!(0, types_1.isDescribeAssetsOption)(describeAssetsOption)) {
+                throw new Error(`Unsupported options for 'describe-assets': ${describeAssetsOption} is not one of ${types_1.DescribeAssetsOptions}`);
+            }
             const title = (_a = core.getInput('title')) !== null && _a !== void 0 ? _a : '';
             const { rest } = (0, github_1.getOctokit)(token);
             const [currentStatsJson, baseStatsJson, { data: comments }] = yield Promise.all([
@@ -185,7 +190,7 @@ function run() {
             });
             const statsDiff = (0, get_stats_diff_1.getStatsDiff)(baseStatsJson, currentStatsJson);
             const chunkModuleDiff = (0, get_chunk_module_diff_1.getChunkModuleDiff)(baseStatsJson, currentStatsJson);
-            const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff, chunkModuleDiff, title);
+            const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff, chunkModuleDiff, title, describeAssetsOption);
             const promises = [];
             if (restComments.length > 1) {
                 promises.push(...restComments.map((comment) => __awaiter(this, void 0, void 0, function* () {
@@ -429,13 +434,16 @@ function printAssetTableRow(asset) {
         conditionalPercentage(asset.diffPercentage)
     ].join(' | ');
 }
-function printAssetTablesByGroup(statsDiff) {
+function printAssetTablesByGroup(statsDiff, describeAssetsOption = 'all') {
+    if (describeAssetsOption === 'none') {
+        return '';
+    }
     const statsFields = [
         'added',
         'removed',
         'bigger',
         'smaller',
-        'unchanged'
+        ...(describeAssetsOption === 'all' ? ['unchanged'] : [])
     ];
     return statsFields
         .map(field => {
@@ -555,7 +563,7 @@ function getIdentifierComment(key) {
     return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`;
 }
 exports.getIdentifierComment = getIdentifierComment;
-function getCommentBody(statsDiff, chunkModuleDiff, title) {
+function getCommentBody(statsDiff, chunkModuleDiff, title, describeAssetsOption = 'all') {
     return `
 ### Bundle Stats${title ? ` — ${title}` : ''}
 
@@ -570,7 +578,7 @@ ${chunkModuleDiff ? `${(0, print_markdown_1.printChunkModulesTable)(chunkModuleD
 
 <div>
 
-${(0, print_markdown_1.printAssetTablesByGroup)(statsDiff)}
+${(0, print_markdown_1.printAssetTablesByGroup)(statsDiff, describeAssetsOption)}
 
 </div>
 </details>
@@ -579,6 +587,22 @@ ${getIdentifierComment(title)}
 `;
 }
 exports.getCommentBody = getCommentBody;
+
+
+/***/ }),
+
+/***/ 5945:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.isDescribeAssetsOption = exports.DescribeAssetsOptions = void 0;
+exports.DescribeAssetsOptions = ['all', 'none', 'changed-only'];
+const isDescribeAssetsOption = (option) => {
+    return exports.DescribeAssetsOptions.includes(option);
+};
+exports.isDescribeAssetsOption = isDescribeAssetsOption;
 
 
 /***/ }),

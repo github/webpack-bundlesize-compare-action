@@ -4,6 +4,7 @@ import {getChunkModuleDiff} from './get-chunk-module-diff'
 import {getStatsDiff} from './get-stats-diff'
 import {parseStatsFileToJson} from './parse-stats-file-to-json'
 import {getCommentBody, getIdentifierComment} from './to-comment-body'
+import {isDescribeAssetsOption, DescribeAssetsOptions} from './types'
 
 async function run(): Promise<void> {
   try {
@@ -22,6 +23,12 @@ async function run(): Promise<void> {
     const token = core.getInput('github-token')
     const currentStatsJsonPath = core.getInput('current-stats-json-path')
     const baseStatsJsonPath = core.getInput('base-stats-json-path')
+    const describeAssetsOption = core.getInput('describe-assets')
+    if (!isDescribeAssetsOption(describeAssetsOption)) {
+      throw new Error(
+        `Unsupported options for 'describe-assets': ${describeAssetsOption} is not one of ${DescribeAssetsOptions}`
+      )
+    }
     const title = core.getInput('title') ?? ''
     const {rest} = getOctokit(token)
 
@@ -48,7 +55,12 @@ async function run(): Promise<void> {
     const statsDiff = getStatsDiff(baseStatsJson, currentStatsJson)
     const chunkModuleDiff = getChunkModuleDiff(baseStatsJson, currentStatsJson)
 
-    const commentBody = getCommentBody(statsDiff, chunkModuleDiff, title)
+    const commentBody = getCommentBody(
+      statsDiff,
+      chunkModuleDiff,
+      title,
+      describeAssetsOption
+    )
 
     const promises: Promise<unknown>[] = []
 

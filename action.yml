@@ -13,6 +13,10 @@ inputs:
   title:
     description: 'An optional addition to the title, which also helps key comments, useful if running more than 1 copy of this action'
     required: false
+  describe-assets:
+    description: 'Option for asset description output. One of "all" (default), "changed-only", or "none".'
+    required: false
+    default: 'all'
 
 runs:
   using: 'node16'

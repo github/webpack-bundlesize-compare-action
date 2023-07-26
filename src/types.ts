@@ -25,3 +25,13 @@ export type WebpackStatsDiff = {
   unchanged: AssetDiff[]
   total: AssetDiff
 }
+
+export const DescribeAssetsOptions = ['all', 'none', 'changed-only'] as const
+
+export type DescribeAssetsOption = (typeof DescribeAssetsOptions)[number]
+
+export const isDescribeAssetsOption = (
+  option: string
+): option is DescribeAssetsOption => {
+  return DescribeAssetsOptions.includes(option as DescribeAssetsOption)
+}
