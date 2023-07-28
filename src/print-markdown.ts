@@ -1,5 +1,5 @@
 import {formatFileSizeIEC} from './file-sizes'
-import type {AssetDiff, WebpackStatsDiff} from './types'
+import type {AssetDiff, WebpackStatsDiff, Sizes, ChunkSizes} from './types'
 
 function conditionalPercentage(number: number): string {
   if ([Infinity, -Infinity].includes(number)) {
@@ -86,7 +86,7 @@ function printAssetTableRow(asset: AssetDiff): string {
 }
 
 export function printAssetTablesByGroup(
-  statsDiff: Omit<WebpackStatsDiff, 'total'>
+  statsDiff: Omit<WebpackStatsDiff<Sizes>, 'total'>
 ): string {
   const statsFields = [
     'added',
@@ -159,7 +159,7 @@ function printChunkModuleRow(chunkModule: AssetDiff): string {
 }
 
 export function printChunkModulesTable(
-  statsDiff: Omit<WebpackStatsDiff, 'total' | 'unchanged'> | null
+  statsDiff?: Omit<WebpackStatsDiff<Sizes>, 'total' | 'unchanged'>
 ): string {
   if (!statsDiff) return ''
   const changedModules = [
@@ -193,10 +193,17 @@ ${changedModules
 }
 
 export function printTotalAssetTable(
-  statsDiff: Pick<WebpackStatsDiff, 'total'>
+  totalStatsDiff: Pick<WebpackStatsDiff<Sizes>, 'total'>,
+  initialStatsDiff?: Pick<WebpackStatsDiff<ChunkSizes>, 'initial'>
 ): string {
-  return `**Total**
+  const result = `**Total**
 
 ${TOTAL_HEADERS}
-${printAssetTableRow(statsDiff.total)}`
+${printAssetTableRow(totalStatsDiff.total)}`
+  if (initialStatsDiff && initialStatsDiff.initial) {
+    return `${result}
+  ${printAssetTableRow(initialStatsDiff.initial)}`
+  } else {
+    return result
+  }
 }

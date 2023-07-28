@@ -83,7 +83,7 @@ const name_to_size_map_1 = __nccwpck_require__(5188);
 const webpack_stats_diff_1 = __nccwpck_require__(2572);
 function getChunkModuleDiff(oldStats, newStats) {
     if (!oldStats.chunks || !newStats.chunks) {
-        return null;
+        return undefined;
     }
     return (0, webpack_stats_diff_1.webpackStatsDiff)((0, name_to_size_map_1.chunkModuleNameToSizeMap)(oldStats.chunks), (0, name_to_size_map_1.chunkModuleNameToSizeMap)(newStats.chunks));
 }
@@ -269,6 +269,7 @@ function chunkModuleNameToSizeMap(statChunks = []) {
                     return [
                         (_a = submodule.name) !== null && _a !== void 0 ? _a : '',
                         {
+                            initial: chunk.initial,
                             size: (_b = submodule.size) !== null && _b !== void 0 ? _b : 0,
                             gzipSize: null
                         }
@@ -280,6 +281,7 @@ function chunkModuleNameToSizeMap(statChunks = []) {
                     [
                         (_a = module.name) !== null && _a !== void 0 ? _a : '',
                         {
+                            initial: chunk.initial,
                             size: (_b = module.size) !== null && _b !== void 0 ? _b : 0,
                             gzipSize: null
                         }
@@ -517,11 +519,18 @@ ${changedModules
 `;
 }
 exports.printChunkModulesTable = printChunkModulesTable;
-function printTotalAssetTable(statsDiff) {
-    return `**Total**
+function printTotalAssetTable(totalStatsDiff, initialStatsDiff) {
+    const result = `**Total**
 
 ${TOTAL_HEADERS}
-${printAssetTableRow(statsDiff.total)}`;
+${printAssetTableRow(totalStatsDiff.total)}`;
+    if (initialStatsDiff && initialStatsDiff.initial) {
+        return `${result}
+  ${printAssetTableRow(initialStatsDiff.initial)}`;
+    }
+    else {
+        return result;
+    }
 }
 exports.printTotalAssetTable = printTotalAssetTable;
 
@@ -563,7 +572,7 @@ Hey there, this message comes from a [GitHub action](https://github.com/github/w
 
 As this PR is updated, I'll keep you updated on how the bundle size is impacted.
 
-${(0, print_markdown_1.printTotalAssetTable)(statsDiff)}
+${(0, print_markdown_1.printTotalAssetTable)(statsDiff, chunkModuleDiff)}
 ${chunkModuleDiff ? `${(0, print_markdown_1.printChunkModulesTable)(chunkModuleDiff)}\n` : ''}
 <details>
 <summary>View detailed bundle breakdown</summary>
@@ -583,6 +592,21 @@ exports.getCommentBody = getCommentBody;
 
 /***/ }),
 
+/***/ 5945:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.isChunkSizes = void 0;
+function isChunkSizes(sizes) {
+    return 'initial' in sizes;
+}
+exports.isChunkSizes = isChunkSizes;
+
+
+/***/ }),
+
 /***/ 2572:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -592,8 +616,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.webpackStatsDiff = void 0;
 const get_asset_diff_1 = __nccwpck_require__(8075);
 const sort_diff_descending_1 = __nccwpck_require__(2458);
+const types_1 = __nccwpck_require__(5945);
 function webpackStatsDiff(oldAssets, newAssets) {
-    var _a, _b;
+    var _a, _b, _c, _d;
     const added = [];
     const removed = [];
     const bigger = [];
@@ -603,9 +628,22 @@ function webpackStatsDiff(oldAssets, newAssets) {
     let oldSizeTotal = 0;
     let newGzipSizeTotal = 0;
     let oldGzipSizeTotal = 0;
+    let newSizeInitial = 0;
+    let oldSizeInitial = 0;
+    let newGzipSizeInitial = 0;
+    let oldGzipSizeInitial = 0;
+    let newInitialFilesCount = 0;
+    let oldInitialFilesCount = 0;
+    let hasInitialData = false;
     for (const [name, oldAssetSizes] of oldAssets) {
         oldSizeTotal += oldAssetSizes.size;
         oldGzipSizeTotal += (_a = oldAssetSizes.gzipSize) !== null && _a !== void 0 ? _a : NaN;
+        if ((0, types_1.isChunkSizes)(oldAssetSizes) && oldAssetSizes.initial) {
+            hasInitialData = true;
+            oldSizeInitial += oldAssetSizes.size;
+            oldGzipSizeInitial += (_b = oldAssetSizes.gzipSize) !== null && _b !== void 0 ? _b : NaN;
+            oldInitialFilesCount += 1;
+        }
         const newAsset = newAssets.get(name);
         if (!newAsset) {
             removed.push((0, get_asset_diff_1.getAssetDiff)(name, oldAssetSizes, { size: 0, gzipSize: 0 }));
@@ -625,7 +663,13 @@ function webpackStatsDiff(oldAssets, newAssets) {
     }
     for (const [name, newAssetSizes] of newAssets) {
         newSizeTotal += newAssetSizes.size;
-        newGzipSizeTotal += (_b = newAssetSizes.gzipSize) !== null && _b !== void 0 ? _b : NaN;
+        newGzipSizeTotal += (_c = newAssetSizes.gzipSize) !== null && _c !== void 0 ? _c : NaN;
+        if ((0, types_1.isChunkSizes)(newAssetSizes) && newAssetSizes.initial) {
+            hasInitialData = true;
+            newSizeInitial += newAssetSizes.size;
+            newGzipSizeInitial += (_d = newAssetSizes.gzipSize) !== null && _d !== void 0 ? _d : NaN;
+            newInitialFilesCount += 1;
+        }
         const oldAsset = oldAssets.get(name);
         if (!oldAsset) {
             added.push((0, get_asset_diff_1.getAssetDiff)(name, { size: 0, gzipSize: 0 }, newAssetSizes));
@@ -641,7 +685,12 @@ function webpackStatsDiff(oldAssets, newAssets) {
         unchanged,
         total: (0, get_asset_diff_1.getAssetDiff)(oldFilesCount === newFilesCount
             ? `${newFilesCount}`
-            : `${oldFilesCount} -> ${newFilesCount}`, { size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal })
+            : `${oldFilesCount} -> ${newFilesCount}`, { size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal }),
+        initial: hasInitialData
+            ? (0, get_asset_diff_1.getAssetDiff)(oldInitialFilesCount === newInitialFilesCount
+                ? `(initial only) ${newInitialFilesCount}`
+                : `(initial only) ${oldInitialFilesCount} -> ${newInitialFilesCount}`, { size: oldSizeInitial, gzipSize: oldGzipSizeInitial }, { size: newSizeInitial, gzipSize: newGzipSizeInitial })
+            : undefined
     };
 }
 exports.webpackStatsDiff = webpackStatsDiff;

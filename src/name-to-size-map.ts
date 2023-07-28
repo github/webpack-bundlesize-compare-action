@@ -1,5 +1,5 @@
 import {StatsCompilation} from 'webpack'
-import type {Sizes} from './types'
+import type {Sizes, ChunkSizes} from './types'
 
 export function assetNameToSizeMap(
   statAssets: StatsCompilation['assets'] = []
@@ -32,7 +32,7 @@ export function assetNameToSizeMap(
 
 export function chunkModuleNameToSizeMap(
   statChunks: StatsCompilation['chunks'] = []
-): Map<string, Sizes> {
+): Map<string, ChunkSizes> {
   return new Map(
     statChunks.flatMap(chunk => {
       if (!chunk.modules) return []
@@ -43,6 +43,7 @@ export function chunkModuleNameToSizeMap(
           return module.modules.map(submodule => [
             submodule.name ?? '',
             {
+              initial: chunk.initial,
               size: submodule.size ?? 0,
               gzipSize: null
             }
@@ -52,6 +53,7 @@ export function chunkModuleNameToSizeMap(
             [
               module.name ?? '',
               {
+                initial: chunk.initial,
                 size: module.size ?? 0,
                 gzipSize: null
               }
