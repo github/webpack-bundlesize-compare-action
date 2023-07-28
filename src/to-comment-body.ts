@@ -3,15 +3,15 @@ import {
   printChunkModulesTable,
   printTotalAssetTable
 } from './print-markdown'
-import type {WebpackStatsDiff} from './types'
+import type {WebpackStatsDiff, Sizes, ChunkSizes} from './types'
 
 export function getIdentifierComment(key: string): string {
   return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`
 }
 
 export function getCommentBody(
-  statsDiff: WebpackStatsDiff,
-  chunkModuleDiff: WebpackStatsDiff | null,
+  statsDiff: WebpackStatsDiff<Sizes>,
+  chunkModuleDiff: WebpackStatsDiff<ChunkSizes> | undefined,
   title: string
 ): string {
   return `
@@ -21,7 +21,7 @@ Hey there, this message comes from a [GitHub action](https://github.com/github/w
 
 As this PR is updated, I'll keep you updated on how the bundle size is impacted.
 
-${printTotalAssetTable(statsDiff)}
+${printTotalAssetTable(statsDiff, chunkModuleDiff)}
 ${chunkModuleDiff ? `${printChunkModulesTable(chunkModuleDiff)}\n` : ''}
 <details>
 <summary>View detailed bundle breakdown</summary>

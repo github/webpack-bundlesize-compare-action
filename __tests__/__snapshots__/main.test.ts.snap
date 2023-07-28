@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Shows initial stats for builds with async chunks 1`] = `
+"**Total**
+
+Files count | Total bundle size | % Changed
+----------- | ----------------- | ---------
+7 -> 2 | 1.34 MB -> 1.29 MB (-53.65 KB)<br />386.44 KB -> N/A (gzip) | -3.91%"
+`;
+
 exports[`Shows stats when files are added 1`] = `
 "**Total**
 

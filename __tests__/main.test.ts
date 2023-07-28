@@ -93,6 +93,23 @@ test('computes the correct module diff information', async () => {
   expect(statsDiff?.total.new).toEqual(statsDiff?.total.old)
   expect(statsDiff?.total.diff).toEqual(0)
   expect(statsDiff?.total.diffPercentage).toEqual(0)
+  // No async chunks results in no initial stats being reported
+  expect(statsDiff?.initial).toBe(undefined)
+
+  // TODO(mariaines): add test case for initial stats for a build with async chunks
+})
+
+// TODO(mariaines): update this snapshot for testing initial stats
+test('Shows initial stats for builds with async chunks', async () => {
+  const statsDiff = getStatsDiff(
+    await readJsonFile('./__mocks__/old-stats-assets.json'),
+    await readJsonFile('./__mocks__/new-stats-assets.json')
+  )
+  const chunkModuleDiff = getChunkModuleDiff(
+    await readJsonFile('./__mocks__/old-stats-with-chunks.json'),
+    await readJsonFile('./__mocks__/new-stats-with-chunks.json')
+  )
+  expect(printTotalAssetTable(statsDiff, chunkModuleDiff)).toMatchSnapshot()
 })
 
 test('displays module information when files are added/removed/changed', async () => {
