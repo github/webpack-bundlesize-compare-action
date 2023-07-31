@@ -1,7 +1,7 @@
 const BYTES_PER_KILOBYTE = 1024
 const denominations = [
   'B', // 1 Byte
-  'KB', // 1 Kilobyte
+  'kB', // 1 Kilobyte
   'MB', // 1 Megabyte
   'GB', // 1 Gigabyte
   'TB', // 1 Terabyte

@@ -11,7 +11,7 @@ exports.formatFileSizeIEC = void 0;
 const BYTES_PER_KILOBYTE = 1024;
 const denominations = [
     'B',
-    'KB',
+    'kB',
     'MB',
     'GB',
     'TB',
@@ -399,7 +399,7 @@ function signFor(num) {
 }
 function toFileSizeDiff(oldSize, newSize, diff) {
     const diffLine = [
-        `${(0, file_sizes_1.formatFileSizeIEC)(oldSize)} -> ${(0, file_sizes_1.formatFileSizeIEC)(newSize)}`
+        `${(0, file_sizes_1.formatFileSizeIEC)(oldSize)} → ${(0, file_sizes_1.formatFileSizeIEC)(newSize)}`
     ];
     if (typeof diff !== 'undefined') {
         diffLine.push(`(${signFor(diff)}${(0, file_sizes_1.formatFileSizeIEC)(diff)})`);
@@ -485,7 +485,7 @@ function printChunkModuleRow(chunkModule) {
         `${emoji} ${chunkModule.diff >= 0 ? '+' : '-'}${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.diff)}${Number.isFinite(chunkModule.diffPercentage)
             ? ` (${conditionalPercentage(chunkModule.diffPercentage)})`
             : ''}`,
-        `${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size)} -> ${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size)}`
+        `${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.old.size)} → ${(0, file_sizes_1.formatFileSizeIEC)(chunkModule.new.size)}`
     ].join(' | ');
 }
 function printChunkModulesTable(statsDiff) {
@@ -557,7 +557,7 @@ function getIdentifierComment(key) {
 exports.getIdentifierComment = getIdentifierComment;
 function getCommentBody(statsDiff, chunkModuleDiff, title) {
     return `
-### Bundle Stats${title ? ` - ${title}` : ''}
+### Bundle Stats${title ? ` — ${title}` : ''}
 
 Hey there, this message comes from a [GitHub action](https://github.com/github/webpack-bundlesize-compare-action) that helps you and reviewers to understand how these changes affect the size of this project's bundle.
 
@@ -641,7 +641,7 @@ function webpackStatsDiff(oldAssets, newAssets) {
         unchanged,
         total: (0, get_asset_diff_1.getAssetDiff)(oldFilesCount === newFilesCount
             ? `${newFilesCount}`
-            : `${oldFilesCount} -> ${newFilesCount}`, { size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal })
+            : `${oldFilesCount} → ${newFilesCount}`, { size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal })
     };
 }
 exports.webpackStatsDiff = webpackStatsDiff;
