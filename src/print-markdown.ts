@@ -1,5 +1,5 @@
 import {formatFileSizeIEC} from './file-sizes'
-import type {AssetDiff, DescribeAssetsOption, WebpackStatsDiff} from './types'
+import type {AssetDiff, DescribeAssetsOptions, WebpackStatsDiff} from './types'
 
 function conditionalPercentage(number: number): string {
   if ([Infinity, -Infinity].includes(number)) {
@@ -87,19 +87,19 @@ function printAssetTableRow(asset: AssetDiff): string {
 
 export function printAssetTablesByGroup(
   statsDiff: Omit<WebpackStatsDiff, 'total'>,
-  describeAssetsOption: DescribeAssetsOption = 'all'
-): string {
-  if (describeAssetsOption === 'none') {
-    return ''
+  describeAssetsOptions: DescribeAssetsOptions = {
+    added: true,
+    removed: true,
+    bigger: true,
+    smaller: true,
+    unchanged: true
   }
+): string {
+  const statsFields = Object.keys(describeAssetsOptions).filter(
+    (field): field is keyof typeof describeAssetsOptions =>
+      describeAssetsOptions[field as keyof typeof describeAssetsOptions]
+  )
 
-  const statsFields = [
-    'added',
-    'removed',
-    'bigger',
-    'smaller',
-    ...((describeAssetsOption === 'all' ? ['unchanged'] : []) as ['unchanged'])
-  ] as const
   return statsFields
     .map(field => {
       const assets = statsDiff[field]

@@ -147,6 +147,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getDescribeAssetsOptions = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5438);
 const get_chunk_module_diff_1 = __nccwpck_require__(658);
@@ -154,6 +155,36 @@ const get_stats_diff_1 = __nccwpck_require__(5476);
 const parse_stats_file_to_json_1 = __nccwpck_require__(2495);
 const to_comment_body_1 = __nccwpck_require__(4713);
 const types_1 = __nccwpck_require__(5945);
+function getDescribeAssetsOptions(optionString) {
+    optionString = optionString.trim().toLowerCase();
+    if (optionString === 'all') {
+        optionString = 'bigger smaller added removed unchanged';
+    }
+    else if (optionString === 'none') {
+        optionString = '';
+    }
+    else if (optionString === 'changed-only') {
+        optionString = 'bigger smaller added removed';
+    }
+    const options = {
+        added: false,
+        removed: false,
+        bigger: false,
+        smaller: false,
+        unchanged: false
+    };
+    if (optionString) {
+        const sections = optionString.split(' ').filter(s => !!s);
+        if (sections.some(s => !(0, types_1.isDescribeAssetsSection)(s))) {
+            throw new Error(`Unsupported options for 'describe-assets': '${optionString}' contains unexpected sections`);
+        }
+        for (const s of sections) {
+            options[s] = true;
+        }
+    }
+    return options;
+}
+exports.getDescribeAssetsOptions = getDescribeAssetsOptions;
 function run() {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
@@ -166,10 +197,8 @@ function run() {
             const token = core.getInput('github-token');
             const currentStatsJsonPath = core.getInput('current-stats-json-path');
             const baseStatsJsonPath = core.getInput('base-stats-json-path');
-            const describeAssetsOption = core.getInput('describe-assets');
-            if (!(0, types_1.isDescribeAssetsOption)(describeAssetsOption)) {
-                throw new Error(`Unsupported options for 'describe-assets': ${describeAssetsOption} is not one of ${types_1.DescribeAssetsOptions}`);
-            }
+            const describeAssetsOptionString = core.getInput('describe-assets');
+            const describeAssetsOptions = getDescribeAssetsOptions(describeAssetsOptionString);
             const title = (_a = core.getInput('title')) !== null && _a !== void 0 ? _a : '';
             const { rest } = (0, github_1.getOctokit)(token);
             const [currentStatsJson, baseStatsJson, { data: comments }] = yield Promise.all([
@@ -190,7 +219,7 @@ function run() {
             });
             const statsDiff = (0, get_stats_diff_1.getStatsDiff)(baseStatsJson, currentStatsJson);
             const chunkModuleDiff = (0, get_chunk_module_diff_1.getChunkModuleDiff)(baseStatsJson, currentStatsJson);
-            const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff, chunkModuleDiff, title, describeAssetsOption);
+            const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff, chunkModuleDiff, title, describeAssetsOptions);
             const promises = [];
             if (restComments.length > 1) {
                 promises.push(...restComments.map((comment) => __awaiter(this, void 0, void 0, function* () {
@@ -434,17 +463,14 @@ function printAssetTableRow(asset) {
         conditionalPercentage(asset.diffPercentage)
     ].join(' | ');
 }
-function printAssetTablesByGroup(statsDiff, describeAssetsOption = 'all') {
-    if (describeAssetsOption === 'none') {
-        return '';
-    }
-    const statsFields = [
-        'added',
-        'removed',
-        'bigger',
-        'smaller',
-        ...(describeAssetsOption === 'all' ? ['unchanged'] : [])
-    ];
+function printAssetTablesByGroup(statsDiff, describeAssetsOptions = {
+    added: true,
+    removed: true,
+    bigger: true,
+    smaller: true,
+    unchanged: true
+}) {
+    const statsFields = Object.keys(describeAssetsOptions).filter((field) => describeAssetsOptions[field]);
     return statsFields
         .map(field => {
         const assets = statsDiff[field];
@@ -563,7 +589,7 @@ function getIdentifierComment(key) {
     return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`;
 }
 exports.getIdentifierComment = getIdentifierComment;
-function getCommentBody(statsDiff, chunkModuleDiff, title, describeAssetsOption = 'all') {
+function getCommentBody(statsDiff, chunkModuleDiff, title, describeAssetsOptions) {
     return `
 ### Bundle Stats${title ? ` — ${title}` : ''}
 
@@ -578,7 +604,7 @@ ${chunkModuleDiff ? `${(0, print_markdown_1.printChunkModulesTable)(chunkModuleD
 
 <div>
 
-${(0, print_markdown_1.printAssetTablesByGroup)(statsDiff, describeAssetsOption)}
+${(0, print_markdown_1.printAssetTablesByGroup)(statsDiff, describeAssetsOptions)}
 
 </div>
 </details>
@@ -597,12 +623,18 @@ exports.getCommentBody = getCommentBody;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.isDescribeAssetsOption = exports.DescribeAssetsOptions = void 0;
-exports.DescribeAssetsOptions = ['all', 'none', 'changed-only'];
-const isDescribeAssetsOption = (option) => {
-    return exports.DescribeAssetsOptions.includes(option);
+exports.isDescribeAssetsSection = exports.describeAssetsSections = void 0;
+exports.describeAssetsSections = [
+    'added',
+    'removed',
+    'bigger',
+    'smaller',
+    'unchanged'
+];
+const isDescribeAssetsSection = (option) => {
+    return exports.describeAssetsSections.includes(option);
 };
-exports.isDescribeAssetsOption = isDescribeAssetsOption;
+exports.isDescribeAssetsSection = isDescribeAssetsSection;
 
 
 /***/ }),

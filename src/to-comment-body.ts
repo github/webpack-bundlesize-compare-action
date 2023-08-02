@@ -3,7 +3,7 @@ import {
   printChunkModulesTable,
   printTotalAssetTable
 } from './print-markdown'
-import type {WebpackStatsDiff, DescribeAssetsOption} from './types'
+import type {WebpackStatsDiff, DescribeAssetsOptions} from './types'
 
 export function getIdentifierComment(key: string): string {
   return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`
@@ -13,7 +13,7 @@ export function getCommentBody(
   statsDiff: WebpackStatsDiff,
   chunkModuleDiff: WebpackStatsDiff | null,
   title: string,
-  describeAssetsOption: DescribeAssetsOption = 'all'
+  describeAssetsOptions: DescribeAssetsOptions
 ): string {
   return `
 ### Bundle Stats${title ? ` — ${title}` : ''}
@@ -29,7 +29,7 @@ ${chunkModuleDiff ? `${printChunkModulesTable(chunkModuleDiff)}\n` : ''}
 
 <div>
 
-${printAssetTablesByGroup(statsDiff, describeAssetsOption)}
+${printAssetTablesByGroup(statsDiff, describeAssetsOptions)}
 
 </div>
 </details>
