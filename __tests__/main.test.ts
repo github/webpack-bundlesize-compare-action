@@ -208,12 +208,7 @@ describe('getDescribeAssetsOptions', () => {
   })
 
   test('getDescribeAssetsOptions: unsupported option throws', () => {
-    try {
-      getDescribeAssetsOptions('unsupported options')
-      fail('should fail with unsupported options')
-    } catch (e) {
-      // pass
-    }
+    expect(() => getDescribeAssetsOptions('unsupported options')).toThrow()
   })
 
   // generate all combinations of sections as string
