@@ -103,12 +103,13 @@ This action requires the `write` permission for the [`permissions.pull-requests`
 
 ## Options
 
-| name                    | description                                                                                                         | required | type   |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------- | -------- | ------ |
-| current-stats-json-path | The path to the current stats.json file                                                                             | true     | string |
-| base-stats-json-path    | The path to the base stats.json file                                                                                | true     | string |
-| github-token            | The Github token                                                                                                    | true     | string |
-| title                   | An optional addition to the title, which also helps key comments, useful if running more than 1 copy of this action | false    | string |
+| name                    | description                                                                                                         | required | type    |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
+| current-stats-json-path | The path to the current stats.json file                                                                             | true     | string  |
+| base-stats-json-path    | The path to the base stats.json file                                                                                | true     | string  |
+| github-token            | The Github token                                                                                                    | true     | string  |
+| title                   | An optional addition to the title, which also helps key comments, useful if running more than 1 copy of this action | false    | string  |
+| ignore-unchanged        | Omit unchanged files from the detailed breakdown (default: `false`)                                                 | false    | boolean |
 
 ## Example PR Comment
 

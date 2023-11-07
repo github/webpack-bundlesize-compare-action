@@ -1,3 +1,5 @@
+import {getBooleanInput} from '@actions/core'
+
 import {formatFileSizeIEC} from './file-sizes'
 import type {AssetDiff, WebpackStatsDiff} from './types'
 
@@ -96,6 +98,12 @@ export function printAssetTablesByGroup(
     'unchanged'
   ] as const
   return statsFields
+    .filter(field => {
+      if (field === 'unchanged' && getBooleanInput('ignore-unchanged')) {
+        return false
+      }
+      return true
+    })
     .map(field => {
       const assets = statsDiff[field]
       if (assets.length === 0) {
