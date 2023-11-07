@@ -30,27 +30,32 @@ jobs:
           base-stats-json-path: ./__tests__/__mocks__/old-stats-with-chunks.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           title: With chunk and module information
+          ignore-unchanged: true
       - uses: actions/checkout@v4
       - uses: ./
         with:
           current-stats-json-path: ./__tests__/__mocks__/new-stats-assets.json
           base-stats-json-path: ./__tests__/__mocks__/old-stats-assets.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          ignore-unchanged: true
       - uses: ./
         with:
           current-stats-json-path: ./__tests__/__mocks__/old-stats-assets.json
           base-stats-json-path: ./__tests__/__mocks__/new-stats-assets.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           title: Flipped around
+          ignore-unchanged: true
       - uses: ./
         with:
           current-stats-json-path: ./__tests__/__mocks__/non-existent.json
           base-stats-json-path: ./__tests__/__mocks__/non-existent.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           title: Non existent
+          ignore-unchanged: true
       - uses: ./
         with:
           current-stats-json-path: ./__tests__/__mocks__/old-stats-assets.json
           base-stats-json-path: ./__tests__/__mocks__/old-stats-assets.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           title: No changes
+          ignore-unchanged: true
