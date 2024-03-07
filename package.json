@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "description": "GitHub action to compare the size of two webpack bundles from their stats.json output files",
+  "engines": {
+    "node": ">=20.11.1"
+  },
   "main": "lib/src/main.js",
   "scripts": {
     "build": "tsc",
