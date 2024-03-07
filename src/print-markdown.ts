@@ -120,12 +120,12 @@ const getDiffEmoji = (diff: AssetDiff): string =>
   diff.diffPercentage === Infinity
     ? '🆕'
     : diff.diffPercentage <= -100
-    ? '🔥'
-    : diff.diffPercentage > 0
-    ? '📈'
-    : diff.diffPercentage < 0
-    ? '📉'
-    : ' '
+      ? '🔥'
+      : diff.diffPercentage > 0
+        ? '📈'
+        : diff.diffPercentage < 0
+          ? '📉'
+          : ' '
 
 const getTrimmedChunkName = (chunkModule: AssetDiff): string => {
   let chunkName = chunkModule.name
