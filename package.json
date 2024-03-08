@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "description": "GitHub action to compare the size of two webpack bundles from their stats.json output files",
+  "engines": {
+    "node": ">=20.11.1"
+  },
   "main": "lib/src/main.js",
   "scripts": {
     "build": "tsc",
@@ -30,7 +33,7 @@
     "@discoveryjs/json-ext": "^0.5.7"
   },
   "devDependencies": {
-    "@types/node": "16.18.79",
+    "@types/node": "20.11.25",
     "@typescript-eslint/parser": "^5.62.0",
     "@vercel/ncc": "^0.38.0",
     "eslint": "^8.54.0",
