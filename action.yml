@@ -13,6 +13,20 @@ inputs:
   title:
     description: 'An optional addition to the title, which also helps key comments, useful if running more than 1 copy of this action'
     required: false
+  describe-assets:
+    description: |
+      Optional specification describing asset changes. May be one of the convenience
+      keywords "all", "none", or "changed-only" (for all except the unchanged section), OR
+      a string of space-separated section names, e.g. "added bigger unchanged", where
+      all sections are:
+        - added
+        - removed
+        - bigger
+        - smaller
+        - unchanged
+      If not provided, "all" is used (equivalent to "added removed bigger smaller unchanged")
+    required: false
+    default: 'all'
 
 runs:
   using: 'node20'

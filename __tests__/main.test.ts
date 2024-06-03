@@ -1,4 +1,4 @@
-import {expect, test} from '@jest/globals'
+import {expect, describe, test, beforeAll} from '@jest/globals'
 import {getStatsDiff} from '../src/get-stats-diff'
 import {getChunkModuleDiff} from '../src/get-chunk-module-diff'
 import {
@@ -6,10 +6,18 @@ import {
   printChunkModulesTable,
   printTotalAssetTable
 } from '../src/print-markdown'
-import {AssetDiff} from '../src/types'
+import {
+  AssetDiff,
+  DescribeAssetsOptions,
+  DescribeAssetsSection,
+  WebpackStatsDiff,
+  describeAssetsSections
+} from '../src/types'
 import {readFile} from 'node:fs/promises'
 import {resolve} from 'node:path'
 import {StatsCompilation} from 'webpack'
+import {getDescribeAssetsOptions} from '../src/main'
+import {fail} from 'node:assert'
 
 async function readJsonFile(path: string): Promise<StatsCompilation> {
   const data = await readFile(resolve(__dirname, path), 'utf8')
@@ -120,4 +128,121 @@ test('does not display module information when it does not exist', async () => {
   )
 
   expect(printChunkModulesTable(statsDiff)).toMatchSnapshot()
+})
+
+describe('printAssetTablesByGroup describes asset sections as requested', () => {
+  // generate all combinations of sections
+  const cases: DescribeAssetsOptions[] = []
+  for (let i = 0; i < Math.pow(2, describeAssetsSections.length); i++) {
+    const options = {} as DescribeAssetsOptions
+    for (let n = 0; n < describeAssetsSections.length; n++) {
+      if ((i >> n) & 1) {
+        options[describeAssetsSections[n]] = true
+      } else {
+        options[describeAssetsSections[n]] = false
+      }
+    }
+    cases.push(options)
+  }
+
+  let statsDiff: WebpackStatsDiff
+  beforeAll(async () => {
+    statsDiff = getStatsDiff(
+      await readJsonFile('./__mocks__/old-stats-assets.json'),
+      await readJsonFile('./__mocks__/new-stats-assets.json')
+    )
+  })
+
+  test.each(cases)(
+    'printAssetTablesByGroup: %j',
+    (options: DescribeAssetsOptions) => {
+      const assetTables = printAssetTablesByGroup(statsDiff, options)
+      for (const [section, included] of Object.entries(options)) {
+        const sectionHeader = `**${section[0].toUpperCase()}${section.slice(
+          1
+        )}**`
+        if (included) {
+          expect(assetTables).toContain(sectionHeader)
+        } else {
+          expect(assetTables).not.toContain(sectionHeader)
+        }
+      }
+      if (Object.entries(options).every(([, included]) => included === false)) {
+        expect(assetTables).toBe('')
+      }
+    }
+  )
+})
+
+describe('getDescribeAssetsOptions', () => {
+  test(`getDescribeAssetsOptions: "all"`, () => {
+    const generatedOptions = getDescribeAssetsOptions('all')
+    for (const section of describeAssetsSections) {
+      expect(generatedOptions[section]).toBe(true)
+    }
+  })
+
+  test(`getDescribeAssetsOptions: "none"`, () => {
+    const generatedOptions = getDescribeAssetsOptions('none')
+    for (const section of describeAssetsSections) {
+      expect(generatedOptions[section]).toBe(false)
+    }
+  })
+
+  test(`getDescribeAssetsOptions: "changed-only"`, () => {
+    const generatedOptions = getDescribeAssetsOptions('changed-only')
+    for (const section of describeAssetsSections) {
+      if (section === 'unchanged') {
+        expect(generatedOptions[section]).toBe(false)
+      } else {
+        expect(generatedOptions[section]).toBe(true)
+      }
+    }
+  })
+
+  test('getDescribeAssetsOptions: handles keyword with spaces', () => {
+    const generatedOptions = getDescribeAssetsOptions('   all  ')
+    for (const section of describeAssetsSections) {
+      expect(generatedOptions[section]).toBe(true)
+    }
+  })
+
+  test('getDescribeAssetsOptions: unsupported option throws', () => {
+    expect(() => getDescribeAssetsOptions('unsupported options')).toThrow()
+  })
+
+  // generate all combinations of sections as string
+  const cases: string[] = []
+  for (let i = 0; i < Math.pow(2, describeAssetsSections.length); i++) {
+    const options: string[] = []
+    for (let n = 0; n < describeAssetsSections.length; n++) {
+      if ((i >> n) & 1) {
+        options.push(describeAssetsSections[n])
+      }
+    }
+    if (options.length > 0) {
+      cases.push(options.join(' '))
+    }
+  }
+
+  test.each(cases)(`getDescribeAssetsOptions: %j`, (optionString: string) => {
+    const generatedOptions = getDescribeAssetsOptions(optionString)
+    const providedOptions = optionString.split(' ')
+    for (const section of providedOptions) {
+      expect(generatedOptions[section as DescribeAssetsSection]).toBe(true)
+    }
+    for (const section of describeAssetsSections.filter(
+      s => !providedOptions.includes(s)
+    )) {
+      expect(generatedOptions[section]).toBe(false)
+    }
+  })
+
+  test('getDescribeAssetsOptions: handles sections with spaces', () => {
+    const optionString = ' added   removed  bigger'
+    const generatedOptions = getDescribeAssetsOptions(optionString)
+    for (const section of describeAssetsSections) {
+      expect(generatedOptions[section]).toBe(optionString.includes(section))
+    }
+  })
 })

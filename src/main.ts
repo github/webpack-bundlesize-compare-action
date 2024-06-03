@@ -4,6 +4,43 @@ import {getChunkModuleDiff} from './get-chunk-module-diff'
 import {getStatsDiff} from './get-stats-diff'
 import {parseStatsFileToJson} from './parse-stats-file-to-json'
 import {getCommentBody, getIdentifierComment} from './to-comment-body'
+import {
+  isDescribeAssetsSection,
+  DescribeAssetsSection,
+  DescribeAssetsOptions
+} from './types'
+
+export function getDescribeAssetsOptions(
+  optionString: string
+): DescribeAssetsOptions {
+  optionString = optionString.trim().toLowerCase()
+  if (optionString === 'all') {
+    optionString = 'bigger smaller added removed unchanged'
+  } else if (optionString === 'none') {
+    optionString = ''
+  } else if (optionString === 'changed-only') {
+    optionString = 'bigger smaller added removed'
+  }
+  const options = {
+    added: false,
+    removed: false,
+    bigger: false,
+    smaller: false,
+    unchanged: false
+  }
+  if (optionString) {
+    const sections = optionString.split(' ').filter(s => !!s)
+    if (sections.some(s => !isDescribeAssetsSection(s))) {
+      throw new Error(
+        `Unsupported options for 'describe-assets': '${optionString}' contains unexpected sections`
+      )
+    }
+    for (const s of sections as DescribeAssetsSection[]) {
+      options[s] = true
+    }
+  }
+  return options
+}
 
 async function run(): Promise<void> {
   try {
@@ -22,6 +59,10 @@ async function run(): Promise<void> {
     const token = core.getInput('github-token')
     const currentStatsJsonPath = core.getInput('current-stats-json-path')
     const baseStatsJsonPath = core.getInput('base-stats-json-path')
+    const describeAssetsOptionString = core.getInput('describe-assets')
+    const describeAssetsOptions = getDescribeAssetsOptions(
+      describeAssetsOptionString
+    )
     const title = core.getInput('title') ?? ''
     const {rest} = getOctokit(token)
 
@@ -48,7 +89,12 @@ async function run(): Promise<void> {
     const statsDiff = getStatsDiff(baseStatsJson, currentStatsJson)
     const chunkModuleDiff = getChunkModuleDiff(baseStatsJson, currentStatsJson)
 
-    const commentBody = getCommentBody(statsDiff, chunkModuleDiff, title)
+    const commentBody = getCommentBody(
+      statsDiff,
+      chunkModuleDiff,
+      title,
+      describeAssetsOptions
+    )
 
     const promises: Promise<unknown>[] = []
 
