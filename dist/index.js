@@ -7,7 +7,7 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.formatFileSizeIEC = void 0;
+exports.formatFileSizeIEC = formatFileSizeIEC;
 const BYTES_PER_KILOBYTE = 1024;
 const denominations = [
     'B', // 1 Byte
@@ -39,7 +39,6 @@ function formatFileSizeIEC(bytes, precision = 2) {
     const valueWithStrippedZeroDecimals = parseFloat(value.toFixed(precision));
     return `${valueWithStrippedZeroDecimals} ${denominations[denominationIndex]}`;
 }
-exports.formatFileSizeIEC = formatFileSizeIEC;
 
 
 /***/ }),
@@ -50,7 +49,7 @@ exports.formatFileSizeIEC = formatFileSizeIEC;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getAssetDiff = void 0;
+exports.getAssetDiff = getAssetDiff;
 function getAssetDiff(name, oldSize, newSize) {
     var _a, _b;
     return {
@@ -67,7 +66,6 @@ function getAssetDiff(name, oldSize, newSize) {
         diffPercentage: +((1 - newSize.size / oldSize.size) * -100).toFixed(5) || 0
     };
 }
-exports.getAssetDiff = getAssetDiff;
 
 
 /***/ }),
@@ -78,7 +76,7 @@ exports.getAssetDiff = getAssetDiff;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getChunkModuleDiff = void 0;
+exports.getChunkModuleDiff = getChunkModuleDiff;
 const name_to_size_map_1 = __nccwpck_require__(5188);
 const webpack_stats_diff_1 = __nccwpck_require__(2572);
 function getChunkModuleDiff(oldStats, newStats) {
@@ -87,7 +85,6 @@ function getChunkModuleDiff(oldStats, newStats) {
     }
     return (0, webpack_stats_diff_1.webpackStatsDiff)((0, name_to_size_map_1.chunkModuleNameToSizeMap)(oldStats.chunks), (0, name_to_size_map_1.chunkModuleNameToSizeMap)(newStats.chunks));
 }
-exports.getChunkModuleDiff = getChunkModuleDiff;
 
 
 /***/ }),
@@ -98,13 +95,12 @@ exports.getChunkModuleDiff = getChunkModuleDiff;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getStatsDiff = void 0;
+exports.getStatsDiff = getStatsDiff;
 const name_to_size_map_1 = __nccwpck_require__(5188);
 const webpack_stats_diff_1 = __nccwpck_require__(2572);
 function getStatsDiff(oldAssetStats, newAssetStats) {
     return (0, webpack_stats_diff_1.webpackStatsDiff)((0, name_to_size_map_1.assetNameToSizeMap)(oldAssetStats.assets), (0, name_to_size_map_1.assetNameToSizeMap)(newAssetStats.assets));
 }
-exports.getStatsDiff = getStatsDiff;
 
 
 /***/ }),
@@ -147,7 +143,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getDescribeAssetsOptions = void 0;
+exports.getDescribeAssetsOptions = getDescribeAssetsOptions;
 const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5438);
 const get_chunk_module_diff_1 = __nccwpck_require__(658);
@@ -184,7 +180,6 @@ function getDescribeAssetsOptions(optionString) {
     }
     return options;
 }
-exports.getDescribeAssetsOptions = getDescribeAssetsOptions;
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         var _a;
@@ -266,7 +261,8 @@ run();
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.chunkModuleNameToSizeMap = exports.assetNameToSizeMap = void 0;
+exports.assetNameToSizeMap = assetNameToSizeMap;
+exports.chunkModuleNameToSizeMap = chunkModuleNameToSizeMap;
 function assetNameToSizeMap(statAssets = []) {
     return new Map(statAssets
         // when Webpack's stats.excludeAssets is used, assets which are excluded will be grouped into an asset with type 'hidden assets'
@@ -288,7 +284,6 @@ function assetNameToSizeMap(statAssets = []) {
         ];
     }));
 }
-exports.assetNameToSizeMap = assetNameToSizeMap;
 function chunkModuleNameToSizeMap(statChunks = []) {
     return new Map(statChunks.flatMap(chunk => {
         if (!chunk.modules)
@@ -323,7 +318,6 @@ function chunkModuleNameToSizeMap(statChunks = []) {
         });
     }));
 }
-exports.chunkModuleNameToSizeMap = chunkModuleNameToSizeMap;
 
 
 /***/ }),
@@ -366,10 +360,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parseStatsFileToJson = void 0;
+exports.parseStatsFileToJson = parseStatsFileToJson;
 const fs_1 = __nccwpck_require__(7147);
 const path_1 = __nccwpck_require__(1017);
-const json_ext_1 = __nccwpck_require__(1451);
+const json_ext_1 = __nccwpck_require__(7573);
 const core = __importStar(__nccwpck_require__(2186));
 function parseStatsFileToJson(statsFilePath) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -385,7 +379,6 @@ function parseStatsFileToJson(statsFilePath) {
         }
     });
 }
-exports.parseStatsFileToJson = parseStatsFileToJson;
 
 
 /***/ }),
@@ -396,7 +389,9 @@ exports.parseStatsFileToJson = parseStatsFileToJson;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.printTotalAssetTable = exports.printChunkModulesTable = exports.printAssetTablesByGroup = void 0;
+exports.printAssetTablesByGroup = printAssetTablesByGroup;
+exports.printChunkModulesTable = printChunkModulesTable;
+exports.printTotalAssetTable = printTotalAssetTable;
 const file_sizes_1 = __nccwpck_require__(5313);
 function conditionalPercentage(number) {
     if ([Infinity, -Infinity].includes(number)) {
@@ -490,7 +485,6 @@ ${assets
     })
         .join('\n\n');
 }
-exports.printAssetTablesByGroup = printAssetTablesByGroup;
 const getDiffEmoji = (diff) => diff.diffPercentage === Infinity
     ? '🆕'
     : diff.diffPercentage <= -100
@@ -550,14 +544,12 @@ ${changedModules
 </details>
 `;
 }
-exports.printChunkModulesTable = printChunkModulesTable;
 function printTotalAssetTable(statsDiff) {
     return `**Total**
 
 ${TOTAL_HEADERS}
 ${printAssetTableRow(statsDiff.total)}`;
 }
-exports.printTotalAssetTable = printTotalAssetTable;
 
 
 /***/ }),
@@ -568,11 +560,10 @@ exports.printTotalAssetTable = printTotalAssetTable;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.sortDiffDescending = void 0;
+exports.sortDiffDescending = sortDiffDescending;
 function sortDiffDescending(items) {
     return items.sort((diff1, diff2) => Math.abs(diff2.diff) - Math.abs(diff1.diff));
 }
-exports.sortDiffDescending = sortDiffDescending;
 
 
 /***/ }),
@@ -583,12 +574,12 @@ exports.sortDiffDescending = sortDiffDescending;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getCommentBody = exports.getIdentifierComment = void 0;
+exports.getIdentifierComment = getIdentifierComment;
+exports.getCommentBody = getCommentBody;
 const print_markdown_1 = __nccwpck_require__(9761);
 function getIdentifierComment(key) {
     return `<!--- bundlestats-action-comment${key ? ` key:${key}` : ''} --->`;
 }
-exports.getIdentifierComment = getIdentifierComment;
 function getCommentBody(statsDiff, chunkModuleDiff, title, describeAssetsOptions) {
     return `
 ### Bundle Stats${title ? ` — ${title}` : ''}
@@ -612,7 +603,6 @@ ${(0, print_markdown_1.printAssetTablesByGroup)(statsDiff, describeAssetsOptions
 ${getIdentifierComment(title)}
 `;
 }
-exports.getCommentBody = getCommentBody;
 
 
 /***/ }),
@@ -645,7 +635,7 @@ exports.isDescribeAssetsSection = isDescribeAssetsSection;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.webpackStatsDiff = void 0;
+exports.webpackStatsDiff = webpackStatsDiff;
 const get_asset_diff_1 = __nccwpck_require__(8075);
 const sort_diff_descending_1 = __nccwpck_require__(2458);
 function webpackStatsDiff(oldAssets, newAssets) {
@@ -700,7 +690,6 @@ function webpackStatsDiff(oldAssets, newAssets) {
             : `${oldFilesCount} → ${newFilesCount}`, { size: oldSizeTotal, gzipSize: oldGzipSizeTotal }, { size: newSizeTotal, gzipSize: newGzipSizeTotal })
     };
 }
-exports.webpackStatsDiff = webpackStatsDiff;
 
 
 /***/ }),
@@ -2784,1235 +2773,6 @@ function isLoopbackAddress(host) {
         hostLower.startsWith('[0:0:0:0:0:0:0:1]'));
 }
 //# sourceMappingURL=proxy.js.map
-
-/***/ }),
-
-/***/ 1451:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-module.exports = {
-    version: __nccwpck_require__(4055),
-    stringifyInfo: __nccwpck_require__(3542),
-    stringifyStream: __nccwpck_require__(3410),
-    parseChunked: __nccwpck_require__(5455)
-};
-
-
-/***/ }),
-
-/***/ 5455:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { isReadableStream } = __nccwpck_require__(4069);
-const TextDecoder = __nccwpck_require__(7590);
-
-const STACK_OBJECT = 1;
-const STACK_ARRAY = 2;
-const decoder = new TextDecoder();
-
-function isObject(value) {
-    return value !== null && typeof value === 'object';
-}
-
-function adjustPosition(error, parser) {
-    if (error.name === 'SyntaxError' && parser.jsonParseOffset) {
-        error.message = error.message.replace(/at position (\d+)/, (_, pos) =>
-            'at position ' + (Number(pos) + parser.jsonParseOffset)
-        );
-    }
-
-    return error;
-}
-
-function append(array, elements) {
-    // Note: Avoid to use array.push(...elements) since it may lead to
-    // "RangeError: Maximum call stack size exceeded" for a long arrays
-    const initialLength = array.length;
-    array.length += elements.length;
-
-    for (let i = 0; i < elements.length; i++) {
-        array[initialLength + i] = elements[i];
-    }
-}
-
-module.exports = function(chunkEmitter) {
-    let parser = new ChunkParser();
-
-    if (isObject(chunkEmitter) && isReadableStream(chunkEmitter)) {
-        return new Promise((resolve, reject) => {
-            chunkEmitter
-                .on('data', chunk => {
-                    try {
-                        parser.push(chunk);
-                    } catch (e) {
-                        reject(adjustPosition(e, parser));
-                        parser = null;
-                    }
-                })
-                .on('error', (e) => {
-                    parser = null;
-                    reject(e);
-                })
-                .on('end', () => {
-                    try {
-                        resolve(parser.finish());
-                    } catch (e) {
-                        reject(adjustPosition(e, parser));
-                    } finally {
-                        parser = null;
-                    }
-                });
-        });
-    }
-
-    if (typeof chunkEmitter === 'function') {
-        const iterator = chunkEmitter();
-
-        if (isObject(iterator) && (Symbol.iterator in iterator || Symbol.asyncIterator in iterator)) {
-            return new Promise(async (resolve, reject) => {
-                try {
-                    for await (const chunk of iterator) {
-                        parser.push(chunk);
-                    }
-
-                    resolve(parser.finish());
-                } catch (e) {
-                    reject(adjustPosition(e, parser));
-                } finally {
-                    parser = null;
-                }
-            });
-        }
-    }
-
-    throw new Error(
-        'Chunk emitter should be readable stream, generator, ' +
-        'async generator or function returning an iterable object'
-    );
-};
-
-class ChunkParser {
-    constructor() {
-        this.value = undefined;
-        this.valueStack = null;
-
-        this.stack = new Array(100);
-        this.lastFlushDepth = 0;
-        this.flushDepth = 0;
-        this.stateString = false;
-        this.stateStringEscape = false;
-        this.pendingByteSeq = null;
-        this.pendingChunk = null;
-        this.chunkOffset = 0;
-        this.jsonParseOffset = 0;
-    }
-
-    parseAndAppend(fragment, wrap) {
-        // Append new entries or elements
-        if (this.stack[this.lastFlushDepth - 1] === STACK_OBJECT) {
-            if (wrap) {
-                this.jsonParseOffset--;
-                fragment = '{' + fragment + '}';
-            }
-
-            Object.assign(this.valueStack.value, JSON.parse(fragment));
-        } else {
-            if (wrap) {
-                this.jsonParseOffset--;
-                fragment = '[' + fragment + ']';
-            }
-
-            append(this.valueStack.value, JSON.parse(fragment));
-        }
-    }
-
-    prepareAddition(fragment) {
-        const { value } = this.valueStack;
-        const expectComma = Array.isArray(value)
-            ? value.length !== 0
-            : Object.keys(value).length !== 0;
-
-        if (expectComma) {
-            // Skip a comma at the beginning of fragment, otherwise it would
-            // fail to parse
-            if (fragment[0] === ',') {
-                this.jsonParseOffset++;
-                return fragment.slice(1);
-            }
-
-            // When value (an object or array) is not empty and a fragment
-            // doesn't start with a comma, a single valid fragment starting
-            // is a closing bracket. If it's not, a prefix is adding to fail
-            // parsing. Otherwise, the sequence of chunks can be successfully
-            // parsed, although it should not, e.g. ["[{}", "{}]"]
-            if (fragment[0] !== '}' && fragment[0] !== ']') {
-                this.jsonParseOffset -= 3;
-                return '[[]' + fragment;
-            }
-        }
-
-        return fragment;
-    }
-
-    flush(chunk, start, end) {
-        let fragment = chunk.slice(start, end);
-
-        // Save position correction an error in JSON.parse() if any
-        this.jsonParseOffset = this.chunkOffset + start;
-
-        // Prepend pending chunk if any
-        if (this.pendingChunk !== null) {
-            fragment = this.pendingChunk + fragment;
-            this.jsonParseOffset -= this.pendingChunk.length;
-            this.pendingChunk = null;
-        }
-
-        if (this.flushDepth === this.lastFlushDepth) {
-            // Depth didn't changed, so it's a root value or entry/element set
-            if (this.flushDepth > 0) {
-                this.parseAndAppend(this.prepareAddition(fragment), true);
-            } else {
-                // That's an entire value on a top level
-                this.value = JSON.parse(fragment);
-                this.valueStack = {
-                    value: this.value,
-                    prev: null
-                };
-            }
-        } else if (this.flushDepth > this.lastFlushDepth) {
-            // Add missed closing brackets/parentheses
-            for (let i = this.flushDepth - 1; i >= this.lastFlushDepth; i--) {
-                fragment += this.stack[i] === STACK_OBJECT ? '}' : ']';
-            }
-
-            if (this.lastFlushDepth === 0) {
-                // That's a root value
-                this.value = JSON.parse(fragment);
-                this.valueStack = {
-                    value: this.value,
-                    prev: null
-                };
-            } else {
-                this.parseAndAppend(this.prepareAddition(fragment), true);
-            }
-
-            // Move down to the depths to the last object/array, which is current now
-            for (let i = this.lastFlushDepth || 1; i < this.flushDepth; i++) {
-                let value = this.valueStack.value;
-
-                if (this.stack[i - 1] === STACK_OBJECT) {
-                    // find last entry
-                    let key;
-                    // eslint-disable-next-line curly
-                    for (key in value);
-                    value = value[key];
-                } else {
-                    // last element
-                    value = value[value.length - 1];
-                }
-
-                this.valueStack = {
-                    value,
-                    prev: this.valueStack
-                };
-            }
-        } else /* this.flushDepth < this.lastFlushDepth */ {
-            fragment = this.prepareAddition(fragment);
-
-            // Add missed opening brackets/parentheses
-            for (let i = this.lastFlushDepth - 1; i >= this.flushDepth; i--) {
-                this.jsonParseOffset--;
-                fragment = (this.stack[i] === STACK_OBJECT ? '{' : '[') + fragment;
-            }
-
-            this.parseAndAppend(fragment, false);
-
-            for (let i = this.lastFlushDepth - 1; i >= this.flushDepth; i--) {
-                this.valueStack = this.valueStack.prev;
-            }
-        }
-
-        this.lastFlushDepth = this.flushDepth;
-    }
-
-    push(chunk) {
-        if (typeof chunk !== 'string') {
-            // Suppose chunk is Buffer or Uint8Array
-
-            // Prepend uncompleted byte sequence if any
-            if (this.pendingByteSeq !== null) {
-                const origRawChunk = chunk;
-                chunk = new Uint8Array(this.pendingByteSeq.length + origRawChunk.length);
-                chunk.set(this.pendingByteSeq);
-                chunk.set(origRawChunk, this.pendingByteSeq.length);
-                this.pendingByteSeq = null;
-            }
-
-            // In case Buffer/Uint8Array, an input is encoded in UTF8
-            // Seek for parts of uncompleted UTF8 symbol on the ending
-            // This makes sense only if we expect more chunks and last char is not multi-bytes
-            if (chunk[chunk.length - 1] > 127) {
-                for (let seqLength = 0; seqLength < chunk.length; seqLength++) {
-                    const byte = chunk[chunk.length - 1 - seqLength];
-
-                    // 10xxxxxx - 2nd, 3rd or 4th byte
-                    // 110xxxxx – first byte of 2-byte sequence
-                    // 1110xxxx - first byte of 3-byte sequence
-                    // 11110xxx - first byte of 4-byte sequence
-                    if (byte >> 6 === 3) {
-                        seqLength++;
-
-                        // If the sequence is really incomplete, then preserve it
-                        // for the future chunk and cut off it from the current chunk
-                        if ((seqLength !== 4 && byte >> 3 === 0b11110) ||
-                            (seqLength !== 3 && byte >> 4 === 0b1110) ||
-                            (seqLength !== 2 && byte >> 5 === 0b110)) {
-                            this.pendingByteSeq = chunk.slice(chunk.length - seqLength);
-                            chunk = chunk.slice(0, -seqLength);
-                        }
-
-                        break;
-                    }
-                }
-            }
-
-            // Convert chunk to a string, since single decode per chunk
-            // is much effective than decode multiple small substrings
-            chunk = decoder.decode(chunk);
-        }
-
-        const chunkLength = chunk.length;
-        let lastFlushPoint = 0;
-        let flushPoint = 0;
-
-        // Main scan loop
-        scan: for (let i = 0; i < chunkLength; i++) {
-            if (this.stateString) {
-                for (; i < chunkLength; i++) {
-                    if (this.stateStringEscape) {
-                        this.stateStringEscape = false;
-                    } else {
-                        switch (chunk.charCodeAt(i)) {
-                            case 0x22: /* " */
-                                this.stateString = false;
-                                continue scan;
-
-                            case 0x5C: /* \ */
-                                this.stateStringEscape = true;
-                        }
-                    }
-                }
-
-                break;
-            }
-
-            switch (chunk.charCodeAt(i)) {
-                case 0x22: /* " */
-                    this.stateString = true;
-                    this.stateStringEscape = false;
-                    break;
-
-                case 0x2C: /* , */
-                    flushPoint = i;
-                    break;
-
-                case 0x7B: /* { */
-                    // Open an object
-                    flushPoint = i + 1;
-                    this.stack[this.flushDepth++] = STACK_OBJECT;
-                    break;
-
-                case 0x5B: /* [ */
-                    // Open an array
-                    flushPoint = i + 1;
-                    this.stack[this.flushDepth++] = STACK_ARRAY;
-                    break;
-
-                case 0x5D: /* ] */
-                case 0x7D: /* } */
-                    // Close an object or array
-                    flushPoint = i + 1;
-                    this.flushDepth--;
-
-                    if (this.flushDepth < this.lastFlushDepth) {
-                        this.flush(chunk, lastFlushPoint, flushPoint);
-                        lastFlushPoint = flushPoint;
-                    }
-
-                    break;
-
-                case 0x09: /* \t */
-                case 0x0A: /* \n */
-                case 0x0D: /* \r */
-                case 0x20: /* space */
-                    // Move points forward when they points on current position and it's a whitespace
-                    if (lastFlushPoint === i) {
-                        lastFlushPoint++;
-                    }
-
-                    if (flushPoint === i) {
-                        flushPoint++;
-                    }
-
-                    break;
-            }
-        }
-
-        if (flushPoint > lastFlushPoint) {
-            this.flush(chunk, lastFlushPoint, flushPoint);
-        }
-
-        // Produce pendingChunk if something left
-        if (flushPoint < chunkLength) {
-            if (this.pendingChunk !== null) {
-                // When there is already a pending chunk then no flush happened,
-                // appending entire chunk to pending one
-                this.pendingChunk += chunk;
-            } else {
-                // Create a pending chunk, it will start with non-whitespace since
-                // flushPoint was moved forward away from whitespaces on scan
-                this.pendingChunk = chunk.slice(flushPoint, chunkLength);
-            }
-        }
-
-        this.chunkOffset += chunkLength;
-    }
-
-    finish() {
-        if (this.pendingChunk !== null) {
-            this.flush('', 0, 0);
-            this.pendingChunk = null;
-        }
-
-        return this.value;
-    }
-};
-
-
-/***/ }),
-
-/***/ 3542:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const {
-    normalizeReplacer,
-    normalizeSpace,
-    replaceValue,
-    getTypeNative,
-    getTypeAsync,
-    isLeadingSurrogate,
-    isTrailingSurrogate,
-    escapableCharCodeSubstitution,
-    type: {
-        PRIMITIVE,
-        OBJECT,
-        ARRAY,
-        PROMISE,
-        STRING_STREAM,
-        OBJECT_STREAM
-    }
-} = __nccwpck_require__(4069);
-const charLength2048 = Array.from({ length: 2048 }).map((_, code) => {
-    if (escapableCharCodeSubstitution.hasOwnProperty(code)) {
-        return 2; // \X
-    }
-
-    if (code < 0x20) {
-        return 6; // \uXXXX
-    }
-
-    return code < 128 ? 1 : 2; // UTF8 bytes
-});
-
-function stringLength(str) {
-    let len = 0;
-    let prevLeadingSurrogate = false;
-
-    for (let i = 0; i < str.length; i++) {
-        const code = str.charCodeAt(i);
-
-        if (code < 2048) {
-            len += charLength2048[code];
-        } else if (isLeadingSurrogate(code)) {
-            len += 6; // \uXXXX since no pair with trailing surrogate yet
-            prevLeadingSurrogate = true;
-            continue;
-        } else if (isTrailingSurrogate(code)) {
-            len = prevLeadingSurrogate
-                ? len - 2  // surrogate pair (4 bytes), since we calculate prev leading surrogate as 6 bytes, substruct 2 bytes
-                : len + 6; // \uXXXX
-        } else {
-            len += 3; // code >= 2048 is 3 bytes length for UTF8
-        }
-
-        prevLeadingSurrogate = false;
-    }
-
-    return len + 2; // +2 for quotes
-}
-
-function primitiveLength(value) {
-    switch (typeof value) {
-        case 'string':
-            return stringLength(value);
-
-        case 'number':
-            return Number.isFinite(value) ? String(value).length : 4 /* null */;
-
-        case 'boolean':
-            return value ? 4 /* true */ : 5 /* false */;
-
-        case 'undefined':
-        case 'object':
-            return 4; /* null */
-
-        default:
-            return 0;
-    }
-}
-
-function spaceLength(space) {
-    space = normalizeSpace(space);
-    return typeof space === 'string' ? space.length : 0;
-}
-
-module.exports = function jsonStringifyInfo(value, replacer, space, options) {
-    function walk(holder, key, value) {
-        if (stop) {
-            return;
-        }
-
-        value = replaceValue(holder, key, value, replacer);
-
-        let type = getType(value);
-
-        // check for circular structure
-        if (type !== PRIMITIVE && stack.has(value)) {
-            circular.add(value);
-            length += 4; // treat as null
-
-            if (!options.continueOnCircular) {
-                stop = true;
-            }
-
-            return;
-        }
-
-        switch (type) {
-            case PRIMITIVE:
-                if (value !== undefined || Array.isArray(holder)) {
-                    length += primitiveLength(value);
-                } else if (holder === root) {
-                    length += 9; // FIXME: that's the length of undefined, should we normalize behaviour to convert it to null?
-                }
-                break;
-
-            case OBJECT: {
-                if (visited.has(value)) {
-                    duplicate.add(value);
-                    length += visited.get(value);
-                    break;
-                }
-
-                const valueLength = length;
-                let entries = 0;
-
-                length += 2; // {}
-
-                stack.add(value);
-
-                for (const key in value) {
-                    if (hasOwnProperty.call(value, key) && (allowlist === null || allowlist.has(key))) {
-                        const prevLength = length;
-                        walk(value, key, value[key]);
-
-                        if (prevLength !== length) {
-                            // value is printed
-                            length += stringLength(key) + 1; // "key":
-                            entries++;
-                        }
-                    }
-                }
-
-                if (entries > 1) {
-                    length += entries - 1; // commas
-                }
-
-                stack.delete(value);
-
-                if (space > 0 && entries > 0) {
-                    length += (1 + (stack.size + 1) * space + 1) * entries; // for each key-value: \n{space}
-                    length += 1 + stack.size * space; // for }
-                }
-
-                visited.set(value, length - valueLength);
-
-                break;
-            }
-
-            case ARRAY: {
-                if (visited.has(value)) {
-                    duplicate.add(value);
-                    length += visited.get(value);
-                    break;
-                }
-
-                const valueLength = length;
-
-                length += 2; // []
-
-                stack.add(value);
-
-                for (let i = 0; i < value.length; i++) {
-                    walk(value, i, value[i]);
-                }
-
-                if (value.length > 1) {
-                    length += value.length - 1; // commas
-                }
-
-                stack.delete(value);
-
-                if (space > 0 && value.length > 0) {
-                    length += (1 + (stack.size + 1) * space) * value.length; // for each element: \n{space}
-                    length += 1 + stack.size * space; // for ]
-                }
-
-                visited.set(value, length - valueLength);
-
-                break;
-            }
-
-            case PROMISE:
-            case STRING_STREAM:
-                async.add(value);
-                break;
-
-            case OBJECT_STREAM:
-                length += 2; // []
-                async.add(value);
-                break;
-        }
-    }
-
-    let allowlist = null;
-    replacer = normalizeReplacer(replacer);
-
-    if (Array.isArray(replacer)) {
-        allowlist = new Set(replacer);
-        replacer = null;
-    }
-
-    space = spaceLength(space);
-    options = options || {};
-
-    const visited = new Map();
-    const stack = new Set();
-    const duplicate = new Set();
-    const circular = new Set();
-    const async = new Set();
-    const getType = options.async ? getTypeAsync : getTypeNative;
-    const root = { '': value };
-    let stop = false;
-    let length = 0;
-
-    walk(root, '', value);
-
-    return {
-        minLength: isNaN(length) ? Infinity : length,
-        circular: [...circular],
-        duplicate: [...duplicate],
-        async: [...async]
-    };
-};
-
-
-/***/ }),
-
-/***/ 3410:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { Readable } = __nccwpck_require__(2781);
-const {
-    normalizeReplacer,
-    normalizeSpace,
-    replaceValue,
-    getTypeAsync,
-    type: {
-        PRIMITIVE,
-        OBJECT,
-        ARRAY,
-        PROMISE,
-        STRING_STREAM,
-        OBJECT_STREAM
-    }
-} = __nccwpck_require__(4069);
-const noop = () => {};
-const hasOwnProperty = Object.prototype.hasOwnProperty;
-
-// TODO: Remove when drop support for Node.js 10
-// Node.js 10 has no well-formed JSON.stringify()
-// https://github.com/tc39/proposal-well-formed-stringify
-// Adopted code from https://bugs.chromium.org/p/v8/issues/detail?id=7782#c12
-const wellformedStringStringify = JSON.stringify('\ud800') === '"\\ud800"'
-    ? JSON.stringify
-    : s => JSON.stringify(s).replace(
-        /\p{Surrogate}/gu,
-        m => `\\u${m.charCodeAt(0).toString(16)}`
-    );
-
-function push() {
-    this.push(this._stack.value);
-    this.popStack();
-}
-
-function pushPrimitive(value) {
-    switch (typeof value) {
-        case 'string':
-            this.push(this.encodeString(value));
-            break;
-
-        case 'number':
-            this.push(Number.isFinite(value) ? this.encodeNumber(value) : 'null');
-            break;
-
-        case 'boolean':
-            this.push(value ? 'true' : 'false');
-            break;
-
-        case 'undefined':
-        case 'object': // typeof null === 'object'
-            this.push('null');
-            break;
-
-        default:
-            this.destroy(new TypeError(`Do not know how to serialize a ${value.constructor && value.constructor.name || typeof value}`));
-    }
-}
-
-function processObjectEntry(key) {
-    const current = this._stack;
-
-    if (!current.first) {
-        current.first = true;
-    } else {
-        this.push(',');
-    }
-
-    if (this.space) {
-        this.push(`\n${this.space.repeat(this._depth)}${this.encodeString(key)}: `);
-    } else {
-        this.push(this.encodeString(key) + ':');
-    }
-}
-
-function processObject() {
-    const current = this._stack;
-
-    // when no keys left, remove obj from stack
-    if (current.index === current.keys.length) {
-        if (this.space && current.first) {
-            this.push(`\n${this.space.repeat(this._depth - 1)}}`);
-        } else {
-            this.push('}');
-        }
-
-        this.popStack();
-        return;
-    }
-
-    const key = current.keys[current.index];
-
-    this.processValue(current.value, key, current.value[key], processObjectEntry);
-    current.index++;
-}
-
-function processArrayItem(index) {
-    if (index !== 0) {
-        this.push(',');
-    }
-
-    if (this.space) {
-        this.push(`\n${this.space.repeat(this._depth)}`);
-    }
-}
-
-function processArray() {
-    const current = this._stack;
-
-    if (current.index === current.value.length) {
-        if (this.space && current.index > 0) {
-            this.push(`\n${this.space.repeat(this._depth - 1)}]`);
-        } else {
-            this.push(']');
-        }
-
-        this.popStack();
-        return;
-    }
-
-    this.processValue(current.value, current.index, current.value[current.index], processArrayItem);
-    current.index++;
-}
-
-function createStreamReader(fn) {
-    return function() {
-        const current = this._stack;
-        const data = current.value.read(this._readSize);
-
-        if (data !== null) {
-            current.first = false;
-            fn.call(this, data, current);
-        } else {
-            if ((current.first && !current.value._readableState.reading) || current.ended) {
-                this.popStack();
-            } else {
-                current.first = true;
-                current.awaiting = true;
-            }
-        }
-    };
-}
-
-const processReadableObject = createStreamReader(function(data, current) {
-    this.processValue(current.value, current.index, data, processArrayItem);
-    current.index++;
-});
-
-const processReadableString = createStreamReader(function(data) {
-    this.push(data);
-});
-
-class JsonStringifyStream extends Readable {
-    constructor(value, replacer, space) {
-        super({
-            autoDestroy: true
-        });
-
-        this.getKeys = Object.keys;
-        this.replacer = normalizeReplacer(replacer);
-
-        if (Array.isArray(this.replacer)) {
-            const allowlist = this.replacer;
-
-            this.getKeys = (value) => allowlist.filter(key => hasOwnProperty.call(value, key));
-            this.replacer = null;
-        }
-
-        this.space = normalizeSpace(space);
-        this._depth = 0;
-
-        this.error = null;
-        this._processing = false;
-        this._ended = false;
-
-        this._readSize = 0;
-        this._buffer = '';
-
-        this._stack = null;
-        this._visited = new WeakSet();
-
-        this.pushStack({
-            handler: () => {
-                this.popStack();
-                this.processValue({ '': value }, '', value, noop);
-            }
-        });
-    }
-
-    encodeString(value) {
-        if (/[^\x20-\uD799]|[\x22\x5c]/.test(value)) {
-            return wellformedStringStringify(value);
-        }
-
-        return '"' + value + '"';
-    }
-
-    encodeNumber(value) {
-        return value;
-    }
-
-    processValue(holder, key, value, callback) {
-        value = replaceValue(holder, key, value, this.replacer);
-
-        let type = getTypeAsync(value);
-
-        switch (type) {
-            case PRIMITIVE:
-                if (callback !== processObjectEntry || value !== undefined) {
-                    callback.call(this, key);
-                    pushPrimitive.call(this, value);
-                }
-                break;
-
-            case OBJECT:
-                callback.call(this, key);
-
-                // check for circular structure
-                if (this._visited.has(value)) {
-                    return this.destroy(new TypeError('Converting circular structure to JSON'));
-                }
-
-                this._visited.add(value);
-                this._depth++;
-                this.push('{');
-                this.pushStack({
-                    handler: processObject,
-                    value,
-                    index: 0,
-                    first: false,
-                    keys: this.getKeys(value)
-                });
-                break;
-
-            case ARRAY:
-                callback.call(this, key);
-
-                // check for circular structure
-                if (this._visited.has(value)) {
-                    return this.destroy(new TypeError('Converting circular structure to JSON'));
-                }
-
-                this._visited.add(value);
-
-                this.push('[');
-                this.pushStack({
-                    handler: processArray,
-                    value,
-                    index: 0
-                });
-                this._depth++;
-                break;
-
-            case PROMISE:
-                this.pushStack({
-                    handler: noop,
-                    awaiting: true
-                });
-
-                Promise.resolve(value)
-                    .then(resolved => {
-                        this.popStack();
-                        this.processValue(holder, key, resolved, callback);
-                        this.processStack();
-                    })
-                    .catch(error => {
-                        this.destroy(error);
-                    });
-                break;
-
-            case STRING_STREAM:
-            case OBJECT_STREAM:
-                callback.call(this, key);
-
-                // TODO: Remove when drop support for Node.js 10
-                // Used `_readableState.endEmitted` as fallback, since Node.js 10 has no `readableEnded` getter
-                if (value.readableEnded || value._readableState.endEmitted) {
-                    return this.destroy(new Error('Readable Stream has ended before it was serialized. All stream data have been lost'));
-                }
-
-                if (value.readableFlowing) {
-                    return this.destroy(new Error('Readable Stream is in flowing mode, data may have been lost. Trying to pause stream.'));
-                }
-
-                if (type === OBJECT_STREAM) {
-                    this.push('[');
-                    this.pushStack({
-                        handler: push,
-                        value: this.space ? '\n' + this.space.repeat(this._depth) + ']' : ']'
-                    });
-                    this._depth++;
-                }
-
-                const self = this.pushStack({
-                    handler: type === OBJECT_STREAM ? processReadableObject : processReadableString,
-                    value,
-                    index: 0,
-                    first: false,
-                    ended: false,
-                    awaiting: !value.readable || value.readableLength === 0
-                });
-                const continueProcessing = () => {
-                    if (self.awaiting) {
-                        self.awaiting = false;
-                        this.processStack();
-                    }
-                };
-
-                value.once('error', error => this.destroy(error));
-                value.once('end', () => {
-                    self.ended = true;
-                    continueProcessing();
-                });
-                value.on('readable', continueProcessing);
-                break;
-        }
-    }
-
-    pushStack(node) {
-        node.prev = this._stack;
-        return this._stack = node;
-    }
-
-    popStack() {
-        const { handler, value } = this._stack;
-
-        if (handler === processObject || handler === processArray || handler === processReadableObject) {
-            this._visited.delete(value);
-            this._depth--;
-        }
-
-        this._stack = this._stack.prev;
-    }
-
-    processStack() {
-        if (this._processing || this._ended) {
-            return;
-        }
-
-        try {
-            this._processing = true;
-
-            while (this._stack !== null && !this._stack.awaiting) {
-                this._stack.handler.call(this);
-
-                if (!this._processing) {
-                    return;
-                }
-            }
-
-            this._processing = false;
-        } catch (error) {
-            this.destroy(error);
-            return;
-        }
-
-        if (this._stack === null && !this._ended) {
-            this._finish();
-            this.push(null);
-        }
-    }
-
-    push(data) {
-        if (data !== null) {
-            this._buffer += data;
-
-            // check buffer overflow
-            if (this._buffer.length < this._readSize) {
-                return;
-            }
-
-            // flush buffer
-            data = this._buffer;
-            this._buffer = '';
-            this._processing = false;
-        }
-
-        super.push(data);
-    }
-
-    _read(size) {
-        // start processing
-        this._readSize = size || this.readableHighWaterMark;
-        this.processStack();
-    }
-
-    _finish() {
-        this._ended = true;
-        this._processing = false;
-        this._stack = null;
-        this._visited = null;
-
-        if (this._buffer && this._buffer.length) {
-            super.push(this._buffer); // flush buffer
-        }
-
-        this._buffer = '';
-    }
-
-    _destroy(error, cb) {
-        this.error = this.error || error;
-        this._finish();
-        cb(error);
-    }
-}
-
-module.exports = function createJsonStringifyStream(value, replacer, space) {
-    return new JsonStringifyStream(value, replacer, space);
-};
-
-
-/***/ }),
-
-/***/ 7590:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-module.exports = __nccwpck_require__(3837).TextDecoder;
-
-
-/***/ }),
-
-/***/ 4069:
-/***/ ((module) => {
-
-const PrimitiveType = 1;
-const ObjectType = 2;
-const ArrayType = 3;
-const PromiseType = 4;
-const ReadableStringType = 5;
-const ReadableObjectType = 6;
-// https://tc39.es/ecma262/#table-json-single-character-escapes
-const escapableCharCodeSubstitution = { // JSON Single Character Escape Sequences
-    0x08: '\\b',
-    0x09: '\\t',
-    0x0a: '\\n',
-    0x0c: '\\f',
-    0x0d: '\\r',
-    0x22: '\\\"',
-    0x5c: '\\\\'
-};
-
-function isLeadingSurrogate(code) {
-    return code >= 0xD800 && code <= 0xDBFF;
-}
-
-function isTrailingSurrogate(code) {
-    return code >= 0xDC00 && code <= 0xDFFF;
-}
-
-function isReadableStream(value) {
-    return (
-        typeof value.pipe === 'function' &&
-        typeof value._read === 'function' &&
-        typeof value._readableState === 'object' && value._readableState !== null
-    );
-}
-
-function replaceValue(holder, key, value, replacer) {
-    if (value && typeof value.toJSON === 'function') {
-        value = value.toJSON();
-    }
-
-    if (replacer !== null) {
-        value = replacer.call(holder, String(key), value);
-    }
-
-    switch (typeof value) {
-        case 'function':
-        case 'symbol':
-            value = undefined;
-            break;
-
-        case 'object':
-            if (value !== null) {
-                const cls = value.constructor;
-                if (cls === String || cls === Number || cls === Boolean) {
-                    value = value.valueOf();
-                }
-            }
-            break;
-    }
-
-    return value;
-}
-
-function getTypeNative(value) {
-    if (value === null || typeof value !== 'object') {
-        return PrimitiveType;
-    }
-
-    if (Array.isArray(value)) {
-        return ArrayType;
-    }
-
-    return ObjectType;
-}
-
-function getTypeAsync(value) {
-    if (value === null || typeof value !== 'object') {
-        return PrimitiveType;
-    }
-
-    if (typeof value.then === 'function') {
-        return PromiseType;
-    }
-
-    if (isReadableStream(value)) {
-        return value._readableState.objectMode ? ReadableObjectType : ReadableStringType;
-    }
-
-    if (Array.isArray(value)) {
-        return ArrayType;
-    }
-
-    return ObjectType;
-}
-
-function normalizeReplacer(replacer) {
-    if (typeof replacer === 'function') {
-        return replacer;
-    }
-
-    if (Array.isArray(replacer)) {
-        const allowlist = new Set(replacer
-            .map(item => {
-                const cls = item && item.constructor;
-                return cls === String || cls === Number ? String(item) : null;
-            })
-            .filter(item => typeof item === 'string')
-        );
-
-        return [...allowlist];
-    }
-
-    return null;
-}
-
-function normalizeSpace(space) {
-    if (typeof space === 'number') {
-        if (!Number.isFinite(space) || space < 1) {
-            return false;
-        }
-
-        return ' '.repeat(Math.min(space, 10));
-    }
-
-    if (typeof space === 'string') {
-        return space.slice(0, 10) || false;
-    }
-
-    return false;
-}
-
-module.exports = {
-    escapableCharCodeSubstitution,
-    isLeadingSurrogate,
-    isTrailingSurrogate,
-    type: {
-        PRIMITIVE: PrimitiveType,
-        PROMISE: PromiseType,
-        ARRAY: ArrayType,
-        OBJECT: ObjectType,
-        STRING_STREAM: ReadableStringType,
-        OBJECT_STREAM: ReadableObjectType
-    },
-
-    isReadableStream,
-    replaceValue,
-    getTypeNative,
-    getTypeAsync,
-    normalizeReplacer,
-    normalizeSpace
-};
-
-
-/***/ }),
-
-/***/ 4055:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-module.exports = __nccwpck_require__(8385).version;
-
 
 /***/ }),
 
@@ -32970,11 +31730,996 @@ module.exports = parseParams
 
 /***/ }),
 
-/***/ 8385:
-/***/ ((module) => {
+/***/ 7573:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
-module.exports = {"version":"0.5.7"};
+
+
+const parseChunked = __nccwpck_require__(4015);
+const stringifyChunked = __nccwpck_require__(6084);
+const stringifyInfo = __nccwpck_require__(9090);
+const webStreams = __nccwpck_require__(8030);
+
+
+
+exports.parseChunked = parseChunked.parseChunked;
+exports.stringifyChunked = stringifyChunked.stringifyChunked;
+exports.stringifyInfo = stringifyInfo.stringifyInfo;
+exports.createStringifyWebStream = webStreams.createStringifyWebStream;
+exports.parseFromWebStream = webStreams.parseFromWebStream;
+
+
+/***/ }),
+
+/***/ 4015:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+
+const utils = __nccwpck_require__(5348);
+
+const STACK_OBJECT = 1;
+const STACK_ARRAY = 2;
+const decoder = new TextDecoder();
+
+function adjustPosition(error, parser) {
+    if (error.name === 'SyntaxError' && parser.jsonParseOffset) {
+        error.message = error.message.replace(/at position (\d+)/, (_, pos) =>
+            'at position ' + (Number(pos) + parser.jsonParseOffset)
+        );
+    }
+
+    return error;
+}
+
+function append(array, elements) {
+    // Note: Avoid to use array.push(...elements) since it may lead to
+    // "RangeError: Maximum call stack size exceeded" for a long arrays
+    const initialLength = array.length;
+    array.length += elements.length;
+
+    for (let i = 0; i < elements.length; i++) {
+        array[initialLength + i] = elements[i];
+    }
+}
+
+async function parseChunked(chunkEmitter) {
+    const iterable = typeof chunkEmitter === 'function'
+        ? chunkEmitter()
+        : chunkEmitter;
+
+    if (utils.isIterable(iterable)) {
+        let parser = new ChunkParser();
+
+        try {
+            for await (const chunk of iterable) {
+                if (typeof chunk !== 'string' && !ArrayBuffer.isView(chunk)) {
+                    throw new TypeError('Invalid chunk: Expected string, TypedArray or Buffer');
+                }
+
+                parser.push(chunk);
+            }
+
+            return parser.finish();
+        } catch (e) {
+            throw adjustPosition(e, parser);
+        }
+    }
+
+    throw new TypeError(
+        'Invalid chunk emitter: Expected an Iterable, AsyncIterable, generator, ' +
+        'async generator, or a function returning an Iterable or AsyncIterable'
+    );
+}
+class ChunkParser {
+    constructor() {
+        this.value = undefined;
+        this.valueStack = null;
+
+        this.stack = new Array(100);
+        this.lastFlushDepth = 0;
+        this.flushDepth = 0;
+        this.stateString = false;
+        this.stateStringEscape = false;
+        this.pendingByteSeq = null;
+        this.pendingChunk = null;
+        this.chunkOffset = 0;
+        this.jsonParseOffset = 0;
+    }
+
+    parseAndAppend(fragment, wrap) {
+        // Append new entries or elements
+        if (this.stack[this.lastFlushDepth - 1] === STACK_OBJECT) {
+            if (wrap) {
+                this.jsonParseOffset--;
+                fragment = '{' + fragment + '}';
+            }
+
+            Object.assign(this.valueStack.value, JSON.parse(fragment));
+        } else {
+            if (wrap) {
+                this.jsonParseOffset--;
+                fragment = '[' + fragment + ']';
+            }
+
+            append(this.valueStack.value, JSON.parse(fragment));
+        }
+    }
+
+    prepareAddition(fragment) {
+        const { value } = this.valueStack;
+        const expectComma = Array.isArray(value)
+            ? value.length !== 0
+            : Object.keys(value).length !== 0;
+
+        if (expectComma) {
+            // Skip a comma at the beginning of fragment, otherwise it would
+            // fail to parse
+            if (fragment[0] === ',') {
+                this.jsonParseOffset++;
+                return fragment.slice(1);
+            }
+
+            // When value (an object or array) is not empty and a fragment
+            // doesn't start with a comma, a single valid fragment starting
+            // is a closing bracket. If it's not, a prefix is adding to fail
+            // parsing. Otherwise, the sequence of chunks can be successfully
+            // parsed, although it should not, e.g. ["[{}", "{}]"]
+            if (fragment[0] !== '}' && fragment[0] !== ']') {
+                this.jsonParseOffset -= 3;
+                return '[[]' + fragment;
+            }
+        }
+
+        return fragment;
+    }
+
+    flush(chunk, start, end) {
+        let fragment = chunk.slice(start, end);
+
+        // Save position correction an error in JSON.parse() if any
+        this.jsonParseOffset = this.chunkOffset + start;
+
+        // Prepend pending chunk if any
+        if (this.pendingChunk !== null) {
+            fragment = this.pendingChunk + fragment;
+            this.jsonParseOffset -= this.pendingChunk.length;
+            this.pendingChunk = null;
+        }
+
+        if (this.flushDepth === this.lastFlushDepth) {
+            // Depth didn't changed, so it's a root value or entry/element set
+            if (this.flushDepth > 0) {
+                this.parseAndAppend(this.prepareAddition(fragment), true);
+            } else {
+                // That's an entire value on a top level
+                this.value = JSON.parse(fragment);
+                this.valueStack = {
+                    value: this.value,
+                    prev: null
+                };
+            }
+        } else if (this.flushDepth > this.lastFlushDepth) {
+            // Add missed closing brackets/parentheses
+            for (let i = this.flushDepth - 1; i >= this.lastFlushDepth; i--) {
+                fragment += this.stack[i] === STACK_OBJECT ? '}' : ']';
+            }
+
+            if (this.lastFlushDepth === 0) {
+                // That's a root value
+                this.value = JSON.parse(fragment);
+                this.valueStack = {
+                    value: this.value,
+                    prev: null
+                };
+            } else {
+                this.parseAndAppend(this.prepareAddition(fragment), true);
+            }
+
+            // Move down to the depths to the last object/array, which is current now
+            for (let i = this.lastFlushDepth || 1; i < this.flushDepth; i++) {
+                let value = this.valueStack.value;
+
+                if (this.stack[i - 1] === STACK_OBJECT) {
+                    // find last entry
+                    let key;
+                    // eslint-disable-next-line curly
+                    for (key in value);
+                    value = value[key];
+                } else {
+                    // last element
+                    value = value[value.length - 1];
+                }
+
+                this.valueStack = {
+                    value,
+                    prev: this.valueStack
+                };
+            }
+        } else /* this.flushDepth < this.lastFlushDepth */ {
+            fragment = this.prepareAddition(fragment);
+
+            // Add missed opening brackets/parentheses
+            for (let i = this.lastFlushDepth - 1; i >= this.flushDepth; i--) {
+                this.jsonParseOffset--;
+                fragment = (this.stack[i] === STACK_OBJECT ? '{' : '[') + fragment;
+            }
+
+            this.parseAndAppend(fragment, false);
+
+            for (let i = this.lastFlushDepth - 1; i >= this.flushDepth; i--) {
+                this.valueStack = this.valueStack.prev;
+            }
+        }
+
+        this.lastFlushDepth = this.flushDepth;
+    }
+
+    push(chunk) {
+        if (typeof chunk !== 'string') {
+            // Suppose chunk is Buffer or Uint8Array
+
+            // Prepend uncompleted byte sequence if any
+            if (this.pendingByteSeq !== null) {
+                const origRawChunk = chunk;
+                chunk = new Uint8Array(this.pendingByteSeq.length + origRawChunk.length);
+                chunk.set(this.pendingByteSeq);
+                chunk.set(origRawChunk, this.pendingByteSeq.length);
+                this.pendingByteSeq = null;
+            }
+
+            // In case Buffer/Uint8Array, an input is encoded in UTF8
+            // Seek for parts of uncompleted UTF8 symbol on the ending
+            // This makes sense only if we expect more chunks and last char is not multi-bytes
+            if (chunk[chunk.length - 1] > 127) {
+                for (let seqLength = 0; seqLength < chunk.length; seqLength++) {
+                    const byte = chunk[chunk.length - 1 - seqLength];
+
+                    // 10xxxxxx - 2nd, 3rd or 4th byte
+                    // 110xxxxx – first byte of 2-byte sequence
+                    // 1110xxxx - first byte of 3-byte sequence
+                    // 11110xxx - first byte of 4-byte sequence
+                    if (byte >> 6 === 3) {
+                        seqLength++;
+
+                        // If the sequence is really incomplete, then preserve it
+                        // for the future chunk and cut off it from the current chunk
+                        if ((seqLength !== 4 && byte >> 3 === 0b11110) ||
+                            (seqLength !== 3 && byte >> 4 === 0b1110) ||
+                            (seqLength !== 2 && byte >> 5 === 0b110)) {
+                            this.pendingByteSeq = chunk.slice(chunk.length - seqLength);
+                            chunk = chunk.slice(0, -seqLength);
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            // Convert chunk to a string, since single decode per chunk
+            // is much effective than decode multiple small substrings
+            chunk = decoder.decode(chunk);
+        }
+
+        const chunkLength = chunk.length;
+        let lastFlushPoint = 0;
+        let flushPoint = 0;
+
+        // Main scan loop
+        scan: for (let i = 0; i < chunkLength; i++) {
+            if (this.stateString) {
+                for (; i < chunkLength; i++) {
+                    if (this.stateStringEscape) {
+                        this.stateStringEscape = false;
+                    } else {
+                        switch (chunk.charCodeAt(i)) {
+                            case 0x22: /* " */
+                                this.stateString = false;
+                                continue scan;
+
+                            case 0x5C: /* \ */
+                                this.stateStringEscape = true;
+                        }
+                    }
+                }
+
+                break;
+            }
+
+            switch (chunk.charCodeAt(i)) {
+                case 0x22: /* " */
+                    this.stateString = true;
+                    this.stateStringEscape = false;
+                    break;
+
+                case 0x2C: /* , */
+                    flushPoint = i;
+                    break;
+
+                case 0x7B: /* { */
+                    // Open an object
+                    flushPoint = i + 1;
+                    this.stack[this.flushDepth++] = STACK_OBJECT;
+                    break;
+
+                case 0x5B: /* [ */
+                    // Open an array
+                    flushPoint = i + 1;
+                    this.stack[this.flushDepth++] = STACK_ARRAY;
+                    break;
+
+                case 0x5D: /* ] */
+                case 0x7D: /* } */
+                    // Close an object or array
+                    flushPoint = i + 1;
+                    this.flushDepth--;
+
+                    if (this.flushDepth < this.lastFlushDepth) {
+                        this.flush(chunk, lastFlushPoint, flushPoint);
+                        lastFlushPoint = flushPoint;
+                    }
+
+                    break;
+
+                case 0x09: /* \t */
+                case 0x0A: /* \n */
+                case 0x0D: /* \r */
+                case 0x20: /* space */
+                    // Move points forward when they points on current position and it's a whitespace
+                    if (lastFlushPoint === i) {
+                        lastFlushPoint++;
+                    }
+
+                    if (flushPoint === i) {
+                        flushPoint++;
+                    }
+
+                    break;
+            }
+        }
+
+        if (flushPoint > lastFlushPoint) {
+            this.flush(chunk, lastFlushPoint, flushPoint);
+        }
+
+        // Produce pendingChunk if something left
+        if (flushPoint < chunkLength) {
+            if (this.pendingChunk !== null) {
+                // When there is already a pending chunk then no flush happened,
+                // appending entire chunk to pending one
+                this.pendingChunk += chunk;
+            } else {
+                // Create a pending chunk, it will start with non-whitespace since
+                // flushPoint was moved forward away from whitespaces on scan
+                this.pendingChunk = chunk.slice(flushPoint, chunkLength);
+            }
+        }
+
+        this.chunkOffset += chunkLength;
+    }
+
+    finish() {
+        if (this.pendingChunk !== null) {
+            this.flush('', 0, 0);
+            this.pendingChunk = null;
+        }
+
+        return this.value;
+    }
+}
+
+exports.parseChunked = parseChunked;
+
+
+/***/ }),
+
+/***/ 6084:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+
+const utils = __nccwpck_require__(5348);
+
+function encodeString(value) {
+    if (/[^\x20\x21\x23-\x5B\x5D-\uD799]/.test(value)) { // [^\x20-\uD799]|[\x22\x5c]
+        return JSON.stringify(value);
+    }
+
+    return '"' + value + '"';
+}
+
+function* stringifyChunked(value, optionsOrReplacer, space) {
+    if (optionsOrReplacer === null || Array.isArray(optionsOrReplacer) || typeof optionsOrReplacer !== 'object') {
+        optionsOrReplacer = {
+            replacer: optionsOrReplacer,
+            space
+        };
+    }
+
+    const highWaterMark = Number(optionsOrReplacer.highWaterMark) || 0x4000; // 16kb by default
+    let replacer = utils.normalizeReplacer(optionsOrReplacer.replacer);
+    space = utils.normalizeSpace(optionsOrReplacer.space);
+
+    let buffer = '';
+    let depth = 0;
+    let stack = null;
+    let first = false;
+    let visited = new WeakSet();
+    let processing = false;
+    let getKeys = Object.keys;
+
+    if (Array.isArray(replacer)) {
+        const allowlist = replacer;
+
+        getKeys = () => allowlist;
+        replacer = null;
+    }
+
+    pushStack(processRoot, value, null);
+
+    while (stack !== null) {
+        processing = true;
+
+        while (stack !== null && !stack.awaiting) {
+            stack.handler();
+
+            if (!processing) {
+                break;
+            }
+        }
+
+        processing = false;
+
+        // flush buffer
+        yield buffer;
+        buffer = '';
+    }
+
+    function processRoot() {
+        const { value } = stack;
+
+        popStack();
+        processValue({ '': value }, '', value, () => {});
+    }
+
+    function processObjectEntry(key) {
+        if (first === false) {
+            first = true;
+        } else {
+            push(',');
+        }
+
+        if (space) {
+            push(`\n${space.repeat(depth)}${encodeString(key)}: `);
+        } else {
+            push(encodeString(key) + ':');
+        }
+    }
+
+    function processObject() {
+        const current = stack;
+
+        // when no keys left, remove obj from stack
+        if (current.index === current.keys.length) {
+            if (space && first) {
+                push(`\n${space.repeat(depth - 1)}}`);
+            } else {
+                push('}');
+            }
+
+            popStack();
+            return;
+        }
+
+        const key = current.keys[current.index];
+
+        processValue(current.value, key, current.value[key], processObjectEntry);
+        current.index++;
+    }
+
+    function processArrayItem(index) {
+        if (index !== 0) {
+            push(',');
+        }
+
+        if (space) {
+            push(`\n${space.repeat(depth)}`);
+        }
+    }
+
+    function processArray() {
+        const current = stack;
+
+        if (current.index === current.value.length) {
+            if (space && current.index !== 0) {
+                push(`\n${space.repeat(depth - 1)}]`);
+            } else {
+                push(']');
+            }
+
+            popStack();
+            return;
+        }
+
+        processValue(current.value, current.index, current.value[current.index], processArrayItem);
+        current.index++;
+    }
+
+    function processValue(holder, key, value, callback) {
+        value = utils.replaceValue(holder, key, value, replacer);
+
+        if (value === null || typeof value !== 'object') {
+            // primitive
+            if (callback !== processObjectEntry || value !== undefined) {
+                callback(key);
+                pushPrimitive(value);
+            }
+        } else if (Array.isArray(value)) {
+            // array
+            callback(key);
+            circularCheck(value);
+            depth++;
+            push('[');
+            pushStack(processArray, value, null);
+        } else {
+            // object
+            callback(key);
+            circularCheck(value);
+            depth++;
+            push('{');
+            pushStack(processObject, value, getKeys(value));
+        }
+    }
+
+    function circularCheck(value) {
+        if (visited.has(value)) {
+            throw new TypeError('Converting circular structure to JSON');
+        }
+
+        visited.add(value);
+    }
+
+    function pushPrimitive(value) {
+        switch (typeof value) {
+            case 'string':
+                push(encodeString(value));
+                break;
+
+            case 'number':
+                push(Number.isFinite(value) ? value : 'null');
+                break;
+
+            case 'boolean':
+                push(value ? 'true' : 'false');
+                break;
+
+            case 'undefined':
+            case 'object': // typeof null === 'object'
+                push('null');
+                break;
+
+            default:
+                throw new TypeError(`Do not know how to serialize a ${value.constructor?.name || typeof value}`);
+        }
+    }
+
+    function pushStack(handler, value, keys) {
+        first = false;
+        return stack = {
+            handler,
+            value,
+            index: 0,
+            keys,
+            prev: stack
+        };
+    }
+
+    function popStack() {
+        const { handler, value } = stack;
+
+        if (handler === processObject || handler === processArray) {
+            visited.delete(value);
+            depth--;
+        }
+
+        stack = stack.prev;
+        first = true;
+    }
+
+    function push(data) {
+        buffer += data;
+        processing = buffer.length < highWaterMark;
+    }
+}
+
+exports.stringifyChunked = stringifyChunked;
+
+
+/***/ }),
+
+/***/ 9090:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+
+const utils = __nccwpck_require__(5348);
+
+const hasOwn = typeof Object.hasOwn === 'function'
+    ? Object.hasOwn
+    : (object, key) => Object.hasOwnProperty.call(object, key);
+
+// https://tc39.es/ecma262/#table-json-single-character-escapes
+const escapableCharCodeSubstitution = { // JSON Single Character Escape Sequences
+    0x08: '\\b',
+    0x09: '\\t',
+    0x0a: '\\n',
+    0x0c: '\\f',
+    0x0d: '\\r',
+    0x22: '\\\"',
+    0x5c: '\\\\'
+};
+
+const charLength2048 = Array.from({ length: 2048 }).map((_, code) => {
+    if (hasOwn(escapableCharCodeSubstitution, code)) {
+        return 2; // \X
+    }
+
+    if (code < 0x20) {
+        return 6; // \uXXXX
+    }
+
+    return code < 128 ? 1 : 2; // UTF8 bytes
+});
+
+function isLeadingSurrogate(code) {
+    return code >= 0xD800 && code <= 0xDBFF;
+}
+
+function isTrailingSurrogate(code) {
+    return code >= 0xDC00 && code <= 0xDFFF;
+}
+
+function stringLength(str) {
+    let len = 0;
+    let prevLeadingSurrogate = false;
+
+    for (let i = 0; i < str.length; i++) {
+        const code = str.charCodeAt(i);
+
+        if (code < 2048) {
+            len += charLength2048[code];
+        } else if (isLeadingSurrogate(code)) {
+            len += 6; // \uXXXX since no pair with trailing surrogate yet
+            prevLeadingSurrogate = true;
+            continue;
+        } else if (isTrailingSurrogate(code)) {
+            len = prevLeadingSurrogate
+                ? len - 2  // surrogate pair (4 bytes), since we calculate prev leading surrogate as 6 bytes, substruct 2 bytes
+                : len + 6; // \uXXXX
+        } else {
+            len += 3; // code >= 2048 is 3 bytes length for UTF8
+        }
+
+        prevLeadingSurrogate = false;
+    }
+
+    return len + 2; // +2 for quotes
+}
+
+function primitiveLength(value) {
+    switch (typeof value) {
+        case 'string':
+            return stringLength(value);
+
+        case 'number':
+            return Number.isFinite(value) ? String(value).length : 4 /* null */;
+
+        case 'boolean':
+            return value ? 4 /* true */ : 5 /* false */;
+
+        case 'undefined':
+        case 'object':
+            return 4; /* null */
+
+        default:
+            return 0;
+    }
+}
+
+function spaceLength(space) {
+    space = utils.normalizeSpace(space);
+    return typeof space === 'string' ? space.length : 0;
+}
+
+function stringifyInfo(value, optionsOrReplacer, space) {
+    if (optionsOrReplacer === null || Array.isArray(optionsOrReplacer) || typeof optionsOrReplacer !== 'object') {
+        optionsOrReplacer = {
+            replacer: optionsOrReplacer,
+            space
+        };
+    }
+
+    let allowlist = null;
+    let replacer = utils.normalizeReplacer(optionsOrReplacer.replacer);
+    const continueOnCircular = Boolean(optionsOrReplacer.continueOnCircular);
+
+    if (Array.isArray(replacer)) {
+        allowlist = new Set(replacer);
+        replacer = null;
+    }
+
+    space = spaceLength(space);
+
+    const visited = new WeakMap();
+    const stack = new Set();
+    const circular = new Set();
+    const root = { '': value };
+    let stop = false;
+    let bytes = 0;
+
+    walk(root, '', value);
+
+    return {
+        bytes: isNaN(bytes) ? Infinity : bytes,
+        circular: [...circular]
+    };
+
+    function walk(holder, key, value) {
+        if (stop) {
+            return;
+        }
+
+        value = utils.replaceValue(holder, key, value, replacer);
+
+        if (value === null || typeof value !== 'object') {
+            // primitive
+            if (value !== undefined || Array.isArray(holder)) {
+                bytes += primitiveLength(value);
+            } else if (holder === root) {
+                bytes += 9; // FIXME: that's the length of undefined, should we normalize behaviour to convert it to null?
+            }
+        } else {
+            // check for circular structure
+            if (stack.has(value)) {
+                circular.add(value);
+                bytes += 4; // treat as null
+
+                if (!continueOnCircular) {
+                    stop = true;
+                }
+
+                return;
+            }
+
+            // duplicates
+            if (visited.has(value)) {
+                bytes += visited.get(value);
+
+                return;
+            }
+
+            if (Array.isArray(value)) {
+                // array
+                const valueLength = bytes;
+
+                bytes += 2; // []
+
+                stack.add(value);
+
+                for (let i = 0; i < value.length; i++) {
+                    walk(value, i, value[i]);
+                }
+
+                if (value.length > 1) {
+                    bytes += value.length - 1; // commas
+                }
+
+                stack.delete(value);
+
+                if (space > 0 && value.length > 0) {
+                    bytes += (1 + (stack.size + 1) * space) * value.length; // for each element: \n{space}
+                    bytes += 1 + stack.size * space; // for ]
+                }
+
+                visited.set(value, bytes - valueLength);
+            } else {
+                // object
+                const valueLength = bytes;
+                let entries = 0;
+
+                bytes += 2; // {}
+
+                stack.add(value);
+
+                for (const key in value) {
+                    if (hasOwn(value, key) && (allowlist === null || allowlist.has(key))) {
+                        const prevLength = bytes;
+                        walk(value, key, value[key]);
+
+                        if (prevLength !== bytes) {
+                            // value is printed
+                            bytes += stringLength(key) + 1; // "key":
+                            entries++;
+                        }
+                    }
+                }
+
+                if (entries > 1) {
+                    bytes += entries - 1; // commas
+                }
+
+                stack.delete(value);
+
+                if (space > 0 && entries > 0) {
+                    bytes += (1 + (stack.size + 1) * space + 1) * entries; // for each key-value: \n{space}
+                    bytes += 1 + stack.size * space; // for }
+                }
+
+                visited.set(value, bytes - valueLength);
+            }
+        }
+    }
+}
+
+exports.stringifyInfo = stringifyInfo;
+
+
+/***/ }),
+
+/***/ 5348:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+function isIterable(value) {
+    return (
+        typeof value === 'object' &&
+        value !== null &&
+        (
+            typeof value[Symbol.iterator] === 'function' ||
+            typeof value[Symbol.asyncIterator] === 'function'
+        )
+    );
+}
+
+function replaceValue(holder, key, value, replacer) {
+    if (value && typeof value.toJSON === 'function') {
+        value = value.toJSON();
+    }
+
+    if (replacer !== null) {
+        value = replacer.call(holder, String(key), value);
+    }
+
+    switch (typeof value) {
+        case 'function':
+        case 'symbol':
+            value = undefined;
+            break;
+
+        case 'object':
+            if (value !== null) {
+                const cls = value.constructor;
+                if (cls === String || cls === Number || cls === Boolean) {
+                    value = value.valueOf();
+                }
+            }
+            break;
+    }
+
+    return value;
+}
+
+function normalizeReplacer(replacer) {
+    if (typeof replacer === 'function') {
+        return replacer;
+    }
+
+    if (Array.isArray(replacer)) {
+        const allowlist = new Set(replacer
+            .map(item => {
+                const cls = item && item.constructor;
+                return cls === String || cls === Number ? String(item) : null;
+            })
+            .filter(item => typeof item === 'string')
+        );
+
+        return [...allowlist];
+    }
+
+    return null;
+}
+
+function normalizeSpace(space) {
+    if (typeof space === 'number') {
+        if (!Number.isFinite(space) || space < 1) {
+            return false;
+        }
+
+        return ' '.repeat(Math.min(space, 10));
+    }
+
+    if (typeof space === 'string') {
+        return space.slice(0, 10) || false;
+    }
+
+    return false;
+}
+
+exports.isIterable = isIterable;
+exports.normalizeReplacer = normalizeReplacer;
+exports.normalizeSpace = normalizeSpace;
+exports.replaceValue = replaceValue;
+
+
+/***/ }),
+
+/***/ 8030:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+
+const parseChunked = __nccwpck_require__(4015);
+const stringifyChunked = __nccwpck_require__(6084);
+const utils = __nccwpck_require__(5348);
+
+/* eslint-env browser */
+
+function parseFromWebStream(stream) {
+    // 2024/6/17: currently, an @@asyncIterator on a ReadableStream is not widely supported,
+    // therefore use a fallback using a reader
+    // https://caniuse.com/mdn-api_readablestream_--asynciterator
+    return parseChunked.parseChunked(utils.isIterable(stream) ? stream : async function*() {
+        const reader = stream.getReader();
+
+        while (true) {
+            const { value, done } = await reader.read();
+
+            if (done) {
+                break;
+            }
+
+            yield value;
+        }
+    });
+}
+
+function createStringifyWebStream(value, replacer, space) {
+    // 2024/6/17: the ReadableStream.from() static method is supported
+    // in Node.js 20.6+ and Firefox only
+    if (typeof ReadableStream.from === 'function') {
+        return ReadableStream.from(stringifyChunked.stringifyChunked(value, replacer, space));
+    }
+
+    // emulate ReadableStream.from()
+    return new ReadableStream({
+        start() {
+            this.generator = stringifyChunked.stringifyChunked(value, replacer, space);
+        },
+        pull(controller) {
+            const { value, done } = this.generator.next();
+
+            if (done) {
+                controller.close();
+            } else {
+                controller.enqueue(value);
+            }
+        },
+        cancel() {
+            this.generator = null;
+        }
+    });
+}
+
+exports.createStringifyWebStream = createStringifyWebStream;
+exports.parseFromWebStream = parseFromWebStream;
+
 
 /***/ })
 
