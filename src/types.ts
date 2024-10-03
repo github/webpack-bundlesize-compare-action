@@ -35,7 +35,7 @@ export const describeAssetsSections = [
 ] as const
 export type DescribeAssetsSection = (typeof describeAssetsSections)[number]
 
-export type DescribeAssetsOptions = {[S in DescribeAssetsSection]: boolean}
+export type DescribeAssetsOptions = Record<DescribeAssetsSection, boolean>
 
 export const isDescribeAssetsSection = (
   option: string
