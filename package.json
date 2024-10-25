@@ -27,7 +27,7 @@
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
-    "@discoveryjs/json-ext": "^0.6.2"
+    "@discoveryjs/json-ext": "^0.6.3"
   },
   "devDependencies": {
     "@types/node": "^22.7.9",
