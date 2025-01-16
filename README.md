@@ -1,4 +1,4 @@
-# Webpack bundlesize compare action
+# Webpack bundlesize compare action - test
 
 An action that compares 2 webpack compilation stats files, and comments on the PR with a description of the difference
 
