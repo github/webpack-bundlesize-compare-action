@@ -48,7 +48,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: ${{github.event.pull_request.head.ref}}
       - name: Install dependencies
@@ -56,7 +56,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Upload stats.json
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: head-stats
           path: ./dist/stats.json
@@ -70,7 +70,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.base_ref }}
       - name: Install dependencies
@@ -78,7 +78,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Upload stats.json
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: base-stats
           path: ./dist/stats.json
@@ -91,8 +91,8 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: actions/download-artifact@v3
-      - uses: github/webpack-bundlesize-compare-action@v1.8.2
+      - uses: actions/download-artifact@v4
+      - uses: github/webpack-bundlesize-compare-action@v2.1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           current-stats-json-path: ./head-stats/stats.json
