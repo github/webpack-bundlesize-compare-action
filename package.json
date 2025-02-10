@@ -39,8 +39,8 @@
     "eslint-plugin-prettier": "^5.2.3",
     "jest": "^29.7.0",
     "js-yaml": "^4.1.0",
-    "prettier": "^3.4.2",
-    "terser": "^5.38.0",
+    "prettier": "^3.5.0",
+    "terser": "^5.38.1",
     "ts-jest": "^29.2.5",
     "typescript": "^5.7.3",
     "webpack": "^5.97.1"
