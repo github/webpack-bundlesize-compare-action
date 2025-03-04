@@ -17,6 +17,9 @@ on:
   pull_request:
     paths-ignore:
       - '**.md'
+  merge_group:
+    types: [checks_requested]
+    reuse-previous-outcome: true
   workflow_dispatch:
 
 jobs:
