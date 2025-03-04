@@ -6,6 +6,9 @@ on: # rebuild any PRs and main branch changes
   pull_request_target:
     branches:
       - 'dependabot/**'
+  merge_group:
+    types: [checks_requested]
+    reuse-previous-outcome: true
 
 permissions:
   contents: read
@@ -22,6 +25,7 @@ jobs:
           npm run all
   test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-22.04
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
     steps:
       - uses: actions/checkout@v4
       - uses: ./
