@@ -3,9 +3,15 @@ on: # rebuild any PRs and main branch changes
   pull_request:
     branches-ignore:
       - 'dependabot/**'
+    reuse-previous-outcome: true
   pull_request_target:
     branches:
       - 'dependabot/**'
+    reuse-previous-outcome: true
+  merge_group:
+    types: [checks_requested]
+    reuse-previous-outcome: true
+  workflow_dispatch:
 
 permissions:
   contents: read
