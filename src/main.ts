@@ -96,7 +96,7 @@ async function run(): Promise<void> {
       describeAssetsOptions
     )
 
-    const promises: Promise<unknown>[] = []
+    const promises: Array<Promise<unknown>> = []
 
     if (restComments.length > 1) {
       promises.push(
