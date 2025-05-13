@@ -26,12 +26,12 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@actions/github": "^6.0.0",
+    "@actions/github": "^6.0.1",
     "@discoveryjs/json-ext": "^0.6.3"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^4.2.0",
-    "@types/node": "^22.15.14",
+    "@types/node": "^22.15.17",
     "@vercel/ncc": "^0.38.3",
     "eslint": "^9.23.0",
     "eslint-plugin-github": "^6.0.0",
@@ -41,7 +41,7 @@
     "terser": "^5.39.0",
     "ts-jest": "^29.3.2",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.32.0",
+    "typescript-eslint": "^8.32.1",
     "webpack": "^5.99.8"
   }
 }
