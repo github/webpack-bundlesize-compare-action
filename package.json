@@ -30,7 +30,7 @@
     "@discoveryjs/json-ext": "^0.6.3"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^4.4.0",
+    "@stylistic/eslint-plugin": "^4.4.1",
     "@types/node": "^22.15.29",
     "@vercel/ncc": "^0.38.3",
     "eslint": "^9.23.0",
