@@ -1,33 +1,37 @@
-name: 'Bundle comparison'
-description: 'Compare the bundle size between the base branch and the current branch'
+name: 'Bundle Comparison'
+description: 'Compare bundle sizes between the base and current branches using stats.json.'
+
 inputs:
   current-stats-json-path:
-    description: 'The path to the current stats.json file'
+    description: 'Path to the current branch stats.json file (e.g., from Webpack or esbuild).'
     required: true
+
   base-stats-json-path:
-    description: 'The path to the base stats.json file'
+    description: 'Path to the base branch stats.json file.'
     required: true
+
   github-token:
-    description: 'The Github token'
+    description: 'GitHub token for posting comments and interacting with the API.'
     required: true
+
   title:
-    description: 'An optional addition to the title, which also helps key comments, useful if running more than 1 copy of this action'
+    description: 'Optional suffix for the report title. Useful when running multiple comparisons.'
     required: false
+
   describe-assets:
     description: |
-      Optional specification describing asset changes. May be one of the convenience
-      keywords "all", "none", or "changed-only" (for all except the unchanged section), OR
-      a string of space-separated section names, e.g. "added bigger unchanged", where
-      all sections are:
-        - added
-        - removed
-        - bigger
-        - smaller
-        - unchanged
-      If not provided, "all" is used (equivalent to "added removed bigger smaller unchanged")
+      Optional asset change summary. Accepts:
+        - Convenience keywords: "all", "none", "changed-only"
+        - Or space-separated list of specific sections:
+          "added", "removed", "bigger", "smaller", "unchanged"
+      Default is "all".
     required: false
     default: 'all'
 
 runs:
   using: 'node20'
   main: 'dist/index.js'
+
+branding:
+  icon: 'bar-chart'
+  color: 'purple'
