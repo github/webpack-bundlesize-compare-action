@@ -160,6 +160,7 @@ const get_chunk_module_diff_1 = __nccwpck_require__(1564);
 const get_stats_diff_1 = __nccwpck_require__(1455);
 const parse_stats_file_to_json_1 = __nccwpck_require__(9104);
 const to_comment_body_1 = __nccwpck_require__(7213);
+const threshold_check_1 = __nccwpck_require__(4811);
 const types_1 = __nccwpck_require__(5740);
 function getDescribeAssetsOptions(optionString) {
     optionString = optionString.trim().toLowerCase();
@@ -205,6 +206,7 @@ function run() {
             const describeAssetsOptionString = core.getInput('describe-assets');
             const describeAssetsOptions = getDescribeAssetsOptions(describeAssetsOptionString);
             const title = (_a = core.getInput('title')) !== null && _a !== void 0 ? _a : '';
+            const totalIncreaseThresholdPercent = core.getInput('total-increase-threshold-percent') || undefined;
             const { rest } = (0, github_1.getOctokit)(token);
             const [currentStatsJson, baseStatsJson, { data: comments }] = yield Promise.all([
                 (0, parse_stats_file_to_json_1.parseStatsFileToJson)(currentStatsJsonPath),
@@ -224,6 +226,18 @@ function run() {
             });
             const statsDiff = (0, get_stats_diff_1.getStatsDiff)(baseStatsJson, currentStatsJson);
             const chunkModuleDiff = (0, get_chunk_module_diff_1.getChunkModuleDiff)(baseStatsJson, currentStatsJson);
+            if (!(0, threshold_check_1.shouldPostComment)(statsDiff, totalIncreaseThresholdPercent)) {
+                core.info(`Total bundle size increase (${(0, threshold_check_1.totalSizeIncreasePercent)(statsDiff).toFixed(2)}%) is below threshold (${totalIncreaseThresholdPercent}%). Skipping comment.`);
+                if (currentComment) {
+                    core.info('Deleting existing comment.');
+                    yield rest.issues.deleteComment({
+                        repo: repo_name,
+                        owner,
+                        comment_id: currentComment.id
+                    });
+                }
+                return;
+            }
             const commentBody = (0, to_comment_body_1.getCommentBody)(statsDiff, chunkModuleDiff, title, describeAssetsOptions);
             const promises = [];
             if (restComments.length > 1) {
@@ -586,6 +600,69 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.sortDiffDescending = sortDiffDescending;
 function sortDiffDescending(items) {
     return items.sort((diff1, diff2) => Math.abs(diff2.diff) - Math.abs(diff1.diff));
+}
+
+
+/***/ }),
+
+/***/ 4811:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.totalSizeIncreasePercent = totalSizeIncreasePercent;
+exports.shouldPostComment = shouldPostComment;
+const core = __importStar(__nccwpck_require__(7484));
+function totalSizeIncreasePercent(statsDiff) {
+    if (statsDiff.total.old.size === 0) {
+        return statsDiff.total.diff > 0 ? Infinity : 0;
+    }
+    return (statsDiff.total.diff / statsDiff.total.old.size) * 100;
+}
+function shouldPostComment(statsDiff, thresholdPercent) {
+    if (!thresholdPercent) {
+        return true;
+    }
+    const threshold = parseFloat(thresholdPercent);
+    if (isNaN(threshold)) {
+        core.warning(`Invalid total-increase-threshold-percent value: '${thresholdPercent}'. Ignoring threshold.`);
+        return true;
+    }
+    return totalSizeIncreasePercent(statsDiff) >= threshold;
 }
 
 

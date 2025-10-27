@@ -27,6 +27,10 @@ inputs:
       If not provided, "all" is used (equivalent to "added removed bigger smaller unchanged")
     required: false
     default: 'all'
+  total-increase-threshold-percent:
+    description: |
+      If specified, comments will only be posted when the total bundle size increases by more than this percentage.
+    required: false
 
 runs:
   using: 'node20'
