@@ -110,7 +110,7 @@ This action requires the `write` permission for the [`permissions.pull-requests`
 | github-token            | The Github token                                                                                                    | true     | string |
 | title                   | An optional addition to the title, which also helps key comments, useful if running more than 1 copy of this action | false    | string |
 | describe-assets         | Option for asset description output. One of "all" (default), "changed-only", or "none".                             | false    | string |
-| issue-number            | The issue to comment on (Default: The issue that triggered the action)                                              | true     | string |
+| issue-number            | The issue to comment on (Default: The issue that triggered the action)                                              | false    | string |
 
 ## Example PR Comment
 
