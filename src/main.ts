@@ -44,18 +44,10 @@ export function getDescribeAssetsOptions(
 
 async function run(): Promise<void> {
   try {
-    if (
-      context.eventName !== 'pull_request' &&
-      context.eventName !== 'pull_request_target'
-    ) {
-      throw new Error(
-        'This action only supports pull_request and pull_request_target events'
-      )
-    }
     const {
-      issue: {number: issue_number},
       repo: {owner, repo: repo_name}
     } = context
+    const issue_number = parseInt(core.getInput('issue-number'))
     const token = core.getInput('github-token')
     const currentStatsJsonPath = core.getInput('current-stats-json-path')
     const baseStatsJsonPath = core.getInput('base-stats-json-path')
