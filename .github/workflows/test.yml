@@ -18,7 +18,7 @@ jobs:
   build: # make sure build/ci work properly
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: |
           npm install
       - run: |
@@ -27,14 +27,14 @@ jobs:
     runs-on: ubuntu-22.04
     if: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./
         with:
           current-stats-json-path: ./__tests__/__mocks__/new-stats-with-chunks.json
           base-stats-json-path: ./__tests__/__mocks__/old-stats-with-chunks.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           title: With chunk and module information
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: ./
         with:
           current-stats-json-path: ./__tests__/__mocks__/new-stats-assets.json
