@@ -4,6 +4,7 @@ import {getChunkModuleDiff} from './get-chunk-module-diff'
 import {getStatsDiff} from './get-stats-diff'
 import {parseStatsFileToJson} from './parse-stats-file-to-json'
 import {getCommentBody, getIdentifierComment} from './to-comment-body'
+import {shouldPostComment, totalSizeIncreasePercent} from './threshold-check'
 import {
   isDescribeAssetsSection,
   DescribeAssetsSection,
@@ -64,6 +65,8 @@ async function run(): Promise<void> {
       describeAssetsOptionString
     )
     const title = core.getInput('title') ?? ''
+    const totalIncreaseThresholdPercent =
+      core.getInput('total-increase-threshold-percent') || undefined
     const {rest} = getOctokit(token)
 
     const [currentStatsJson, baseStatsJson, {data: comments}] =
@@ -88,6 +91,21 @@ async function run(): Promise<void> {
 
     const statsDiff = getStatsDiff(baseStatsJson, currentStatsJson)
     const chunkModuleDiff = getChunkModuleDiff(baseStatsJson, currentStatsJson)
+
+    if (!shouldPostComment(statsDiff, totalIncreaseThresholdPercent)) {
+      core.info(
+        `Total bundle size increase (${totalSizeIncreasePercent(statsDiff).toFixed(2)}%) is below threshold (${totalIncreaseThresholdPercent}%). Skipping comment.`
+      )
+      if (currentComment) {
+        core.info('Deleting existing comment.')
+        await rest.issues.deleteComment({
+          repo: repo_name,
+          owner,
+          comment_id: currentComment.id
+        })
+      }
+      return
+    }
 
     const commentBody = getCommentBody(
       statsDiff,
