@@ -42,6 +42,6 @@
     "ts-jest": "^29.4.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.49.0",
-    "webpack": "^5.104.1"
+    "webpack": "^5.106.0"
   }
 }
