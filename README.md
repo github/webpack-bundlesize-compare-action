@@ -1,3 +1,8 @@
+> [!WARNING]
+> **Deprecated:** This repository is no longer actively maintained and is archived.
+>
+> Please do not adopt this action for new projects. Existing users should plan to migrate away from it. The associated npm package will also be deprecated.
+
 # Webpack bundlesize compare action
 
 An action that compares 2 webpack compilation stats files, and comments on the PR with a description of the difference
